@@ -1,0 +1,21 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Подтверждение почтового ящика</title>
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+    <div class="confirmEmail">
+        <img src="~/Content/style/images/logo.png" />
+        <h1>@if (ViewBag.newPass) {<text>На Ваш Email было отправленно сообщение с сылкой на изменение пароля</text>} else {<text>Пожалуйста, подтвердите Ваш адресс электронной почты</text>} @if (ViewBag.emailLast != "") {<br /><a href="http://@ViewBag.emailLast">@ViewBag.emailLast</a>}</h1>
+    </div>
+</body>
+</html>

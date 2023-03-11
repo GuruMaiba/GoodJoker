@@ -1,0 +1,1233 @@
+/*
+ * Студия
+ * --------------------------------------------------
+ */
+
+.studio {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+
+    .editRole {
+        display: none;
+        justify-content: space-around;
+        width: 60%;
+        height: 60%;
+        text-align: center;
+        color: #1adce4;
+        padding: 10px;
+        border: 1px solid #1adce4;
+        border-radius: 10px;
+        box-shadow: #1adce4 0 0 20px 0;
+        background: #131315;
+
+        .user {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            overflow: hidden;
+
+            img {
+                width: 150px;
+                height: 150px;
+                border-radius: 150px;
+                border: 1px solid #1adce4;
+            }
+
+            .name {
+                font-size: 35px;
+                padding: 10px 0 0 0;
+            }
+        }
+
+        .role {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 60%;
+
+            .itemRole {
+                display: flex;
+                align-items: center;
+                width: 100%;
+                text-align: left;
+                padding: 7px 0;
+
+                input {
+                    margin: 0 30px 0 0;
+                }
+            } // end itemRole
+        } // end role
+    } // end editRole
+
+    .modalAddMember {
+        display: none;
+        text-align: center;
+
+        h1 {
+            padding-top: 30px;
+        }
+
+        .inputAddMember {
+            position: relative;
+            margin: 30px auto 40px auto;
+            width: 90%;
+
+            .listUser {
+                position: absolute;
+                top: 48px;
+                left: 10px;
+                width: 70%;
+                text-align: left;
+                border: 1px solid #1adce4;
+                border-top: 0;
+                border-bottom: 0;
+                color: #1adce4;
+                background: #131315;
+
+                div {
+                    font-size: 20px;
+                    padding: 10px 20px;
+                    border-bottom: 1px solid #1adce4;
+                    transition: all .3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        background: #119298;
+                        color: #fff;
+                    }
+                }
+            } // end listUser
+
+            .input {
+                border-bottom: 1px solid #1adce4;
+            }
+
+            .inputLable {
+                color: #1adce4;
+            }
+        }
+
+        .labelHello {
+            width: 90%;
+            font-size: 20px;
+            text-align: left;
+            padding: 5px 10px;
+            margin: 0 auto;
+
+            span { float: right; }
+        }
+
+        textarea {
+            width: 90%;
+        }
+
+        .sendHelloMessage {
+            display: inline-block;
+            color: #1adce4;
+            font-size: 20px;
+            padding: 10px 100px;
+            margin: 45px 0 20px 0;
+            border: 1px solid #1adce4;
+            transition: all 0.3s ease;
+
+            &:hover {
+                cursor: pointer;
+                color: #fff;
+                border: 1px solid #119298;
+                background: #119298;
+            }
+
+            &.disable {
+                opacity: 0.2;
+
+                &:hover {
+                    cursor: auto;
+                    color: #1adce4;
+                    border: 1px solid #1adce4;
+                    background: #131315;
+                }
+            }
+        } // end sendHelloMessage
+    } // end modalAddMember
+
+    .studioBack {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 16px;
+        z-index: 1;
+    }
+
+    .studioBG {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        div {
+            width: 100%;
+            height: 100%;
+            filter: blur(10px);
+            background: #131315 center center / cover no-repeat;
+        }
+    }
+
+    .studioTitle {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        text-align: center;
+        background: rgba(19, 19, 21, 0.6);
+
+        .cover {
+            position: relative;
+            height: 530px;
+            padding: 0;
+            box-shadow: 0 0 30px 3px #000;
+            background: #119298 center center / cover no-repeat;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                width: 100%;
+                height: 100%;
+                font-size: 100px;
+                line-height: 1;
+                background: rgba(19, 19, 21, 0.5);
+            }
+
+            .name span {
+                font-family: 'Lobster';
+                overflow: hidden;
+                padding: 20px 10px;
+            }
+
+            .avatar {
+                position: absolute;
+                top: 0;
+                left: calc(50% - 100px);
+                width: 200px;
+                height: 200px;
+                border-radius: 150px;
+                box-shadow: 0 0 30px 3px #000;
+                transition: all 1s ease;
+                -webkit-transition: all 1s ease;
+                z-index: 1;
+
+                &.top {
+                    position: absolute;
+                    top: -100px;
+                }
+
+                &.bottom {
+                    position: absolute;
+                    top: calc(100% - 100px);
+                }
+            }
+        } // end cover
+    } // end studioTitle
+
+    .content {
+        margin: 0 0 70px 0;
+
+        /*Статус студии*/
+        .status {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            font-size: 30px;
+            font-family: Lobster;
+        }
+
+        /*Кнопка подписки на студию*/
+        .btnWorkStudio {
+            position: absolute;
+            top: 40px;
+            right: 50px;
+            width: 260px;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px 1px #000;
+            background: rgba(13,150,158,0.2);
+            transition: all .3s ease;
+        }
+
+        .subscribe {
+            background: #119298;
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 1px #119298;
+            }
+        }
+
+        .goOutStudio {
+            background: rgba(13,150,158,0.2);
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+                color: #1adce4;
+            }
+        }
+
+        .delStudio {
+            background: #CC0000;
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 1px #CC0000;
+            }
+        }
+
+        .crossPhoto {
+            display: none;
+            text-align: center;
+            width: 95%;
+            margin: 40px auto 0 auto;
+            padding: 30px;
+            box-shadow: #000 0px 0px 20px 5px inset;
+
+            .crossPhotoImg {
+                margin: 0 auto;
+                width: 100%;
+                box-shadow: #000 0px 0px 10px 0;
+
+                img { width: 100%; }
+            }
+
+            %crossBtn {
+                cursor: pointer;
+                display: inline-block;
+                font-size: 25px;
+                padding: 10px 50px;
+                margin: 20px 20px 0 20px;
+                border-radius: 5px;
+                box-shadow: #000 0 0 20px 0;
+                transition: all .3s ease;
+            }
+
+            .cancel {
+                @extend %crossBtn;
+                background: #CC0000;
+                &:hover { box-shadow: #CC0000 0 0 20px 0; }
+            }
+
+            .clip {
+                @extend %crossBtn;
+                background: #009900;
+                &:hover { box-shadow: #009900 0 0 20px 0; }
+            }
+        }
+
+        .hiddenInputFile {
+            width: 0.001px;
+            height: 0.001px;
+            overflow: hidden;
+        }
+
+        .editImg {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px 0 0 0;
+
+            a:hover { color: #fff; }
+
+            .editBtn {
+                display: inline-block;
+                width: 260px;
+                font-size: 18px;
+                text-align: center;
+                padding: 10px 0px;
+                border-radius: 5px;
+                box-shadow: 0 0 20px 1px #000;
+                background: #119298;
+                transition: all .3s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0 0 20px 1px #119298;
+                }
+            }
+        } // end editImg
+
+        textarea {
+            width: calc(100% - 20px);
+            height: 200px;
+            resize: vertical;
+            outline: none;
+            color: #fff;
+            border: 0;
+            padding: 10px;
+            box-shadow: 0 0 10px 3px #1adce4;
+            background: transparent;
+        }
+
+        .container {
+            position: relative;
+            height: 100%;
+            box-shadow: 0 0 30px 3px #000;
+            padding: 100px 50px 50px 50px;
+        }
+
+        /* Цитата */
+
+        .quote {
+            display: flex;
+            justify-content: center;
+            margin: 70px 50px 100px 50px;
+
+            .iconLeft, .iconRight {
+                font-size: 40px;
+            }
+
+            .text {
+                width: 100%;
+                font-size: 20px;
+                text-align: center;
+                padding: 0 20px;
+
+                textarea {
+                    height: 200px;
+                }
+
+                hr {
+                    width: 70%;
+                    margin: 15px auto;
+                }
+
+                .author input {
+                    width: 100%;
+                    color: #fff;
+                    text-align: center;
+                    font-style: italic;
+                    font-family: Text;
+                    outline: none;
+                    padding: 5px 10px;
+                    border: 0;
+                    box-shadow: 0 0 5px 1px #1adce4;
+                    background: transparent;
+                }
+            } // end text
+        } // end quote
+
+        /* Лоттереи */
+
+        .lotteries {
+            a { color: #fff; }
+
+            .lottery {
+                display: flex;
+                width: 100%;
+                height: 300px;
+                margin: 30px 0 0 0;
+                box-shadow: 0 0 30px 3px #000;
+                transition: all .3s ease;
+
+                .preview {
+                    width: 50%;
+
+                    .inform {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 100%;
+                        height: 100%;
+                        font-size: 30px;
+                        background: rgba(19, 19, 21, 0.5);
+
+                        .iconAddLottery {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            width: 100%;
+                            height: 70%;
+                            color: #1adce4;
+                            font-size: 50px;
+                            text-align: center;
+                            border-right: 1px solid #1adce4;
+
+                            i {
+                                display: block;
+                                width: 100px;
+                                height: 100px;
+                                padding: 22px 0 0 0;
+                                border: 1px solid #1adce4;
+                                border-radius: 150px;
+                                transition: all 0.3s ease;
+                            }
+                        }
+                    } // end inform
+                } // end preview
+
+                .description {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    font-size: 20px;
+                    width: 50%;
+                    color: #1adce4;
+                    padding: 10px 30px;
+                    overflow: hidden;
+                }
+
+                .titleDesc {
+                    font-size: 30px;
+                    margin: 0px 0 10px 0;
+                }
+
+                &:hover {
+                    box-shadow: 0 0 10px 1px #119298;
+                    .preview { background-color: #119298; }
+                }
+            } // end lottery
+        } // end lotteries
+
+        /* Призы */
+
+        .prizes {
+            color: #1adce4;
+            margin: 70px 0 0 0;
+
+            .year {
+                font-size: 50px;
+                margin: 50px 0 0 0;
+                transition: all 0.3s ease;
+            }
+
+            .mounth {
+                font-size: 25px;
+                margin: 10px 0 0 20px;
+                transition: all 0.3s ease;
+            }
+
+            .year:hover, .mounth:hover {
+                cursor: pointer;
+                color: #119298;
+            }
+
+            .prize {
+                display: flex;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 15px 0 0 0;
+
+                .day {
+                    font-size: 40px;
+                    width: 40px;
+                    margin: 0 0 0 50px;
+                    text-align: center;
+                }
+
+                .name {
+                    font-size: 30px;
+                    margin: 0 0 10px 20px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        border-radius: 50px;
+                        border: 1px solid #fff;
+                    }
+
+                    a:hover img { border: 1px solid #119298; }
+                } // end name
+            } // end prize
+        } // end prizes
+
+        /* О нас */
+
+        .about {
+            .text {
+                padding: 20px;
+                font-size: 20px;
+            }
+
+            /* Команда */
+            .team {
+                display: flex;
+                justify-content: flex-start;
+                flex-wrap: wrap;
+
+                .member {
+                    width: 20%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    margin: 20px 0 0 0;
+                    transition: all .3s ease;
+
+                    &.noconfirm {
+                        opacity: 0.4;
+                        &:hover { opacity: 1; }
+                    }
+
+                    .position {
+                        cursor: pointer;
+                        position: relative;
+
+                        img,
+                        .addMember {
+                            display: inline-block;
+                            width: 150px;
+                            height: 150px;
+                            margin: 0 0 5px 0;
+                            font-size: 70px;
+                            line-height: 1;
+                            border-radius: 150px;
+                            box-shadow: 0 0 30px 3px #000;
+                        }
+
+                        .addMember i {
+                            display: block;
+                            margin: 43px 0 0 0;
+                        }
+
+                        .name {
+                            font-size: 30px;
+                            padding-top: 5px;
+                        }
+
+                        .editMember, .oneeditMember {
+                            position: absolute;
+                            top: -10px;
+                            right: 10px;
+                            display: flex;
+                            flex-direction: column;
+                            font-size: 20px;
+                            padding: 5px;
+                            border-radius: 50px;
+                            box-shadow: #000 0 0 20px 0;
+                            background: #119298;
+                            transition: all 0.3s ease;
+                            transform: rotate(-45deg);
+
+                            i:hover {
+                                cursor: pointer;
+                                opacity: 0.8;
+                            }
+                        }
+
+                        .oneeditMember {
+                            top: 5px;
+                            padding-bottom: 0px;
+                            transform: rotate(0deg);
+                        }
+                    }
+
+                    &:hover .position img,
+                    &:hover .position .addMember {
+                        cursor: pointer;
+                        color: #119298;
+                        box-shadow: 0 0 10px 1px #119298;
+                    }
+                } // end member
+
+                .addMemberBtn .position {
+                    .name { transition: all 0.3s ease; }
+                    &:hover .name {
+                        cursor: pointer;
+                        color: #119298;
+                    }
+                }
+            } // end team
+        } // end about
+
+        /* Контакты */
+
+        .contacts {
+            margin: 40px 0 0 0;
+
+            .contents {
+                padding: 20px 50px;
+
+                .social {
+                    font-size: 40px;
+                }
+
+                .info {
+                    font-size: 30px;
+                    line-height: 1;
+                    margin: 20px 0 0 0;
+
+                    .itemContact {
+                        margin: 10px 0 0 0;
+                    }
+
+                    .titleContact {
+                        color: #1adce4;
+                    }
+
+                    .contactPencil {
+                        font-size: 22px;
+                        transition: all .3s ease;
+
+                        &:hover {
+                            cursor: pointer;
+                            color: #119298;
+                        }
+                    }
+
+                    .editContact {
+                        display: none;
+                        position: relative;
+                        margin: 15px 0;
+                        padding: 0 30px 30px 30px;
+                        box-shadow: 0 0 30px 1px #000 inset;
+
+                        .confirm {
+                            position: absolute;
+                            bottom: 15px;
+                            right: 7%;
+                            color: #1adce4;
+                            font-size: 50px;
+                            transition: all .3s ease;
+
+                            &:hover {
+                                cursor: pointer;
+                                color: #119298;
+                            }
+                        }
+
+                        input {
+                            width: 80%;
+                            color: #fff;
+                            font-size: 20px;
+                            margin: 30px 0 0 0;
+                            padding: 10px 15px;
+                            border: 0;
+                            box-shadow: 0 0 10px 1px #1adce4;
+                            background: transparent;
+                        }
+
+                        .addSocial i {
+                            display: inline-block;
+                            width: 50px;
+                            height: 50px;
+                            text-align: center;
+                            margin: 30px 5px 0 0;
+                            padding: 8px 0 0 0;
+                            border-radius: 5px;
+                            box-shadow: 0 0 20px 1px #000;
+                            background: #119298;
+                            transition: all .3s ease;
+
+                            &:hover {
+                                cursor: pointer;
+                                box-shadow: 0 0 20px 1px #119298;
+                            }
+                        }
+
+                        .itemSocial {
+                            position: relative;
+                            margin: 15px 0 0 0;
+
+                            .icon {
+                                position: absolute;
+                                bottom: 4px;
+                                left: 15px;
+                                color: #1adce4;
+                                font-size: 25px;
+                            }
+
+                            input {
+                                padding-left: 60px;
+                                margin: 10px 0 0 0;
+                            }
+
+                            .delLink {
+                                position: relative;
+                                top: 7px;
+                                color: #CC0000;
+                                font-size: 25px;
+
+                                &:hover {
+                                    cursor: pointer;
+                                    opacity: 0.7;
+                                }
+                            }
+                        } // end itemSocial
+                    } // end editContact
+                } // end info
+            } // end contents
+        } // end contacts
+
+        .logo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 80px;
+            margin: 50px 0;
+
+            .good, div { font-family: 'Lobster'; }
+            img {
+                width: 150px;
+                height: 150px;
+                margin: 0 10px 0 20px;
+                border-radius: 150px;
+                box-shadow: 0 0 30px 3px #000;
+                background: #119298;
+                transition: all 0.3s ease;
+            }
+        }
+
+        .logoLink:hover img {
+            box-shadow: 0 0 30px 3px #119298;
+        }
+    } // end content
+} // end studio
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .studio .editRole {
+        width: 80%;
+    }
+
+    .studio .studioTitle .cover div {
+        font-size: 80px;
+    }
+} // end media 1199
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .studio {
+        .editRole {
+            width: 80%;
+        }
+
+        .studioBG, .studioTitle {
+            height: 550px;
+        }
+
+        .studioTitle .cover {
+            height: 400px;
+
+            div {
+                font-size: 60px;
+            }
+
+            .avatar {
+                left: calc(50% - 75px);
+                width: 150px;
+                height: 150px;
+
+                &.top { top: -75px; }
+                &.bottom { top: 325px; }
+            }
+        }
+
+        .content {
+            .container {
+                padding: 70px 20px 0px 20px;
+            }
+
+            .status {
+                top: 20px;
+                left: 30px;
+            }
+
+            .btnWorkStudio {
+                top: 20px;
+                right: 20px;
+                width: 240px;
+            }
+
+            .editImg .editBtn {
+                width: 210px;
+                font-size: 15px;
+            }
+
+            .quote {
+                margin: 70px 50px 50px 50px;
+            }
+
+            .lotteries .lottery {
+                height: 250px;
+
+                .preview .inform {
+                    font-size: 25px;
+                }
+
+                .titleDesc {
+                    font-size: 25px;
+                }
+
+                .description {
+                    font-size: 17px;
+                }
+            }
+
+            .about .team .member {
+                width: 25%;
+            }
+
+            .contacts .contents {
+                padding: 10px;
+            }
+        } // end content
+    } // end studio
+} // end media 991
+
+@media (max-width: 767px) {
+    .studio {
+        .modalAddMember {
+            padding: 0;
+
+            h1 {
+                padding-top: 25px;
+                padding-bottom: 10px;
+                font-size: 23px;
+            }
+
+            .inputAddMember {
+                margin: 20px auto 20px auto;
+
+                .listUser {
+                    top: 38px;
+                    left: 0px;
+                    width: 90%;
+                }
+            }
+
+            .labelHello {
+                width: 90%;
+                font-size: 15px;
+                text-align: left;
+                padding: 5px 10px;
+                margin: 0 auto;
+            }
+
+            .sendHelloMessage {
+                margin-top: 20px;
+                font-size: 15px;
+            }
+        } // end modalAddMember
+
+        .editRole {
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            height: auto;
+            padding: 20px 10px;
+
+            .user {
+                flex-direction: row;
+                width: 100%;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                    margin-right: 10px;
+                }
+
+                .name {
+                    font-size: 22px;
+                }
+            }
+
+            .role {
+                margin-top: 15px;
+                width: 90%;
+
+                .itemRole input {
+                    min-width: 20px;
+                    margin-right: 20px;
+                }
+            }
+        } // end editRole
+
+        .studioBG, .studioTitle {
+            height: 100%;
+        }
+
+        .studioTitle .cover {
+            height: 100%;
+            width: 100%;
+
+            div {
+                font-size: 40px;
+            }
+
+            .avatar {
+                left: calc(50% - 50px);
+                width: 100px;
+                height: 100px;
+
+                &.top {
+                    top: calc(85% - 50px);
+                    opacity: 0.6;
+                }
+                &.bottom { top: calc(100% - 50px); }
+            }
+        }
+
+        .content {
+            margin: 0;
+
+            .container {
+                padding: 60px 10px 0px 10px;
+            }
+
+            .status {
+                position: relative;
+                top: 0px;
+                left: 0px;
+                font-size: 25px;
+            }
+
+            .btnWorkStudio {
+                position: relative;
+                top: 10px;
+                right: inherit;
+                width: 100%;
+            }
+
+            .editImg {
+                flex-direction: column;
+                padding: 0 0 0 0;
+
+                .editBtn {
+                    width: 100%;
+                    font-size: 15px;
+                    margin-top: 10px;
+                }
+            }
+
+            .crossPhoto {
+                .cancel, .clip {
+                    font-size: 15px;
+                    width: 100%;
+                    padding: 10px 0px;
+                    margin: 15px 0 0 0;
+                }
+            }
+
+            .lotteries .lottery {
+                position: relative;
+                height: 200px;
+
+                .preview {
+                    width: 100%;
+
+                    .inform .iconAddLottery {
+                        border: 0;
+                    }
+
+                    .description {
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        right: 0;
+                        left: 0;
+                        width: 100%;
+                        background: rgba(0, 0, 0, 0.6);
+                    }
+                }
+            } // end lottery
+
+            .prizes {
+                .year {
+                    font-size: 30px;
+                    margin-top: 30px;
+                }
+
+                .mounth {
+                    font-size: 20px;
+                    margin: 10px 0 0 10px;
+                }
+
+                .prize {
+                    padding: 10px 0;
+
+                    .day {
+                        font-size: 18px;
+                        width: 10px;
+                        margin: 0 0 0 30px;
+                    }
+
+                    .name {
+                        font-size: 18px;
+                        margin: 0 0 0 20px;
+                    }
+                } // end prize
+            } // end prizes
+
+            .about {
+                .text {
+                    padding: 20px 0px;
+                    font-size: 15px;
+                }
+
+                .team {
+                    flex-direction: column;
+                    flex-wrap: nowrap;
+                    padding: 0 10px;
+
+                    .member {
+                        width: 100%;
+                        display: block;
+                        justify-content: center;
+                        align-items: center;
+                        text-align: left;
+                        margin: 20px 0 0 0;
+
+                        .position {
+                            a { display: block; }
+
+                            img,
+                            .addMember {
+                                width: 70px;
+                                height: 70px;
+                                margin: 0 5px 0 0;
+                                font-size: 30px;
+                                text-align: center;
+                                box-shadow: 0 0 10px 1px #000;
+                            }
+
+                            .addMember i {
+                                margin-top: 22px;
+                            }
+
+                            .name {
+                                display: inline-block;
+                                font-size: 20px;
+                                padding-top: 0;
+                            }
+
+
+                            .editMember, .oneeditMember {
+                                top: -10px;
+                                right: inherit;
+                                left: 40px;
+                                font-size: 15px;
+                                box-shadow: #000 0 0 10px 0;
+                            }
+
+                            .oneeditMember { top: -5px; }
+                        } // end position
+                    } // end member
+
+                    .addMemberBtn .position .name {
+                        position: relative;
+                        top: -10px;
+                    }
+                } // end team
+            } // end about
+
+            .contacts {
+                margin: 0;
+
+                .contents {
+                    padding: 0 10px;
+
+                    .info {
+                        font-size: 20px;
+                        margin-top: 20px;
+
+                        .itemContact {
+                            margin-top: 10px;
+                        }
+
+                        .contactPencil {
+                            font-size: 15px;
+                        }
+
+                        .editContact {
+                            margin: 5px 0;
+                            padding: 5px 10px 10px 10px;
+                            box-shadow: 0 0 10px 1px #000 inset;
+
+                            .confirm {
+                                position: relative;
+                                bottom: 0;
+                                right: 0;
+                                top: 10px;
+                                padding-bottom: 5px;
+                                text-align: center;
+                                font-size: 30px;
+                            }
+
+                            input {
+                                width: 100%;
+                                font-size: 15px;
+                                margin: 10px 0 0 0;
+                                padding: 10px 10px 5px 10px;
+                                box-shadow: 0 0 2px 1px #1adce4;
+                            }
+
+                            .addSocial i {
+                                width: 35px;
+                                height: 35px;
+                                margin: 5px 0px 0 0;
+                                padding: 6px 0 0 0;
+                                box-shadow: 0 0 10px 1px #000;
+                            }
+
+                            .itemSocial {
+                                margin-top: 10px;
+
+                                .icon {
+                                    bottom: 4px;
+                                    left: 12px;
+                                    font-size: 15px;
+                                }
+
+                                input {
+                                    padding: 10px 30px 5px 40px;
+                                    margin: 5px 0 0 0;
+                                }
+
+                                .delLink {
+                                    position: absolute;
+                                    top: 10px;
+                                    right: 5px;
+                                    font-size: 20px;
+                                }
+                            } // end itemSocial
+                        } // end editContact
+                    } // end info
+                } // end contents
+            } // end contacts
+
+            .logo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+                margin: 50px 0;
+
+                img {
+                    width: 80px;
+                    height: 80px;
+                    margin: 0 5px 0 10px;
+                    box-shadow: 0 0 20px 3px #000;
+                }
+            }
+
+            .logoLink:hover img {
+                box-shadow: 0 0 20px 3px #119298;
+            }
+        } // end content
+    } // end studio
+} // end media 767
+
+/*
+ * --------------------------------------------------
+ * Студия
+ */

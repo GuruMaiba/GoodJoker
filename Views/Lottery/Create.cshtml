@@ -1,0 +1,1097 @@
+﻿@using GoodJoker.Models
+
+@{
+    ViewBag.Title = $"Создание розыгрыша";
+    var id = User.Identity.GetUserId<int>();
+    ViewBag.Description = "Конструктор для создания розыгрышей";
+    ViewBag.URL = "https://goodjoker.ru/Lottery/Create/" + ViewBag.Id;
+    ViewBag.MetaImg = $"https://goodjoker.ru/Content/style/images/ok/1280.jpg";
+    ViewBag.KeyWords = "конструктор для розыгрышей, создание розыгрышей, проведение розыгрышей, пиар проекта, создание лотереи";
+}
+
+@section Modal {
+}
+
+<div class="container bodyDraw">
+    <div class="drawControlLine">
+        <div class="moveLine">
+            <i class="icon-help-circled viewHelp"></i>
+        </div>
+    </div>
+    <div class="drawContent">
+        <div class="hint">
+            <div class="headerBG">
+                <div class="helpImg">
+                    <div class="outline"></div>
+                    <div class="arrow"><div class="end"></div></div>
+                    <div class="text">ОБЯЗАТЕЛЬНЫЙ пункт. Для изменения картики, нажмите на иконку и выберите на своём устройстве другую картинку устраивающую Вас.</div>
+                </div>
+                <div class="helpTitle">
+                    <div class="arrow"><div class="end"></div></div>
+                    <div class="text">ОБЯЗАТЕЛЬНЫЙ пункт. Заголовок отражает суть Вашего розыгрыша, подберите самое подходящее! Этим Вы привлечёте тех пользователей, которые выполнят все условия и будут играть!</div>
+                </div>
+                <div class="helpYoutube">
+                    <div class="outline"></div>
+                    <div class="arrow"><div class="end"></div></div>
+                    <div class="text">
+                        Нажмите на иконку и в появившемся поле вставьте ссылку на youtube видео, например:
+                        https://www.youtube.com/watch?v=Xy73FP65dNA или https://youtu.be/Xy73FP65dNA?t=1m30s
+                    </div>
+                </div>
+            </div>
+            <div class="helpContent">
+                <div class="helpBlock" id="helpDateLottery">
+                    <div class="helpDate">
+                        <div class="text">
+                            ОБЯЗАТЕЛЬНЫЙ пункт.
+                            Выберите подходящую Вам дату розыгрыша.
+                            Максимальный срок розыгрыша 182 дня.
+                        </div>
+                    </div>
+                </div>
+                @if (User.Identity.GetUserRole() == "Admin")
+                {<div class="helpBlock" id="helpCountUser"></div>}
+                <div class="helpBlock" id="helpShortDescription">
+                    <div class="helpShortDescription">
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            ОБЯЗАТЕЛЬНЫЙ пункт.
+                            Коротко опишите Ваш розыгрыш, пользователи будут видеть его в общем списке розыгрышей.
+                            Хорошее описание позволит привлечь больше людей в Ваш розыгрыш.
+                            Максимальное количество символов - 300.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpDescription">
+                    <div class="helpDescription">
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            ОБЯЗАТЕЛЬНЫЙ пункт.
+                            Развёрнуто опишите Ваш розыгрыш! Это описание будет отображаться на странице детального просмотра розыгрыша.
+                            Оно позволит лучше понять Ваши цели и условия. А так же облегчить их выполнение.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpAgeLimitations">
+                    <div class="helpAgeLimit">
+                        <div class="text">
+                            Просим внимательно отнестись к этому пункту!
+                            При розыгрыше предмета имеющего возростные ограничения, в розыгрыше не имеющем возростных ограничений, розыгрыш будет удалён.
+                            Для создания розыгрыша 12+ или 18+ заполните только первое поле.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpConditions">
+                    <div class="helpConditions">
+                        <div class="outline"></div>
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            Добавьте условия участия, если Вам нужно чтобы пользователь выполнил необходимые Вам действия.
+                            Например репостнул запись в соц.сетях и т.п.
+                            Для того чтобы проверить выполнение условия, запросите информацию у пользователя.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpInfoUser">
+                    <div class="helpInfo">
+                        <div class="outline"></div>
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            Выберите нужную Вам информацию от пользователя,
+                            если же нужную Вам информацию мы не можем проверить,
+                            то создайте свою и назовите её, для этого, кликнете на последнюю иконку.
+                            В примере выше это будет ссылка на его аккаунт в той соц.сети, в которой он сделал репост.
+                            С помощью которой можно будет проверить есть ли данный человек, среди Ваших подписчиков.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpPrizes">
+                    <div class="helpPrizes">
+                        <div class="outline"></div>
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            Количество розыгрываемых призов не ограничено, но хотя бы один приз ОБЯЗАТЕЛЬНО должен быть!
+                            Запрещено создавать розыгрыш с названием противоречащему призу!
+                            Например: Название - "Розыгрыш iPhone", Приз - "nokia кирпич" =D
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpLinks">
+                    <div class="helpLinks">
+                        <div class="text">
+                            Добавьте ссылки на те проекты, которые вы рекламируете своим розыгрышем.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpLocalLimitations">
+                    <div class="helpLocalLimitations">
+                        <div class="arrow"><div class="end"></div></div>
+                        <div class="text">
+                            Для проведения розыгрыша в определённом населённом пункте или регионе.
+                            Напишите их название и выберите из списка, если же их нет в списке, заполните форму и через некоторое время мы обязательно добавим этот населённый пункт.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpBlock" id="helpGenderLimitations">
+                    <div class="helpGender">
+                        <div class="text">
+                            Если Ваш розыгрыш расчитан на пользователей с одной половой принадлежностью, тогда выберите её.
+                        </div>
+                    </div>
+                </div>
+                <div class="helpEndBlock" id="endBlock">
+                    <div class="helpEnd">
+                        <div class="text">
+                            После создания розыгрыша, для изменения будет доступны:
+                            картинка, youtube видео, все описания, добавление призов (но не удаление), изменение ссылок.<br />
+                            ВСЯ ОСТАЛЬНАЯ ИНФОРМАЦИЯ ОСТАЁТСЯ НЕИЗМЕННОЙ !!! <br />
+                            При определенных ситуациях, меняется через администрацию сайта.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <form id="create" method="post" enctype="multipart/form-data">
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@ViewBag.Id" />
+            <div class="drawPreview">
+                <div class="drawTitle">
+                    <div class="errorBG">Загрузите фоновую картинку для розыгрыша!</div>
+                    <div class="errorTitle">Введите название розыгрыша!</div>
+                    <input type="file" name="Cover" id="ava" class="hidden" accept="image/png,image/jpeg" />
+                    <label class="addBG" for="ava"><i class="icon-download"></i></label>
+                    <div class="errorBG"></div>
+                    <div class="errorTitle"></div>
+                    <div class="nameLott"><input class="inputAddLottery titleLottery" placeholder="Введите название" /></div>
+                    <input type="hidden" name="Title" />
+                    <input class="inputAddLottery youtubeId" type="text" name="YouTubeId" placeholder="Вставьте ссылку на видео" />
+                    <i class="icon-youtube-play play"></i>
+                </div>
+            </div>
+            <div class="drawDescription">
+                <div id="dateLottery" class="dateLottery">
+                    <div class="title create"><h1><span>Дата проведения</span></h1></div>
+                    <div class="datePicker">
+                        <input class="inputAddLottery day" type="text" placeholder="01" />
+                        <div class="pickerMonth">
+                            <span class="name" numberMonth="-1">Выберите месяц</span>
+                            <ul class="selectMonth">
+                                @{
+                                    var count = 0;
+                                    var flag = false;
+                                    int nowMonth = DateTime.Now.Month;
+                                    var listMonth = new List<string> {
+                                        "1;Января", "2;Февраля", "3;Марта", "4;Апреля",
+                                        "5;Мая", "6;Июня", "7;Июля", "8;Августа",
+                                        "9;Сентября", "10;Октября", "11;Ноября", "12;Декабря"
+                                    };
+                                    while (count != 7)
+                                    {
+                                        foreach (var mon in listMonth)
+                                        {
+                                            var arr = mon.Split(';');
+                                            if (int.Parse(arr[0]) == nowMonth) { flag = true; }
+                                            if (flag && count < 7)
+                                            {
+                                                <li number="@(int.Parse(arr[0])-1)">@arr[1]</li>
+                                                count++;
+                                            }
+                                            if (count == 7) { break; }
+                                        }
+                                    }
+                                }
+                            </ul>
+                        </div>
+                        <span class="year"></span>
+                        <input class="inputAddLottery time hidden" type="text" placeholder="00:00" />
+                    </div>
+                    <input class="date" type="hidden" name="DateLottery" />
+                    <input type="hidden" name="GMT" value="0" />
+                </div>
+
+                @if (User.Identity.GetUserRole() == "Admin")
+                {
+                    <div id="countUser">
+                        <div class="title create"><h1><span>Кол. человек</span></h1></div>
+                        <input class="inputAddLottery countUser" type="text" name="CountUserForLottery" placeholder="Введите число..." />
+                    </div>
+                }
+
+                <div id="shortDescription">
+                    <span class="maxChar">300</span>
+                    <div class="title create"><h1><span>Короткое описание</span></h1></div>
+                    <textarea class="drawText textAddLottery short" name="ShortDescription" placeholder="Напишите короткое описание, отображается в списке розыгрышей."></textarea>
+                </div>
+
+                <div id="description">
+                    <div class="title create"><h1><span>Описание</span></h1></div>
+                    <textarea class="drawText textAddLottery" name="Text" placeholder="Напишите описание, отображается на странице детализации."></textarea>
+                </div>
+
+                <div id="ageLimitations">
+                    <div class="title create"><h1><span>Возростные ограничения</span></h1></div>
+                    <div class="ageRange">
+                        от <input class="inputAddLottery" type="number" name="BeginAge" />
+                        до <input class="inputAddLottery" type="number" name="EndAge" />
+                    </div>
+                </div>
+
+                <div id="conditions">
+                    <div class="title create"><h1><span>Условия</span></h1></div>
+                    <div class="drawConditions">
+                        <div class="addBtn addCondition">+ Добавить условие</div>
+                        <ol></ol>
+                    </div>
+                </div>
+
+                <div id="infoUser">
+                    <div class="title create"><h1><span>О пользователе</span></h1></div>
+                    <div class="drawInfo">
+                        <div class="addInfo">
+                            <div title="Фамилия Имя Отчество" onclick="addInfo('name')"><i class="icon-user"></i></div>
+                            <div title="E-mail" onclick="addInfo('email')"><i class="icon-mail-1"></i></div>
+                            <div title="Телефон" onclick="addInfo('phone')"><i class="icon-mobile"></i></div>
+                            <div title="Точный адресс" onclick="addInfo('address')"><i class="icon-location"></i></div>
+                            <div title="Вконтакте" onclick="addInfo('vkontakte')"><i class="icon-vk"></i></div>
+                            <div title="Facebook" onclick="addInfo('facebook')"><i class="icon-facebook"></i></div>
+                            <div title="Одноклассники" onclick="addInfo('odnoklassniki')"><i class="icon-odnoklassniki"></i></div>
+                            <div title="Google" onclick="addInfo('google')"><i class="icon-google"></i></div>
+                            <div title="Любая другая информация" onclick="addInfo('info')"><i class="icon-info-circled"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prizes">
+                    <div class="title create"><h1><span>Призы</span></h1></div>
+                    <div class="drawPrizes">
+                        <div class="addBtn addPrize">+ Добавить приз</div>
+                        <ol>
+                            <li><div class="head"><div class="range" place="1">RANGE</div>место</div> - <input class="inputAddLottery prizeName" type="text" name="Prizes[0].Name" placeholder="Название приза..." /><input type="hidden" name="Prizes[0].Place" value="1" /></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div id="links">
+                    <div class="title create"><h1><span>Ссылки</span></h1></div>
+                    <div class="drawLinks">
+                        <div class="addLink">
+                            <div title="Вконтакте" onclick="addLink('vkontakte')"><i class="icon-vk"></i></div>
+                            <div title="Facebook" onclick="addLink('facebook')"><i class="icon-facebook"></i></div>
+                            <div title="YouTube" onclick="addLink('youtube')"><i class="icon-youtube"></i></div>
+                            <div title="Twitch" onclick="addLink('twitch')"><i class="icon-twitch"></i></div>
+                            <div title="Twitter" onclick="addLink('twitter')"><i class="icon-twitter"></i></div>
+                            <div title="Одноклассники" onclick="addLink('odnoklassniki')"><i class="icon-odnoklassniki"></i></div>
+                            <div title="Google" onclick="addLink('google')"><i class="icon-google"></i></div>
+                            <div title="Google+" onclick="addLink('google+')"><i class="icon-google-plus"></i></div>
+                            <div title="Pinterst" onclick="addLink('pinterest')"><i class="icon-pinterest-p"></i></div>
+                            <div title="Steam" onclick="addLink('steam')"><i class="icon-steam"></i></div>
+                            <div title="Github" onclick="addLink('github')"><i class="icon-github-alt"></i></div>
+                            <div title="Ссылка на сторонний ресурс" onclick="addLink('link')"><i class="icon-share-square-o"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="localLimitations">
+                    <div class="title create"><h1><span>Локальные ограничения</span></h1></div>
+                    <div class="local">
+                        <div class="city">
+                            <input class="inputAddLottery citySearch" type="text" name="CitySearch" placeholder="Введите название города или его индекс" />
+                            <div class="listCity"></div>
+                        </div>
+                        <div class="listAddCity">
+                            <input type="hidden" name="CitiesId" />
+                            <input type="hidden" name="RegionsId" />
+                        </div>
+                    </div>
+                </div>
+
+                <div id="genderLimitations">
+                    <div class="title create"><h1><span>Гендерные ограничения</span></h1></div>
+                    <div class="limitGender">
+                        <div class="itemLimit">
+                            <input type="radio" name="Gender" value="0" checked />
+                            БЕЗ ОГРАНИЧЕНИЙ
+                        </div>
+                        <div class="itemLimit">
+                            <input type="radio" name="Gender" value="1" />
+                            ТОЛЬКО МУЖЧИНЫ
+                        </div>
+                        <div class="itemLimit">
+                            <input type="radio" name="Gender" value="2" />
+                            ТОЛЬКО ЖЕНЩИНЫ
+                        </div>
+                    </div>
+                </div>
+
+                <div class="createLottery disable">СОЗДАТЬ РОЗЫГРЫШ</div>
+                <div class="loading hidden">@Html.Partial("_Loader")</div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script>
+        var token = $("input[name='__RequestVerificationToken']").val();
+        var moreInfo = [];
+        var iLink = 0,
+            iMandatory = 0;
+
+        $(document).ready(function () {
+
+            var dateNow = new Date();
+            var GMT = dateNow.getHours() - dateNow.getUTCHours();
+            $('.datePicker .day').mask('00');
+            $('.datePicker .time').mask('00:00');
+            $('input[name=DateLottery]').mask('00.00.0000 00:00');
+            $('input[name=GMT]').val(GMT);
+
+            $(window).resize(function () {
+                if ($(".hint").css("display") != "none") {
+                    $("#helpInfoUser").height($("#infoUser").outerHeight());
+                    $("#helpDateLottery").height($("#dateLottery").outerHeight());
+                    $("#helpCountUser").height($("#countUser").outerHeight());
+                    $("#helpShortDescription").height($("#shortDescription").outerHeight());
+                    $("#helpDescription").height($("#description").outerHeight());
+                    $("#helpAgeLimitations").height($("#ageLimitations").outerHeight());
+                    $("#helpLocalLimitations").height($("#localLimitations").outerHeight());
+                    $("#helpConditions").height($("#conditions").outerHeight());
+                    $("#helpPrizes").height($("#prizes").outerHeight());
+                    $("#helpLinks").height($("#links").outerHeight());
+                    $("#helpGenderLimitations").height($("#genderLimitations").outerHeight());
+                }
+            });
+
+            $(".viewHelp").click(function () {
+                if ($(".hint").css("display") != "none") {
+                    $(".hint").fadeOut();
+                } else {
+                    $("#helpInfoUser").height($("#infoUser").outerHeight());
+                    $("#helpDateLottery").height($("#dateLottery").outerHeight());
+                    $("#helpCountUser").height($("#countUser").outerHeight());
+                    $("#helpShortDescription").height($("#shortDescription").outerHeight());
+                    $("#helpDescription").height($("#description").outerHeight());
+                    $("#helpAgeLimitations").height($("#ageLimitations").outerHeight());
+                    $("#helpLocalLimitations").height($("#localLimitations").outerHeight());
+                    $("#helpConditions").height($("#conditions").outerHeight());
+                    $("#helpPrizes").height($("#prizes").outerHeight());
+                    $("#helpLinks").height($("#links").outerHeight());
+                    $("#helpGenderLimitations").height($("#genderLimitations").outerHeight());
+                    $(".hint").fadeIn();
+                }
+            });
+
+            $(".hint").click(function () {
+                $(this).fadeOut();
+            });
+
+            // Аватарка
+            $("#ava").on('change', function () {
+                var file = $(this)[0].files[0];
+                var reader = new FileReader();
+                var format = $(this).val().split('.').pop().toLowerCase();
+                var checkformat = $.inArray(format, ['png', 'jpg', 'jpeg']);
+
+                if (file.size > 10000000) {
+                    $(this).val("");
+                    $(".drawPreview").css('backgroundImage', 'url()');
+                    $(".errorBG").text("Загрузите изображение меньше 10 Мбайт!");
+                    $(".errorBG").fadeIn(0);
+                } else if (checkformat == -1) {
+                    $(this).val("");
+                    $(".drawPreview").css('backgroundImage', 'url()');
+                    $(".errorBG").text("Загрузите изображение формата: png, jpg, jpeg!");
+                    $(".errorBG").fadeIn(0);
+                } else {
+                    $(".errorBG").fadeOut(0);
+                    $(".errorBG").text("Загрузите фоновую картинку для розыгрыша!");
+                    checkError();
+                    reader.addEventListener("load", function () {
+                        $(".drawPreview").css('backgroundImage', 'url("' + reader.result + '")');
+                    }, false);
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            $(".nameLott").click(function () {
+                if ($(this).children("input").length == 0) {
+                    var val = $(this).text();
+                    $(this).html(`<input class="inputAddLottery titleLottery" placeholder="Введите название" />`);
+                    $(".titleLottery").focus().val(val);
+                }
+            });
+
+            $("body").on("focusout", ".titleLottery", function () {
+                var val = $(this).val();
+                $("input[name='Title']").val(val);
+                if (val != "") {
+                    $(this).parent().html(val);
+                }
+                checkError("title");
+            });
+
+            $("textarea[name='ShortDescription']").keyup(function () {
+                checkError("short");
+                $(".maxChar").text(300 - $(this).val().length);
+            });
+
+            $("textarea[name='Text']").keyup(function () {
+                checkError("about");
+            });
+
+            // Изменение первого Приза
+            $("input[name='Prizes[0].Name']").keyup(function () {
+                checkError("prize");
+            });
+
+            // Изменение youtube видео
+            $("i.play").click(function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $(".youtubeId").removeClass("active");
+                    $(".youtubeId").val("");
+                } else {
+                    $(this).addClass("active");
+                    $(".youtubeId").addClass("active");
+                }
+            });
+
+            // Работа с датой
+            // -----------------------------------------------
+
+            // День
+            $('.datePicker .day').change(function () {
+                var flag = false;
+                var maxDay = 31;
+                var now = new Date();
+                var day = $(this).val();
+                var month = $(".pickerMonth .name").attr("numberMonth");
+
+                if (month > -1) {
+                    var year = $(".datePicker .year").text();
+
+                    if (month == 11) {
+                        year++;
+                        month = 0;
+                        flag = true;
+                    }
+                    if (!flag) { month++; }
+
+                    maxDay = (new Date(year, month, 0)).getDate();
+                    if (day > maxDay) { day = maxDay; }
+                }
+                
+                if ((day <= 9) && (day >= 1)) { day = "0" + day; }
+                else if (day < 1) { day = "01"; }
+
+                $(this).val(day);
+                checkInputDate();
+            });
+
+            // Месяц
+            $(".pickerMonth .name").mouseover(function () {
+                $(".pickerMonth .selectMonth").slideDown(300);
+            });
+
+            $(".pickerMonth").mouseleave(function () {
+                $(".pickerMonth .selectMonth").slideUp(300);
+            });
+
+            $(".pickerMonth .selectMonth li").click(function () {
+                var id = $(this).attr("number");
+                var name = $(".pickerMonth .name");
+                var now = new Date();
+                // Если был выбран 
+                if (id != "-1") {
+                    $(".pickerMonth .selectMonth li").each(function (inx, el) {
+                        if ($(this).attr("number") == "-1") {
+                            $(this).text(name.text());
+                            $(this).attr("number", name.attr("numberMonth"));
+                            return;
+                        }
+                    });
+                    name.text($(this).text())
+                    name.attr("numberMonth", id);
+                    if (!name.hasClass("active")) {
+                        name.addClass("active");
+                    }
+                    $(this).attr("number", "-1");
+                    $(this).text("Отменить выбор");
+                    if (now.getMonth() <= id) {
+                        $(".datePicker .year").text(now.getFullYear());
+                    } else {
+                        $(".datePicker .year").text(now.getFullYear() + 1);
+                    }
+                    $(".datePicker .time").removeClass("hidden");
+                } else {
+                    $(this).text(name.text());
+                    $(this).attr("number", name.attr("numberMonth"));
+                    name.text("Выберите месяц");
+                    name.attr("numberMonth", "-1");
+                    name.removeClass("active");
+                    $(".datePicker .year").text("");
+                    $(".datePicker .time").addClass("hidden");
+                }
+                $(".pickerMonth .selectMonth").slideUp(300);
+                checkInputDate();
+            });
+
+            // Время
+            $('.datePicker .time').change(function () {
+                var time = $(this).val();
+                if (time.length == 5) {
+                    time = time.split(":");
+                    if ((time[0] > 23) || (time[0] < 0)) { time[0] = "00"; }
+                    if ((time[1] > 59) || (time[1] < 0)) { time[1] = "00"; }
+                    $(this).val(time[0] + ":" + time[1]);
+                }
+
+                checkInputDate();
+            });
+
+            // -----------------------------------------------
+            // Работа с датой
+
+            // Открытие модального окна, для добавления города
+            $("body").on("click", ".addCity", function () {
+                if ($(this).parents(".city").length > 0) {
+                    $("input[name=SizeCity]").val("small");
+                    $("input[name=AddCity]").val($("input[name=CitySearch]").val());
+                } else {
+                    $("input[name=SizeCity]").val("big");
+                    $("input[name=AddCity]").val($("input[name=BigCitySearch]").val());
+                }
+
+                $(".modalBody").css("display", "flex");
+                $(".modalAddCity").css("display", "block").addClass("fadeInDown");
+            });
+
+            // Добавление города
+            $(".addCityBtn").click(function () {
+                var inx = $('input[name=Index]').val();
+                var val = $('input[name=AddCity]').val();
+                var size = $('input[name=SizeCity]').val();
+
+                if (val != "" && inx != 0) {
+                    $.ajax({
+                        url: '/PrivateOffice/AddCity',
+                        type: 'POST',
+                        data: {
+                            AddCity: val,
+                            SizeCity: size,
+                            Index: inx
+                        },
+                        success: function (id) {
+                            if (id != "0") {
+                                $('input[name=ExactAddress]').val(val);
+                                closeModal();
+                            } else {
+                                $(".modalError").text("Проверьте правильность введённых данных! Индекс - должен состоять из 6 цифр. Точный адрес не должен быть пустым.");
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                } else {
+                    $(".modalError").text("Проверьте правильность введённых данных! Индекс - должен состоять из 6 цифр. Точный адрес не должен быть пустым.");
+                }
+            });
+
+            // Добавление условия
+            $(".addCondition").click(function () {
+                var count = $(".drawConditions ol li").length;
+                $(".drawConditions ol").append(`<li><input class="inputAddLottery" type="text" name="Conditions[${count}]" placeholder="Ваше условие..." /><i class="icon-cancel"></i></li>`)
+            });
+
+            // Удаление условия
+            $("body").on("click", ".drawConditions i.icon-cancel", function () {
+                $(this).parent().remove();
+                var length = $(".drawConditions ol li").length;
+                var arrContent = [];
+                $(".drawConditions ol li input").each(function (i, elem) {
+                    arrContent.push($(elem).val());
+                });
+                $(".drawConditions ol").html("");
+                for (var i = 0; i < length; i++) {
+                    $(".drawConditions ol").append(`<li><input class="inputAddLottery" type="text" name="Conditions[${i}]" placeholder="Ваше условие..." value="${arrContent[i]}" /><i class="icon-cancel"></i></li>`);
+                }
+            });
+
+            // Добавление приза
+            $(".addPrize").click(function () {
+                var count = $(".drawPrizes ol li").length;
+                $(".drawPrizes ol").append(`<li><div class="head"><div class="range rangeEdit" place="${count + 1}">RANGE</div>место</div> - <input class="inputAddLottery prizeName" type="text" name="Prizes[${count}].Name" placeholder="Название приза..." /><input type="hidden" name="Prizes[${count}].Place" value="${count + 1}" /><i class="icon-cancel delPrz" inx="${count}"></i></li>`)
+            });
+
+            // Добавление диапазона
+            $("body").on("click", ".range", function () {
+                var place = $(this).attr("place");
+                var li = $(this).parents("li");
+                $(this).parent().html(` - <input type="number" class="rangeCount rangeEdit" place="${place}" placeholder=".........." /> место`);
+                li.after(`<div class="rangeList"></div>`);
+            });
+
+            // Изменение поля конечного места в диапазоне
+            $("body").on("change", ".rangeCount", function () {
+                // Вытаскиваем значение текущего места и места до которого применяется автозаполнение
+                var place = parseInt($(this).attr("place"));
+                var val = parseInt($(this).val());
+                if (val > place) { // Если место автозаполнения больше чем текущее
+                    // Получаем название приза
+                    var name = $(`input[name='Prizes[${place - 1}].Name']`).val();
+                    var cont = "";
+
+                    // Применяем автозаполнение
+                    for (var i = place; i < val; i++) {
+                        cont += `<li><input type="hidden" name="Prizes[${i}].Name" value="${name}" /><input type="hidden" name="Prizes[${i}].Place" value="${i + 1}" /></li>`;
+                    }
+
+                    // Полученный контент записываем в лист под текущим li
+                    $(this).parents("li").next(".rangeList").html(cont);
+
+                    // Изменяем места у списка
+                    editPlaces($(this).parents("li").nextAll("li"), val);
+                }
+            });
+
+            // Изменение названия приза
+            $("body").on("change", ".prizeName", function () {
+                var name = $(this).val();
+                var place = parseInt($(this).next("input").val());
+                var range = parseInt($(this).siblings(".head").children(".rangeCount").val());
+                if (range !== undefined && range > place) {
+                    for (var i = place; i < range; i++) {
+                        $(`input[name='Prizes[${i}].Name']`).val(name);
+                    }
+                }
+            });
+
+            // Удаление приза
+            $("body").on("click", ".delPrz", function () {
+                var index = parseInt($(this).attr("inx"));
+                var list = $(this).parent().nextAll("li");
+
+                $(this).parent().next(".rangeList").remove();
+                $(this).parent().remove();
+
+                // Изменяем места у списка
+                editPlaces(list, index);
+            });
+
+            // Удаление ссылки
+            $("body").on("click", ".delLink", function () {
+                var inc = parseInt($(this).attr('inc'));
+                var length = $(".itemLink").length;
+                $(this).parent().remove();
+                --iLink;
+                for (var i = inc; i < length; i++) {
+                    $(`input[name='LinksLottery[${i + 1}].Type']`).siblings(".icon-cancel").attr("inc", i);
+                    $(`input[name='LinksLottery[${i + 1}].Type']`).attr("name", `LinksLottery[${i}].Type`);
+                    $(`input[name='LinksLottery[${i + 1}].Name']`).attr("name", `LinksLottery[${i}].Name`);
+                    $(`input[name='LinksLottery[${i + 1}].Link']`).attr("name", `LinksLottery[${i}].Link`);
+                }
+            });
+
+            // Удаление информации
+            $("body").on("click", ".delInfo", function () {
+                var info = $(this);
+                var inc = parseInt(info.attr('inc'));
+                var length = $(".itemInfo").length;
+                info.parent().remove();
+                --iMandatory;
+
+                for (var i = inc; i < length; i++) {
+                    $(`input[name='MandatoryInfo[${i + 1}].Type']`).siblings(".delInfo").attr("inc", i);
+                    $(`input[name='MandatoryInfo[${i + 1}].Type']`).attr("name", `MandatoryInfo[${i}].Type`);
+                    $(`input[name='MandatoryInfo[${i + 1}].Name']`).attr("name", `MandatoryInfo[${i}].Name`);
+                }
+
+                moreInfo.forEach(function (item, i, arr) {
+                    if (item == info.attr("info-name")) {
+                        arr.splice(i, 1);
+                    }
+                });
+            });
+
+            $(window).on('scroll', function () {
+
+                var scrollWin = $(window).scrollTop();
+                var topHeight = $(".drawControlLine").offset().top;
+                var height = $(".drawControlLine").height() - $(".moveLine").height();
+                var adds = scrollWin - topHeight;
+
+                if (scrollWin > topHeight && height > adds) {
+                    $(".moveLine").css("top", adds);
+                } else {
+                    if (scrollWin < topHeight) {
+                        $(".moveLine").css("top", 0);
+                    } else if (height < adds) {
+                        $(".moveLine").css("top", height);
+                    }
+                }
+
+            });
+
+            $(".createLottery").click(function () {
+                if (!$(this).hasClass("disable")) {
+                    $(this).fadeOut(0);
+                    $(".loading").removeClass("hidden");
+                    checkError("all");
+                    $(this).addClass("disable");
+                    var form = document.forms.create;
+                    var formData = new FormData(form);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/Lottery/Create");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status == 200) {
+                                var response = xhr.responseText;
+
+                                if (response == "1") {
+                                    location.href = "/Main/Studio/" + $("input[name='Id']").val();
+                                } else if (response.indexOf("[") > -1) {
+                                    var arr = JSON.parse(response);
+                                    for (var i = 0; i < arr.length; i++) {
+                                        switch (arr[i]) {
+                                            case "title":
+                                                $(".errorTitle").fadeIn();
+                                                break;
+                                            case "shortDesc":
+                                                $("#shortDescription .title h1").addClass("error");
+                                                break;
+                                            case "text":
+                                                $("#description .title h1").addClass("error");
+                                                break;
+                                            case "date":
+                                                $("#dateLottery .title h1").addClass("error");
+                                                break;
+                                            case "ava":
+                                                $(".errorBG").fadeIn();
+                                                break;
+                                            default:
+                                                break;
+                                        }
+                                    }
+                                    $("html body").animate({
+                                        scrollTop: $(".drawContent").offset().top - 50
+                                    }, 500);
+                                } else {
+                                    alert(response);
+                                }
+
+                                $(".createLottery").fadeIn(0);
+                                $(".loading").addClass("hidden");
+                            }
+                        }
+                    };
+                    xhr.send(formData);
+                } else {
+                    $("html body").animate({
+                        scrollTop: $(".drawContent").offset().top - 50
+                    }, 500);
+                }
+            });
+
+        });
+
+        // Функция проверки заполнения всех input`ов в блоке даты
+        function checkInputDate() {
+            var now = new Date();
+            var day = $('.datePicker .day').val();
+            var month = $(".pickerMonth .name").attr("numberMonth");
+            var year = $(".datePicker .year").text();
+            var time = $('.datePicker .time').val();
+
+            if (day.length == 2 && month > -1 && year.length == 4) {
+                var pickerDate = new Date(year, month, day, 0, 0, 0);
+                if (time.length == 5) {
+                    var timeArr = time.split(":");
+                    pickerDate.setHours(timeArr[0]);
+                    pickerDate.setMinutes(timeArr[1]);
+                    //pickerDate = new Date(year, month, day, timeArr[0], timeArr[1], 0);
+                }
+
+                // Вычисляем количество каждой еденицы
+                var countDay = (pickerDate.getTime() - now.getTime()) / (24 * 3600 * 1000) | 0;
+                if (countDay < 0) { day = now.getDate(); }
+                else {
+                    if (countDay > 182) { day = day - (countDay - 182); }
+                }
+
+                var maxDay = month;
+                var flag = false;
+                if (maxDay == 11) {
+                    maxDay = 0;
+                    flag = true;
+                }
+                if (!flag) { maxDay++; }
+
+                maxDay = (new Date(year, maxDay, 0)).getDate();
+                if (day > maxDay) { day = maxDay; }
+                if ((day <= 9) && (day >= 1)) { day = "0" + parseInt(day); }
+                else if (day < 1) { day = "01"; }
+
+                $('.datePicker .day').val(day);
+
+                if (time.length == 5) {
+                    month++;
+                    month = (month < 10) ? "0" + month : month;
+                    $("#dateLottery .date").val(`${day}.${month}.${year} ${time}`);
+                }
+            } else {
+                $("#dateLottery .date").val("");
+            }
+
+            checkError("date");
+        }
+        
+        // Функция изменения мест у списка призов
+        function editPlaces(list, newPlace) {
+            // Перебираем список после текущего li
+            list.each(function (inx) {
+                var endEach = false;    // Флаг для остановки цикла
+                var range = "";         // переменная для input`a
+                // количество мест в периоде
+                var oddsRange = $(this).next(".rangeList").children().length;
+
+                // Перебираем все дочерние элементы
+                $(this).children().each(function () {
+
+                    if ($(this).hasClass("delPrz")) {
+                        // Меняем индекс у кнопки удаления
+                        $(this).attr("inx", newPlace);
+                    } else if ($(this).hasClass("head")) {
+                        // Меням у кнопки или input`a значение места
+                        range = $(this).children(".rangeEdit");
+                        range.attr("place", `${newPlace + 1}`);
+
+                        // Если это input, мы меняем значение и ставим флаг выхода из цикла
+                        if (range.hasClass("rangeCount") && range.val() != "") {
+                            range.val(newPlace + oddsRange + 1);
+                            endEach = true;
+                        }
+
+                        // Правим индекс в именах
+                    } else if ($(this).attr("name") !== undefined && $(this).attr("name").indexOf(".Name") > -1) {
+                        $(this).attr("name", `Prizes[${newPlace}].Name`);
+                    } else if ($(this).attr("name") !== undefined && $(this).attr("name").indexOf(".Place") > -1) {
+                        $(this).attr("name", `Prizes[${newPlace}].Place`).val(newPlace + 1);
+                    }
+
+                });
+
+                if (endEach) {
+                    // Вызываем изменение следующего импута
+                    range.change();
+                    // Уничтожаем цикл
+                    return false;
+                }
+                ++newPlace; // Инкремент к значению месту
+            });
+        }
+
+        function addLink(name) {
+            var input = '';
+            var icon = 'icon-';
+
+            switch (name) {
+                case 'vkontakte':
+                    icon += "vk";
+                    break;
+                case 'facebook':
+                    icon += "facebook";
+                    break;
+                case 'twitch':
+                    icon += "twitch";
+                    break;
+                case 'twitter':
+                    icon += "twitter";
+                    break;
+                case 'youtube':
+                    icon += "youtube";
+                    break;
+                case 'odnoklassniki':
+                    icon += "odnoklassniki";
+                    break;
+                case 'google':
+                    icon += "google";
+                    break;
+                case 'google+':
+                    icon += "google-plus";
+                    break;
+                case 'pinterest':
+                    icon += "pinterest-p";
+                    break;
+                case 'steam':
+                    icon += "steam";
+                    break;
+                case 'github':
+                    icon += "github-alt";
+                    break;
+                default:
+                    icon += "share-square-o";
+            }
+
+            input = `<div class="itemLink">`
+                + `<i class="icon-cancel delLink" link-name="${name}" inc="${iLink}"></i>`
+                + `<i class="${icon}"></i> `
+                + `<input type="hidden" name="LinksLottery[${iLink}].Type" value="${name}" />`
+                + `<input class="inputAddLottery nameLink" type="text" name="LinksLottery[${iLink}].Name" placeholder="Введите название ссылки..." /><br />`
+                + `<input class="inputAddLottery addressLink" type="text" name="LinksLottery[${iLink}].Link" placeholder="Введите адрес ссылки..." /></div >`;
+
+            ++iLink;
+
+            $(".drawLinks").append(input);
+        }
+
+        function addInfo(name) {
+            var input = '';
+            var flag = false;
+            var icon = "icon-";
+            var siteInfo = true;
+
+            moreInfo.forEach(function (item, i, arr) {
+                if (item == name) {
+                    flag = true;
+                }
+            });
+
+            if (!flag) {
+                switch (name) {
+                    case 'vkontakte':
+                        icon += "vk";
+                        break;
+                    case 'facebook':
+                        icon += "facebook";
+                        break;
+                    case 'odnoklassniki':
+                        icon += "odnoklassniki";
+                        break;
+                    case 'google':
+                        icon += "google";
+                        break;
+                    case 'email':
+                        icon += "mail-1";
+                        break;
+                    case 'phone':
+                        icon += "mobile";
+                        break;
+                    case 'name':
+                        icon += "user";
+                        break;
+                    case 'city':
+                        icon += "home-1";
+                        break;
+                    case 'address':
+                        icon += "pin";
+                        break;
+                    default:
+                        siteInfo = false;
+                }
+
+                if (siteInfo) {
+                    input = `<div class="itemInfo"><i class="icon-cancel delInfo" info-name="${name}" inc="${iMandatory}"></i><i class="${icon}"></i><input type="hidden" name="MandatoryInfo[${iMandatory}].Type" value="${name}" /></div>`;
+                    moreInfo.push(name);
+                } else {
+                    input = `<div class="itemInfo"><i class="icon-info"></i>`
+                        + `<input type="hidden" name="MandatoryInfo[${iMandatory}].Type" value="info" />`
+                        + `<input class="inputAddLottery customInfo" type="text" name="MandatoryInfo[${iMandatory}].Name" placeholder="Введите название..." />`
+                        + `<i class="icon-cancel delInfo" info-name="${name}" inc="${iMandatory}"></i></div>`;
+                }
+                ++iMandatory;
+
+                $(".drawInfo").append(input);
+            }
+        }
+
+        function checkError(type) {
+            var ava         = $("#ava").val(),
+                title       = $(".drawTitle input[name='Title']").val(),
+                shortDesc   = $("#shortDescription .short").val(),
+                desc        = $("#description textarea").val(),
+                date        = $(".dateLottery .date").val(),
+                prize       = $("input[name='Prizes[0].Name']").val();
+
+            if (type === undefined && ava != "" && title.length > 0 && shortDesc.length > 0 && desc.length > 0 && date.length > 0 && prize.length > 0) {
+                $(".createLottery").removeClass("disable");
+            } else {
+                if (!$(".createLottery").hasClass("disable")) {
+                    $(".createLottery").addClass("disable");
+                }
+
+                switch (type) {
+                    case "all":
+                        if (ava == "") {
+                            $(".errorBG").fadeIn(0);
+                        }
+
+                        if (title.length == 0) {
+                            $(".errorTitle").fadeIn(0);
+                        }
+
+                        if (shortDesc.length == 0 || shortDesc.length > 300) {
+                            $("#shortDescription .title h1").addClass("error");
+                        }
+
+                        if (desc.length == 0) {
+                            $("#description .title h1").addClass("error");
+                        }
+
+                        if (date.length != 16) {
+                            $("#dateLottery .title h1").addClass("error");
+                        }
+
+                        if (prize.length == 0) {
+                            $("#prizes .title h1").addClass("error");
+                        }
+
+                        break;
+
+                    case "title":
+                        if (title.length > 0) {
+                            $(".errorTitle").fadeOut(0);
+                            checkError();
+                        } else {
+                            $(".errorTitle").fadeIn(0);
+                        }
+                        break;
+
+                    case "short":
+                        addRemoveError((shortDesc.length > 0 || shortDesc.length < 300), $("#shortDescription .title h1"));
+                        break;
+                    
+                    case "about":
+                        addRemoveError(desc.length > 0, $("#description .title h1"));
+                        break;
+
+                    case "date":
+                        addRemoveError(date.length == 16, $("#dateLottery .title h1"));
+                        break;
+
+                    case "prize":
+                        addRemoveError(prize.length > 0, $("#prizes .title h1"));
+                        break;
+
+                    default:
+                        break;
+                }
+            }
+        }
+
+        function addRemoveError(cond, obj) {
+            if (cond) {
+                obj.removeClass("error");
+                checkError();
+            } else {
+                obj.addClass("error");
+            }
+        }
+    </script>
+    <script src="~/Scripts/CitySearch.js"></script>
+
+}

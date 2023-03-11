@@ -1,0 +1,339 @@
+﻿@using GoodJoker.Models
+@model News
+
+@{
+    ViewBag.Title = $"{Model.Title} | GoodJoker";
+    ViewBag.Description = (Model.ShortDescription.Length > 140) ? Model.ShortDescription.Substring(0, 137) + "..." : Model.ShortDescription;
+    string url = "https://goodjoker.ru/News/Details/" + Model.Id;
+    ViewBag.URL = url;
+    ViewBag.MetaImg = $"https://goodjoker.ru/Content/style/images/News/Cover/Normal/{Model.Cover}";
+    ViewBag.KeyWords = "новости goodjoker";
+
+    var keywords = Model.Title.Replace(",", "").Split(' ');
+    foreach (var key in keywords)
+        { ViewBag.KeyWords += $", {key}"; }
+
+    var commentCount = ViewBag.allComments.Count;
+}
+
+@section Modal {
+    <div class="modalWindow modalComplaint">
+        <h2>Жалоба</h2>
+        <span>
+            Благодарим Вас за желание помочь нам в развитие проекта.
+            Для заявки просим Вас описать, что именно Вы считаете за ошибку и что нужно исправить.
+            Если вы хотите быть в курсе нашей работы по вашей жалобе, тогда активируйте переключатель "Получить ответ".
+        </span>
+        <form class="formComplaint">
+            <input name="IdNews" type="hidden" value="@Model.Id" />
+            <input name="IdComment" type="hidden" value="0" />
+            <textarea name="Text" placeholder="Опишите нарушение или ошибки, которые Вы заметили..."></textarea>
+            <div class="inputBlock">
+                <input id="Reply" type="checkbox" name="Reply" /> <label for="Reply">Получить ответ</label>
+            </div>
+        </form>
+        <button class="btn sendComplaint">Отправить</button>
+        <div class="modalClose"><i class="icon-cancel"></i></div>
+    </div> 
+}
+<div class="bodyArticle">
+    <div class="articleImg" style="background: #131315 url(../../Content/style/images/News/Cover/Reduced/@Model.Cover) center center / cover no-repeat;">
+        
+        <div class="articlePreview">
+            <div class="articalNavBack hidden-xs"><i class="icon-angle-double-left"></i></div>
+            <div class="articalHeader">
+                <div class="articleStatus">
+                    <span class="hidden-xs"><i title="Автор" class="icon-user"></i> @Model.AuthorName</span>&nbsp;&nbsp;
+                    <span><i title="Дата написания" class="icon-calendar"></i> @Model.DateCreate.ToString("dd.MM.yyyy")</span>&nbsp;&nbsp;
+                    <span><i title="Количество просмотров" class="icon-eye"></i> @Model.View</span>&nbsp;&nbsp;
+                    <span class="hidden-xs"><i title="Количество лайков" class="icon-heart-1"></i> @Model.UsersLike.Count</span>&nbsp;&nbsp;
+                    <span class="hidden-xs"><i title="Количество комментариев" class="icon-comment-discussion"></i> @Model.Comments.Count</span>
+                </div>
+                <div class="articleTitle">@Model.Title</div>
+                
+                <div class="articleSocial">
+                    <a href="https://vk.com/share.php?url=@url&title=@Model.Title&description=@Model.ShortDescription&image=https://goodjoker.ru/Content/style/images/News/Cover/Reduced/@(Model.Id).jpg" target="_blank"><i class="icon-vk"></i></a>
+                    <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=@Model.ShortDescription&st._surl=@url" target="_blank"><i class="icon-odnoklassniki"></i></a>
+                    <a href="http://www.facebook.com/sharer.php?u=@url&t=@Model.Title" target="_blank"><i class="icon-facebook"></i></a>
+                    <a href="https://plus.google.com/share?url=@url" target="_blank"><i class="icon-google-plus"></i></a>
+                    <a href="http://twitter.com/intent/tweet?url=@url&text=@Model.ShortDescription" target="_blank"><i class="icon-twitter"></i></a>
+                    <a href="http://www.pinterest.com/pin/create/button/?url=@url&media=https://goodjoker.ru/Content/style/images/News/Cover/Reduced/@(Model.Id).jpg" target="_blank"><i class="icon-pinterest-p"></i></a>
+                    <a href="https://getpocket.com/edit?url=@url" target="_blank"><i class="icon-get-pocket"></i></a>
+                </div>
+            </div>
+            <div class="articalNavNext hidden-xs"><i class="icon-angle-double-right"></i></div>
+        </div>
+        
+    </div>
+    <div class="container articleContent">
+        @HelperAdvert.ViewAdvert(null, "here.jpg")
+        <div class="articleText">
+            @Html.Raw(Model.Content.First()?.Text);
+        </div>
+        @HelperAdvert.ViewAdvert(null, "here.jpg")
+        <div class="articleText">
+            <h3 id="formComment">Комментарии @if (commentCount > 0) {<text>@commentCount</text>}</h3>
+        </div>
+        <div class="blockComments">
+
+            <div class="formComment">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="replyName">@User.Identity.Name</div>
+                    <input type="hidden" name="CommentId" value="0" />
+                    <div class="sendComment" title="Отправка комментария 'Ctrl+Enter'"><i class="icon-email-plane"></i></div>
+                    <textarea name="Text" class="textareaComment" placeholder="Напишите комментарий..." rows="3"></textarea>
+                }
+                else
+                {
+                    <div class="default">
+                        Комментарии могут оставлять только зарегистрированные пользователи.<br />
+                        <a href="/Main/Auth">Войдите</a> в аккаунт для того, чтобы прокомментировать эту статью.
+                    </div>
+                }
+            </div>
+            
+            <div class="beginDashedLine" @if (commentCount == 0) {<text>style="display:none;"</text>}></div>
+
+            <div class="allComment">
+                @if (commentCount > 0)
+                {
+                    @Html.Partial("_CommentNews", Model.Comments)
+                    if (ViewBag.last == '0') { <div class="ajaxComment">ЕЩЁ</div> }
+                }
+                else
+                {
+                    <div class="defaultCommentLottery">Комментарии отсутсвуют, будьте первым!</div>
+                }
+            </div>
+
+        </div>
+        
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        newsId = "@Model.Id";
+        var name = "@User.Identity.Name";
+
+        var allComments = @commentCount,
+            viewCount = @Model.Comments.Count,
+            HMSC = viewCount;
+
+        $(document).ready(function () {
+
+            $(".modalClose").click(function () {
+                closeModal();
+            });
+
+            $(".modalBody").click(function () {
+                closeModal();
+            }).children().click(function (e) {
+                return false;
+            });
+
+            // Увеличение textarea
+            var startHeight = 101;
+            $('.textareaComment').keypress(function (e) {
+                if (e.keyCode == 10) {
+                    $(".sendComment").click();
+                }
+                var hText = $(this).innerHeight(),
+                    sText = this.scrollHeight;
+                if (hText != sText) {
+                    $(this).innerHeight(sText);
+                }
+                if ($(this).val().length < 150 && hText != startHeight) {
+                    $(this).innerHeight(startHeight);
+                }
+            });
+
+            $(".sendComment").click(function () {
+                var id = $(".formComment input[name='CommentId']").val(),
+                    text = $(".formComment .textareaComment").val();
+                $(".formComment .replyName").text(name);
+                $(".formComment input[name='CommentId']").val(0);
+                $(".formComment .textareaComment").val("");
+                $(".formComment .textareaComment").innerHeight(101);
+
+                $.ajax({
+                    url: "/News/AddComment",
+                    type: "POST",
+                    data: {
+                        NewsId: newsId,
+                        CommentId: id,
+                        Text: text
+                    },
+                    success: function (data) {
+                        if (data != "0" && data != "") {
+                            $(".beginDashedLine").fadeIn(0);
+                            $(".defaultCommentLottery").remove();
+                            $(".allComment").prepend(data);
+                            $("#formComment").text("Комментарии " + $(".comment").length);
+                        } else {
+                            console.log("Либо отсутсвует ID новости, либо не введён текст!");
+                        }
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            $("body").on("click", ".ajaxComment", function () {
+                var ajaxBtn = $(this);
+                if (allComments > viewCount && !ajaxBtn.hasClass("disable")) {
+                    ajaxBtn.addClass("disable");
+                    $.ajax({
+                        url: "/News/_CommentNews",
+                        type: "POST",
+                        data: {
+                            NewsId: newsId,
+                            ViewCount: viewCount
+                        },
+                        success: function (data) {
+                            if (data != "0") {
+                                ajaxBtn.removeClass("disable");
+                                var ajax = $(".ajaxComment").detach();
+                                $(".allComment").append(data);
+                                viewCount += HMSC;
+                                if (allComments > viewCount) {
+                                    $(".allComment").append(ajax);
+                                }
+                            } else {
+                                console.log("Нет ID новости или количество показанных комментариев ниже или равно 0!");
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            @if (User.Identity.GetUserRole() == "Admin")
+            {
+                <text>
+                    // Изменение комментария
+                    $("body").on("click", ".editComment", function () {
+                        var text = $(this).parent().siblings(".text");
+                        var id = $(this).parent().attr("commentId");
+                        var replyName = text.children('span').text();
+                        text.children('span').remove();
+                        text.html(`<textarea name="EditComment" replyName="${replyName}" commentId="${id}" placeholder="Введите измененный текст комментария..." style="height: ${text.height() + 100}px;">${text.text()}</textarea>`)
+                    });
+
+                    $("body").on("change", "textarea[name='EditComment']", function () {
+                        var id = $(this).attr("commentId");
+                        var val = $(this).val();
+                        var replyName = $(this).attr("replyName");
+                        if (replyName != "") {
+                            val = `<span>${replyName}</span> <br /> ${val}`;
+                        }
+                        $.ajax({
+                            url: "/News/EditComment",
+                            type: "POST",
+                            data: {
+                                CommentId: id,
+                                Text: val
+                            },
+                            success: function (data) {
+                                if (data == "0") {
+                                    console.log("Отсутсвует идентификатор комментария или его текст!");
+                                }
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                        $(this).parent().html(val);
+                    });
+
+                    $("body").on("focusout", "textarea[name='EditComment']", function () {
+                        var val = $(this).val();
+                        var replyName = $(this).attr("replyName");
+                        if (replyName != "") {
+                            val = `<span>${replyName}</span> <br /> ${val}`;
+                        }
+                        $(this).parent().html(val);
+                    });
+
+                    // Удаление комментария
+                    $("body").on("click", ".delComment", function () {
+                        var id = $(this).parent().attr("commentId");
+                        $.ajax({
+                            url: "/News/DelComment",
+                            type: "POST",
+                            data: {
+                                CommentId: id
+                            },
+                            success: function (data) {
+                                if (data != "0") {
+                                    if (data.indexOf(";")) {
+                                        var arr = data.split(";");
+                                    } else {
+                                        var arr = [data];
+                                    }
+
+                                    arr.forEach(function callback(val, index, array) {
+                                        var comment = $("#comment-" + val);
+                                        if (comment.hasClass("last")) {
+                                            comment.remove();
+                                            if ($(".comment").length > 0) {
+                                                $(".comment").last().addClass("last");
+                                            } else {
+                                                $(".beginDashedLine").fadeOut(0);
+                                                $(".allComment").html(`<div class="defaultCommentLottery">Комментарии отсутсвуют, будьте первым!</div>`);
+                                            }
+                                        } else {
+                                            comment.remove();
+                                        }
+                                        --viewCount;
+                                    });
+                                } else {
+                                    console.log("Отсутствует идентификатор комментария!");
+                                }
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                    });
+                </text>
+            }
+
+            $("body").on("click", ".addReply", function () {
+
+                $(".formComment .replyName").text("Ответить " + $(this).attr("authorNick") + ",");
+                $(".formComment input").val($(this).parent().attr("commentId"));
+                $('body').animate({ scrollTop: $("#formComment").offset().top }, 1100);
+            });
+
+            // Отмена ответа
+            $(".formComment .replyName").click(function () {
+                $(this).text(name);
+                $("input[name='CommentId']").val(0);
+            });
+
+            $(".complaintComment").click(function () {
+                $(".modalBody").css("display", "flex");
+                $(".modalComplaint").css("display", "block").addClass("fadeInDown");
+                $(".formComplaint input[name='IdComment']").val($(this).parent().attr("commentid"));
+            });
+
+            $(".sendComplaint").click(function () {
+                var data = $(".formComplaint").serialize();
+                $.ajax({
+                    url: "/Main/Complaint",
+                    type: "POST",
+                    data: data
+                });
+                $(".formComplaint input[name='IdComment']").val(0);
+                $(".formComplaint input[name='Email']").val("");
+                $(".formComplaint textarea[name='Text']").val("");
+                closeModal();
+            });
+        });
+    </script>
+}

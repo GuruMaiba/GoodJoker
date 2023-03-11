@@ -1,0 +1,58 @@
+﻿@model ICollection<GoodJoker.Models.Video>
+@{
+    ViewBag.Title = "Видео";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Видео</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Видео ID</th>
+            <th>Студия</th>
+            <th>Тип</th>
+            <th><a href="/Administrator/AddVideo"><i class="icon-plus-1" title="Добавить видосик"></i></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var vid in Model)
+            {
+                var types = "-";
+                if (vid.Type.Count > 0)
+                {
+                    types = "";
+                    foreach (var type in vid.Type)
+                    { types += (types == "") ? type.Name : ", " + type.Name; }
+                }
+                <tr>
+                    <td>@vid.Id</td>
+                    <td>@vid.VideoId</td>
+                    @if (vid.Studio != null)
+                    {
+                <td>@vid.Studio.Name</td>}
+                    else
+                    {
+                <td>Нет</td>}
+                    <td>@types</td>
+                    <td>
+                        <a href="/Administrator/AddVideo/@vid.Id"><i class="icon-pencil-1" title="Изменить"></i></a>
+                        <i class="icon-cancel" title="Удалить"></i>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td></td>
+                <td>Ни одного видео, не добавлено...</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

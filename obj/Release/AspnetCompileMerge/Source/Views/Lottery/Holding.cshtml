@@ -1,0 +1,598 @@
+﻿@using GoodJoker.Models
+@model Lottery
+@{
+    Layout = null;
+    ViewBag.Title = Model.Title;
+    var countWinner = Model.Prizes.Where(p => (p.Winner != null && p.Confirm) || p.NoWin).Count();
+    var participiant = false;
+
+    if (ViewBag.Organizer)
+    { countWinner = Model.Prizes.Where(p => p.Winner != null || p.NoWin).Count(); }
+    if (Model.Users.FirstOrDefault(u => u.Id == User.Identity.GetUserId<int>()) != null)
+    { participiant = true; }
+
+    var oldWinner = "";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+</head>
+<body>
+    @Html.Partial("_Preloader")
+    <div class="bgHoldingLottery" style="background-image: url('../../Content/style/images/Lotteries/Normal/@Model.Cover')"></div>
+
+    <div class="modalBody">
+        <div class="modalWindow modalQuestion">
+            <input type="hidden" class="hiddenInp" name="HiddenInp" />
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-help-circled"></i></div>
+            <h1>Вы уверены, что хотите заблокировать этого пользователя?</h1>
+            <div class="btnStack">
+                <div class="button yesBtn">Да</div>
+                <div class="button noBtn">Нет</div>
+            </div>
+        </div>
+        <div class="modalWindow success modalConfirm">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-check-circle"></i></div>
+            <h1>Пользователь заблокирован!</h1>
+            <div class="complitAction"><ul></ul></div>
+            <div class="button closeModalBtn">ОК</div>
+        </div>
+        <div class="modalWindow error modalBan">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-cancel-circled"></i></div>
+            <h1>Вы заблокированы!</h1>
+            <div class="complitAction">Если Вы не согласны с решением организатора, заскриньте Ваше нарушение и обратитесь в службу поддержки.</div>
+            <div class="button closeModalBtn">ОК</div>
+        </div>
+        <div class="modalWindow error modalSomething">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-cancel-circled"></i></div>
+            <h1>Что-то пошло не так!</h1>
+            <div class="complitAction"><ul></ul></div>
+            <div class="button closeModalBtn">ОК</div>
+        </div>
+    </div>
+
+    <div class="bodyHoldingLottery">
+        
+        @if (ViewBag.Organizer || (Model.LifeYoutubeId != null && Model.LifeYoutubeId != ""))
+        {
+            <div class="youtube">
+                <i class="icon-pencil-1 editYoutubeBtn"></i>
+                <div class="lifeYoutube" youtubeId="@Model.LifeYoutubeId"><div>Life</div> <div class="icon"><i class="icon-video-camera"></i></div></div>
+                <div class="editYoutubeId"><input class="youtubeId" type="text" name="YouTubeId" value="@Model.LifeYoutubeId" placeholder="Введите ссылку на видео" /></div>
+            </div>
+        }
+
+        <div class="previewHolding">
+            <a class="holdingBack" href="/Lottery/Details/@Model.Id"><i class="icon-reply"></i> Вренуться к лоттереи</a>
+            <div id="previewHoldingText" class="previewHoldingText">GoodJoker</div>
+        </div>
+
+        <div class="holdingLottery">
+            <iframe class="youtubeOnline" src="" frameborder="0" allowfullscreen></iframe>
+
+            <div class="titleRandom">Победитель</div>
+            <div class="winner">
+                @if (ViewBag.Organizer && Model.Prizes.Count > countWinner)
+                {
+                    var noConfirm = Model.Prizes.FirstOrDefault(p => p.Winner != null && !p.Confirm);
+                    if (noConfirm == null)
+                    {<div class="choiceWinner">Выбрать победителя</div>}
+                    else
+                    { <a href="/Main/Joker/@noConfirm.Winner.Id">@noConfirm.Winner.Nick</a> }
+                }
+                else if (Model.Prizes.Count == countWinner)
+                { <text>Все победители выбраны</text> }
+                else
+                { <text>GoodJoker</text> }
+            </div>
+
+            @HelperAdvert.ViewAdvert(null, "here.jpg")
+
+            <div class="bottomHolding">
+                <div class="contentHolding">
+                    <div class="holdingPlaces">
+                        <div class="titleRandom">Места</div>
+                        <div class="listWinner">
+                            @if (countWinner > 0)
+                            {
+                                var prizes = (ViewBag.Organizer) ? Model.Prizes.Where(p => p.Winner != null || p.NoWin) : Model.Prizes.Where(p => (p.Winner != null && p.Confirm) || p.NoWin);
+                                foreach (var prize in prizes.OrderBy(p => p.Place))
+                                {
+                                    if (oldWinner == "" && prize.Winner != null)
+                                    {
+                                        oldWinner = prize.Winner.Nick;
+                                    }
+                                    <div>
+                                        @prize.Place.
+                                        @if (prize.NoWin) {<text>Не разыгран</text>}
+                                        else {<a href='/Main/Joker/@prize.Winner.Id@if (ViewBag.Organizer) {<text>?Lott=@Model.Id</text>}'>@prize.Winner.Nick</a>}
+                                        - @prize.Name
+                                        @if (ViewBag.Organizer)
+                                        {
+                                            if (prize.Confirm)
+                                            {<i class="icon-check-1"></i>}
+                                            else
+                                            {<i class="icon-refresh"></i>}
+                                        }
+                                    </div><br />
+                                }
+                            }
+                        </div>
+                    </div>
+
+                    <div class="holdingChat">
+                        <div class="titleRandom">Чат</div>
+                        <div class="listComment">
+                            
+                            
+                                <div class="writeComment">
+                                    @if (!ViewBag.IsBan)
+                                    {
+                                        if (participiant || ViewBag.Organizer)
+                                        {
+                                            <div class="userName">@User.Identity.Name</div>
+                                            <textarea name="Text" class="textareaHolding" placeholder="Напишите сообщение..."></textarea>
+                                            <div class="sendComment" title="Отправка комментария 'Ctrl+Enter'"><i class="icon-email-plane"></i></div>
+                                        }
+                                        else
+                                        {
+                                            <div class="default">
+                                                @if (!User.Identity.IsAuthenticated)
+                                                {<a href="/Main/Auth">Авторизируйтесь</a><text> для участия в чате!</text>}
+                                                else if (!participiant)
+                                                {<text>Учавствовать в чате могут только участники роыгрыша!</text>}
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="ban">Вы заблокированы! Если Вы не согласны с решением организатора, заскриньте Ваше нарушение и обратитесь в службу поддержки.</div>
+                                    }
+                                </div>
+
+                            <div class="allComment">
+                                @if (Model.Chat.Count > 0)
+                                {
+                                    @Html.Partial("_ChatMessageLottery", Model.Chat.OrderByDescending(c => c.DateCreate).ToList())
+                                }
+                                else if (User.Identity.IsAuthenticated && (Model.Users.FirstOrDefault(u => u.Id == User.Identity.GetUserId<int>()) != null || ViewBag.Organizer))
+                                {
+                                    <div class="defaultCommentLottery">Сообщения отсутсвуют, будьте первым!</div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                @HelperAdvert.ViewAdvert(null)
+            </div>
+        </div>
+        
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+
+        var lotteryId = @Model.Id;
+        var winnerId = -1;
+        var winner = "@oldWinner";
+        var prize = "";
+        var oldPrize = "";
+        var oldWinner = "@oldWinner";
+        var countWinner = @Model.Prizes.Count;
+        var countViewWinner = @countWinner;
+        var fromTheFirst = @if (Model.FromTheFirst) {<text>true</text>} else {<text>false</text>};
+        // организатор
+        var organizerRally = @if (ViewBag.Organizer) {<text>true</text>} else {<text>false</text>};
+        var haveInfo = @if (ViewBag.HaveInfo) {<text>true</text>} else {<text>false</text>};
+        if (!organizerRally) {
+            var winnerAjax = setInterval(WinnerAjax, 5000);
+        }
+
+        $(window).on("load", function () {
+            $('#bgPreloader').fadeOut("slow");
+        });
+
+        // Анимация лоттереи
+        $(document).ready(function () {
+
+            if (!organizerRally && countWinner > countViewWinner) {
+                Winner();
+            }
+
+            setInterval(function () {
+                if ($(".comment").length > 0) {
+                    var id = $(".comment").attr("commentId");
+                    var date = $(".comment").attr("commentDate");
+                } else {
+                    var id = "0";
+                    var date = "@DateTime.UtcNow.ToString("dd.MM.yyyy HH:mm")";
+                }
+
+                $.ajax({
+                    url: "/Lottery/CheckCommentChat",
+                    type: "POST",
+                    data: {
+                        LotteryId: lotteryId,
+                        CommentId: id,
+                        LastCommentDate: date
+                    },
+                    success: function (data) {
+                        if (data != "0") {
+                            $(".defaultCommentLottery").remove();
+                            $(".allComment").prepend(data);
+                        }
+                    }
+                });
+            }, 5000);
+
+            $(".editYoutubeBtn").click(function () {
+                if ($(".editYoutubeId").hasClass("active")) {
+                    $(".editYoutubeId").removeClass("active");
+                } else {
+                    $(".editYoutubeId").addClass("active");
+                }
+            });
+
+            $(".youtubeId").change(function () {
+                var val = $(this).val();
+                $(".lifeYoutube").attr("youtubeId", val);
+                $.ajax({
+                    url: "/Lottery/EditLifeYoutube",
+                    type: "POST",
+                    data: {
+                        LotteryId: lotteryId,
+                        YoutubeId: val
+                    }
+                });
+            }).focusout(function () {
+                $(".editYoutubeId").removeClass("active");
+            });
+
+            $(".lifeYoutube").click(function () {
+                var frame = $(".youtubeOnline");
+                var id = $(this).attr("youtubeId");
+                if (frame.is(':visible')) {
+                    frame.slideUp();
+                    frame.attr("src", "");
+                } else {
+                    frame.slideDown();
+                    frame.attr("src", `http://www.youtube.com/embed/${id}?rel=0&amp;autoplay=1`);
+                }
+            });
+
+            // Увеличение textarea
+            $('.textareaHolding').keypress(function (e) {
+                if (e.keyCode == 10) {
+                    $(".sendComment").click();
+                }
+                var hText = $(this).innerHeight(),
+                    sText = this.scrollHeight;
+
+                if (hText != sText) {
+                    $(this).innerHeight(sText);
+                }
+                if ($(this).val().length < 150 && hText != 76) {
+                    $(this).innerHeight(76);
+                }
+            });
+
+            // Получение победителя
+            $("body").on("click", ".choiceWinner", function () {
+                Winner();
+                $.ajax({
+                    url: "/Lottery/GetWinner",
+                    type: "POST",
+                    data: {
+                        LotteryId: lotteryId
+                    },
+                    success: function (data) {
+                        if (data != "0") {
+                            var newWinner = JSON.parse(data);
+                            winnerId = newWinner[0];
+                            winner = newWinner[1];
+                            prize = newWinner[2].replace(/'/gi, '"');
+                        }
+                    }
+                });  
+            });
+
+            // Отправка комментария
+            $(".sendComment").click(function () {
+                var text = $(".textareaHolding").val();
+                $('.textareaHolding').val("");
+                if (text != "") {
+                    $.ajax({
+                        url: "/Lottery/AddCommentChat",
+                        type: "POST",
+                        data: {
+                            LotteryId: lotteryId,
+                            Text: text
+                        },
+                        success: function (data) {
+                            if (data == "ban") {
+                                $(".modalBody").css("display", "flex");
+                                $(".modalBan").css("display", "block").addClass("fadeInDown");
+                                $(".writeComment").html(`<div class="ban">Вы заблокированы! Если Вы не согласны с решением организатора, заскриньте Ваше нарушение и обратитесь в службу поддержки.</div>`);
+                            } else if (data != "0") {
+                                $(".defaultCommentLottery").fadeOut();
+                                $(".allComment").prepend(data);
+                            }
+                        }
+                    });
+                }
+            });
+
+            @if (ViewBag.Organizer || User.Identity.GetUserRole() == "Admin")
+            {
+                <text>
+                    // Открытие модального окна
+                    $("body").on("click", ".comment .name i", function () {
+                        $(".modalBody").css("display", "flex");
+                        $(".modalQuestion").css("display", "block").addClass("fadeInDown");
+                        $(".modalQuestion .hiddenInp").val($(this).parents(".comment").attr("commentId"));
+                    });
+
+                    // Блокировка чата пользователю
+                    $(".modalQuestion .yesBtn").click(function () {
+                        var id = $(".modalQuestion .hiddenInp").val();
+                        $.ajax({
+                            url: "/Lottery/BanChat",
+                            type: "POST",
+                            data: {
+                                Id: id
+                            },
+                            success: function (data) {
+                                if (data == "1") {
+                                    closeModal();
+                                    $(".modalBody").css("display", "flex");
+                                    $(".modalConfirm").css("display", "block").addClass("fadeInDown");
+                                }
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                    });
+
+                    // Отказ от блокировки
+                    $(".modalQuestion .noBtn").click(function () {
+                        $(".modalQuestion .hiddenInp").val("");
+                        closeModal();
+                    });
+                </text>
+
+
+            }
+            
+
+            // Следование рекламы
+            $(window).on('scroll', function () {
+
+                var scrollWin = $(window).scrollTop();
+                var topHeight = $(".bottomHolding").offset().top - 100;
+                var height = $(".bottomHolding").height() - $(".holdingAdvert").height();
+                var adds = scrollWin - topHeight;
+
+                if (scrollWin > topHeight && height > adds) {
+                    $(".holdingAdvert").css("top", adds);
+                } else {
+                    if (scrollWin < topHeight) {
+                        $(".holdingAdvert").css("top", 0);
+                    } else {
+                        $(".holdingAdvert").css("top", height);
+                    }
+                }
+
+            });
+        });
+
+        function Winner() {
+            var fixed = null;
+            var all_characters = [
+                'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+                'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+                'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X',
+                'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f',
+                'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+                'w', 'x', 'y', 'z', '1', '2', '3', '4',
+                '5', '6', '7', '8', '9', '0'];
+            var text = "";
+            var i = 0;
+            var odds = 0;
+            var place = 0;
+            var flag = 0;
+            var viewLetter = 0;
+
+            var lettersTime = setInterval(function letter() {
+                if (winner == oldWinner && prize == oldPrize) {
+                    text = "";
+                    for (i = 0; i < 20; i++) {
+                        text += all_characters[Math.floor((Math.random() * all_characters.length))];
+                    }
+                    $(".winner").text(text);
+                } else {
+
+                    clearInterval(lettersTime);
+                    i = 0;
+                    viewLetter = 0;
+                    fixed = "";
+                    oldWinner = winner;
+                    oldPrize = prize;
+                    place = (fromTheFirst) ? countViewWinner + 1 : countWinner - countViewWinner;
+                    ++countViewWinner;
+
+                    var winnerTime = setInterval(function () {
+                        if (viewLetter <= 20) {
+                            flag = Math.floor((Math.random() * 2));
+                            ++odds;
+                            if (odds % 5 == 0) {
+                                ++viewLetter;
+                            }
+                            if (odds % 5 == 0 && (flag == 1 || ((20 - viewLetter) <= (winner.length - i)))) {
+                                ++i;
+                            }
+                            if (i < winner.length) {
+                                fixed = winner.substr(0, i);
+                            } else {
+                                fixed = winner;
+                            }
+
+                            for (var j = 0; j < (20 - viewLetter); j++) {
+                                fixed += all_characters[Math.floor((Math.random() * all_characters.length))];
+                            }
+                            $(".winner").text(fixed);
+                        } else {
+                            $(".winner").text(winner);
+                            var stringAdd = "";
+
+                            if (winnerId > 0) {
+                                var accessInfo = (organizerRally) ? `?Lott=${lotteryId}` : "";
+                                stringAdd = `<span>${place}. <a href='/Main/Joker/${winnerId}${accessInfo}'>${winner}</a> - ${prize} </span><br />`;
+                            } else {
+                                stringAdd = `<span>${place}. ${winner} - ${prize} </span><br />`;
+                            }
+
+                            if (fromTheFirst) {
+                                $(".listWinner").append(stringAdd);
+                            } else {
+                                $(".listWinner").prepend(stringAdd);
+                            }
+
+                            clearInterval(winnerTime);
+                            if (countViewWinner < countWinner) {
+                                setTimeout(function () {
+                                    if (organizerRally) {
+                                        if (haveInfo && winnerId > 0) {
+                                            location.href = `/Main/Joker/${winnerId}?Lott=${lotteryId}`;
+                                        } else if (winnerId == 0) {
+                                            lettersTime = setInterval(letter, 100);
+                                            winnerAjax = setInterval(WinnerAjax, 5500);
+                                        } else {
+                                            $(".winner").html("<div class='choiceWinner'>Выбрать победителя</div>");
+                                        }
+                                    } else {
+                                        lettersTime = setInterval(letter, 100);
+                                        if (!organizerRally) {
+                                            winnerAjax = setInterval(WinnerAjax, 5500);
+                                        }
+                                    }
+                                }, 5000);
+                            } else {
+                                if (organizerRally && haveInfo && winnerId > 0) {
+                                    location.href = `/Main/Joker/${winnerId}?Lott=${lotteryId}`;
+                                }
+                                setTimeout(function () {
+                                    $(".winner").html("Все победители выбраны");
+                                }, 5000);
+                            }
+                        }
+
+                    }, 100);
+                }
+            }, 100);
+        }
+
+        function WinnerAjax() {
+            var place = (fromTheFirst) ? countViewWinner + 1 : countWinner - countViewWinner;
+            $.ajax({
+                url: "/Lottery/CheckWinner",
+                type: "POST",
+                data: {
+                    LotteryId: lotteryId,
+                    Place: place
+                },
+                success: function (data) {
+                    if (data != "0") {
+                        var newWinner = JSON.parse(data);
+                        winnerId = newWinner[0];
+                        winner = newWinner[1];
+                        prize = newWinner[2].replace(/'/gi, '"');
+                        clearInterval(winnerAjax);
+                    }
+                }
+            });
+        }
+
+        // Анимация preview
+        var textHolder = document.getElementById('previewHoldingText'),
+            text = textHolder.innerHTML,
+	        chars = text.length,
+	        newText = '',
+	        i;
+
+        for (i = 0; i < chars; i += 1) {
+            newText += '<i class="charPreview">' + text.charAt(i) + '</i>';
+        }
+
+        textHolder.innerHTML = newText;
+
+        var letters = document.getElementsByClassName('charPreview'),
+            flickers = [5, 7, 9, 11, 13, 15, 17],
+            randomLetter,
+            flickerNumber,
+            counter;
+
+        function randomFromInterval(from, to) {
+            return Math.floor(Math.random() * (to - from + 1) + from);
+        }
+
+        function hasClass(element, cls) {
+            return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+        }
+
+        function flicker() {
+            counter += 1;
+
+            if (counter === flickerNumber) {
+                return;
+            }
+
+            setTimeout(function () {
+                if (hasClass(randomLetter, 'off')) {
+                    randomLetter.className = 'charPreview';
+                }
+                else {
+                    randomLetter.className = 'charPreview off';
+                }
+
+                flicker();
+            }, 200);
+        }
+
+        (function loop() {
+            var rand = randomFromInterval(2500, 5000); // Интервал
+
+            randomLetter = randomFromInterval(0, letters.length - 1); // Какая буква
+            randomLetter = letters[randomLetter];
+
+            flickerNumber = randomFromInterval(0, 6); // Сколько раз маргнёт
+            flickerNumber = flickers[flickerNumber];
+
+            setTimeout(function () {
+                counter = 0;
+                flicker();
+                loop();
+            }, rand);
+        }());
+
+    </script>
+</body>
+</html>

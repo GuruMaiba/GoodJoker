@@ -1,0 +1,1319 @@
+﻿@using GoodJoker.Models
+@model Studio
+@{
+    Layout = null;
+    var title = $"Студия {Model.Name} | GoodJoker";
+    var url = "https://goodjoker.ru/Main/Joker/" + Model.Id;
+    var desc = "Студия созданная на проекте GoodJoker!";
+    if (Model.Option.About != null)
+    {
+        desc = (Model.Option.About.Length > 140) ? Model.Option.About.Substring(0, 137) + "..." : Model.Option.About;
+    }
+    var metaImg = $"https://goodjoker.ru/Content/style/images/Studios/Cover/{Model.Option.Cover}";
+
+    var userId = User.Identity.GetUserId<int>();
+    StudioTeam member = null;
+    bool editInfo = false,
+         creator = false,
+         admin = false,
+         addLott = false;
+
+    if (User.Identity.IsAuthenticated) { member = Model.Team.FirstOrDefault(t => t.Member.Id == userId); }
+    if (member != null && member.Role.FirstOrDefault(r => r.Name == "Creator" || r.Name == "Admin" || r.Name == "EditInfo") != null) { editInfo = true; }
+    if (member != null && member.Role.FirstOrDefault(r => r.Name == "Creator" || r.Name == "Admin" || r.Name == "CreateLottery") != null) { addLott = true; }
+    if (member != null && member.Role.FirstOrDefault(r => r.Name == "Creator" || r.Name == "Admin") != null) { admin = true; }
+    if (member != null && member.Role.FirstOrDefault(r => r.Name == "Creator") != null) { creator = true; }
+
+    if (User.Identity.GetUserRole() == "Admin")
+    {
+        editInfo = true;
+        addLott = true;
+        admin = true;
+        creator = true;
+    }
+
+    if (ViewBag.Preview == true)
+    {
+        member = null;
+        editInfo = false;
+        addLott = false;
+        admin = false;
+        creator = false;
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@desc" />
+    <meta name="keywords" content="студия @Model.Name, студия goodjoker" />
+
+    <title>@title</title>
+
+    <!-- Открытые данные графа -->
+    <meta property="og:title" content="@title" />
+    <meta property="og:url" content="@url" />
+    <meta property="og:image" content="@metaImg" />
+    <meta property="og:description" content="@desc" />
+    <meta property="og:site_name" content="GoodJoker" />
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+    <link href="~/Content/jquery.Jcrop.css" rel="stylesheet">
+</head>
+<body>
+
+    @Html.Partial("_Preloader")
+
+    <div class="studio">
+        <div class="modalBody">
+            @if (editInfo)
+            {
+                <div class="modalWindow editRole">
+                    <div class="modalClose"><i class="icon-cancel"></i></div>
+                    <div class="user">
+                        <img src="~/Content/style/images/Users/Avatars/Normal/defaultAva.jpg" />
+                        <div class="name">GoodJoker</div>
+                    </div>
+                    <div class="role">
+                        <input type="hidden" name="RoleUserId" value="0" />
+                        <div class="itemRole"><input type="checkbox" name="Admin" /> Администратор студии (имеет все права)</div>
+                        <div class="itemRole"><input type="checkbox" name="ViewTeam" /> Отображение в команде студии</div>
+                        <div class="itemRole"><input type="checkbox" name="EditInfo" /> Редактирование информацию о студии</div>
+                        <div class="itemRole"><input type="checkbox" name="CreateLottery" /> Создание, редактирование и проведение розыгрышей</div>
+                        <div class="itemRole"><input type="checkbox" name="CommentStudio" /> Возможность писать комментарии от лица студии</div>
+                    </div>
+                </div>
+                <div class="modalWindow modalAddMember">
+                    <div class="modalClose"><i class="icon-cancel"></i></div>
+                    <h1>ПРИГЛАШЕНИЕ В КОМАНДУ</h1>
+                    <div class="inputAddMember">
+                        <input type="hidden" name="UserId" value="0" />
+                        <input class="input" name="Nick" type="text" required /><span class="lineInput"></span>
+                        <label class="inputLable">Ник пользователя</label>
+                        <div class="listUser"></div>
+                    </div>
+
+                    <div class="labelHello">Пригласительное сообщение:<span class="maxChar">300</span></div>
+                    <textarea name="HelloMessage" placeholder="Студия @Model.Name, приглашает Вас в свою команду!"></textarea>
+
+                    <div class="sendHelloMessage disable">Отправить</div>
+                </div>
+            }
+        </div>
+
+        <div class="studioBack">
+            <i class="icon-reply"></i> &nbsp;
+            <a href="/">Главная</a> &nbsp;
+            <a href="/News">Новости</a> &nbsp;
+            <a href="/Lottery">Розыгрыши</a> &nbsp;
+            @if (User.Identity.IsAuthenticated)
+            { <a href="/PrivateOffice">@User.Identity.Name</a> }
+        </div>
+        <div class="studioBG"><div style="background-image: url('../../Content/style/images/Studios/Covers/@Model.Option.Cover');"></div></div>
+        <div class="studioTitle">
+            <div class="container cover" style="background-image: url('../../Content/style/images/Studios/Covers/@Model.Option.Cover');">
+                <div class="name"><span>@Model.Name</span></div>
+                <img class="avatar top" src="~/Content/style/images/Studios/Avatars/Normal/@Model.Option.Ava" />
+            </div>
+        </div>
+        <div class="content">
+            <div class="container">
+                <div class="status" @if (Model.Option.Statistics < 0) { <text> style="color: #CC0000;" </text> }>Рейтинг: @Model.Option.Statistics</div>
+                <div class="btnWorkStudio
+                     @if (creator) {<text>delStudio</text>}
+                     else if (member != null) {<text>goOutStudio</text>}
+                     else {<text>subscribe @if (!User.Identity.IsAuthenticated || ViewBag.Preview == true) {<text>noAuth</text>}</text>}">
+                    @if (creator)
+                    {<text>Удалить студию</text>}
+                    else if (member != null && member.Role.FirstOrDefault(r => r.Name == "Member") != null)
+                    {<text><i class="icon-login"></i> Покинуть команду</text>}
+                    else if (member != null && member.Role.FirstOrDefault(r => r.Name == "Sub") != null)
+                    {<text><i class="icon-login"></i> Отписаться</text>}
+                    else
+                    {<text><i class="icon-news"></i> Подписаться</text>}
+                </div>
+                @if (editInfo)
+                {
+                    <form id="coverForm" enctype="multipart/form-data">
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <input id="cover" class="hiddenInputFile" type="file" name="Cover" accept="image/png,image/jpeg" />
+                    </form>
+
+                    <form id="myform" enctype="multipart/form-data">
+                        <input id="ava" class="hiddenInputFile" type="file" name="Ava" accept="image/png,image/jpeg" />
+                        <input type="hidden" name="Id" value="@Model.Id" />
+                        <input type="hidden" name="X" id="X" value="0" />
+                        <input type="hidden" name="Y" id="Y" value="0" />
+                        <input type="hidden" name="W" id="W" value="200" />
+                        <input type="hidden" name="H" id="H" value="200" />
+                    </form>
+
+                    <div class="editImg">
+                        <label for="cover" class="editBtn editBG"><i class="icon-download"></i> Изменить фон студии</label>
+                        <label for="ava" class="editBtn editAvatar"><i class="icon-download"></i> Изменить аватарку студии</label>
+                        <a href="/Main/Studio/@Model.Id?preview=true"><label class="editBtn previewStudio"><i class="icon-eye"></i> Предпросмотр</label></a>
+                    </div>
+
+                    <div class="crossPhoto">
+                        <div class="crossPhotoImg">
+                            <img id="cropbox" src="" />
+                        </div>
+                        <div class="cancel">Отменить</div>
+                        <div class="clip">Сохранить</div>
+                    </div>
+                }
+
+                @if ((Model.Option.Quote != null && Model.Option.Quote != "") || editInfo)
+                {
+                    <div class="quote hidden-xs">
+                        <div class="iconLeft"><i class="icon-quote-right"></i></div>
+                        <div class="text">
+                            <p>@Model.Option.Quote @if (editInfo)
+                            {<i class="icon-pencil-1 editQuoteText"></i>}</p>
+                            @if ((Model.Option.AuthorQuote != null && Model.Option.AuthorQuote != "") || editInfo)
+                            {
+                                <hr />
+                                <div class="author"><i>@Model.Option.AuthorQuote</i> @if (editInfo)
+                                {<i class="icon-pencil-1 editQuoteAuthor"></i>}</div>
+                            }
+                        </div>
+                        <div class="iconRight"><i class="icon-quote-left"></i></div>
+                    </div>
+                }
+
+                @if (Model.Lotteries.Count > 0 || addLott)
+                {
+                    <div class="lotteries">
+                        <div class="title"><h1><span>Наши розыгрыши</span></h1></div>
+                        @foreach (var lott in Model.Lotteries.OrderByDescending(l => l.DateCreate))
+                        {
+                            <a href="/Lottery/Details/@lott.Id">
+                                <div class="lottery">
+                                    <div class="preview" style="background: #119298 url('../../Content/style/images/Lotteries/Reduced/@lott.Cover') center center / cover no-repeat">
+                                        <div class="inform hidden-xs">
+                                            <div>
+                                                <div><i class="icon-thumbs-o-up"></i> @lott.OddsFingers</div>
+                                                <div><i class="icon-eye"></i> @lott.View</div>
+                                                <div><i class="icon-user"></i> @lott.Users.Count</div>
+                                                <div><i class="icon-comment-2"></i> @lott.Comments.Count</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <div class="titleDesc">@lott.Title</div>
+                                        <div class="text hidden-xs">@lott.ShortDescription</div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+
+                        @if (addLott)
+                        {
+                            <a href="/Lottery/Create/@Model.Id">
+                                <div class="lottery">
+                                    <div class="preview">
+                                        <div class="inform">
+                                            <div class="iconAddLottery"><i class="icon-plus-1"></i></div>
+                                        </div>
+                                    </div>
+                                    <div class="description hidden-xs">
+                                        <div class="titleDesc">Добавить розыгрыш</div>
+                                    </div>
+                                </div>
+                            </a>
+                        }
+
+                    </div> @* end lotteries *@
+                }
+
+                @if (Model.Archive.Count > 0)
+                {
+                    var monthInc = 0;
+                    <div class="prizes">
+                        <div class="title"><h1><span>Разыгранные призы</span></h1></div>
+                        @for (int i = DateTime.Now.Year; i >= 2017; i--)
+                        {
+                            <div class="year">@i</div>
+                            <div id="year-@i">
+                                @for (int j = 12; j >= 1; j--)
+                                {
+                                    var archive = Model.Archive.Where(a => a.HoldingLottery.Year == i && a.HoldingLottery.Year == j).OrderByDescending(a => a.HoldingLottery);
+
+                                    if (archive.Count() > 0)
+                                    {
+                                        <div class="mounth" inc="@monthInc">@archive.First().HoldingLottery.ToString("MMMM")</div>
+                                        <div id="mounth-@monthInc">
+                                            @foreach (var arc in archive)
+                                            {
+                                                <div class="prize">
+                                                    <div class="day">@arc.HoldingLottery.ToString("dd")</div>
+                                                    <div class="winners">
+                                                        @foreach (var winner in arc.Winner)
+                                                        { <div class="name">@winner.Prize. - <a href="/Main/Joker/@winner.Winner.Id"><img src="~/Content/style/images/Users/Avatars/Reduced/@winner.Winner.Option.Ava" class="hidden-xs" /> @winner.Winner.Nick</a></div> }
+                                                    </div>
+                                                </div>
+                                            }
+                                        </div>
+                                        ++monthInc;
+                                    }
+                                }
+                            </div>
+                        }
+                    </div>
+                } @* end prizes *@
+
+                @*<div class="prizes">
+                    <div class="title"><h1><span>Разыгранные призы</span></h1></div>
+                    <div class="year">2017</div>
+                    <div id="year-2017">
+                        <div class="mounth" inc="1">Декабрь</div>
+                        <div id="mounth-1">
+                            <div class="prize">
+                                <div class="day">21</div>
+                                <div class="winers">
+                                    <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                                    <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                                    <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mounth" inc="2">Май</div>
+                        <div id="mounth-2">
+                            <div class="prize">
+                                <div class="day">21</div>
+                                <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                            </div>
+                            <div class="prize">
+                                <div class="day">22</div>
+                                <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                            </div>
+                        </div>
+                        <div class="mounth" inc="3">Июнь</div>
+                        <div id="mounth-3">
+                            <div class="prize">
+                                <div class="day">21</div>
+                                <div class="name">iPhone 7 - <a href="/Main/Joker"><img class="hidden-xs" src="~/Content/style/images/avatar.jpg" /> Maiba{GJ}</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+                <div class="about">
+                    @if ((Model.Option.About != null && Model.Option.About != "") || editInfo)
+                    {
+                        <div class="title"><h1><span>О нас</span></h1></div>
+                        <div class="text">@Model.Option.About @if (editInfo) {<i class="icon-pencil-1 editAbout"></i>}</div>
+                    }
+                    <div class="title"><h1><span>Команда</span></h1></div>
+                    <div class="team">
+                        @foreach (var team in Model.Team.Where(t => t.Role.FirstOrDefault(r => r.Name == "Sub") == null).OrderByDescending(t => t.ConfirmMember))
+                        {
+                            if ((team.ConfirmMember && team.Role.FirstOrDefault(r => r.Name == "ViewTeam") != null) || admin)
+                            {
+                                <div class="member @if (!team.ConfirmMember) {<text>noconfirm</text>}" userid="@team.Member.Id">
+                                    <div class="position">
+                                        @if (admin)
+                                        {
+                                            var isCreator = (team.Role.FirstOrDefault(r => r.Name == "Creator") != null) ? true : false;
+                                            var roles = "{ \"Admin\": ";
+                                            roles += (team.Role.FirstOrDefault(r => r.Name == "Admin") != null) ? "1, " : "0, ";
+                                            roles += "\"ViewTeam\": ";
+                                            roles += (team.Role.FirstOrDefault(r => r.Name == "ViewTeam") != null) ? "1, " : "0, ";
+                                            roles += "\"EditInfo\": ";
+                                            roles += (team.Role.FirstOrDefault(r => r.Name == "EditInfo") != null) ? "1, " : "0, ";
+                                            roles += "\"CreateLottery\": ";
+                                            roles += (team.Role.FirstOrDefault(r => r.Name == "CreateLottery") != null) ? "1, " : "0, ";
+                                            roles += "\"CommentStudio\": ";
+                                            roles += (team.Role.FirstOrDefault(r => r.Name == "CommentStudio") != null) ? "1 " : "0 ";
+                                            roles += "}";
+
+                                            <div class="@if (isCreator || !team.ConfirmMember) {<text>one</text>}editMember">
+                                                @if (!isCreator)
+                                                {<i class="icon-cancel delMember" nick="@team.Member.Nick"></i>}
+                                                @if (team.ConfirmMember)
+                                                {<i class="icon-pencil-1 editRoleMember" roles="@roles"></i>}
+                                            </div>
+                                        }
+                                        <a id="avaUser-@team.Member.Id" href="/Main/Joker/@team.Member.Id">
+                                            <img src="~/Content/style/images/Users/Avatars/Normal/@team.Member.Option.Ava" />
+                                            <div class="name">@team.Member.Nick</div>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        }
+
+                        @if (admin)
+                        {
+                            <div class="member addMemberBtn">
+                                <div class="position">
+                                    <div class="addMember"><i class="icon-plus-1"></i></div>
+                                    <div class="name">Добавить</div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div> @* end about *@
+
+                @if ( (Model.Option.NameLinkSite != null && Model.Option.NameLinkSite != "" && Model.Option.LinkSite != null && Model.Option.LinkSite != "") ||
+                      (Model.Option.Adress != null && Model.Option.Adress != "") ||
+                      (Model.Option.Phone != null && Model.Option.Phone != "") ||
+                      (Model.Option.Email != null && Model.Option.Email != "") ||
+                      (Model.Option.Link?.Count > 0) || editInfo )
+                {
+                    <div class="contacts">
+                        <div class="title"><h1><span>Контакты</span></h1></div>
+                        <div class="contents">
+                            <div class="info">
+                                @if ((Model.Option.NameLinkSite != null && Model.Option.NameLinkSite != "" && Model.Option.LinkSite != null && Model.Option.LinkSite != "") || editInfo)
+                                {
+                                    <div class="itemContact">
+                                        <span class="titleContact">Сайт:</span> <span id="site"><a href="@Model.Option.LinkSite" target="_blank">@Model.Option.NameLinkSite</a> @if (editInfo) { <i class="icon-pencil-1 contactPencil"></i> } </span>
+                                        @if (editInfo)
+                                        {
+                                            <div class="editContact editSite">
+                                                <input type="text" name="SiteName" value="@Model.Option.NameLinkSite" placeholder="GoodJoker.ru" />
+                                                <input type="text" name="SiteLink" value="@Model.Option.LinkSite" placeholder="http://GJ.ru/Main/Studio" />
+                                                <div class="confirm confirmSite"><i class="icon-check-1"></i></div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                                @if ((Model.Option.Adress != null && Model.Option.Adress != "") || editInfo)
+                                {
+                                    <div class="itemContact">
+                                        <span class="titleContact">Адрес:</span> <span id="address">@Model.Option.Adress @if (editInfo) { <i class="icon-pencil-1 contactPencil"></i> } </span>
+                                        @if (editInfo)
+                                        {
+                                            <div class="editContact editAddress">
+                                                <input type="text" name="Address" value="@Model.Option.Adress" placeholder="Введите адресс" />
+                                                <div class="confirm confirmAddress"><i class="icon-check-1"></i></div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            
+                                @if ((Model.Option.Phone != null && Model.Option.Phone != "") || editInfo)
+                                {
+                                    <div class="itemContact">
+                                        <span class="titleContact">Тел.:</span> <span id="phone">@Model.Option.Phone @if (editInfo) { <i class="icon-pencil-1 contactPencil"></i> } </span>
+                                        @if (editInfo)
+                                        {
+                                            <div class="editContact editPhone">
+                                                <input type="text" name="Phone" value="@Model.Option.Phone" placeholder="Введите телефон" />
+                                                <div class="confirm confirmPhone"><i class="icon-check-1"></i></div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+
+                                @if ((Model.Option.Email != null && Model.Option.Email != "") || editInfo)
+                                {
+                                    <div class="itemContact">
+                                        <span class="titleContact">E-mail:</span> <span id="email">@Model.Option.Email @if (editInfo) { <i class="icon-pencil-1 contactPencil"></i> }</span>
+                                        @if (editInfo)
+                                        {
+                                            <div class="editContact editEmail">
+                                                <input type="text" name="Email" value="@Model.Option.Email" placeholder="Введите адресс электронной почты" />
+                                                <div class="confirm confirmEmailStudio"><i class="icon-check-1"></i></div>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            
+                                @if (Model.Option.Link?.Count > 0 || editInfo)
+                                {
+                                    <div class="itemContact">
+                                        <span class="titleContact">Ссылки:</span>
+                                        <span id="social">
+                                            @foreach (var link in Model.Option.Link)
+                                            {
+                                                var icon = link.Icon;
+                                                switch (icon)
+                                                {
+                                                    case "vkontakte":
+                                                        icon = "vk";
+                                                        break;
+                                                    case "facebook":
+                                                        icon = "facebook";
+                                                        break;
+                                                    case "odnoklassniki":
+                                                        icon = "odnoklassniki";
+                                                        break;
+                                                    case "google+":
+                                                        icon = "google-plus";
+                                                        break;
+                                                    case "twitter":
+                                                        icon = "twitter";
+                                                        break;
+                                                    case "youtube":
+                                                        icon = "youtube";
+                                                        break;
+                                                    case "twitch":
+                                                        icon = "twitch";
+                                                        break;
+                                                    case "instagrem":
+                                                        icon = "instagrem";
+                                                        break;
+                                                    default:
+                                                        icon = "";
+                                                        break;
+                                                }
+                                                <a href="@link.Link"><i class="icon-@icon"></i></a>
+                                            }
+                                            @if (editInfo) {<i class="icon-pencil-1 contactPencil"></i>}
+                                        </span>
+                                
+                                        @if (editInfo)
+                                        {
+                                            <div class="editContact editSocial">
+                                                <div class="addSocial">
+                                                    <i class="icon-vk" onclick="addSocial('vkontakte');"></i>
+                                                    <i class="icon-facebook" onclick="addSocial('facebook');"></i>
+                                                    <i class="icon-odnoklassniki" onclick="addSocial('odnoklassniki');"></i>
+                                                    <i class="icon-google-plus" onclick="addSocial('google+');"></i>
+                                                    <i class="icon-twitter" onclick="addSocial('twitter');"></i>
+                                                    <i class="icon-youtube" onclick="addSocial('twitch');"></i>
+                                                    <i class="icon-twitch" onclick="addSocial('twitch');"></i>
+                                                    <i class="icon-instagrem" onclick="addSocial('instagrem');"></i>
+                                                </div>
+                                                <form class="allSocial">
+                                                    @{ var i = 0; }
+                                                    @foreach (var link in Model.Option.Link)
+                                                    {
+                                                        var type = link.Icon;
+                                                        var icon = "icon-";
+                                                        switch (type)
+                                                        {
+                                                            case "vkontakte":
+                                                                icon += "vk";
+                                                                break;
+                                                            case "facebook":
+                                                                icon += "facebook";
+                                                                break;
+                                                            case "odnoklassniki":
+                                                                icon += "odnoklassniki";
+                                                                break;
+                                                            case "google+":
+                                                                icon += "google-plus";
+                                                                break;
+                                                            case "twitter":
+                                                                icon += "twitter";
+                                                                break;
+                                                            case "youtube":
+                                                                icon += "youtube";
+                                                                break;
+                                                            case "twitch":
+                                                                icon += "twitch";
+                                                                break;
+                                                            case "instagrem":
+                                                                icon += "instagrem";
+                                                                break;
+                                                            default:
+                                                                icon = "";
+                                                                break;
+                                                        }
+                                                        <div class="itemSocial">
+                                                            <i class="@icon icon"></i>
+                                                            <input type="hidden" name="Link[@i].Icon" value="@type" />
+                                                            <input type="text" name="Link[@i].Link" value="@link.Link" placeholder="Вставьте ссылку..." />
+                                                            <i id="delLink-@i" class="icon-cancel delLink"></i>
+                                                        </div>
+                                                        ++i;
+                                                    }
+                                                </form>
+                                                <div class="confirm confirmSocial"><i class="icon-check-1"></i></div>
+                                            </div>
+                                        }
+                                    
+                                    </div>
+                                }
+                            
+                            </div>
+                        </div>
+                    </div> @* end contacts *@
+                }
+
+                <a href="/Main/Studio/1" class="logoLink">
+                    <div class="logo">
+                        <div class="good">Good</div>
+                        <img src="~/Content/style/images/logo.png" />
+                        <div>Joker</div>
+                    </div>
+                </a>
+            </div> @* end container *@
+        </div> @* end content *@
+    </div> @* end studio *@ 
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.Jcrop.js"></script>
+    <script>
+        var studioId = @Model.Id;
+        $(window).on("load", function () {
+            $('#bgPreloader').fadeOut("slow");
+        });
+
+        $(document).ready(function () {
+
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > 100) {
+                    if ($(".avatar").hasClass("top")) {
+                        $(".avatar").addClass("bottom").removeClass("top");
+                    }
+                } else {
+                    if ($(".avatar").hasClass("bottom")) {
+                        $(".avatar").addClass("top").removeClass("bottom");
+                    }
+                }
+            });
+
+            // Работа с модальными окнами
+            // ---------------------------------------------------------------------------
+
+            // Удаление из команды
+            // ---------------------------------------------------
+            $("body").on("click", ".member .delMember", function () {
+                var parent = $(this).parents(".member");
+                var id = parent.attr("userid");
+                var nick = $(this).attr("nick");
+                if (confirm(`Вы уверенны что хотите удалить пользователя ${nick} из Вашей студии?`)) {
+                    $.ajax({
+                        url: "/Studio/DelMember",
+                        type: "POST",
+                        data: {
+                            StudioId: studioId,
+                            UserId: id
+                        },
+                        success: function (data) {
+                            if (data != "0") {
+                                parent.remove();
+                            } else {
+                                globalError();
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            // Открытие модального окна "Изменение роли пользователя"
+            $("body").on("click", ".editRoleMember", function () {
+                $(".modalBody").css("display", "flex");
+                $(".editRole").css("display", "flex").addClass("fadeInDown");
+                var id = $(this).parents(".member").attr("userid");
+                $("input[name='RoleUserId']").val(id);
+                var roles = $(this).attr("roles");
+                roles = JSON.parse(roles);
+                $(".editRole .user img").attr("src", $(`#avaUser-${id} img`).attr("src"));
+                $(".editRole .user .name").text($(`#avaUser-${id} .name`).text());
+
+                if (roles["Admin"] == 1) {
+                    $("input[name='Admin']").prop("checked", true);
+                } else {
+                    $("input[name='Admin']").prop("checked", false);
+                }
+
+                if (roles["ViewTeam"] == 1) {
+                    $("input[name='ViewTeam']").prop("checked", true);
+                } else {
+                    $("input[name='ViewTeam']").prop("checked", false);
+                }
+
+                if (roles["EditInfo"] == 1) {
+                    $("input[name='EditInfo']").prop("checked", true);
+                } else {
+                    $("input[name='EditInfo']").prop("checked", false);
+                }
+
+                if (roles["CreateLottery"] == 1) {
+                    $("input[name='CreateLottery']").prop("checked", true);
+                } else {
+                    $("input[name='CreateLottery']").prop("checked", false);
+                }
+
+                if (roles["CommentStudio"] == 1) {
+                    $("input[name='CommentStudio']").prop("checked", true);
+                } else {
+                    $("input[name='CommentStudio']").prop("checked", false);
+                }
+            });
+
+            // Слушатель изменения ролей
+            $(".itemRole input").change(function () {
+                var role = $(this).attr("name");
+                var id = $("input[name='RoleUserId']").val();
+                $.ajax({
+                    url: "/Studio/EditRoles",
+                    type: "POST",
+                    data: {
+                        StudioId: studioId,
+                        UserId: id,
+                        EditRole: role
+                    },
+                    success: function () {
+                        var btnEdit = $("#avaUser-" + id).parent().children(".editMember").children(".editRoleMember");
+                        var roles = btnEdit.attr("roles");
+
+                        roles = JSON.parse(roles);
+                        if (roles[role] == 1) {
+                            roles[role] = 0;
+                        } else {
+                            roles[role] = 1;
+                        }
+                        btnEdit.attr("roles", JSON.stringify(roles));
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Открытие модального окна "Приглашение пользователя"
+            $("body").on("click", ".addMemberBtn", function () {
+                $(".modalBody").css("display", "flex");
+                $(".modalAddMember").css("display", "block").addClass("fadeInDown");
+            });
+
+            // Подгрузка пользователей
+            // ---------------------------------------------------
+
+            $("input[name='Nick']").keyup(function () {
+                var nick = $(this).val();
+                if (nick.length > 2) {
+                    $.ajax({
+                        url: "/PrivateOffice/SearchUser",
+                        type: "POST",
+                        data: {
+                            Nick: nick
+                        },
+                        success: function (data) {
+                            $(".listUser").html(data);
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            // Выбор пользователя из списка
+            // ---------------------------------------------------
+
+            $("body").on("click", ".listUser div", function () {
+                var id = $(this).attr("userid");
+                $("input[name='UserId']").val(id);
+                if (id != 0) {
+                    $("input[name='Nick']").val($(this).text());
+                    $(".sendHelloMessage").removeClass("disable");
+                }
+                $(".listUser").html("");
+            });
+
+            // Подсчёт количества символов в сообщение
+            // ---------------------------------------------------
+
+            $("textarea[name='HelloMessage']").keyup(function () {
+                $(".maxChar").text(300 - $(this).val().length);
+            });
+
+            // Добавление пользователя в студию
+            // ---------------------------------------------------
+
+            $(".sendHelloMessage").click(function () {
+                if (!$(this).hasClass("disable")) {
+                    var userId = $("input[name='UserId']").val();
+                    var nick = $("input[name='Nick']").val();
+                    var hello = $("textarea[name='HelloMessage']").val();
+
+                    if (userId != "0" && nick != "") {
+                        $.ajax({
+                            url: "/Studio/AddMember",
+                            type: "POST",
+                            data: {
+                                StudioId: studioId,
+                                UserId: userId,
+                                Text: hello
+                            },
+                            success: function (ava) {
+                                if (ava != "0") {
+                                    var btn = $(".addMemberBtn").detach();
+                                    var newMember =
+                                        `<div class="member noconfirm" userid="${userId}">
+                                        <div class="position">
+                                            <div class="oneeditMember"><i class="icon-cancel delMember" nick="${nick}"></i></div>
+                                            <a id="avaUser-${userId}" ava="${ava}" href="/Main/Joker/${userId}">
+                                                <img src="../../Content/style/images/Users/Avatars/Normal/${ava}" />
+                                                <div class="name">${nick}</div>
+                                            </a>
+                                        </div>
+                                    </div>`;
+
+                                    $(".team").append(newMember);
+                                    $(".team").append(btn);
+
+                                    closeModal();
+
+                                    $("input[name='UserId']").val(0);
+                                    $("input[name='Nick']").val("");
+                                    $(".maxChar").text(300);
+                                    $("input[name='HelloMessage']").val("");
+                                }
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                    }
+                }
+            });
+
+            $(".modalClose").click(function () {
+                closeModal();
+            });
+
+            $(".modalBody").click(function (e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // -----------------------------------
+            // end Работа с модальными окнами
+
+            // Кнопка для внешней работы со студией
+            // --------------------------------------------------
+
+            $(".btnWorkStudio").click(function () {
+                var type = "";
+                goAjax = false;
+                if ($(this).hasClass("delStudio")) {
+                    if ($(".lottery").length > 1) {
+                        alert("Для удаления студии, все розыгрыши должны быть проведены и заархивированы!");
+                    } else {
+                        if (confirm("Вы уверены, что хотите удалить Вашу студию?")) {
+                            type = "Delete";
+                            goAjax = true;
+                        }
+                    }
+                } else if ($(this).hasClass("goOutStudio")) {
+                    if (confirm("Вы уверены, что хотите покинуть студию?")) {
+                        type = "GoOut";
+                        goAjax = true;
+                    }
+                } else if ($(this).hasClass("subscribe")) {
+                    if ($(this).hasClass("noAuth")) {
+                        location.href = "/Main/Auth";
+                    } else {
+                        type = "Sub";
+                        goAjax = true;
+                    }
+                }
+
+                if (goAjax) {
+                    $.ajax({
+                        url: "/Studio/SignStudio",
+                        type: "POST",
+                        data: {
+                            StudioId: studioId,
+                            Type: type
+                        },
+                        success: function (data) {
+                            if (data != "0") {
+                                if (type == "Delete") {
+                                    location.href = "/PrivateOffice/Studios";
+                                } else if (type == "GoOut") {
+                                    $(".btnWorkStudio").removeClass("goOutStudio");
+                                    $(".btnWorkStudio").addClass("subscribe");
+                                    $(".btnWorkStudio").html("<i class='icon-news'></i> Подписаться");
+                                } else if (type == "Sub") {
+                                    $(".btnWorkStudio").removeClass("subscribe");
+                                    $(".btnWorkStudio").addClass("goOutStudio");
+                                    $(".btnWorkStudio").html("<i class='icon-login'></i> Отписаться");
+                                }
+                            } else {
+                                globalError();
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+
+
+            // Изменение цитаты
+            // ---------------------------------------------------------------------------
+
+            // Изменение текста цитаты
+            // ---------------------------------------------------
+
+            $("body").on("click", ".editQuoteText", function () {
+                $(this).remove();
+                var text = $(".quote .text p").text();
+                $(".quote .text p").remove();
+                $(".quote .text").prepend(`<textarea name="QuoteText">${text}</textarea>`);
+            });
+
+            $("body").on("focusout", "textarea[name='QuoteText']", function () {
+                var area = $(this);
+                var text = area.val();
+
+                $.ajax({
+                    url: "/Studio/EditQuote",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Text: text
+                    },
+                    success: function () {
+                        area.remove();
+                        $(".quote .text").prepend(`<p>${text} <i class="icon-pencil-1 editQuoteText"></i></p>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // ---------------------------------------------------
+            // end Изменение текста цитаты
+
+
+            // Изменение автора цитаты
+            // ---------------------------------------------------
+
+            $("body").on("click", ".editQuoteAuthor", function () {
+                var text = $(".quote .text .author").text();
+                $(".quote .text .author").html(`<input type="text" name="QuoteName" value="${text}" />`);
+            });
+
+            $("body").on("focusout", "input[name='QuoteName']", function () {
+                var author = $(this).val();
+
+                $.ajax({
+                    url: "/Studio/EditQuote",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Author: author
+                    },
+                    success: function () {
+                        $(".quote .text .author").html(`<i>${author}</i> <i class="icon-pencil-1 editQuoteText"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // ---------------------------------------------------
+            // end Изменение автора цитаты
+
+            // --------
+            // end Изменение цитаты
+
+
+            // Изменение информации О нас
+            // ---------------------------------------------------------------------
+
+            $("body").on("click", ".editAbout", function () {
+                var text = $(".about .text").text();
+                $(".about .text").html(`<textarea name="About">${text}</textarea>`);
+            });
+
+            $("body").on("focusout", "textarea[name='About']", function () {
+                var text = $(this).val();
+
+                $.ajax({
+                    url: "/Studio/EditAbout",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Text: text
+                    },
+                    success: function () {
+                        $(".about .text").html(`${text} <i class="icon-pencil-1 editAbout"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // --------
+            // end Изменение информации О нас
+
+            $(".year").click(function () {
+                $("#year-" + $(this).text()).slideToggle();
+            });
+
+            $(".mounth").click(function () {
+                $("#mounth-" + $(this).attr("inc")).slideToggle();
+            });
+
+            // Обложка
+            $("#cover").on('change', function () {
+                var file = $(this)[0].files[0];
+                var format = $(this).val().split('.').pop().toLowerCase();
+                var cheackFormat = $.inArray(format, ['png', 'jpg', 'jpeg']);
+
+                if (file.size > 10000000) {
+                    alert("Загруженое изображение больше 10 Мбайт!");
+                    $(this).val("");
+                } else if (cheackFormat == -1) {
+                    alert("Формат изображения не подходит, для загрузки на сервер! \nПожалуйста загрузите изображение формата: png, jpg, jpeg!");
+                    $(this).val("");
+                } else {
+                    var form = document.forms.coverForm;
+                    var formData = new FormData(form);
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "/Studio/CoverEdit");
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState == 4) {
+                            if (xhr.status == 200) {
+                                cover = xhr.responseText;
+                                if (cover != "0") {
+                                    $('.studioBG div').css('background-image', `url('../../Content/style/images/Studios/Covers/${cover}')`);
+                                    $('.cover').css('background-image', `url('../../Content/style/images/Studios/Covers/${cover}')`);
+                                    $('#cover').val(null);
+                                    $('html, body').animate({ scrollTop: 0 }, 500);
+                                } else {
+                                    globalError();
+                                }
+                            }
+                        }
+                    };
+                    xhr.send(formData);
+                }
+            });
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+                var ava = document.getElementById("ava");
+                var backup = $(".crossPhoto").html();
+
+                ava.addEventListener('change', function () {
+                    var file = ava.files[0];
+                    var reader = new FileReader();
+                    var exp = file.type.toString().toLowerCase();
+
+                    if (file != null) {
+
+                        reader.addEventListener("load", function () {
+                            var img = new Image;
+                            $(".crossPhoto").html(backup);
+                            img.onload = function () {
+                                if (file.size < 10000000 && (exp.indexOf("image") !== -1)) {
+                                    if (img.height < 200 || img.width < 200) {
+                                        alert("Ваше изображение должно быть больше 200px со всех сторон!");
+                                    } else if (img.height == img.width) {
+                                        $('#X').val(0);
+                                        $('#Y').val(0);
+                                        $('#W').val(img.width);
+                                        $('#H').val(img.height);
+                                        $(".clip").click();
+                                    } else {
+                                        if ((img.width < img.height) && (img.width > $(window).width() / 2) && ($(window).width() > 767)) {
+                                            $(".crossPhotoImg").width("50%");
+                                        } else if (img.width < $(".crossPhoto").width()) {
+                                            $(".crossPhotoImg").width(img.width);
+                                        }
+                                        $("#cropbox").attr('src', reader.result);
+                                        $(".crossPhoto").slideDown();
+                                        $('#cropbox').Jcrop({
+                                            onSelect: updateCoords,
+                                            aspectRatio: 1 / 1,
+                                            setSelect: [0, 0, 200, 200],
+                                            boxHeight: $("#cropbox").height(),
+                                            boxWidth: $("#cropbox").width()
+                                        });
+
+                                        $('html, body').animate({
+                                            scrollTop: $(".crossPhoto").offset().top
+                                        }, 700);
+                                    }
+                                }
+                            };
+                            img.src = reader.result;
+                        }, false);
+
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    }
+
+                }, false);
+
+            } else {
+                alert('Извините, но Ваш браузер не поддерживает FileAPI. Зайдите с более новой версии браузера для изменения аватарки!');
+            }
+
+            $("body").on("click", ".cancel", function () {
+                $('.crossPhoto').slideUp(500);
+                $('#ava').val(null);
+                setTimeout(function () {
+                    $(".crossPhoto").html(backup);
+                }, 500);
+            });
+
+            $("body").on("click", ".clip", function () {
+                var control = document.getElementById("ava");
+                var form = document.forms.myform;
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/Studio/AvaEdit");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            ava = xhr.responseText;
+
+                            if (ava != "0") {
+                                $('.avatar').attr('src', `../../Content/style/images/Studios/Avatars/Normal/${ava}`);
+                                $('#ava').val(null);
+                                $('.crossPhoto').slideUp();
+                                $(".crossPhotoImg img").css("width", "100%");
+                            } else {
+                                globalError();
+                            }
+                        }
+                    }
+                };
+                xhr.send(formData);
+            });
+
+            // Изменение контактов
+            $("body").on("click", "#site .contactPencil", function () {
+                $(".editSite").slideToggle();
+            });
+
+            $(".confirmSite").click(function () {
+                var name = $("input[name='SiteName']").val();
+                var link = $("input[name='SiteLink']").val();
+                $.ajax({
+                    url: "/Studio/EditContactInfo",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        SiteName: name,
+                        SiteLink: link
+                    },
+                    success: function () {
+                        $(".editSite").slideUp();
+                        $("#site").html(`<a href="${link}" target="_blank">${name}</a> <i class="icon-pencil-1 contactPencil"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Изменение контактов
+            $("body").on("click", "#address .contactPencil", function () {
+                $(".editAddress").slideToggle();
+            });
+
+            $(".confirmAddress").click(function () {
+                var address = $("input[name='Address']").val();
+                $.ajax({
+                    url: "/Studio/EditContactInfo",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Address: address
+                    },
+                    success: function () {
+                        $(".editAddress").slideUp();
+                        $("#address").html(`${address} <i class="icon-pencil-1 contactPencil"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Изменение контактов
+            $("body").on("click", "#phone .contactPencil", function () {
+                $(".editPhone").slideToggle();
+            });
+
+            $(".confirmPhone").click(function () {
+                var phone = $("input[name='Phone']").val();
+                $.ajax({
+                    url: "/Studio/EditContactInfo",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Phone: phone
+                    },
+                    success: function () {
+                        $(".editPhone").slideUp();
+                        $("#phone").html(`${phone} <i class="icon-pencil-1 contactPencil"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Изменение контактов
+            $("body").on("click", "#email .contactPencil", function () {
+                $(".editEmail").slideToggle();
+            });
+
+            $(".confirmEmailStudio").click(function () {
+                var email = $("input[name='Email']").val();
+                $.ajax({
+                    url: "/Studio/EditContactInfo",
+                    type: "POST",
+                    data: {
+                        Id: studioId,
+                        Email: email
+                    },
+                    success: function () {
+                        $(".editEmail").slideUp();
+                        $("#email").html(`${email} <i class="icon-pencil-1 contactPencil"></i>`);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Изменение ссылок
+            $("body").on("click", "#social .contactPencil", function () {
+                $(".editSocial").slideToggle();
+            });
+
+            $(".confirmSocial").click(function () {
+                var links = `Id=${studioId}&` + $(".allSocial").serialize();
+                $.ajax({
+                    url: "/Studio/EditContactInfo",
+                    type: "POST",
+                    data: links,
+                    success: function () {
+                        $(".editSocial").slideUp();
+                        var length = $(".itemSocial").length;
+                        $("#social").html("");
+                        for (var i = 0; i < length; i++) {
+                            var icon = $(`input[name='Link[${i}].Icon']`).val();
+                            var link = $(`input[name='Link[${i}].Link']`).val()
+                            switch (icon) {
+                                case "vkontakte":
+                                    icon = "vk";
+                                    break;
+                                case "facebook":
+                                    icon = "facebook";
+                                    break;
+                                case "odnoklassniki":
+                                    icon = "odnoklassniki";
+                                    break;
+                                case "google+":
+                                    icon = "google-plus";
+                                    break;
+                                case "twitter":
+                                    icon = "twitter";
+                                    break;
+                                case "youtube":
+                                    icon = "youtube";
+                                    break;
+                                case "twitch":
+                                    icon = "twitch";
+                                    break;
+                                case "instagrem":
+                                    icon = "instagrem";
+                                    break;
+                                default:
+                                    icon = "";
+                                    break;
+                            }
+                            $("#social").append(` <a href="${link}"><i class="icon-${icon}"></i></a> `);
+                        }
+                        $("#social").append(` <i class="icon-pencil-1 contactPencil"></i> `);
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Удаление ссылки
+            $("body").on("click", ".delLink", function () {
+                var id = $(this).attr("id");
+                var count = $(".itemSocial").length;
+                id = id.replace("delLink-", "");
+                parseInt(id);
+                ++id;
+
+                if (id < count) {
+                    do
+                    {
+                        $("#delLink-" + id).attr("id", "delLink-" + (id - 1));
+                        $(`input[name='Link[${id}].Icon']`).attr("name", `Link[${id - 1}].Icon`);
+                        $(`input[name='Link[${id}].Link']`).attr("name", `Link[${id - 1}].Link`);
+                        ++id;
+                    } while (id != count)
+                }
+                $(this).parent().remove();
+            });
+
+        });
+
+        function updateCoords(c) {
+            $('#X').val(c.x);
+            $('#Y').val(c.y);
+            $('#W').val(c.w - 1);
+            $('#H').val(c.h - 1);
+        };
+
+        function addSocial(type) {
+            var icon = "icon-";
+            var i = $(".allSocial .itemSocial").length;
+
+            switch (type) {
+                case "vkontakte":
+                    icon += "vk";
+                    break;
+                case "facebook":
+                    icon += "facebook";
+                    break;
+                case "odnoklassniki":
+                    icon += "odnoklassniki";
+                    break;
+                case "google+":
+                    icon += "google-plus";
+                    break;
+                case "twitter":
+                    icon += "twitter";
+                    break;
+                case "youtube":
+                    icon += "youtube";
+                    break;
+                case "twitch":
+                    icon += "twitch";
+                    break;
+                case "instagrem":
+                    icon += "instagrem";
+                    break;
+                default:
+                    icon = "";
+                    break;
+            }
+            $(".allSocial").append('<div class="itemSocial">' +
+                `<i class="${icon} icon"></i><input type="hidden" name="Link[${i}].Icon" value="${type}" />` +
+                `<input type="text" name="Link[${i}].Link" value="" placeholder="Вставьте ссылку..." /> ` +
+                `<i id="delLink-${i}" class="icon-cancel delLink"></i></div>`);
+        }
+    </script>
+</body>
+</html>

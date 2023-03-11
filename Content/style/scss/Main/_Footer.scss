@@ -1,0 +1,408 @@
+/*
+ * Футер
+ * --------------------------------------------------
+ */
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    height: 100vh;
+    z-index: 1;
+
+    .content .desc {
+        position: relative;
+        color: #1adce4;
+        margin-bottom: 7px;
+    }
+
+    %columnFooter {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        width: 35%;
+
+        .row {
+            display: flex;
+
+            &.links { display: none; }
+        }
+
+        .name {
+            font-size: 50px;
+            color: #1adce4;
+            padding: 15px 20px 5px 20px;
+            border-left: 1px solid #1adce4;
+        }
+    }
+
+    .left {
+        @extend %columnFooter;
+
+        .content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-end;
+            text-align: right;
+            width: 100%;
+            padding: 5px 20px 5px 0;
+        }
+
+        .value {
+            font-size: 35px;
+        }
+
+        .reviewRate {
+            height: 2px;
+            width: 100%;
+            margin: 0 -5px 8px 0;
+        }
+
+        .reviewRate .rate {
+            position: relative;
+            display: flex;
+            height: 2px;
+            width: 0%;
+            font-size: 40px;
+            overflow: hidden;
+            background: #119298;
+            transition: all .3s ease;
+            z-index: 500;
+        }
+
+        .reviewRate .rate .star {
+            margin: 10px 5px;
+        }
+
+        .reviewRate .rate:hover {
+            cursor: pointer;
+            height: 60px;
+        }
+
+        .stars {
+            position: relative;
+            display: flex;
+            font-size: 40px;
+            transition: all .3s ease;
+        }
+
+        .stars .star {
+            position: relative;
+            margin-left: 10px;
+        }
+
+        .stars .star .half, .stars .star .int {
+            position: absolute;
+            top: 0;
+            width: 50%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .stars .star .half {
+            left: 0;
+        }
+
+        .stars .star .int {
+            right: 0;
+        }
+
+        .rating {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .rating .number {
+            font-size: 50px;
+            font-family: Lobster;
+        }
+
+        .rating .fraction {
+            width: 45px;
+            height: 1px;
+            margin: 20px -15px 0 -20px;
+            border-top: 1px solid #fff;
+            transform: rotate(-60deg);
+        }
+
+        .rating .count {
+            font-size: 20px;
+            margin-top: 30px;
+        }
+    } // end left
+
+    .right {
+        @extend %columnFooter;
+
+        .name {
+            border-left: 0;
+            border-right: 1px solid #1adce4;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px 0 10px 20px;
+
+            a {
+                font-size: 25px;
+                margin-top: 10px;
+
+                &:hover {
+                    color: #1adce4;
+                }
+            }
+        } // end content
+    } // end right
+
+
+    .center {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        width: 20%;
+
+        .arrowUp {
+            width: 60px;
+            height: 80px;
+            font-size: 40px;
+            text-align: center;
+            padding-top: 15px;
+            margin-top: -5px;
+            border: 2px solid #fff;
+            border-radius: 0 0 50px 50px;
+            background: #119298;
+            transition: all 0.3s ease;
+
+            &:hover {
+                cursor: pointer;
+                padding-top: 20px;
+            }
+        }
+
+        .logo {
+            display: block;
+            width: 180px;
+            border-radius: 180px;
+            transition: all 0.3s ease;
+
+            img { width: 100%; }
+            &:hover { box-shadow: 0 0 20px 1px #1adce4; }
+        }
+
+        .year {
+            color: #fff;
+            width: 230px;
+            font-size: 45px;
+            text-align: center;
+            opacity: 0.5;
+            padding-bottom: 10px;
+        }
+    } // end center
+} // end footer
+
+@media screen and (max-width: 991px) {
+
+    footer {
+        .left, .right {
+            width: 50%;
+
+            .name {
+                font-size: 30px;
+            }
+        }
+
+        .left {
+            .value {
+                font-size: 30px;
+            }
+
+            .reviewRate {
+                margin: 0 -5px 8px 0;
+                width: 200px;
+
+                .rate {
+                    width: 0%;
+                    font-size: 30px;
+
+                    &:hover {
+                        height: 45px;
+                    }
+                }
+            } // end reviewRate
+
+            .stars {
+                font-size: 30px;
+            }
+
+            .rating {
+                .number {
+                    font-size: 40px;
+                    font-family: Lobster;
+                }
+
+                .fraction {
+                    width: 35px;
+                    margin: 20px -13px 0 -15px;
+                }
+
+                .count {
+                    font-size: 16px;
+                }
+            } // end rating
+        } // end left
+
+        .right .content a {
+            font-size: 20px;
+        }
+
+        .center {
+            width: 0%;
+
+            .logo {
+                display: none;
+            }
+
+            .year {
+                display: none;
+                font-size: 35px;
+                span {
+                    display: none;
+                }
+            } // end year
+        } // end center
+    } // end footer
+} // end media 991
+
+@media screen and (max-width: 767px) {
+
+    footer {
+        .content .desc {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+
+        .left, .right {
+            width: 50%;
+
+            .name {
+                font-size: 25px;
+                padding: 10px 10px 0 10px;
+            }
+        }
+
+        .left {
+            .content {
+                padding-right: 15px;
+            }
+
+            .value {
+                font-size: 25px;
+            }
+
+            .reviewRate {
+                width: 175px;
+
+                .rate {
+                    font-size: 25px;
+
+                    &:hover {
+                        height: 40px;
+                    }
+                }
+            } // end reviewRate
+
+            .stars {
+                font-size: 25px;
+            }
+
+            .rating {
+                margin-top: -5px;
+
+                .number {
+                    font-size: 30px;
+                    font-family: Lobster;
+                }
+                
+                .fraction {
+                    width: 30px;
+                    margin: 15px -13px 0 -15px;
+                    transform: rotate(-55deg);
+                }
+
+                .count {
+                    font-size: 13px;
+                }
+            }
+        } // end left
+
+        .right {
+            .content {
+                padding-left: 15px;
+                a { font-size: 15px; }
+            }
+        }
+
+        .center {
+            width: 0%;
+
+            .arrowUp {
+                width: 35px;
+                height: 45px;
+                font-size: 20px;
+                padding-top: 10px;
+                border: 1px solid #fff;
+
+                &:hover { padding-top: 15px; }
+            }
+        } // end center
+    } // end footer
+} // end media 767
+
+@media screen and (max-width: 540px) {
+
+    footer {
+        justify-content: flex-start;
+
+        .left {
+            width: 100%;
+
+            .row.links {
+                display: flex;
+            }
+
+            .content a {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+        }
+
+        .right {
+            display: none;
+        }
+
+        .left .name, .right .name {
+            padding-right: 0;
+        }
+
+        .center {
+            align-items: flex-start;
+            width: 15%;
+        }
+    } // end footer
+} // end media 540
+
+/*
+ * --------------------------------------------------
+ * Футер
+ */

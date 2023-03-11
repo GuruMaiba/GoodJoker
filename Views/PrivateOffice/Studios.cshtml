@@ -1,0 +1,183 @@
+﻿@model ICollection<GoodJoker.Models.StudioTeam>
+@{
+    ViewBag.Title = "Мои студии";
+    Layout = "~/Views/Shared/_PrivateOfficeLayout.cshtml";
+}
+
+    <div class="myStudios">
+        <a href="/PrivateOffice/NewStudio" class="newStudioLink">СОЗДАНИЕ НОВОЙ СТУДИИ</a>
+        @if (Model.FirstOrDefault(t => !t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Member") != null) != null)
+        {
+            <div class="title titleInv"><h1><span>Приглашения</span></h1></div>
+            foreach (var inv in Model.Where(t => !t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Member") != null))
+            {
+                var Id = inv.Studio.Id;
+                var name = inv.Studio.Name;
+                var countL = inv.Studio.Lotteries.Count;
+                var countM = inv.Studio.Team.Count;
+                var ava = inv.Studio.Option.Ava;
+                if (inv.HelloMessage == null || inv.HelloMessage == "")
+                { inv.HelloMessage = $"Студия {inv.Studio.Name}, приглашает Вас в свою команду!"; }
+                <div class="invitation">
+                    <div class="background" style="background-image: url('../../Content/style/images/Studios/Covers/@inv.Studio.Option.Cover');">
+                        <div class="info">
+                            <div class="content">
+                                <img src="~/Content/style/images/Studios/Avatars/Normal/@ava" />
+                                <div class="about">
+                                    <div class="statistics"><span><i class="icon-empire"></i> @countL</span> <span><i class="icon-user"></i> @countM</span></div>
+                                    <div class="name">@name</div>
+                                    <div class="helloMessage">@inv.HelloMessage</div>
+                                </div>
+                            </div>
+                            <div class="confirm" studioId="@Id" studioName="@name" countL="@countL" countM="@countM" ava="@ava">
+                                <div class="answer yes"><i class="icon-check-1"></i></div>
+                                <div class="answer no"><i class="icon-cancel"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        <div class="navigation">
+            <div id="lable1" class="item active">Подписки</div>
+            <div id="lable2" class="item">ВКоманде</div>
+            <div id="lable3" class="item">Администратор</div>
+            <div class="underline"></div>
+        </div>
+        <div class="contents">
+            <div class="pages">
+                <div class="item studiosSubscribs active">
+                    @if (Model.FirstOrDefault(t => !t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Sub") != null) != null)
+                    {
+                        foreach (var sub in Model.Where(t => !t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Sub") != null))
+                        {
+                            <a href="/Main/Studio/@sub.Studio.Id" class="studioLink">
+                                <img src="~/Content/style/images/Studios/Avatars/Reduced/@sub.Studio.Option.Ava" />
+                                <div class="info">
+                                    <div class="statistics"><span><i class="icon-empire"></i> @sub.Studio.Lotteries.Count</span> <span><i class="icon-user"></i> @sub.Studio.Team.Count</span></div>
+                                    <div class="name">@sub.Studio.Name</div>
+                                </div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="default">Вы не подписанны ни на одну студию!</div>
+                    }
+                </div>
+                <div class="item studiosMember">
+                    @if (Model.FirstOrDefault(t => t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Member") != null) != null)
+                    {
+                        foreach (var member in Model.Where(t => t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Member") != null))
+                        {
+                            <a href="/Main/Studio/@member.Studio.Id" class="studioLink">
+                                <img src="~/Content/style/images/Studios/Avatars/Reduced/@member.Studio.Option.Ava" />
+                                <div class="info">
+                                    <div class="statistics"><span><i class="icon-empire"></i> @member.Studio.Lotteries.Count</span> <span><i class="icon-user"></i> @member.Studio.Team.Count</span></div>
+                                    <div class="name">@member.Studio.Name</div>
+                                </div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="default">Вы не состоите ни в одной студии!</div>
+                    }
+                </div>
+                <div class="item studiosAdmin">
+                    @if (Model.FirstOrDefault(t => t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Creator" || r.Name == "Admin") != null) != null)
+                    {
+                        foreach (var admin in Model.Where(t => t.ConfirmMember && t.Role.FirstOrDefault(r => r.Name == "Creator" || r.Name == "Admin") != null))
+                        {
+                            <a href="/Main/Studio/@admin.Studio.Id" class="studioLink">
+                                <img src="~/Content/style/images/Studios/Avatars/Reduced/@admin.Studio.Option.Ava" />
+                                <div class="info">
+                                    <div class="statistics"><span><i class="icon-empire"></i> @admin.Studio.Lotteries.Count</span> <span><i class="icon-user"></i> @admin.Studio.Team.Count</span></div>
+                                    <div class="name">@admin.Studio.Name</div>
+                                </div>
+                            </a>
+                        }
+                    }
+                    else
+                    {
+                        <div class="default">Вы не являетесь администратором ни одной студии!</div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            $(".navigation .item").click(function () {
+                $(".navigation .item").removeClass("active");
+                $(this).addClass("active");
+                var dir = ($(window).width() > 767) ? "left" : "top";
+                $(".pages .item").removeClass("active");
+                switch ($(this).attr("id")) {
+                    case "lable1":
+                        $(".underline").css(dir, "0");
+                        $(".pages").css("right", "0");
+                        $(".pages .studiosSubscribs").addClass("active");
+                        break;
+                    case "lable2":
+                        $(".underline").css(dir, "33.333%");
+                        $(".pages").css("right", "100%");
+                        $(".pages .studiosMember").addClass("active");
+                        break;
+                    case "lable3":
+                        $(".underline").css(dir, "66.666%");
+                        $(".pages").css("right", "200%");
+                        $(".pages .studiosAdmin").addClass("active");
+                        break;
+                }
+            });
+
+            $(".answer").click(function () {
+                var answer = false;
+                var parent = $(this).parent();
+                var studioId = parent.attr("studioId");
+                if ($(this).hasClass("yes")) {
+                    answer = true;
+                }
+                $.ajax({
+                    url: "/Studio/ConfirmMember",
+                    type: "POST",
+                    data: {
+                        StudioId: studioId,
+                        YesOrNo: answer
+                    },
+                    success: function () {
+                        if (answer) {
+                            var name = parent.attr("studioName");
+                            var lott = parent.attr("countL");
+                            var memb = parent.attr("countM");
+                            var ava = parent.attr("ava");
+                            var newStud = `<a href="/Main/Studio/${studioId}" class="studioLink">` +
+                                               `<img src="../../Content/style/images/Studios/Avatars/Reduced/${ava}" />` +
+                                               `<div class="info">` +
+                                                   `<div class="statistics"><span><i class="icon-empire"></i> ${lott}</span> <span><i class="icon-user"></i> ${memb}</span></div>` +
+                                                   `<div class="name">${name}</div>` +
+                                               `</div>` +
+                                          `</a>`;
+                            if ($(".studiosMember").children('.default').length > 0) {
+                                $(".studiosMember").children('.default').remove();
+                            }
+                            $(".studiosMember").append(newStud);
+                            $(".navigation #lable2").click();
+                        }
+
+                        parent.parents(".invitation").remove();
+                        if ($(".invitation").length == 0) {
+                            $(".titleInv").remove();
+                        }
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            })
+        });
+    </script>    
+}

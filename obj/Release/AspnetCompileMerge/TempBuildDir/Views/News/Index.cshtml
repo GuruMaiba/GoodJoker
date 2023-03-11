@@ -1,0 +1,191 @@
+﻿@using System.Globalization
+@using GoodJoker.Models
+@model NewsMain
+
+@{
+    ViewBag.Title = "Новости | GoodJoker";
+    ViewBag.Description = "Вся информация относительно проекта GoodJoker, собрана здесь.";
+    ViewBag.URL = "https://goodjoker.ru/News";
+    ViewBag.MetaImg = $"https://goodjoker.ru/Content/style/images/ok/1280.jpg";
+    ViewBag.KeyWords = "новости, новые розыгрыши, победители в розыгрыше, что такое goodjoker";
+}
+
+<div class="row">
+    <div class="container bodyNews">
+        <div class="bandSocialNetwork"></div>
+        <div class="newsContent">
+
+            <!--/////Навигация...-->
+            <div class="navNews">
+                <div class="new hidden-sm hidden-xs">
+                    <div class="title"><h1><span>Новые розыгрыши</span></h1></div>
+                    <div class="lotteriesNav">
+                        @if (Model.Lotteries.Count > 0)
+                        {
+                            foreach (var lott in Model.Lotteries)
+                            {
+                                <div class="item">
+                                    <div class="bg" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@lott.Cover')"></div>
+                                    <a href="/Lottery/Details/@lott.Id" class="lottery">
+                                        <div class="name">@lott.Title</div>
+                                        @if (lott.CountUserForLottery > 0)
+                                        {<div class="date"><i class="icon-calendar"></i> @lott.CountUserForLottery</div>}
+                                        else
+                                        {<div class="date"><i class="icon-user"></i> @lott.DateLottery.ToString("dd.MM.yyyy")</div>} 
+                                    </a>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="default">Активных розыгрышей пока нет!</div>
+                        }
+                    </div>
+                </div>
+                <div class="new hidden-xs">
+                    <div class="title"><h1><span>Победители</span></h1></div>
+                    <div class="winnerNav">
+                        @if (Model.Winners.Count > 0)
+                        {
+                            foreach (var win in Model.Winners)
+                            {
+                                <a href="/Main/Joker/@win.Winner.Id" class="item">
+                                    <img src="~/Content/style/images/Users/Avatars/Reduced/@win.Winner.Option.Ava" />
+                                    <div class="context">
+                                        <div class="name">@win.Winner.Nick</div>
+                                        <div class="prize">@win.Name</div>
+                                    </div>
+                                </a>
+                            }
+                        }
+                        else
+                        {
+                            <div class="default">Место для первого победителя!!!</div>
+                        }
+                    </div>
+                </div>
+                <div class="new">
+                    <div class="title"><h1><span>Тэги</span></h1></div>
+                    <div class="tagsNav">
+                        @if (ViewBag.Tag != "all" || Model.Tags.Count == 0)
+                        { <a href="/News">Все</a> }
+                        @if (Model.Tags.Count > 0)
+                        {
+                            foreach (var tag in Model.Tags)
+                            {
+                                <a href="/News?Tag=@tag.Name">@tag.Name</a>
+                            }
+                        }
+                    </div>
+                </div>
+                <div class="navSocial">
+                    <a href="https://vk.com/goodjoker"><i class="icon-vk"></i></a>
+                    <a href="https://ok.ru/group/55034419347467"><i class="icon-odnoklassniki"></i></a>
+                    <a href="https://www.facebook.com/FebGJ"><i class="icon-facebook"></i></a>
+                    <a href="https://plus.google.com/u/0/100915799345044505042"><i class="icon-google-plus"></i></a>
+                    @*<a href=""><i class="icon-pinterest-p"></i></a>
+                    <a href=""><i class="icon-twitter"></i></a>
+                    <a href=""><i class="icon-instagrem"></i></a>*@
+                    <a href="https://www.youtube.com/channel/UC0jNCKeWp8ZLXxc0GZ6mphg"><i class="icon-youtube"></i></a>
+                </div>
+            </div>
+            <!--...Навигация/////-->
+
+            <div id="allArticles">
+                <!--/////Статьи...-->
+                    @Html.Partial("_NewsItem", Model.News)
+                <!--/////Статьи...-->
+                
+                @if (ViewBag.AllCount > Model.News.Count)
+                { <div class="loading">@Html.Partial("_Loader")Загрузка...<div class="line"></div></div> }
+            </div>
+
+        </div>        
+    </div>
+</div>
+
+@section Scripts {
+<script>
+    var allCount = @ViewBag.AllCount;
+    var viewCount = @Model.News.Count;
+    var HMS = viewCount;
+    var goAjax = false;
+
+    $(document).ready(function () {
+
+        $(".lotteriesNav").mCustomScrollbar({
+            theme: "minimal-dark"
+        });
+
+        $(".winnerNav").mCustomScrollbar({
+            theme: "minimal-dark"
+        });
+
+        $(".tagsNav").mCustomScrollbar({
+            theme: "minimal-dark"
+        });
+
+        $(".like").click(function () {
+            var id = $(this).attr("newsId");
+            var like = $(this);
+            $.ajax({
+                url: "/News/Like",
+                type: "POST",
+                data: {
+                    NewsId: id
+                },
+                success: function (data) {
+                    if (data != 0) {
+                        if (data == "del") {
+                            like.removeClass("icon-heart").addClass("icon-heart-o");
+                            $("#LikeCount-" + id).text(parseInt($("#LikeCount-" + id).text()) - 1);
+                        } else {
+                            like.removeClass("icon-heart-o").addClass("icon-heart");
+                            $("#LikeCount-" + id).text(parseInt($("#LikeCount-" + id).text()) + 1);
+                        }
+                    } else {
+                        console.log("Нет Идентификатора новости...");
+                    }
+                }
+            });
+        });
+
+        $(".shareBtn").click(function () {
+            $(this).siblings(".share").fadeToggle(300);
+        });
+
+        $(window).scroll(function () {
+            if (!goAjax && $(window).scrollTop() >= ( $(document).height() - ($(window).height() + $("footer").height()) ) ) {
+                if (allCount > viewCount) {
+                    goAjax = true;
+                    $.ajax({
+                        url: '/News/_NewsItem',
+                        type: "POST",
+                        data: {
+                            Tag: "@ViewBag.Tag",
+                            CountView: viewCount
+                        },
+                        success: function (content) {
+                            if (content != "0" && content != "1") {
+                                goAjax = false;
+                                viewCount += HMS;
+                                var load = $('.loading').detach();
+
+                                $('#allArticles').append(content);
+                                load.appendTo("#allArticles");
+                            } else if (content == "0") {
+                                console.log("Количество новостей отрицательное или равно 0...");
+                            }
+                        }
+                    });
+                } else {
+                    $('.loading').remove();
+                    goAjax = true;
+                }
+
+            }
+        });
+    });
+
+</script>
+}

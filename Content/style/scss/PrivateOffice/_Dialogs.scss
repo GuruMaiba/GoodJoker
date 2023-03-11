@@ -1,0 +1,445 @@
+/*
+ * Диалоги
+ * -----------------------------
+ */
+
+.noise {
+    position: relative;
+    display: flex;
+    height: 90vh;
+    overflow: hidden;
+    box-shadow: 0 0 50px 5px #000;
+
+    .btnViewDialog {
+        position: absolute;
+        top: calc(50% - 25px);
+        left: -10px;
+        display: none;
+        font-size: 25px;
+        padding: 10px 10px 0 10px;
+        -webkit-border-radius: 50px;
+        -moz-border-radius: 50px;
+        border-radius: 50px;
+        box-shadow: 0px 0 20px 0px #000;
+        background: #119298;
+        z-index: 994;
+        transition: all 0.3s ease;
+
+        &:hover {
+            cursor: pointer;
+            left: 5px;
+        }
+    }
+
+    .header {
+        position: absolute;
+        top: 0;
+        display: flex;
+        width: 100%;
+        height: 50px;
+        background: #119298;
+
+        .headDialogs {
+            width: 25%;
+            height: 100%;
+            padding: 15px 20px;
+            font-size: 20px;
+            border-right: 1px solid #1adce4;
+            background: #119298;
+            z-index: 995;
+            transition: all 0.3s ease;
+        }
+
+        .headMessages {
+            width: 75%;
+            height: 100%;
+            font-size: 20px;
+
+            .nameUserDialog {
+                display: flex;
+                justify-content: space-between;
+
+                img {
+                    width: 40px;
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                }
+
+                div { padding: 5px 10px; }
+            }
+
+            .titleAddDialog {
+                padding: 15px 0;
+                text-align: center;
+                width: 100%;
+            }
+        } // end headMessages
+    } // end header
+
+    .blockDialogs {
+        width: 25%;
+        height: 100%;
+        padding: 50px 0 0 0;
+        border-right: 1px solid #1adce4;
+        background: #131315;
+        z-index: 993;
+        transition: all 0.3s ease;
+
+        .dialogs {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            .dialog {
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                height: 100px;
+                padding: 13px 10px;
+                border-bottom: 1px dashed #1adce4;
+                transition: all 0.3s ease;
+
+                img, .addDialogIcon {
+                    width: 70px;
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                    border: 2px solid #119298;
+                }
+
+                .addDialogIcon {
+                    min-width: 70px;
+                    height: 70px;
+                    font-size: 30px;
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 19px;
+                    color: #1adce4;
+                }
+
+                .name {
+                    display: inline-block;
+                    font-size: 20px;
+                    padding: 0 0 0 7px;
+                    color: #1adce4;
+                }
+
+                .countNewMessage {
+                    position: absolute;
+                    top: 5px;
+                    left: 5px;
+                    width: 30px;
+                    height: 30px;
+                    font-size: 15px;
+                    text-align: center;
+                    padding: 8px 0 0 0;
+                    color: #fff;
+                    background: #119298;
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                    box-shadow: 0px 0 10px 0px #000;
+                }
+
+                .delDialog {
+                    position: absolute;
+                    top: 5px;
+                    right: 5px;
+                    font-size: 20px;
+                    color: #1adce4;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        opacity: 0.9;
+                        color: #CC0000;
+                    }
+                } // end delDialog
+
+                &:hover { cursor: pointer; background: rgba(13,150,158,0.2); }
+                &.active { background: rgba(13,150,158,0.5); }
+                &.last { border-bottom: 0; }
+            } // end dialog
+        } // end dialogs
+    } // end blockDialogs
+
+    .blockMessages {
+        position: relative;
+        display: inline-block;
+        width: 75%;
+        height: 100%;
+        padding: 50px 0 110px 0;
+        overflow: hidden;
+
+        .searchUser {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+
+            .inputAddDialog {
+                position: relative;
+                width: 50%;
+                margin: 30px 0 20px 0;
+
+                .listUser {
+                    position: absolute;
+                    top: 42px;
+                    width: 100%;
+                    border: 1px solid #1adce4;
+                    border-top: 0;
+                    border-bottom: 0;
+                    color: #1adce4;
+
+                    div {
+                        font-size: 20px;
+                        padding: 10px 20px;
+                        border-bottom: 1px solid #1adce4;
+                        transition: all .3s ease;
+
+                        &:hover {
+                            cursor: pointer;
+                            background: #119298;
+                            color: #fff;
+                        }
+                    }
+                } // end listUser
+            } // end inputAddDialog
+        } // end searchUser
+
+        .messages {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+
+            .date {
+                text-align: center;
+                text-transform: capitalize;
+                padding: 10px 0;
+                color: #1adce4;
+                font-size: 15px;
+            }
+
+            .message {
+                margin: 0 10px 20px 10px;
+
+                .time {
+                    color: #1adce4;
+                    padding: 5px 10px;
+                    font-size: 15px;
+                }
+
+                .text {
+                    display: inline-block;
+                    max-width: 80%;
+                    padding: 10px 15px;
+                    font-size: 15px;
+                    text-align: left;
+                    white-space: pre-line;
+                    -webkit-border-radius: 10px;
+                    -moz-border-radius: 10px;
+                    border-radius: 10px;
+                }
+            }
+
+            .myMessage {
+                text-align: right;
+                .text { background: #3399CC; }
+            }
+
+            .himMessage {
+                text-align: left;
+                .text { background: #119298; }
+            }
+        } // end messages
+
+        @import "../UnivStyle/_SendComment.scss";
+        .createMessage {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 110px;
+            background: #131315;
+            padding: 17px 30px;
+            box-shadow: 0px 0 40px 0px #000;
+
+            .sendComment {
+                @extend %sendComment;
+                top: 35px;
+                right: 25px;
+            }
+
+            .addDialogBtn {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                div {
+                    display: inline-block;
+                    font-size: 20px;
+                    text-align: center;
+                    width: 100%;
+                    padding: 20px 0;
+                    margin: 0 auto;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px 2px #000;
+                    background: #199298;
+                    transition: all .3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        box-shadow: 0 0 10px 2px #119298;
+                    }
+                }
+            } // end addDialogBtn
+        } // end createMessage
+    } // end blockMessages
+} // end noise
+
+@media screen and (max-width: 1000px) {
+    .noise {
+        .header {
+            .headDialogs {
+                position: absolute;
+                left: -260px;
+                width: 260px;
+
+                &.active { left: 0; }
+            }
+
+            .headMessages {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+        .blockDialogs {
+            position: absolute;
+            left: -300px;
+            width: 260px;
+            box-shadow: 5px 0 40px 0px #000;
+
+            &.active { left: 0; }
+        }
+
+        .blockMessages {
+            width: 100%;
+        }
+
+        .btnViewDialog {
+            display: block;
+        }
+    } // end noise
+} // end media
+
+@media (max-width: 767px) {
+    .noise {
+        height: 100vh;
+
+        .header {
+            .headDialogs {
+                display: flex;
+                justify-content: center;
+                padding: 20px 20px;
+                font-size: 15px;
+                left: -200px;
+                width: 200px;
+            }
+
+            .headMessages {
+                display: flex;
+                justify-content: center;
+
+                div { font-size: 15px; }
+                .titleAddDialog { padding-top: 17px; }
+            }
+        }
+
+        .blockDialogs {
+            position: absolute;
+            left: -250px;
+            width: 200px;
+            box-shadow: 5px 0 40px 0px #000;
+
+            .dialogs .dialog {
+                height: 70px;
+
+                .addDialogIcon {
+                    min-width: 50px;
+                    width: 50px;
+                    height: 50px;
+                    font-size: 25px;
+                    padding-top: 13px;
+                }
+
+                .countNewMessage {
+                    width: 20px;
+                    height: 20px;
+                    font-size: 10px;
+                    text-align: center;
+                    padding: 5px 0;
+                }
+
+                img { width: 50px; }
+                .name { font-size: 15px; }
+                .delDialog { font-size: 16px; }
+            }
+        } // end blockDialogs
+
+        .blockMessages {
+            padding: 50px 0 90px 0;
+
+            .messages .message {
+                .time {
+                    font-size: 13px;
+                }
+
+                .text {
+                    font-size: 13px;
+                    max-width: 95%;
+                }
+            }
+
+            .searchUser .inputAddDialog {
+                width: 90%;
+                .listUser { top: 38px; }
+            }
+
+            .createMessage {
+                height: 90px;
+                padding: 10px 10px 0 10px;
+
+                .sendComment {
+                    top: -20px;
+                    font-size: 25px;
+                    padding: 9px 12px 1px 8px;
+                    background: #131315;
+                    -webkit-border-radius: 50px;
+                    -moz-border-radius: 50px;
+                    border-radius: 50px;
+                    box-shadow: 0px 0 20px 0px #000;
+                }
+
+                textarea {
+                    width: 100%;
+                    height: 70px;
+                    font-size: 15px;
+                    padding: 10px;
+                }
+
+                .addDialogBtn div {
+                    font-size: 18px;
+                    padding: 24px 0;
+                }
+            } // end createMessage
+        } // end blockMessages
+    } // end noise
+} // end media 767
+
+/*
+ * ------------------------------
+ * Диалоги
+ */

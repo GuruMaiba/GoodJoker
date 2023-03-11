@@ -1,0 +1,707 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAundzKIO0Q0a8O5EmqKcSSgAAAAACAAAAAAAQZgAAAAEAACAAAABeFiRpcVm9pmgBo++qtS1/4puC52DhnqVUlCv8Z9P68gAAAAAOgAAAAAIAACAAAAAZGw011T+DZykiL9T3tAvFLvGTAydwAf6Ti13z9pCX9CAAAADYvevVvDtmdYKwCmr9SdrZNbEFUwcxKOuSuu8Frj5YRUAAAAAeNxLZVaS11koozkiLEb8a3xvRlR2QoAdjyD9LdLcUG4WuJpprZI7MKPgQ6bceQJoFw2jv93OUx9aDYbvxBDGw</EncryptedPassword>
+    <_PublishTargetUrl>ftp://37.140.192.149</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="ApplicationInsights.config">
+      <publishTime>04/23/2017 18:23:12</publishTime>
+    </File>
+    <File Include="App_Data/GoodJoker.mdf">
+      <publishTime>05/15/2017 18:43:59</publishTime>
+    </File>
+    <File Include="App_Data/GoodJoker_log.ldf">
+      <publishTime>05/15/2017 18:43:59</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>05/05/2017 07:51:54</publishTime>
+    </File>
+    <File Include="bin/ApplicationInsights.config">
+      <publishTime>04/23/2017 18:23:12</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>05/05/2017 07:51:54</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>02/03/2015 09:32:26</publishTime>
+    </File>
+    <File Include="bin/GoodJoker.dll">
+      <publishTime>05/16/2017 10:56:53</publishTime>
+    </File>
+    <File Include="bin/ImageResizer.dll">
+      <publishTime>01/31/2016 20:15:04</publishTime>
+    </File>
+    <File Include="bin/ImageResizer.Plugins.DiskCache.dll">
+      <publishTime>01/31/2016 20:15:08</publishTime>
+    </File>
+    <File Include="bin/ImageResizer.Plugins.PrettyGifs.dll">
+      <publishTime>01/31/2016 20:15:12</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Agent.Intercept.dll">
+      <publishTime>11/30/2016 16:07:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.DependencyCollector.dll">
+      <publishTime>05/05/2017 07:52:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.PerfCounterCollector.dll">
+      <publishTime>07/12/2016 11:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.ServerTelemetryChannel.dll">
+      <publishTime>06/12/2016 15:15:48</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.Web.dll">
+      <publishTime>07/12/2016 11:49:10</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AI.WindowsServer.dll">
+      <publishTime>07/12/2016 11:50:34</publishTime>
+    </File>
+    <File Include="bin/Microsoft.ApplicationInsights.dll">
+      <publishTime>06/12/2016 15:09:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>12/13/2016 03:10:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.dll">
+      <publishTime>05/04/2017 11:53:36</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Host.SystemWeb.dll">
+      <publishTime>05/05/2017 07:52:16</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.Cookies.dll">
+      <publishTime>05/04/2017 11:53:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Owin.Security.dll">
+      <publishTime>05/04/2017 11:53:42</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>05/13/2017 10:20:14</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/08/2014 19:33:56</publishTime>
+    </File>
+    <File Include="bin/Owin.dll">
+      <publishTime>11/13/2012 08:19:34</publishTime>
+    </File>
+    <File Include="bin/RestSharp.dll">
+      <publishTime>08/26/2015 16:33:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe.config">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.rsp">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.exe">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/csi.rsp">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.Scripting.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>05/05/2017 07:52:14</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.Scripting.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.amd64.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.DiaSymReader.Native.x86.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.AppContext.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Diagnostics.StackTrace.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.IO.FileSystem.Primitives.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>05/13/2017 10:20:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe.config">
+      <publishTime>05/05/2017 07:52:16</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.rsp">
+      <publishTime>05/13/2017 10:20:12</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>06/27/2016 14:50:24</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.Helpers.resources.dll">
+      <publishTime>01/28/2015 04:04:40</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.Mvc.resources.dll">
+      <publishTime>01/28/2015 04:02:30</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.Optimization.resources.dll">
+      <publishTime>11/02/2014 13:28:42</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.Razor.resources.dll">
+      <publishTime>01/28/2015 04:02:40</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.WebPages.Deployment.resources.dll">
+      <publishTime>01/28/2015 04:04:40</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.WebPages.Razor.resources.dll">
+      <publishTime>01/28/2015 04:04:40</publishTime>
+    </File>
+    <File Include="bin/ru/System.Web.WebPages.resources.dll">
+      <publishTime>01/28/2015 04:04:40</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>01/28/2015 04:02:18</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>11/02/2014 14:26:04</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/13/2017 10:20:08</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>01/28/2015 04:04:30</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>10/09/2013 16:28:38</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.css.map">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap-theme.min.css.map">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css.map">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css.map">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/Jcrop.gif">
+      <publishTime>07/02/2017 10:07:10</publishTime>
+    </File>
+    <File Include="Content/jquery.Jcrop.css">
+      <publishTime>07/02/2017 10:07:10</publishTime>
+    </File>
+    <File Include="Content/jquery.mCustomScrollbar.min.css">
+      <publishTime>04/22/2017 11:51:26</publishTime>
+    </File>
+    <File Include="Content/select2.min.css">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/365.jpg">
+      <publishTime>04/29/2017 15:24:16</publishTime>
+    </File>
+    <File Include="Content/style/images/avatar.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/avatar2.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/avatar3.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/avatarGJ.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/bg.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/bgAuth.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/bgHolding.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/blockImg2.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Clock.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Free.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Help.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/logo.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/logoDown.gif">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/logoLetters.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/logoNav.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/logoUp.gif">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/man.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Money.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/MoneyQueshens.jpeg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/News/anime-anime-one-piece-bolshoy-2722.jpg">
+      <publishTime>05/13/2017 12:38:08</publishTime>
+    </File>
+    <File Include="Content/style/images/News/Cover/Normal/8TA0M.jpg">
+      <publishTime>05/13/2017 13:31:54</publishTime>
+    </File>
+    <File Include="Content/style/images/News/Cover/Reduced/8TA0M.jpg">
+      <publishTime>05/13/2017 13:32:06</publishTime>
+    </File>
+    <File Include="Content/style/images/News/image_41140413165320543261.jpg">
+      <publishTime>05/13/2017 12:40:04</publishTime>
+    </File>
+    <File Include="Content/style/images/Preview/MaskMobile.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Preview/PreviewMask.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Preview/PreviewText.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/signInLogo.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/signInLogoBg2.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/1.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/2.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/article1.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/article2.jpg">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/article3.jpg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/cat.jpg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/slider/gj.jpg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/Studios/Covers/Normal/mountains.jpeg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/Truth.jpg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/Users/Avatars/Normal/anime-anime-one-piece-bolshoy-2722.jpg">
+      <publishTime>09/05/2017 20:32:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Users/Avatars/Normal/image_41140413165320543261.jpg">
+      <publishTime>07/05/2017 11:17:00</publishTime>
+    </File>
+    <File Include="Content/style/images/Users/Avatars/Normal/logo.png">
+      <publishTime>04/22/2017 11:51:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Users/Avatars/Reduced/anime-anime-one-piece-bolshoy-2722.jpg">
+      <publishTime>09/05/2017 20:32:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Users/Avatars/Reduced/image_41140413165320543261.jpg">
+      <publishTime>07/05/2017 11:17:00</publishTime>
+    </File>
+    <File Include="Content/style/images/woman.jpg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/youtube-play-btn.png">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/1238b25baea1e8ea28d80dc155bfdd1a_71859.jpg">
+      <publishTime>03/26/2017 12:31:40</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/1tmb_125108_8236.jpg">
+      <publishTime>03/21/2017 22:24:16</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/264.jpg">
+      <publishTime>03/21/2017 22:22:56</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/3.jpg">
+      <publishTime>03/21/2017 22:49:54</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/528323_udacha_karty_situaciya_ruka_1920x1200_%28www.GetBg.net%29.jpg">
+      <publishTime>03/21/2017 22:30:10</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/8TA0M.jpg">
+      <publishTime>03/21/2017 22:50:10</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/alchemy.gif">
+      <publishTime>01/04/2017 12:18:16</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/anime-amnesia-hanamura-mai-personazhi-devywka.jpg">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/anime-anime-one-piece-bolshoy-2722.jpg">
+      <publishTime>03/19/2017 13:56:16</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/black-and-white-dice-wallpaper-1920x1080.jpg">
+      <publishTime>03/21/2017 22:50:02</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/cards_skulls_death_the_joker_skeletons_1920x1080_wallpaper_Wallpaper_2560x1440_www.wallpaperbeautiful.com.jpg">
+      <publishTime>03/21/2017 22:39:22</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/darkknight157.jpg">
+      <publishTime>03/21/2017 22:49:34</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/elitefon.ru_14963.jpg">
+      <publishTime>03/26/2017 12:31:58</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/elitefon.ru_4442.jpg">
+      <publishTime>03/26/2017 12:31:52</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/fonstola.ru-99374.jpg">
+      <publishTime>03/21/2017 22:49:50</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/image_41140413165320543261.jpg">
+      <publishTime>03/19/2017 13:56:34</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/league-of-legends-lol-twisted.jpg">
+      <publishTime>03/19/2017 14:03:28</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/look.com.ua-79726.jpg">
+      <publishTime>03/21/2017 22:50:24</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/luxfon.com-18901.jpg">
+      <publishTime>03/21/2017 22:50:16</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/luxfon.com_18901.jpg">
+      <publishTime>03/26/2017 12:31:46</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/maxresdefault.jpg">
+      <publishTime>03/19/2017 14:03:50</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/megan-fox-megan-foks-karty.jpg">
+      <publishTime>03/19/2017 14:05:08</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/Movies__Known_movie_deception_Illusion_065728_.jpg">
+      <publishTime>03/26/2017 12:31:36</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/NCLqm7.jpg">
+      <publishTime>03/21/2017 22:50:30</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/photo376131758_456239964.jpg">
+      <publishTime>03/19/2017 14:34:08</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/playing-cards-wallpaper-13.jpg">
+      <publishTime>03/21/2017 22:50:36</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/tmb_125108_8236.jpg">
+      <publishTime>03/19/2017 13:56:26</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/untitled-4kbom9.png">
+      <publishTime>03/21/2017 22:49:46</publishTime>
+    </File>
+    <File Include="Content/style/images/Реклама/шляпник.jpg">
+      <publishTime>03/19/2017 14:04:20</publishTime>
+    </File>
+    <File Include="Content/style/Site.css">
+      <publishTime>05/14/2017 13:18:42</publishTime>
+    </File>
+    <File Include="Content/style/Site.min.css">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Content/style/video/background.mp4">
+      <publishTime>04/29/2017 15:24:16</publishTime>
+    </File>
+    <File Include="Content/style/video/background.webm">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/BloggerSans.ttf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/GetVoIP Grotesque Italic.otf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/GetVoIP Grotesque.otf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/indira_k.ttf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="fonts/Lighthaus.otf">
+      <publishTime>04/22/2017 11:51:30</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>04/23/2017 18:22:10</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>06/05/2017 15:13:44</publishTime>
+    </File>
+    <File Include="Scripts/action.js">
+      <publishTime>05/05/2017 07:51:48</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>04/22/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Scripts/device.min.js">
+      <publishTime>04/22/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.js">
+      <publishTime>04/22/2017 11:51:32</publishTime>
+    </File>
+    <File Include="Scripts/jquery-3.1.1.min.js">
+      <publishTime>05/05/2017 07:51:48</publishTime>
+    </File>
+    <File Include="Scripts/jquery.cookie-1.4.1.min.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.cookie.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.Jcrop.js">
+      <publishTime>07/02/2017 10:04:18</publishTime>
+    </File>
+    <File Include="Scripts/jquery.mask.min.js">
+      <publishTime>04/26/2017 09:36:56</publishTime>
+    </File>
+    <File Include="Scripts/jquery.mCustomScrollbar.concat.min.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.min.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/jquery.validate.unobtrusive.min.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/parallax.min.js">
+      <publishTime>05/13/2017 10:19:56</publishTime>
+    </File>
+    <File Include="Scripts/select2.min.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Scripts/Share.js">
+      <publishTime>04/22/2017 11:51:34</publishTime>
+    </File>
+    <File Include="Views/Account/ConfirmEmail.cshtml">
+      <publishTime>04/27/2017 15:46:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/Adverts.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/AdvertsCreate.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/Complaints.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/Index.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/Lotteries.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/LotteryCreate.cshtml">
+      <publishTime>05/15/2017 18:42:25</publishTime>
+    </File>
+    <File Include="Views/Administrator/News.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/NewsCreate.cshtml">
+      <publishTime>05/14/2017 11:55:42</publishTime>
+    </File>
+    <File Include="Views/Administrator/Users.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Administrator/Video.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Lotteries/Create.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Lotteries/Delete.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Lotteries/Details.cshtml">
+      <publishTime>05/05/2017 07:51:50</publishTime>
+    </File>
+    <File Include="Views/Lotteries/Edit.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Lotteries/Index.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Main/Auth.cshtml">
+      <publishTime>04/28/2017 12:04:12</publishTime>
+    </File>
+    <File Include="Views/Main/Details.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Main/Email.cshtml">
+      <publishTime>04/27/2017 14:38:08</publishTime>
+    </File>
+    <File Include="Views/Main/HoldingLottery.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Main/Index.cshtml">
+      <publishTime>10/05/2017 17:42:14</publishTime>
+    </File>
+    <File Include="Views/Main/Joker.cshtml">
+      <publishTime>01/05/2017 15:53:02</publishTime>
+    </File>
+    <File Include="Views/Main/Lotteries.cshtml">
+      <publishTime>05/14/2017 13:15:48</publishTime>
+    </File>
+    <File Include="Views/Main/Studio.cshtml">
+      <publishTime>04/22/2017 19:38:10</publishTime>
+    </File>
+    <File Include="Views/News/Create.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/News/Delete.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/News/Details.cshtml">
+      <publishTime>08/05/2017 21:40:40</publishTime>
+    </File>
+    <File Include="Views/News/Edit.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/News/Index.cshtml">
+      <publishTime>10/05/2017 18:24:40</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/Comments.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/Dialogs.cshtml">
+      <publishTime>08/05/2017 19:57:22</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/Index.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/Settings.cshtml">
+      <publishTime>05/13/2017 10:19:58</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/Studio.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/PrivateOffice/_Message.cshtml">
+      <publishTime>04/22/2017 11:51:36</publishTime>
+    </File>
+    <File Include="Views/Shared/_AdminLayout.cshtml">
+      <publishTime>05/13/2017 10:19:58</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>10/05/2017 18:36:04</publishTime>
+    </File>
+    <File Include="Views/Shared/_Preloader.cshtml">
+      <publishTime>04/22/2017 11:51:38</publishTime>
+    </File>
+    <File Include="Views/Shared/_PrivateOfficeLayout.cshtml">
+      <publishTime>06/05/2017 12:00:36</publishTime>
+    </File>
+    <File Include="Views/Shared/_SelectCity.cshtml">
+      <publishTime>09/05/2017 21:04:46</publishTime>
+    </File>
+    <File Include="Views/Shared/_SettingSearchCity.cshtml">
+      <publishTime>06/05/2017 21:37:42</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>04/23/2017 18:22:10</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>04/22/2017 11:51:38</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/16/2017 11:24:44</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

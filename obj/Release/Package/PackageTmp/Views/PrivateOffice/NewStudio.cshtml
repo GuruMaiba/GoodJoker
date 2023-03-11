@@ -1,0 +1,68 @@
+﻿
+@{
+    ViewBag.Title = "Студия";
+    Layout = "~/Views/Shared/_PrivateOfficeLayout.cshtml";
+}
+
+<div class="newStudio">
+    <div class="addStudio">
+        <div class="infoOffice">
+            <div class="iconInfo"><i class="icon-info"></i></div>
+            <div class="textInfo">
+                Студия - это лицо Вашего проекта (компании), от имени которого проводятся все розыгрыши.<br />
+                Студия является рекламой Вашего проекта, компании, Ютуб-канала и т.д. Проводя розыгрыши от своего имени, Вы сможете раскрутить свой проект, что непременно положительно отразиться на его росте.
+                После создания, название Студии будет запрещено менять, т.к. наши пользователи акцентируют своё внимание именно на Вашем название.
+                Поэтому тщательно подберайте название для Вашей Студии перед её созданием.<br />
+                Перед тем как создавать Студию, пожалуйста ознакомьтесь с правилами проекта GoodJoker, во избежании удаления Ваших розыгрышей и блокировки аккаунта!
+            </div>
+        </div>
+        <div class="form">
+            <div class="inputAddStudio">
+                <input class="input" name="Name" type="text" required /><span class="lineInput"></span>
+                <label class="inputLable">Название студии</label>
+            </div>
+            <div class="btnAddStudio">Создать студию</div>
+            <div class="loading hidden">@Html.Partial("_Loader")</div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(".input").keyup(function () {
+            if ($(this).val().length > 2 && $(this).val().length < 21) {
+                $(".btnAddStudio").addClass("active");
+            } else {
+                $(".btnAddStudio").removeClass("active");
+            }
+        });
+
+        $("body").on("click", ".btnAddStudio.active", function () {
+            var name = $("input[name='Name']").val();
+            $(".btnAddStudio").fadeOut(0);
+            $(".loading").removeClass("hidden");
+            $.ajax({
+                url: "/Studio/Create",
+                type: "POST",
+                data: {
+                    Name: name
+                },
+                success: function (id) {
+                    if (id != "0") {
+                        location.href = "/Main/Studio/" + id;
+                    } else {
+                        $(".loading").addClass("hidden");
+                        $(".btnAddStudio").fadeIn(0);
+                        globalError();
+                        console.log("Рамс с именем студии...");
+                    }
+                },
+                error: function () {
+                    $(".loading").addClass("hidden");
+                    $(".btnAddStudio").fadeIn(0);
+                    globalError();
+                }
+            });
+        });
+    </script>    
+}

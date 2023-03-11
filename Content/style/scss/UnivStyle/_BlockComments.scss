@@ -1,0 +1,228 @@
+/*
+ * Блок комментариев
+ * ----------------------------------------------------
+ */
+.blockComments {
+    padding: 30px 100px 50px 100px;
+
+    .formComment {
+        position: relative;
+
+        textarea {
+            margin: 0;
+        }
+
+        .replyName {
+            position: absolute;
+            top: -30px;
+            left: 10px;
+            font-size: 22px;
+            color: #fff;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        .default {
+            color: #1adce4;
+            text-align: center;
+            font-size: 18px;
+            padding: 40px 10px;
+            border: 1px dashed #1adce4;
+        }
+    } // end formComment
+
+    .beginDashedLine {
+        width: 100%;
+        height: 70px;
+        border-left: 1px dashed #1adce4;
+        margin: -5px 0 0 0;
+    }
+
+    .comment {
+        position: relative;
+        width: 100%;
+        padding: 0 0 50px 0;
+        border-left: 1px dashed #1adce4;
+
+        &.last {
+            border-left: 0;
+        }
+
+        img {
+            position: absolute;
+            top: -10px;
+            left: -35px;
+            width: 70px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            border-radius: 100px;
+            border: 2px solid #1adce4;
+        }
+
+        .commentHeader {
+            padding: 17px 0 0 50px;
+            font-size: 20px;
+            line-height: 1;
+
+            i, .blockComments .comment .respondsTo .header i {
+                font-size: 15px;
+                opacity: 0.5;
+            }
+        }
+
+        .respondsTo {
+            position: relative;
+            margin: 10px 0 0 50px;
+            padding: 10px 10px 10px 170px;
+            font-size: 15px;
+            border: 1px solid #119298;
+
+            .quote {
+                position: absolute;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                font-size: 40px;
+                padding: 20px 15px 0 15px;
+                background: #119298;
+            }
+
+            img {
+                top: 10px;
+                left: 85px;
+            }
+
+            .header {
+                padding: 17px 0 0 0;
+                font-size: 20px;
+                line-height: 1;
+            }
+
+            .text {
+                padding: 10px 0 0 0;
+                white-space: pre-line;
+            }
+        }
+
+        .text {
+            padding: 15px 0 0 50px;
+            font-size: 15px;
+            white-space: pre-line;
+
+            textarea {
+                width: 100%;
+            }
+        }
+
+        .reply {
+            position: absolute;
+            top: -8px;
+            left: 50px;
+            font-size: 15px;
+        }
+
+        a, .reply i {
+            color: #1adce4;
+
+            &:hover{
+                cursor: pointer;
+                color: #119298;
+            }
+        }
+    } // end comment
+
+    .ajaxComment {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        color: #1adce4;
+        font-size: 20px;
+        margin-left: -35px;
+        margin-bottom: 30px;
+        border: 1px solid #1adce4;
+        border-radius: 70px;
+        transition: all 0.3s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: #fff;
+            border: 1px solid #119298;
+            background: #119298;
+        }
+    }
+
+    @import "_SendComment.scss";
+    .sendComment {
+        @extend %sendComment;
+        top: 25px;
+        right: 10px;
+    }
+} // end blockComments
+
+.lotteryCommentPadding {
+    padding: 60px 0 0 40px;
+}
+
+// .listComment .sendComment, .blockComments .sendComment, .createMessage .sendComment {
+//     position: absolute;
+//     top: 25px;
+//     right: 10px;
+//     display: inline-block;
+//     font-size: 35px;
+//     color: #1adce4;
+//     transition: all 0.6s ease;
+//
+//         &:hover {
+//             cursor: pointer;
+//             color: #119298;
+//         }
+// }
+// 
+// .createMessage .sendComment {
+//     top: 35px;
+//     right: 25px;
+// }
+//
+// .listComment .sendComment {
+//     top: 55px;
+//     right: 0px;
+// }
+
+.defaultCommentLottery {
+    color: #1adce4;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    margin: 0 0 40px 0;
+}
+
+/*
+ * --------------------------------------
+ * end Блок комментариев
+ */
+
+@media (max-width: 767px) {
+    .formComment {
+        position: relative;
+        margin: 50px 0 0 0;
+    }
+
+    .listComment .sendComment {
+        position: absolute;
+        top: 0;
+        font-size: 25px;
+        width: 30px;
+        height: 35px;
+        padding: 0px;
+    }
+
+    .defaultCommentLottery {
+        font-size: 13px;
+        padding: 10px;
+        margin: 0 0 20px 0;
+    }
+}

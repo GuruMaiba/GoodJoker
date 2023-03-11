@@ -1,0 +1,29 @@
+﻿@using GoodJoker.Models
+@model ICollection<MessageDialog>
+
+@if (Model.Count > 0)
+{
+    DateTime dateOldMessage = ViewBag.date;
+    var breakValue = new DateTime(1970, 1, 1);
+    var oldDate = (dateOldMessage != breakValue) ? dateOldMessage.ToLocalTime().ToString("dd MMMM yyyy") : "";
+    foreach (var message in Model.OrderBy(m => m.DateCreate))
+    {
+        var date = message.DateCreate.ToLocalTime().ToString("dd MMMM yyyy");
+        var time = message.DateCreate.ToLocalTime().ToString("HH:mm");
+        var id = User.Identity.GetUserId<int>();
+        if (date != oldDate)
+        {
+            oldDate = date;
+            <div class="date">@date</div>
+        }
+        <div class="message @if (message.Author.Id == id) {<text>myMessage</text>} else {<text>himMessage</text>}">
+            <div class="time">
+                @if (message.Author.Id != id) {<text>@time</text>}
+                <i class="@if (message.View) {<text>icon-eye</text>} else {<text>icon-eye-slash</text>} "></i> 
+                @if (message.Author.Id == id) {<text>@time</text>}
+            </div>
+            <div class="text">@message.Text</div>
+        </div>
+        @*class="icon-eye-slash"*@
+    }
+}

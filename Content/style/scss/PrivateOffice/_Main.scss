@@ -1,0 +1,323 @@
+/*
+ * Главная
+ * -----------------------------
+ */
+
+.mainOffice {
+    .notice {
+        margin-bottom: 50px;
+        box-shadow: 0px 0 40px 0px #000;
+        background: #119298 center center / cover no-repeat;
+
+        .blackout {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+            padding: 20px 20px;
+            background: rgba(0, 0, 0, 0.7);
+
+            .text {
+                width: 100%;
+            }
+
+            h1 {
+                text-align: center;
+                padding: 15px 0;
+            }
+
+            .desc {
+                text-align: center;
+                font-size: 20px;
+            }
+
+            .noPrize {
+                position: absolute;
+                bottom: 10px;
+                left: 10px;
+                width: 70%;
+                padding-top: 20px;
+                font-size: 15px;
+                opacity: 0.6;
+
+                span {
+                    color: #1adce4;
+                    transition: color 0.3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: #119298;
+                    }
+                }
+            } // end noPrize
+
+            .close {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                font-size: 20px;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #119298;
+                }
+            }
+        } // end blackout
+    } // end notice
+
+    .siteFriend {
+        /*display: block;
+        width: 100%;*/
+        height: 300px;
+        margin-bottom: 50px;
+        box-shadow: 0px 0 40px 0px #000;
+        /*background: #119298 center center / cover no-repeat;*/
+    }
+
+    %usersCont {
+        padding: 1px 30px 30px 30px;
+        box-shadow: 0px 0 40px 0px #000;
+    }
+
+    .reviewUser {
+        @extend %usersCont;
+        position: relative;
+        margin-bottom: 50px;
+
+        .sendReview {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            color: #1adce4;
+            font-size: 30px;
+            transition: all 0.3s ease;
+            z-index: 5;
+
+            &:hover {
+                cursor: pointer;
+                color: #119298;
+            }
+        }
+
+        textarea {
+            width: 100%;
+            height: 300px;
+            margin-top: 20px;
+        }
+    }
+
+    .lotteriesUser {
+        @extend %usersCont;
+
+        .title span {
+            font-size: 25px;
+            border-bottom: 3px solid #1adce4;
+            padding: 10px;
+        }
+
+        .lottery {
+            position: relative;
+            margin: 40px 0 0 0;
+
+            .header {
+                display: block;
+                padding: 10px;
+                color: #1adce4;
+                border: 1px solid #1adce4;
+                transition: all 0.3s ease;
+
+                .name {
+                    display: inline-block;
+                    font-size: 25px;
+                    padding: 5px 10px;
+
+                    i {
+                        color: #119298;
+                        font-size: 15px;
+                        white-space: nowrap;
+                    }
+                }
+            } // end header
+
+            .status {
+                position: absolute;
+                top: -13px;
+                right: 30px;
+                padding: 3px 10px 0 10px;
+                font-size: 17px;
+                color: #1adce4;
+                border: 1px solid #1adce4;
+                border-radius: 5px;
+                background: #131315;
+                transition: all 0.3s ease;
+            }
+
+            .finger {
+                position: absolute;
+                right: -20px;
+                width: 40px;
+                height: 40px;
+                color: #fff;
+                font-size: 20px;
+                text-align: center;
+                padding-top: 10px;
+                background: #119298;
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                box-shadow: 0px 0 10px 0px #000;
+                transition: all 0.3s ease;
+            }
+
+            .up {
+                position: absolute;
+                top: -15px;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0px 0 10px 0px #009900;
+                    background: #009900;
+                }
+            }
+
+            .down {
+                position: absolute;
+                top: 30px;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0px 0 10px 0px #CC0000;
+                    background: #CC0000;
+                }
+            }
+
+            .fingerOff {
+                background: #131315 !important;
+            }
+
+            .fingerLike {
+                background: #009900 !important;
+                &:hover { box-shadow: 0px 0 10px 0px #009900; }
+            }
+
+            .fingerDislike {
+                background: #CC0000 !important;
+                &:hover { box-shadow: 0px 0 10px 0px #CC0000; }
+            }
+
+            &:hover {
+                .header {
+                    color: #fff;
+                    border: 1px solid #119298;
+                    background: #119298;
+
+                    .name i {
+                        color: #fff;
+                        opacity: 0.4;
+                    }
+                }
+
+                .status {
+                    color: #fff;
+                    border: 1px solid #119298;
+                    box-shadow: 0px 0 10px 0px #000;
+                    background: #119298;
+                }
+            }
+        } // end lottery
+
+        .default {
+            font-size: 20px;
+            padding: 10px;
+
+            a {
+                color: #1adce4;
+                &:hover { color: #119298; }
+            }
+        } // end default
+    } // end lotteriesUser
+} // end mainOffice
+
+@media (max-width: 767px) {
+
+    .mainOffice {
+        .title {
+            margin-top: 0px;
+        }
+
+        .notice {
+            margin-bottom: 30px;
+
+            .blackout {
+                padding: 10px;
+                .desc { font-size: 18px; }
+            }
+        } // end notice
+
+        .siteFriend {
+            height: 200px;
+            margin-bottom: 30px;
+            .banner .name { font-size: 20px; }
+        }
+
+        .reviewUser {
+            margin-bottom: 30px;
+            padding: 10px;
+
+            .sendReview {
+                top: 20px;
+                right: 20px;
+                font-size: 25px;
+            }
+
+            textarea {
+                height: 200px;
+                margin-top: 10px;
+                font-size: 15px;
+            }
+        }
+
+        .lotteriesUser {
+            padding: 10px;
+
+            .lottery {
+                margin: 20px 0 0 0;
+
+                .header .name {
+                    font-size: 15px;
+                    padding: 3px 5px;
+                }
+
+                .finger {
+                    width: 30px;
+                    height: 30px;
+                    font-size: 15px;
+                    padding-top: 8px;
+                }
+
+                .up {
+                    position: absolute;
+                    top: -15px;
+                    right: 30px;
+                }
+
+                .down {
+                    position: absolute;
+                    top: -15px;
+                    right: -5px;
+                }
+            } // end lottery
+
+            .default {
+                font-size: 15px;
+                padding: 15px 10px;
+            }
+        } // end lotteriesUser
+    } // end mainOffice
+} // end media 767
+
+/*
+ * ------------------------------
+ * Главная
+ */

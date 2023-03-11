@@ -1,0 +1,70 @@
+﻿@model ICollection<GoodJoker.Models.News>
+@{
+    ViewBag.Title = "Новости";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="title"><h1><span>@ViewBag.Title</span></h1></div>
+<div class="adminNav">
+    <span>Все</span>
+    <span>Опубликованныые</span>
+    <span>Черновики</span>
+    Поиск по:
+    <input type="text" name="phone" placeholder="Телефон" />
+    <input type="text" name="nick" placeholder="Nick" />
+    Сортировать по:
+    <select>
+        <option>Дате</option>
+        <option>Просмотрам</option>
+        <option>Лайкам</option>
+        <option>Комментариям</option>
+    </select>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Заголовок</th>
+            <th>Статус</th>
+            <th>Дата публикации</th>
+            <th><i class="icon-heart"></i></th>
+            <th><i class="icon-eye"></i></th>
+            <th><i class="icon-comment-discussion"></i></th>
+            <th><a href="/Administrator/NewsCreate"><i class="icon-plus-1" title="Добавить новость"></i></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var news in Model)
+            {
+                <tr>
+                    <td>@news.Title</td>
+                    @if(news.Publish) {<td>Опубликованная</td>}
+                    else {<td>Черновик</td>}
+                    <td>@news.DateCreate.ToString("dd.MM.yyyy")</td>
+                    <td>@news.UsersLike.Count</td>
+                    <td>@news.View</td>
+                    <td>@news.Comments.Count</td>
+                    <td>
+                        <a href="/Administrator/NewsCreate/@news.Id"><i class="icon-pencil-1 action" title="Изменить"></i></a>
+                        <i class="icon-file-text action" title="Перевести в черновики"></i>
+                        <i class="icon-cancel action" title="Удалить"></i>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td>Вы не добавили ни одной новости</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,149 @@
+﻿@model GoodJoker.Models.AdminLottery
+@{
+    ViewBag.Title = "Розыгрыши";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="title"><h1><span>@ViewBag.Title</span></h1></div>
+<div class="adminNav">
+    <a href="/Administrator/Lotteries?Everyday=true">Ежедневные</a>
+    <span>Опубликованныые</span>
+    <span>Не опубликованные</span>
+    Сортировать по:
+    <select>
+        <option>Дате</option>
+        <option>Требуемым участникам</option>
+        <option>Просмотрам</option>
+        <option>Лайкам</option>
+        <option>Пальцам</option>
+        <option>Количеству участников</option>
+    </select>
+    <select name="city">
+        <option selected value="1">Все города</option>
+        <option value="2">Сургут</option>
+    </select>
+</div>
+@if (Model.Everyday != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Заказчик</th>
+                <th>Время розыгрыша</th>
+                <th><i class="icon-users"></i></th>
+                <th><i class="icon-heart"></i></th>
+                <th><a href="/Administrator/EverydayCreate"><i class="icon-plus-1" title="Добавить розыгрыш"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Everyday != null && Model.Everyday.Count > 0)
+            {
+                foreach (var lott in Model.Everyday)
+                {
+                    <tr>
+                        <td>@lott.Prize</td>
+                        <td>@lott.FromWhom</td>
+                        <td>@lott.Holding.ToLocalTime().ToString("HH:mm")</td>
+                        <td>@lott.Participants.Count</td>
+                        <td>@lott.Likes.Count</td>
+                        <td>
+                            <a href="/Administrator/EverydayCreate/@lott.Id"><i class="icon-pencil-1 action" title="Изменить"></i></a>
+                            <i class="icon-doc-text-inv action" title="Перевести в черновики"></i>
+                            <i class="icon-cancel delEveryday action" title="Удалить"></i>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>Активных розыгрышей пока нет =(</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Заголовок</th>
+                <th>Автор</th>
+                <th>Дата розыгрыша</th>
+                <th title="Количество требуемых человек для розыгрыша">КТЧ</th>
+                <th><i class="icon-users"></i></th>
+                <th><i class="icon-comment-discussion"></i></th>
+                <th><i class="icon-eye"></i></th>
+                <th><i class="icon-thumbs-up-1"></i></th>
+                <th><a href="/Lottery/Create/1"><i class="icon-plus-1" title="Добавить розыгрыш"></i></a></th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Lotteries != null && Model.Lotteries.Count > 0)
+            {
+                foreach (var lott in Model.Lotteries)
+                {
+                    <tr>
+                        <td>@lott.Title</td>
+                        <td>@lott.Studio.Name</td>
+                        <td>@lott.DateLottery.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td>@lott.CountUserForLottery</td>
+                        <td>@lott.Users.Count</td>
+                        <td>@lott.Comments.Count</td>
+                        <td>@lott.View</td>
+                        <td>@lott.OddsFingers</td>
+                        <td>
+                            <a href="/Lottery/Details/@lott.Id"><i class="icon-pencil-1" title="Изменить"></i></a>
+                            <i class="icon-cancel delLott" lottId="@lott.Id" title="Удалить"></i>
+                        </td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td>Активных розыгрышей пока нет =(</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@section Scripts {
+<script>
+    $('body').on('click', '.delLott', function () {
+        if (confirm("Вы уверены, что хотите удалить эту лоттерею?")) {
+            var th = $(this);
+            var id = th.attr('lottId');
+            $.ajax({
+                url: "/Administrator/DelLottery",
+                type: "POST",
+                data: {
+                    Id: id
+                },
+                success: function (data) {
+                    if (data == "1") {
+                        th.parents("tr").remove();
+                    } else {
+                        alert("Неверный ID!");
+                    }
+                }
+            });
+        }
+    });
+</script>
+}

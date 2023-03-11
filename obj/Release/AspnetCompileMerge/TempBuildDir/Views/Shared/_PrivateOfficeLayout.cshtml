@@ -1,0 +1,137 @@
+﻿@using GoodJoker.Models
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+    
+    <link href="~/Content/jquery.Jcrop.css" rel="stylesheet">
+
+</head>
+<body>
+    @Html.AntiForgeryToken()
+    <div class="mask"></div>
+    @Html.Partial("_Preloader")
+    @RenderSection("Modal", required: false)
+    <div class="bodyPrivateOffice">
+
+        <div class="buttonMenu"><i class="icon-menu"></i></div>
+
+        <div class="menuLK">
+            <div class="header">
+                <div class="img" style="background-image: url('../../Content/style/images/Users/Avatars/Normal/@ViewBag.Ava');"></div>
+                <div class="user">
+                    <div><img src="~/Content/style/images/Users/Avatars/Normal/@ViewBag.Ava" /><br />@User.Identity.Name</div>
+                </div>
+            </div>
+            <div class="items">
+                <ol>
+                    <li><a href="/"><i class="icon-reply"> </i>На сайт</a></li>
+                    <li><a href="/Main/Joker/@(User.Identity.GetUserId<int>())"><i class="icon-user"> </i>Мой профиль</a></li>
+                    <li><a href="/PrivateOffice"><i class="icon-home-1"> </i>Главная</a></li>
+                    <li><a href="/PrivateOffice/Dialogs"><i class="icon-mail-1"> </i>Диалоги <span class="newMessage"></span></a></li>
+                    <li><a href="/PrivateOffice/Studios"><i class="icon-black-tie"> </i>Cтудии</a></li>
+                    @*<li><a href="/PrivateOffice/Comments"><i class="icon-comment-discussion"> </i>Ответы</a></li>*@
+                </ol>
+
+                <ol class="additional">
+                    @if (User.Identity.GetUserRole() == "Admin")
+                    { <li><a href="/Administrator"><i class="icon-login"> </i>Админка</a></li> }
+                    else
+                    { <li><a href="/PrivateOffice/AddDialogLK/2"><i class="icon-help-circled"> </i>Служба поддержки</a></li> }
+                    <li><a href="/PrivateOffice/Settings"><i class="icon-cog"> </i>Настройки</a></li>
+                    <li><a href="/Account/Logout"><i class="icon-login"> </i>Выход</a></li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="contentLK">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.mCustomScrollbar.concat.min.js" defer></script>
+    @RenderSection("Scripts", required: false)
+
+    <script type="text/javascript">
+        var token = $("input[name='__RequestVerificationToken']").val();
+        checkNewMessage();
+        $(document).ready(function () {
+
+            // Выделяем активный пункт меню
+            $('.items ol li a').each(function () {
+
+                var link = document.location.href;
+                // Вытаскиваем адресную строку и проверяем её на наличие той страницы на которой мы находимся
+                if (link.indexOf($(this).attr('href')) > 0) {
+                    $('.items ol li a').removeClass('active');
+                    $(this).addClass('active');
+                }
+
+            });
+
+            $(".buttonMenu").click(function () {
+                if ($(".buttonMenu i").hasClass("icon-menu")) {
+                    $(".mask").fadeIn(0);
+                    $(".buttonMenu i").removeClass("icon-menu");
+                    $(".buttonMenu i").addClass("icon-cancel");
+                    $(".menuLK").addClass("active");
+                } else {
+                    $(".mask").fadeOut(0);
+                    $(".buttonMenu i").removeClass("icon-cancel");
+                    $(".buttonMenu i").addClass("icon-menu");
+                    $(".menuLK").removeClass("active");
+                }
+            });
+
+            $(".mask").click(function () {
+                $(".menuLK").removeClass("active");
+                $(".headDialogs").removeClass("active");
+                $(".blockDialogs").removeClass("active");
+                $(".buttonMenu i").removeClass("icon-cancel");
+                $(".buttonMenu i").addClass("icon-menu");
+                $(this).fadeOut(0);
+            });
+
+            setInterval(function () {
+                checkNewMessage();
+            }, 10000);
+
+        });
+
+        function checkNewMessage() {
+            $.ajax({
+                url: "/PrivateOffice/CheckNewMessage",
+                type: "POST",
+                data: {
+                    __RequestVerificationToken: token
+                },
+                success: function (count) {
+                    var div = $(".newMessage");
+                    count = parseInt(count);
+                    if (count > 0) {
+                        $(".newMessage").text(count);
+                        $(".newMessage").fadeIn(0);
+                    } else {
+                        $(".newMessage").fadeOut(0);
+                    }
+                }
+            });
+        }
+    
+    </script>
+</body>
+</html>

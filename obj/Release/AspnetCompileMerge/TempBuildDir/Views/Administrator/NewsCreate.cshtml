@@ -1,0 +1,359 @@
+﻿@using GoodJoker.Models
+@model News
+
+@{
+    ViewBag.Title = "Создание новости";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ICollection<Tag> tags = ViewBag.Tags;
+    var imagesBig = new List<ImageNews>();
+    var imagesSmall = new List<ImageNews>();
+    if (Model != null && Model.Content.Count > 0)
+    {
+        imagesBig = Model.Content.First().Images.Where(i => i.Type == "Big").ToList();
+        imagesSmall = Model.Content.First().Images.Where(i => i.Type == "Small").ToList();
+    }
+}
+
+<div class="createNews">
+
+    @Html.ActionLink("Вернуться к списку", "News", "Administrator")
+    <h2>Создание новости</h2>
+
+    <hr />
+
+    <div class="row">
+        <div class="create_viewInfo">Показать подсказку</div>
+        <div class="create_info">
+            <ul>
+                <li><span>h1</span> - Главный подзаголовок</li>
+                <li><span>h2</span> - Подзаголовок темы</li>
+                <li><span>h3</span> - Подзаголовок раздела</li>
+                <li><span>hr</span> - Разделительная линия</li>
+                <li><span>div.text</span> - Блок с тексом</li>
+                <li><span>p</span> - Абзац (использовать только в текстовом блоке)</li>
+                <li><span>span.output</span> - Выделение текста цветом (использовать только в текстовом блоке)</li>
+                <li><span>i</span> - Курсивный текст</li>
+                <li><span>a</span> - Ссылка</li>
+                <li><span>ol li</span> - Номерной список, использовать только в текстовом блоке (использовать только в текстовом блоке)</li>
+                <li><span>img.imgFull</span> - картинка на всю ширину контента (использовать только вне текстового блока)</li>
+                <li><span>img.imgRight</span> - картинка справа относительно контента (можно использовать как внутри так и снаружи текстового блока, ширину прописывать в ручную)</li>
+                <li><span>img.imgLeft</span> - картинка слева относительно контента (можно использовать как внутри так и снаружи текстового блока, ширину прописывать в ручную)</li>
+                <li>Для добавления картинку внутрь текста, нужно добавить картинку а затем блок с текстом и прописать в нём путь к ней.</li>
+            </ul>
+        </div>
+    </div>
+
+    <input type="hidden" name="Id" value="@(Model?.Id)" />
+    <h2 class="createNewsTitle">@Html.DisplayNameFor(model => model.Title)</h2>
+    <input type="text" name="Title" class="createNews_input" placeholder="Введите заголовок..." value="@(Model?.Title)" />
+    @if (Model == null)
+    {<button class="btn createNewsBtn">Создать статью</button>}
+
+    <div class="newsOption" style="@if (Model == null) {<text>display:none;</text>}">
+        <h2 class="createNewsTitle">Обложка</h2>
+        <input type="file" name="Cover" class="createNews_input" />
+        @*<div class="coverName">@(Model?.Cover)</div>*@
+
+        <h2 class="createNewsTitle">@Html.DisplayNameFor(model => model.ShortDescription)</h2>
+        <textarea class="shortDescription" name="ShortDescription" placeholder="Короткое описание...">@(Model?.ShortDescription)</textarea>
+
+        <div class="bigImg">
+            <h2 class="createNewsTitle">Большие картинки</h2>
+            <input type="file" name="bigImg" /><br />
+            <div class="listImg">
+                @if (imagesBig.Count > 0)
+                {
+                    foreach (var big in imagesBig)
+                    {
+                        <div class="itemImg">../../Content/style/images/News/@big.Name <i class="icon-cancel delImg" imgId="@big.Id"></i></div>
+                    }
+                }
+            </div>
+        </div>
+        <hr />
+        <div class="smallImg">
+            <h2 class="createNewsTitle">Маленькие картинки</h2>
+            <input type="file" name="smallImg" /><br />
+            <div class="listImg">
+                @if (imagesSmall.Count > 0)
+                {
+                    foreach (var small in imagesSmall)
+                    {
+                        <div class="itemImg">../../Content/style/images/News/@small.Name <i class="icon-cancel delImg" imgId="@small.Id"></i></div>
+                    }
+                }
+            </div>
+        </div>
+        <hr />
+        <h2 class="createNewsTitle">Контент</h2>
+        @*<div class="addBlock">
+            <div title="Заголовок первой величины">h1</div>
+            <div title="Заголовок второй величины">h2</div>
+            <div title="Заголовок третей величины">h3</div>
+            <div title="Заголовок третей величины">hr</div>
+            <div title="Текст"><i class="icon-align-center"></i></div>
+            <div title="Абзац"><i class="icon-indent-more"></i></div>
+            <div title="Список"><i class="icon-list-thumbnails"></i></div>
+            <div class="addBigImg" title="Картинка на весь экран"><i class="icon-photo"></i> Big</div>
+            <div class="addSmallImg" title="Картинка в процентном соотношение"><i class="icon-photo"></i> Small</div>
+            <div title="Видео"><i class="icon-video"></i></div>
+            <div title="Цитата"><i class="icon-quote"></i></div>
+        </div>*@
+        <textarea class="content" name="Content" placeholder="Сверстайте странницу...">
+        @if (Model == null || Model.Content.Count == 0 || Model.Content.First().Text == null)
+        {
+            <div class="row">
+                <h1>Главный подзаголовок</h1>
+                <hr />
+
+                <div class="text">
+                    <p>Абзац</p>
+                </div>
+                <img class="imgFull" src="Путь к большой картинке" />
+
+                <div class="text">
+                    <p>Ёще Абзац</p>
+                    <p>Абзац <img style="width:50%;" class="imgRight" src="Путь к маленькой картинке" /> С картинкой внутри </p>
+                </div>
+            </div>
+            <div class="row">
+                <h3>Заголовок раздела</h3>
+                <div class="text">
+                    <ol>
+                        <li>Список</li>
+                        <li>Список</li>
+                        <li><a href="#">Ссылка в списке</a></li>
+                    </ol>
+                    <span class="output">Выделенный текст</span> <i>курсив</i><br /><br />
+
+                </div>
+            </div>
+        } else {<text>@Html.Raw(Model.Content.First().Text)</text>}
+        </textarea>
+        <div class="tags">
+            <input type="hidden" name="TagId" value="0" />
+            <input type="text" name="TagName" class="createNews_input" placeholder="Введите название тега..." />
+            <i class="icon-plus-1 addTag"></i>
+
+            <div class="list">
+                @foreach (var tag in tags)
+                {
+                    bool active = (Model?.Tags?.FirstOrDefault(t => t.Id == tag.Id) != null) ? true : false;
+                    <div id="@tag.Id" class="tag @if (active) {<text>active</text>}"><span>@tag.Name</span> <i class="icon-pencil-1 editTag"></i> <i class="icon-cancel delTag"></i></div>
+                }
+            </div>
+        </div>
+        <div>
+            <input type="radio" name="Publish" value="1" @if (Model != null && Model.Publish) { <text> checked</text>} />
+            <label>Опубликовать</label><br />
+            <input type="radio" name="Publish" value="2" @if (Model == null || !Model.Publish) { <text> checked</text>} />
+            <label>В черновик</label>
+        </div>
+        <div id="successAjax"></div>
+        <button class="btn saveNews">Сохранить</button>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            var info = $(".create_info");
+
+            $(".create_viewInfo").click(function () {
+                if (info.hasClass("visible")) {
+                    info.removeClass("visible");
+                    info.slideUp(500);
+                    $(this).text("Показать подсказку");
+                } else {
+                    info.addClass("visible");
+                    info.slideDown(500);
+                    $(this).text("Скрыть подсказку");
+                }
+            });
+
+            $(".createNewsBtn").click(function () {
+                var val = $("input[name=Title]").val();
+                if (val != "") {
+                    $.ajax({
+                        url: "/Administrator/NewsCreate",
+                        type: "POST",
+                        data: {
+                            Title: val
+                        },
+                        success: function (id) {
+                            if (id != null || id != "" || id != "0") {
+                                $("input[name=Id]").val(id);
+                                $(".newsOption").css("display", "block");
+                            }
+                        }
+                    });
+                }
+            });
+
+            $("input[name=Cover]").change(function () {
+                loadImg($(this), 'Cover', $("input[name=Id]").val());
+            });
+
+            $("input[name=bigImg]").change(function () {
+                loadImg($(this), 'Big', $("input[name=Id]").val());
+            });
+
+            $("input[name=smallImg]").change(function () {
+                loadImg($(this), 'Small', $("input[name=Id]").val());
+            });
+
+            $("body").on("click", ".delImg", function () {
+                var id = $(this).attr("imgId");
+                var parent = $(this).parent();
+                $.ajax({
+                    url: "/Administrator/DelImg",
+                    type: "POST",
+                    data: { Id: id },
+                    success: function () { parent.remove(); },
+                    error: function () { alert("Ошибочка..."); }
+                });
+            });
+
+            $("body").on("click", ".tag", function () {
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                } else {
+                    $(this).addClass("active");
+                }
+            });
+
+            $(".addTag").click(function () {
+                var id = $(".tags input[name='TagId']").val();
+                var name = $(".tags input[name='TagName']").val();
+                $.ajax({
+                    url: "/Administrator/AddTag",
+                    type: "POST",
+                    data: {
+                        Id: id,
+                        Name: name
+                    },
+                    success: function (data) {
+                        if (data != "0") {
+                            if (data == id) {
+                                $(`.tag#${data}`).removeClass("active");
+                                $(`.tag#${data} span`).text(name);
+                                $(".addTag").removeClass("icon-pencil-1").addClass("icon-plus-1");
+                            } else {
+                                $('.tags .list').append(`<div id="${data}" class="tag"><span>${name}</span> <i class="icon-pencil-1 editTag"></i> <i class="icon-cancel delTag"></i></div>`);
+                            }
+                            $(".tags input[name='TagId']").val(0);
+                            $(".tags input[name='TagName']").val("");
+                        } else {
+                            alert("Проверь ID и имя...");
+                            console.log(id);
+                            console.log(name);
+                        }
+                    }
+                });
+            });
+
+            $("body").on("click", ".editTag", function () {
+                $(".tags input[name='TagId']").val($(this).parent().attr("id"));
+                $(".tags input[name='TagName']").val($(this).siblings("span").text());
+                $(".addTag").removeClass("icon-plus-1").addClass("icon-pencil-1 edit");
+            });
+
+            $("body").on("click", ".delTag", function () {
+                if (confirm("Вы уверены, что хотите удалить этот тег?")) {
+                    var th = $(this);
+                    var id = th.parent().attr("id");
+                    $.ajax({
+                        url: "/Administrator/DelTag",
+                        type: "POST",
+                        data: {
+                            Id: id
+                        },
+                        success: function (data) {
+                            if (data != "0") {
+                                th.parent().remove();
+                            } else {
+                                alert("Нормальный ID нужен...");
+                                console.log(id);
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(".saveNews").click(function () {
+                var id = $("input[name=Id]").val();
+                var title = $("input[name=Title]").val();
+                var shortDesc = $("textarea[name=ShortDescription]").val();
+                var cont = $("textarea[name=Content]").val();
+                var publ = $("input[name=Publish]:checked").val();
+                var tags = "";
+                if ($(".tag.active").length > 0) {
+                    $(".tag.active").each(function (i, e) {
+                        tags += $(this).attr("id");
+                        if ((i + 1) < $(".tag.active").length) {
+                            tags += ";";
+                        }
+                    });
+                }
+
+                $.ajax({
+                    url: '/Administrator/NewsEdit',
+                    type: 'POST',
+                    dataType: "html",
+                    data: {
+                        Id: id,
+                        Title: title,
+                        ShortDescription: shortDesc,
+                        Content: cont,
+                        Tags: tags,
+                        Publish: publ
+                    },
+                    success: function (data) {
+                        if (data == "1") {
+                            location.href = "/News/Details/" + id;
+                        } else {
+                            $("#successAjax").text("Проверьте праильность введёных данных");
+                        }
+                    }
+                });
+            });
+        });
+
+        function loadImg($input, type, id) {
+            var fd = new FormData();
+            var parent = "";
+            if (type == "Big") {
+                parent = ".bigImg";
+            } else if (type == "Small") {
+                parent = ".smallImg";
+            }
+
+            fd.append('img', $input.prop('files')[0]);
+            fd.append('type', type);
+            fd.append('id', id);
+
+            $.ajax({
+                url: '/Administrator/LoadImg',
+                data: fd,
+                processData: false,
+                contentType: false,
+                type: 'POST',
+                success: function (data) {
+                    if (parent != "") {
+                        var data = data.split(";");
+                        if (data != "0") {
+                            $(parent + " .listImg").append(`<div class="itemImg">../../Content/style/images/News/${data[0]} <i class="icon-cancel delImg" imgId="${data[1]}"></i></div>`);
+                        } else {
+                            $(parent + " .listImg").append(`<div class="itemImg">Ошибка</div>`);
+                        }
+                    }
+                    if (type == "Cover") {
+                        if (data != "0") {
+                            $(".coverName").text(data);
+                        }
+                    }
+                }
+            });
+        }
+    </script>    
+}

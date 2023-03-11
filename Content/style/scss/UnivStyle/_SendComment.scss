@@ -1,0 +1,14 @@
+%sendComment {
+    position: absolute;
+    top: 25px;
+    right: 10px;
+    display: inline-block;
+    font-size: 35px;
+    color: #1adce4;
+    transition: all 0.6s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: #119298;
+        }
+}

@@ -1,0 +1,249 @@
+﻿@using GoodJoker.Models
+@model Main
+@{
+    ViewBag.Title = "GoodJoker: бесплатные розыгрыши, лотереи, раздачи призов.";
+    ViewBag.Description = "GoodJoker - проект созданный для людей, которые верят в свою удачу! Все розыгрыши на нашем сайте абсолютно бесплатны!";
+    ViewBag.URL = "https://goodjoker.ru";
+    ViewBag.MetaImg = $"https://goodjoker.ru/Content/style/images/ok/1280.jpg";
+    ViewBag.KeyWords = "бесплатные розыгрыши, лотереи, раздача призов";
+}
+
+<!--/////Новости...-->
+<div class="row">
+    <div class="container blockContent">
+        <div class="main">
+            <div class="news">
+                <div class="title"><h1><span>Новости</span></h1></div>
+                @if (Model.News.Count > 0)
+                {
+                    foreach (var art in Model.News)
+                    {
+                        <a href="/News/Details/@art.Id"><div class="item" style="background-image: url('../../Content/style/images/News/Cover/Reduced/@art.Cover');"><div>@art.Title</div></div></a>
+                    }
+                    <a href="/News"><div class="item" style="background-image: url('../../Content/style/images/WhatsNews.jpg');"><div>Все новости</div></div></a>
+                }
+                else
+                {
+                    <div class="default">У нас ничего нового не произошло)))</div>
+                }
+            </div>
+            <div class="lott">
+                <div class="title"><h1><span>Розыгрыши</span></h1></div>
+                @if (Model.Lott.Count > 0)
+                {
+                    foreach (var lott in Model.Lott)
+                    {
+                        <a href="/Lottery/Details/@lott.Id">
+                            <div class="item" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@lott.Cover')">
+                                <div class="blackout">
+                                    <div class="name">@lott.Title</div>
+                                    <div class="date">
+                                        @if (lott.CountUserForLottery > 0)
+                                        { <i class="icon-user"></i> <text>@lott.CountUserForLottery</text> }
+                                        else
+                                        { <i class="icon-calendar"></i> <text>@lott.DateLottery.ToString("dd.MM.yyyy")</text> }
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    }
+
+                    <a href="/Lottery">
+                        <div class="item" style="background-image: url('../../Content/style/images/allLott.jpg')">
+                            <div class="blackout">
+                                <div class="name">Все розыгрыши</div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                else
+                {
+                    <div class="default">Активных розыгрышей пока нет!</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<!--..Новости/////-->
+
+<!--/////О нас...-->
+<div class="row">
+    <div class="container blockContent">
+        <div class="title"><h1><span>О проекте</span></h1></div>
+
+        <div class="aboutUs">
+            <div class="triple freeLott"><a href="/News"><div class="titleAbout">Абсолютно бесплатные розыгрыши</div></a></div>
+            <div class="double myLottery"><a href="/News"><div class="titleAbout">Возможность проведения своих розыгрышей</div></a></div>
+            <div class="single everyDayLott"><a href="/News"><div class="titleAbout">Ежедневные розыгрыши</div></a></div>
+            <div class="single systemComplaint"><a href="/News"><div class="titleAbout">Система жалоб</div></a></div>
+            <div class="single randomWinner"><a href="/News"><div class="titleAbout">Рандомный выбор победителя</div></a></div>
+            <div class="single noRisk"><a href="/News"><div class="titleAbout">Никакого риска</div></a></div>
+            <div class="single reviewTruth"><a href="/News"><div class="titleAbout">Отзывы</div></a></div>
+            <div class="double advertYourself"><a href="/News"><div class="titleAbout">Реклама себя или своего проекта</div></a></div>
+        </div>
+    </div>
+</div>
+<!--..О нас/////-->
+
+<!--/////Видео отзывы... -->
+@if (Model.Videos.Count > 0)
+{
+    <div class="row">
+        <div class="container blockContent">
+            <div class="title"><h1><span>Видео Отзывы</span></h1></div>
+
+            <div class="video">
+                @foreach (var vid in Model.Videos)
+                {
+                    <div class="infoVideoRev">
+                        <div class="youtube" id="@vid.VideoId">
+                            <img src="http://i.ytimg.com/vi/@vid.VideoId/sddefault.jpg">
+                            <div class="blackout"><i class="icon-youtube-play play"></i></div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+}
+
+<!--...Видео отзывы/////-->
+
+@if (Model.Reviews.Count > 0)
+{
+    <!--/////Отзывы... -->
+    <div class="row">
+        <div class="container blockContent">
+            <div class="title"><h1><span>Отзывы</span></h1></div>
+
+            <div class="reviews">
+                @foreach (var review in Model.Reviews)
+                {
+                    <div class="review @if (!review.OnTheMain) {<text>noconfirm</text>}">
+                        <div class="avatar">
+                            <a href="/Main/Joker/@review.User.Id"><img src="~/Content/style/images/Users/Avatars/Reduced/@review.User.Option.Ava" /></a>
+                        </div>
+                        <div class="content">
+                            <div class="triangle hidden-xs hidden-sm"></div>
+
+                            <div class="name">
+                                <a href="/Main/Joker/@review.User.Id">@review.User.Nick</a>
+                                @if (User.Identity.GetUserRole() == "Admin")
+                                {
+                                    <span revId="@review.Id">
+                                        <i class="@if (!review.OnTheMain) {<text>icon-note</text>} else {<text>icon-file-text</text>} pubRev"></i>
+                                        <i class="icon-cancel delRev"></i>
+                                    </span>
+                                }
+                            </div>
+
+                            <div class="desc">@review.Text</div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <!--...Отзывы/////-->
+}
+
+@section Scripts {
+    <script>
+
+        $(".review .content .desc").mCustomScrollbar({
+            theme: "minimal",
+            scrollbarPosition: "outside"
+        });
+
+        $(".youtube").click(function () {
+            var height = $(this).height() + 2;
+            var parent;
+            var iframe = $("iframe#" + youtubeId); // тут указываем ID элемента
+            if (youtubeId != null) {
+                parent = $(iframe).parent();
+                parent.height(height);
+                parent.empty();
+                getbackYoutube.appendTo(parent);
+                parent.height("auto");
+            }
+            getbackYoutube = $(this);
+            parent = $(this).parent();
+            parent.height(height);
+            getbackYoutube.detach();
+            parent.html("<iframe id='" + $(this).attr("id") + "' class='youtubeFrame' src='https://www.youtube.com/embed/" + $(this).attr('id') + "?autoplay=1&amp;autohide=1'" +
+                        "style='width:99.9%; height:99.9%;' frameborder='0' allowfullscreen></iframe>");
+            youtubeId = $(this).attr("id");
+        });
+
+        $(".pubRev").click(function () {
+            var th = $(this);
+            var id = th.parent().attr("revId");
+            if (!th.hasClass("disable")) {
+                th.addClass("disable");
+                if (th.hasClass("icon-note")) {
+                    th.removeClass("icon-note").addClass("icon-file-text");
+                    th.parents(".review").removeClass("noconfirm");
+                } else {
+                    th.removeClass("icon-file-text").addClass("icon-note");
+                    th.parents(".review").addClass("noconfirm");
+                }
+                $.ajax({
+                    url: "/Main/PublishReview",
+                    type: "POST",
+                    data: {
+                        RevId: id
+                    },
+                    success: function () {
+                        th.removeClass("disable");
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            }
+        });
+
+        $(".delRev").click(function () {
+            var th = $(this);
+            var id = th.parent().attr("revId");
+            if (confirm("Вы уверены, что хотите удалить этот отзыв?") && !th.hasClass("disable")) {
+                th.addClass("disable");
+                th.parents(".review").remove();
+                $.ajax({
+                    url: "/Main/DelReview",
+                    type: "POST",
+                    data: {
+                        RevId: id
+                    },
+                    success: function () {
+                        th.removeClass("disable");
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            }
+        });
+
+        //$("html body").keypress(function (e) {
+        //    if (e.keyCode == 10) {
+        //        var text = getSelectedText();
+        //        alert(text);
+        //    }
+        //});
+
+        // Функция получения выделенного текста
+        //function getSelectedText() {
+        //    var text = "";
+        //    if (window.getSelection) {
+        //        text = window.getSelection();
+        //    } else if (document.getSelection) {
+        //        text = document.getSelection();
+        //    } else if (document.selection) {
+        //        text = document.selection.createRange().text;
+        //    }
+        //    return text;
+        //}
+
+    </script>
+}

@@ -1,0 +1,72 @@
+﻿@using GoodJoker.Models
+@model Video
+@{
+    ViewBag.Title = "Добавление, изменение видео";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ICollection<TypeVideo> types = ViewBag.Types;
+}
+
+<div class="lotteryCreate">
+
+    @Html.ActionLink("Вернуться к списку", "Videos", "Administrator")
+    <h2 class="titleDouble">Добавление, изменение видео</h2>
+
+    <hr />
+
+    @*<div class="row">
+            <div class="create_viewInfo">Показать подсказку</div>
+            <div class="create_info">
+                <ul>
+                    <li><span>Короткое описание</span> - Отображается в ленте розыгрышей, максимум 150 символов</li>
+                    <li><span>youtube id</span> - uelHwf8o7_U (https://www.youtube.com/watch?v=uelHwf8o7_U)</li>
+                    <li><span>Дата проведения</span> - Указывается если не указывалось количество людей нужное для розыгрыша</li>
+                    <li><span>Количество пользователей</span> - Указывается если не указывалась Дата проведения</li>
+                    <li><span>Условия</span> - Условия для участия в розыгрыше</li>
+                    <li><span>Призы</span> - Призы указанные в последовательности распределения мест</li>
+                    <li><span>Ссылки</span> - в полее ссылку и имя разделять <span>&linkName;</span>, ссылка слева, имя справа</li>
+                    <li><span>Дополнительная информация</span> - Информация которую может проверить только организатор розыгрыша сам</li>
+                </ul>
+            </div>
+        </div>*@
+
+    @using (Html.BeginForm("AddVideo", "Administrator", FormMethod.Post, new { id = "saveForm", enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row inputBlock">
+            <h2 class="">Видео</h2>
+            <input type="text" name="VideoId" class="inputCreate" placeholder="Идентификатор видео..." value="https://www.youtube.com/watch?v=@Model.VideoId" />
+        </div>
+
+        <div class="row inputBlock">
+            <h2 class="">Студия</h2>
+            <input type="text" name="StudioId" class="inputCreate" placeholder="Идентификатор студии..." value="@(Model.Studio?.Id)" />
+        </div>
+
+        <div class="row inputBlock">
+            <h2 class="">Тип видео</h2>
+            <input type="hidden" name="TypeId" value="0" />
+            <input type="hidden" name="TypeName" value="" />
+            <input type="hidden" name="TypesId" value="" />
+            <input type="text" name="AddType" class="inputCreate" placeholder="Введите название..." />
+            <div class="list">
+                <div id="0" class="item new hidden"><div class="name">+ Создать новый</div></div>
+                @foreach (var type in types)
+                {
+                    bool active = (Model?.Type?.FirstOrDefault(t => t.Id == type.Id) != null) ? true : false;
+                    <div id="@type.Id" class="item @if (active) {<text>active</text>}"><div class="name">@type.Name</div> <div class="actions"><i class="icon-pencil-1 editItem"></i> <i class="icon-cancel delItem"></i></div></div>
+                }
+            </div>
+        </div>
+
+        <button class="btn save">Сохранить</button>
+    }
+
+</div>
+
+@section Scripts {
+    <script>
+        var token = $("input[name='__RequestVerificationToken']").val();
+        var linkAjax = "/Administrator/TypeVideo";
+    </script>
+    <script src="~/Scripts/WorkTypeListAdmin.js"></script>  @* Функции работы с блоками типов *@
+}

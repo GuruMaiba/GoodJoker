@@ -1,0 +1,4820 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Text";
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+:after, :before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Text;
+  /* Имя шрифта */
+  src: url("../../fonts/BloggerSans.ttf");
+}
+@font-face {
+  font-family: Number;
+  src: url("../../fonts/Lighthaus.otf");
+}
+@font-face {
+  font-family: Lobster;
+  src: url("../../fonts/Lobster.ttf");
+}
+/*///// Убираем стрелочки у числового input`a /////*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/*///// Стилизуем radio & checkbox /////*/
+input[type=radio]:after,
+input[type=checkbox][type=radio]:after,
+input[type=checkbox]:after {
+  -webkit-transition: all 0.25s cubic-bezier(0.75, 0.01, 0.48, 2);
+  transition: all 0.25s cubic-bezier(0.75, 0.01, 0.48, 2);
+}
+
+input[type=radio]:before,
+input[type=checkbox][type=radio]:before,
+input[type=checkbox]:before {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+input[type=radio],
+input[type=checkbox] {
+  position: relative;
+}
+input[type=radio]:after, input[type=radio]:before,
+input[type=checkbox]:after,
+input[type=checkbox]:before {
+  content: "";
+  position: absolute;
+}
+input[type=radio]:before,
+input[type=checkbox]:before {
+  height: 100%;
+}
+
+input[type=radio][type=radio],
+input[type=checkbox][type=radio] {
+  border-radius: 30px;
+}
+input[type=radio][type=radio]:before,
+input[type=checkbox][type=radio]:before {
+  width: 100%;
+  border-radius: 30px;
+  background-color: #2c3f52;
+  -webkit-box-shadow: 0 0 0 1px #2c3f52;
+          box-shadow: 0 0 0 1px #2c3f52;
+}
+input[type=radio][type=radio]:after,
+input[type=checkbox][type=radio]:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #15202a;
+  -webkit-transform: scale(0, 0);
+          transform: scale(0, 0);
+}
+input[type=radio][type=radio]:checked:after, input[type=radio][type=radio]:checked:after,
+input[type=checkbox][type=radio]:checked:after,
+input[type=checkbox][type=radio]:checked:after {
+  -webkit-transform: scale(0.75, 0.75);
+          transform: scale(0.75, 0.75);
+}
+input[type=radio][type=radio]:checked:before, input[type=radio][type=radio]:checked:before,
+input[type=checkbox][type=radio]:checked:before,
+input[type=checkbox][type=radio]:checked:before {
+  background-color: #0d969e;
+  -webkit-box-shadow: 0 0 0 1px #0d969e;
+          box-shadow: 0 0 0 1px #0d969e;
+}
+
+input[type=radio][type=checkbox]:before,
+input[type=checkbox][type=checkbox]:before {
+  width: 200%;
+  background-color: #2c3f52;
+  -webkit-box-shadow: 0 0 0 1px #2c3f52;
+          box-shadow: 0 0 0 1px #2c3f52;
+  -webkit-transform: translate(-25%, 0);
+          transform: translate(-25%, 0);
+  border-radius: 30px;
+}
+input[type=radio][type=checkbox]:after,
+input[type=checkbox][type=checkbox]:after {
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+  background-color: #15202a;
+  border-radius: 30px;
+  -webkit-transform: translate(60%, 0);
+          transform: translate(60%, 0);
+}
+input[type=radio][type=checkbox]:checked:after,
+input[type=checkbox][type=checkbox]:checked:after {
+  -webkit-transform: translate(-60%, 0);
+          transform: translate(-60%, 0);
+}
+input[type=radio][type=checkbox]:checked:before,
+input[type=checkbox][type=checkbox]:checked:before {
+  background-color: #0d969e;
+  -webkit-box-shadow: 0 0 0 1px #0d969e;
+          box-shadow: 0 0 0 1px #0d969e;
+}
+
+input[type=radio], input[type=checkbox] {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.radio, .check {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  input[type=radio], input[type=checkbox] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+}
+/*///// Тело /////*/
+body {
+  background: #131315;
+  color: #fff;
+  line-height: 1;
+  -webkit-transition: margin .5s ease;
+  transition: margin .5s ease;
+}
+body.left, body footer.left {
+  margin: 0 0 0 -200px;
+}
+
+.bodyStyle {
+  padding: 56px 0 0 0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+/*ul li {
+    list-style: none;
+}*/
+/*.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+}
+
+/*///// input /////*/
+input, select, textarea {
+  color: #1adce4;
+  font-size: inherit;
+  font-family: "Text";
+  background: transparent;
+}
+
+textarea {
+  color: #1adce4;
+  font-family: "Text", Arial, sans-serif;
+  font-size: 18px;
+  width: 90%;
+  padding: 13px;
+  background-color: transparent;
+  border: 1px solid #1adce4;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  resize: vertical;
+  overflow: hidden;
+}
+textarea::-webkit-input-placeholder {
+  color: #1adce4;
+}
+textarea::-moz-placeholder {
+  color: #1adce4;
+}
+textarea:-moz-placeholder {
+  color: #1adce4;
+}
+textarea:-ms-input-placeholder {
+  color: #1adce4;
+}
+
+/*///// Автозаполнение input /////*/
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  border: 0;
+  -webkit-text-fill-color: #119298;
+  -webkit-box-shadow: #131315 0 0 0px 1000px inset;
+}
+input:-webkit-autofill:hover, input:-webkit-autofill:focus,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 0;
+  -webkit-text-fill-color: #119298;
+  -webkit-box-shadow: #131315 0 0 0px 1000px inset;
+}
+
+/* Маска */
+.mask {
+  cursor: pointer;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #131315;
+  z-index: 993;
+}
+
+/* Полоса с опр. контентом */
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Donate */
+.siteFriend {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #119298 center center/cover no-repeat;
+  -webkit-transition: initial;
+  transition: initial;
+}
+.siteFriend .bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 150, 158, 0.5);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.siteFriend .desc {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.siteFriend .desc .name {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.siteFriend .desc .text {
+  font-size: 21px;
+}
+.siteFriend.hiddenText .bg {
+  background: rgba(13, 150, 158, 0.2);
+}
+.siteFriend.hiddenText .desc {
+  opacity: 0;
+}
+.siteFriend.hiddenText:focus .desc, .siteFriend.hiddenText:hover .desc {
+  opacity: 1;
+}
+.siteFriend:focus, .siteFriend:hover {
+  color: #fff;
+}
+.siteFriend:focus .bg, .siteFriend:hover .bg {
+  background: rgba(13, 150, 158, 0.6);
+}
+
+@media screen and (max-width: 767px) {
+  .siteFriend .desc .name {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .siteFriend .desc .text {
+    font-size: 15px;
+  }
+}
+/*
+ * Заголовки
+ * --------------------------------------------------
+ */
+.title {
+  position: relative;
+  padding: 0;
+  margin: 25px 0 0 0;
+}
+.title h1 {
+  color: #1adce4;
+  padding: 6px 0;
+  border-bottom: 1px solid #1adce4;
+  font-size: 40px;
+}
+.title h1 span {
+  padding: 7px 10px;
+  border-bottom: 4px solid #1adce4;
+}
+.title h1.error {
+  color: #CC0000;
+  border-color: #CC0000;
+}
+.title h1.error span {
+  border-color: #CC0000;
+}
+.title .editInTitle {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  font-size: 25px;
+  color: #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.title .editInTitle:hover {
+  cursor: pointer;
+  color: #119298;
+}
+
+@media screen and (max-width: 767px) {
+  .title h1 {
+    font-size: 30px;
+  }
+  .title .editInTitle {
+    position: absolute;
+    top: 7px;
+    font-size: 15px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Заголовки
+ */
+/*
+ * Стилизованные инпуты
+ * --------------------------------------------------
+ */
+.input {
+  background: none;
+  color: #fff;
+  font-size: 25px;
+  padding: 10px 10px 5px 10px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+}
+.input:focus {
+  outline: none;
+}
+.input:focus ~ .inputLable, .input:valid ~ .inputLable {
+  top: -18px;
+  font-size: 20px;
+  color: #1adce4;
+}
+.input:focus ~ .lineInput:before, .input:valid ~ .lineInput:before {
+  width: 100%;
+}
+.input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+.inputLable {
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  -webkit-transition: 300ms ease all;
+  transition: 300ms ease all;
+}
+
+.lineInput {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
+.lineInput:before {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #1adce4;
+  -webkit-transition: 300ms ease all;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+@media screen and (max-width: 767px) {
+  .input {
+    font-size: 20px;
+    padding: 10px 10px 5px 10px;
+  }
+  .input:focus ~ .inputLable, .input:valid ~ .inputLable {
+    top: -8px;
+    font-size: 15px;
+  }
+  .input[type="password"] {
+    letter-spacing: 0.15em;
+  }
+
+  .inputLable {
+    font-size: 17px;
+    left: 10px;
+    top: 10px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Стилизованные инпуты
+ */
+a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+a:focus, a:hover {
+  color: #1adce4;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid #1adce4;
+  color: #1adce4;
+  padding: 15px 80px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+
+/*
+ * Личный кабинет
+ * --------------------------------------------------
+ */
+.bodyPrivateOffice {
+  height: 100vh;
+}
+
+/* Информация для пользователей */
+.infoOffice {
+  position: relative;
+  margin: 20px auto 0 auto;
+  background: rgba(13, 150, 158, 0.8);
+  -webkit-box-shadow: 0 0 15px 0px #119298;
+          box-shadow: 0 0 15px 0px #119298;
+}
+
+.infoOffice .iconInfo {
+  position: absolute;
+  top: -25px;
+  left: calc(50% - 25px);
+  width: 50px;
+  height: 50px;
+  padding: 12px 5px 2px 5px;
+  font-size: 25px;
+  text-align: center;
+  background: #119298;
+  border-radius: 30px;
+  -webkit-box-shadow: 0 0 15px 0px #131315;
+          box-shadow: 0 0 15px 0px #131315;
+}
+
+.infoOffice .textInfo {
+  padding: 30px 10px 20px 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/*
+ * Меню
+ * -----------------------------
+ */
+.buttonMenu {
+  display: none;
+  position: fixed;
+  top: -8px;
+  left: -8px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  font-size: 25px;
+  padding: 17px 15px 5px 15px;
+  background: #119298;
+  border-radius: 100px;
+  -webkit-box-shadow: 0 0 50px 5px #000;
+          box-shadow: 0 0 50px 5px #000;
+  z-index: 997;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.buttonMenu:hover {
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.menuLK {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100vh;
+  background: #131315;
+  -webkit-box-shadow: 5px 0 40px 0px #000;
+          box-shadow: 5px 0 40px 0px #000;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  z-index: 996;
+}
+
+.menuLK.active {
+  left: 0;
+}
+
+.menuLK .header {
+  position: relative;
+  width: 100%;
+  height: 170px;
+  overflow: hidden;
+}
+
+.menuLK .header .img {
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(7px);
+          filter: blur(7px);
+  overflow: hidden;
+  background: #131315 center center / cover no-repeat;
+}
+
+.menuLK .header .user {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 23px;
+  background: rgba(13, 150, 158, 0.7);
+}
+
+.menuLK .header .user img {
+  width: 90px;
+  border-radius: 50px;
+  margin: 0 0 10px 0;
+  border: 2px solid #fff;
+}
+
+.menuLK .items {
+  margin: 20px 0 0 35px;
+}
+
+.menuLK .items ol li {
+  list-style: none;
+  padding: 10px 0 0 10px;
+  font-size: 20px;
+}
+
+.menuLK .items ol li a.active {
+  color: #1adce4;
+}
+
+.menuLK .items ol li a.active span {
+  color: #fff;
+  background: #119298;
+}
+
+.menuLK .items ol li span {
+  display: inline-block;
+  color: #a4a4a4;
+  padding: 6px 8px 2px 7px;
+  text-align: center;
+  font-size: 15px;
+  border-radius: 5px;
+  background: #0c4b4e;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.menuLK .items .additional {
+  margin-top: 10px;
+}
+
+.menuLK .items .additional li {
+  font-size: 18px;
+}
+
+@media (max-width: 767px) {
+  .menuLK {
+    left: -270px;
+    width: 200px;
+  }
+
+  .menuLK .header {
+    height: 130px;
+  }
+
+  .menuLK .header .user {
+    font-size: 18px;
+  }
+
+  .menuLK .header .user img {
+    width: 70px;
+  }
+
+  .menuLK .items ol li {
+    font-size: 15px;
+  }
+
+  .menuLK .items ol li span {
+    display: inline-block;
+    color: #a4a4a4;
+    padding: 6px 6px 2px 5px;
+    text-align: center;
+    font-size: 13px;
+    border-radius: 5px;
+    background: #042a2c;
+    /*2a2a2c*/
+  }
+
+  .menuLK .items .additional li {
+    font-size: 13px;
+  }
+}
+/*
+ * ------------------------------
+ * Меню
+ */
+/*
+ * Контент
+ * --------------------------------------
+ */
+.contentLK {
+  margin: 0 0 0 250px;
+  padding: 30px;
+}
+
+@media screen and (max-width: 767px) {
+  .contentLK {
+    margin: 0;
+    padding: 0;
+  }
+
+  .buttonMenu {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+
+  .infoOffice .textInfo {
+    padding: 25px 10px 10px 10px;
+    font-size: 13px;
+  }
+}
+/*
+ * Главная
+ * -----------------------------
+ */
+.mainOffice .notice {
+  margin-bottom: 50px;
+  -webkit-box-shadow: 0px 0 40px 0px #000;
+          box-shadow: 0px 0 40px 0px #000;
+  background: #119298 center center / cover no-repeat;
+}
+.mainOffice .notice .blackout {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  min-height: 300px;
+  padding: 20px 20px;
+  background: rgba(0, 0, 0, 0.7);
+}
+.mainOffice .notice .blackout .text {
+  width: 100%;
+}
+.mainOffice .notice .blackout h1 {
+  text-align: center;
+  padding: 15px 0;
+}
+.mainOffice .notice .blackout .desc {
+  text-align: center;
+  font-size: 20px;
+}
+.mainOffice .notice .blackout .noPrize {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  width: 70%;
+  padding-top: 20px;
+  font-size: 15px;
+  opacity: 0.6;
+}
+.mainOffice .notice .blackout .noPrize span {
+  color: #1adce4;
+  -webkit-transition: color 0.3s ease;
+  transition: color 0.3s ease;
+}
+.mainOffice .notice .blackout .noPrize span:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.mainOffice .notice .blackout .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+}
+.mainOffice .notice .blackout .close:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.mainOffice .siteFriend {
+  /*display: block;
+  width: 100%;*/
+  height: 300px;
+  margin-bottom: 50px;
+  -webkit-box-shadow: 0px 0 40px 0px #000;
+          box-shadow: 0px 0 40px 0px #000;
+  /*background: #119298 center center / cover no-repeat;*/
+}
+.mainOffice .reviewUser, .mainOffice .lotteriesUser {
+  padding: 1px 30px 30px 30px;
+  -webkit-box-shadow: 0px 0 40px 0px #000;
+          box-shadow: 0px 0 40px 0px #000;
+}
+.mainOffice .reviewUser {
+  position: relative;
+  margin-bottom: 50px;
+}
+.mainOffice .reviewUser .sendReview {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  color: #1adce4;
+  font-size: 30px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  z-index: 5;
+}
+.mainOffice .reviewUser .sendReview:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.mainOffice .reviewUser textarea {
+  width: 100%;
+  height: 300px;
+  margin-top: 20px;
+}
+.mainOffice .lotteriesUser .title span {
+  font-size: 25px;
+  border-bottom: 3px solid #1adce4;
+  padding: 10px;
+}
+.mainOffice .lotteriesUser .lottery {
+  position: relative;
+  margin: 40px 0 0 0;
+}
+.mainOffice .lotteriesUser .lottery .header {
+  display: block;
+  padding: 10px;
+  color: #1adce4;
+  border: 1px solid #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.mainOffice .lotteriesUser .lottery .header .name {
+  display: inline-block;
+  font-size: 25px;
+  padding: 5px 10px;
+}
+.mainOffice .lotteriesUser .lottery .header .name i {
+  color: #119298;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.mainOffice .lotteriesUser .lottery .status {
+  position: absolute;
+  top: -13px;
+  right: 30px;
+  padding: 3px 10px 0 10px;
+  font-size: 17px;
+  color: #1adce4;
+  border: 1px solid #1adce4;
+  border-radius: 5px;
+  background: #131315;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.mainOffice .lotteriesUser .lottery .finger {
+  position: absolute;
+  right: -20px;
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  font-size: 20px;
+  text-align: center;
+  padding-top: 10px;
+  background: #119298;
+  border-radius: 50px;
+  -webkit-box-shadow: 0px 0 10px 0px #000;
+          box-shadow: 0px 0 10px 0px #000;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.mainOffice .lotteriesUser .lottery .up {
+  position: absolute;
+  top: -15px;
+}
+.mainOffice .lotteriesUser .lottery .up:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0 10px 0px #009900;
+          box-shadow: 0px 0 10px 0px #009900;
+  background: #009900;
+}
+.mainOffice .lotteriesUser .lottery .down {
+  position: absolute;
+  top: 30px;
+}
+.mainOffice .lotteriesUser .lottery .down:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0px 0 10px 0px #CC0000;
+          box-shadow: 0px 0 10px 0px #CC0000;
+  background: #CC0000;
+}
+.mainOffice .lotteriesUser .lottery .fingerOff {
+  background: #131315 !important;
+}
+.mainOffice .lotteriesUser .lottery .fingerLike {
+  background: #009900 !important;
+}
+.mainOffice .lotteriesUser .lottery .fingerLike:hover {
+  -webkit-box-shadow: 0px 0 10px 0px #009900;
+          box-shadow: 0px 0 10px 0px #009900;
+}
+.mainOffice .lotteriesUser .lottery .fingerDislike {
+  background: #CC0000 !important;
+}
+.mainOffice .lotteriesUser .lottery .fingerDislike:hover {
+  -webkit-box-shadow: 0px 0 10px 0px #CC0000;
+          box-shadow: 0px 0 10px 0px #CC0000;
+}
+.mainOffice .lotteriesUser .lottery:hover .header {
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+.mainOffice .lotteriesUser .lottery:hover .header .name i {
+  color: #fff;
+  opacity: 0.4;
+}
+.mainOffice .lotteriesUser .lottery:hover .status {
+  color: #fff;
+  border: 1px solid #119298;
+  -webkit-box-shadow: 0px 0 10px 0px #000;
+          box-shadow: 0px 0 10px 0px #000;
+  background: #119298;
+}
+.mainOffice .lotteriesUser .default {
+  font-size: 20px;
+  padding: 10px;
+}
+.mainOffice .lotteriesUser .default a {
+  color: #1adce4;
+}
+.mainOffice .lotteriesUser .default a:hover {
+  color: #119298;
+}
+
+@media (max-width: 767px) {
+  .mainOffice .title {
+    margin-top: 0px;
+  }
+  .mainOffice .notice {
+    margin-bottom: 30px;
+  }
+  .mainOffice .notice .blackout {
+    padding: 10px;
+  }
+  .mainOffice .notice .blackout .desc {
+    font-size: 18px;
+  }
+  .mainOffice .siteFriend {
+    height: 200px;
+    margin-bottom: 30px;
+  }
+  .mainOffice .siteFriend .banner .name {
+    font-size: 20px;
+  }
+  .mainOffice .reviewUser {
+    margin-bottom: 30px;
+    padding: 10px;
+  }
+  .mainOffice .reviewUser .sendReview {
+    top: 20px;
+    right: 20px;
+    font-size: 25px;
+  }
+  .mainOffice .reviewUser textarea {
+    height: 200px;
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .mainOffice .lotteriesUser {
+    padding: 10px;
+  }
+  .mainOffice .lotteriesUser .lottery {
+    margin: 20px 0 0 0;
+  }
+  .mainOffice .lotteriesUser .lottery .header .name {
+    font-size: 15px;
+    padding: 3px 5px;
+  }
+  .mainOffice .lotteriesUser .lottery .finger {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    padding-top: 8px;
+  }
+  .mainOffice .lotteriesUser .lottery .up {
+    position: absolute;
+    top: -15px;
+    right: 30px;
+  }
+  .mainOffice .lotteriesUser .lottery .down {
+    position: absolute;
+    top: -15px;
+    right: -5px;
+  }
+  .mainOffice .lotteriesUser .default {
+    font-size: 15px;
+    padding: 15px 10px;
+  }
+}
+/*
+ * ------------------------------
+ * Главная
+ */
+/*
+ * Диалоги
+ * -----------------------------
+ */
+.noise {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 90vh;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 50px 5px #000;
+          box-shadow: 0 0 50px 5px #000;
+}
+.noise .btnViewDialog {
+  position: absolute;
+  top: calc(50% - 25px);
+  left: -10px;
+  display: none;
+  font-size: 25px;
+  padding: 10px 10px 0 10px;
+  border-radius: 50px;
+  -webkit-box-shadow: 0px 0 20px 0px #000;
+          box-shadow: 0px 0 20px 0px #000;
+  background: #119298;
+  z-index: 994;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.noise .btnViewDialog:hover {
+  cursor: pointer;
+  left: 5px;
+}
+.noise .header {
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 50px;
+  background: #119298;
+}
+.noise .header .headDialogs {
+  width: 25%;
+  height: 100%;
+  padding: 15px 20px;
+  font-size: 20px;
+  border-right: 1px solid #1adce4;
+  background: #119298;
+  z-index: 995;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.noise .header .headMessages {
+  width: 75%;
+  height: 100%;
+  font-size: 20px;
+}
+.noise .header .headMessages .nameUserDialog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.noise .header .headMessages .nameUserDialog img {
+  width: 40px;
+  border-radius: 50px;
+}
+.noise .header .headMessages .nameUserDialog div {
+  padding: 5px 10px;
+}
+.noise .header .headMessages .titleAddDialog {
+  padding: 15px 0;
+  text-align: center;
+  width: 100%;
+}
+.noise .blockDialogs {
+  width: 25%;
+  height: 100%;
+  padding: 50px 0 0 0;
+  border-right: 1px solid #1adce4;
+  background: #131315;
+  z-index: 993;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.noise .blockDialogs .dialogs {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.noise .blockDialogs .dialogs .dialog {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100px;
+  padding: 13px 10px;
+  border-bottom: 1px dashed #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.noise .blockDialogs .dialogs .dialog img, .noise .blockDialogs .dialogs .dialog .addDialogIcon {
+  width: 70px;
+  border-radius: 50px;
+  border: 2px solid #119298;
+}
+.noise .blockDialogs .dialogs .dialog .addDialogIcon {
+  min-width: 70px;
+  height: 70px;
+  font-size: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 19px;
+  color: #1adce4;
+}
+.noise .blockDialogs .dialogs .dialog .name {
+  display: inline-block;
+  font-size: 20px;
+  padding: 0 0 0 7px;
+  color: #1adce4;
+}
+.noise .blockDialogs .dialogs .dialog .countNewMessage {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+  text-align: center;
+  padding: 8px 0 0 0;
+  color: #fff;
+  background: #119298;
+  border-radius: 50px;
+  -webkit-box-shadow: 0px 0 10px 0px #000;
+          box-shadow: 0px 0 10px 0px #000;
+}
+.noise .blockDialogs .dialogs .dialog .delDialog {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 20px;
+  color: #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.noise .blockDialogs .dialogs .dialog .delDialog:hover {
+  opacity: 0.9;
+  color: #CC0000;
+}
+.noise .blockDialogs .dialogs .dialog:hover {
+  cursor: pointer;
+  background: rgba(13, 150, 158, 0.2);
+}
+.noise .blockDialogs .dialogs .dialog.active {
+  background: rgba(13, 150, 158, 0.5);
+}
+.noise .blockDialogs .dialogs .dialog.last {
+  border-bottom: 0;
+}
+.noise .blockMessages {
+  position: relative;
+  display: inline-block;
+  width: 75%;
+  height: 100%;
+  padding: 50px 0 110px 0;
+  overflow: hidden;
+}
+.noise .blockMessages .searchUser {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.noise .blockMessages .searchUser .inputAddDialog {
+  position: relative;
+  width: 50%;
+  margin: 30px 0 20px 0;
+}
+.noise .blockMessages .searchUser .inputAddDialog .listUser {
+  position: absolute;
+  top: 42px;
+  width: 100%;
+  border: 1px solid #1adce4;
+  border-top: 0;
+  border-bottom: 0;
+  color: #1adce4;
+}
+.noise .blockMessages .searchUser .inputAddDialog .listUser div {
+  font-size: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.noise .blockMessages .searchUser .inputAddDialog .listUser div:hover {
+  cursor: pointer;
+  background: #119298;
+  color: #fff;
+}
+.noise .blockMessages .messages {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.noise .blockMessages .messages .date {
+  text-align: center;
+  text-transform: capitalize;
+  padding: 10px 0;
+  color: #1adce4;
+  font-size: 15px;
+}
+.noise .blockMessages .messages .message {
+  margin: 0 10px 20px 10px;
+}
+.noise .blockMessages .messages .message .time {
+  color: #1adce4;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+.noise .blockMessages .messages .message .text {
+  display: inline-block;
+  max-width: 80%;
+  padding: 10px 15px;
+  font-size: 15px;
+  text-align: left;
+  white-space: pre-line;
+  border-radius: 10px;
+}
+.noise .blockMessages .messages .myMessage {
+  text-align: right;
+}
+.noise .blockMessages .messages .myMessage .text {
+  background: #3399CC;
+}
+.noise .blockMessages .messages .himMessage {
+  text-align: left;
+}
+.noise .blockMessages .messages .himMessage .text {
+  background: #119298;
+}
+.noise .blockMessages .createMessage .sendComment {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  display: inline-block;
+  font-size: 35px;
+  color: #1adce4;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+.noise .blockMessages .createMessage .sendComment:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.noise .blockMessages .createMessage {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 110px;
+  background: #131315;
+  padding: 17px 30px;
+  -webkit-box-shadow: 0px 0 40px 0px #000;
+          box-shadow: 0px 0 40px 0px #000;
+}
+.noise .blockMessages .createMessage .sendComment {
+  top: 35px;
+  right: 25px;
+}
+.noise .blockMessages .createMessage .addDialogBtn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.noise .blockMessages .createMessage .addDialogBtn div {
+  display: inline-block;
+  font-size: 20px;
+  text-align: center;
+  width: 100%;
+  padding: 20px 0;
+  margin: 0 auto;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 10px 2px #000;
+          box-shadow: 0 0 10px 2px #000;
+  background: #199298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.noise .blockMessages .createMessage .addDialogBtn div:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 10px 2px #119298;
+          box-shadow: 0 0 10px 2px #119298;
+}
+
+@media screen and (max-width: 1000px) {
+  .noise .header .headDialogs {
+    position: absolute;
+    left: -260px;
+    width: 260px;
+  }
+  .noise .header .headDialogs.active {
+    left: 0;
+  }
+  .noise .header .headMessages {
+    width: 100%;
+    height: 100%;
+  }
+  .noise .blockDialogs {
+    position: absolute;
+    left: -300px;
+    width: 260px;
+    -webkit-box-shadow: 5px 0 40px 0px #000;
+            box-shadow: 5px 0 40px 0px #000;
+  }
+  .noise .blockDialogs.active {
+    left: 0;
+  }
+  .noise .blockMessages {
+    width: 100%;
+  }
+  .noise .btnViewDialog {
+    display: block;
+  }
+}
+@media (max-width: 767px) {
+  .noise {
+    height: 100vh;
+  }
+  .noise .header .headDialogs {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    padding: 20px 20px;
+    font-size: 15px;
+    left: -200px;
+    width: 200px;
+  }
+  .noise .header .headMessages {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .noise .header .headMessages div {
+    font-size: 15px;
+  }
+  .noise .header .headMessages .titleAddDialog {
+    padding-top: 17px;
+  }
+  .noise .blockDialogs {
+    position: absolute;
+    left: -250px;
+    width: 200px;
+    -webkit-box-shadow: 5px 0 40px 0px #000;
+            box-shadow: 5px 0 40px 0px #000;
+  }
+  .noise .blockDialogs .dialogs .dialog {
+    height: 70px;
+  }
+  .noise .blockDialogs .dialogs .dialog .addDialogIcon {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    font-size: 25px;
+    padding-top: 13px;
+  }
+  .noise .blockDialogs .dialogs .dialog .countNewMessage {
+    width: 20px;
+    height: 20px;
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 0;
+  }
+  .noise .blockDialogs .dialogs .dialog img {
+    width: 50px;
+  }
+  .noise .blockDialogs .dialogs .dialog .name {
+    font-size: 15px;
+  }
+  .noise .blockDialogs .dialogs .dialog .delDialog {
+    font-size: 16px;
+  }
+  .noise .blockMessages {
+    padding: 50px 0 90px 0;
+  }
+  .noise .blockMessages .messages .message .time {
+    font-size: 13px;
+  }
+  .noise .blockMessages .messages .message .text {
+    font-size: 13px;
+    max-width: 95%;
+  }
+  .noise .blockMessages .searchUser .inputAddDialog {
+    width: 90%;
+  }
+  .noise .blockMessages .searchUser .inputAddDialog .listUser {
+    top: 38px;
+  }
+  .noise .blockMessages .createMessage {
+    height: 90px;
+    padding: 10px 10px 0 10px;
+  }
+  .noise .blockMessages .createMessage .sendComment {
+    top: -20px;
+    font-size: 25px;
+    padding: 9px 12px 1px 8px;
+    background: #131315;
+    border-radius: 50px;
+    -webkit-box-shadow: 0px 0 20px 0px #000;
+            box-shadow: 0px 0 20px 0px #000;
+  }
+  .noise .blockMessages .createMessage textarea {
+    width: 100%;
+    height: 70px;
+    font-size: 15px;
+    padding: 10px;
+  }
+  .noise .blockMessages .createMessage .addDialogBtn div {
+    font-size: 18px;
+    padding: 24px 0;
+  }
+}
+/*
+ * ------------------------------
+ * Диалоги
+ */
+/*
+ * Мои студии
+ * -----------------------------
+ */
+.myStudios {
+  padding: 30px 20px;
+  -webkit-box-shadow: 0 0 50px 5px #000;
+          box-shadow: 0 0 50px 5px #000;
+}
+.myStudios .newStudioLink {
+  display: block;
+  width: 90%;
+  font-size: 25px;
+  text-align: center;
+  padding: 25px 0 20px 0;
+  margin: 0 auto;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  border-radius: 5px;
+  background: #119298;
+}
+.myStudios .newStudioLink:hover {
+  color: #fff;
+  -webkit-box-shadow: #119298 0 0 20px 1px;
+          box-shadow: #119298 0 0 20px 1px;
+}
+.myStudios .invitation {
+  margin-top: 35px;
+}
+.myStudios .invitation .background {
+  width: 100%;
+  border-radius: 10px;
+  background: #199298 center center / cover no-repeat;
+}
+.myStudios .invitation .background .info {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 30px;
+  border-radius: 10px;
+  background: rgba(13, 150, 158, 0.7);
+}
+.myStudios .invitation .background .info .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.myStudios .invitation .background .info .content img {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+}
+.myStudios .invitation .background .info .content .about {
+  margin-left: 30px;
+}
+.myStudios .invitation .background .info .content .about .statistics span {
+  padding-right: 15px;
+}
+.myStudios .invitation .background .info .content .about .name {
+  font-size: 35px;
+  padding: 0 0 5px 0;
+}
+.myStudios .invitation .background .info .content .about .helloMessage {
+  font-size: 20px;
+}
+.myStudios .invitation .background .info .confirm {
+  position: absolute;
+  top: -25px;
+  right: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0 0 0 10px;
+}
+.myStudios .invitation .background .info .confirm .no, .myStudios .invitation .background .info .confirm .yes {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50px;
+  height: 50px;
+  padding-top: 10px;
+  font-size: 30px;
+  border-radius: 50px;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myStudios .invitation .background .info .confirm .no {
+  margin-left: 10px;
+}
+.myStudios .invitation .background .info .confirm .no:hover {
+  cursor: pointer;
+  background: #CC0000;
+}
+.myStudios .invitation .background .info .confirm .yes:hover {
+  cursor: pointer;
+  background: #009900;
+}
+.myStudios .navigation {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #119298;
+  font-size: 30px;
+  text-align: center;
+  margin-top: 20px;
+  border-bottom: 1px solid #119298;
+}
+.myStudios .navigation .item {
+  width: 33.333%;
+  padding: 10px 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myStudios .navigation .item:hover, .myStudios .navigation .item.active {
+  cursor: pointer;
+  color: #1adce4;
+}
+.myStudios .navigation .underline {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 33.333%;
+  height: 5px;
+  background: #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myStudios .contents {
+  width: 100%;
+  margin-top: 20px;
+  overflow: hidden;
+}
+.myStudios .contents .pages {
+  position: relative;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 300%;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myStudios .contents .pages .item {
+  overflow: hidden;
+  width: 33.333%;
+  height: 1px;
+}
+.myStudios .contents .pages .item .studioLink {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #199298;
+  margin: 0 20px 20px 0;
+  border-radius: 100px 20px 20px 100px;
+  border: 1px solid #199298;
+}
+.myStudios .contents .pages .item .studioLink img {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  border-right: 1px solid #199298;
+}
+.myStudios .contents .pages .item .studioLink .info {
+  margin: 0 20px 0 10px;
+}
+.myStudios .contents .pages .item .studioLink .info .name {
+  font-size: 30px;
+}
+.myStudios .contents .pages .item .studioLink:hover {
+  cursor: pointer;
+  color: #fff;
+  background: #119298;
+}
+.myStudios .contents .pages .item .default {
+  font-size: 25px;
+  text-align: center;
+  padding: 50px 0;
+}
+.myStudios .contents .pages .item.active {
+  height: auto;
+}
+
+@media (max-width: 1000px) {
+  .myStudios .invitation .background .info {
+    padding: 20px 10px;
+  }
+  .myStudios .invitation .background .info .content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
+  .myStudios .invitation .background .info .content img {
+    min-width: 80px;
+    height: 80px;
+  }
+  .myStudios .invitation .background .info .content .about {
+    margin-left: 15px;
+  }
+  .myStudios .invitation .background .info .content .about .statistics {
+    font-size: 13px;
+  }
+  .myStudios .invitation .background .info .content .about .statistics span {
+    padding-right: 5px;
+  }
+  .myStudios .invitation .background .info .content .about .name {
+    font-size: 25px;
+  }
+  .myStudios .invitation .background .info .content .about .helloMessage {
+    font-size: 15px;
+  }
+  .myStudios .invitation .background .info .confirm {
+    top: -20px;
+    right: 10px;
+  }
+  .myStudios .invitation .background .info .confirm .yes, .myStudios .invitation .background .info .confirm .no {
+    width: 35px;
+    height: 35px;
+    padding-top: 7px;
+    font-size: 20px;
+  }
+  .myStudios .invitation .background .info .confirm .no {
+    margin-left: 5px;
+  }
+}
+@media (max-width: 767px) {
+  .myStudios .newStudioLink {
+    font-size: 20px;
+  }
+  .myStudios .navigation {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    color: #119298;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 20px;
+    border-bottom: 0;
+    border-left: 1px solid #119298;
+  }
+  .myStudios .navigation .item {
+    width: 90%;
+  }
+  .myStudios .navigation .underline {
+    bottom: inherit;
+    top: 0;
+    left: -3px;
+    width: 5px;
+    height: 33.3333%;
+  }
+  .myStudios .contents .pages .item .studioLink {
+    margin: 0 10px 10px 0;
+    border-radius: 70px 20px 20px 70px;
+  }
+  .myStudios .contents .pages .item .studioLink img {
+    width: 70px;
+    height: 70px;
+    border-radius: 70px;
+  }
+  .myStudios .contents .pages .item .studioLink .info .name {
+    font-size: 20px;
+  }
+  .myStudios .contents .pages .item .studioLink .info .statistics {
+    font-size: 10px;
+  }
+  .myStudios .contents .pages .item .default {
+    font-size: 18px;
+    padding: 30px 0;
+  }
+}
+/*
+ * ------------------------------
+ * Мои студии
+ */
+/*
+ * Создание студии
+ * -----------------------------
+ */
+.newStudio {
+  -webkit-box-shadow: 0 0 50px 5px #000;
+          box-shadow: 0 0 50px 5px #000;
+}
+.newStudio .form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.newStudio .form .inputAddStudio {
+  position: relative;
+  width: 50%;
+  margin: 100px 0 50px 0;
+}
+.newStudio .form .btnAddStudio {
+  display: inline-block;
+  font-size: 20px;
+  padding: 10px 50px;
+  margin: 0 0 100px 0;
+  border: 1px solid #fff;
+  opacity: 0.2;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.newStudio .form .btnAddStudio.active {
+  opacity: 1;
+}
+.newStudio .form .btnAddStudio.active:hover {
+  cursor: pointer;
+  border: 1px solid #119298;
+  background: #119298;
+}
+.newStudio .form .loading {
+  margin: 0 0 90px 0;
+}
+
+@media (max-width: 767px) {
+  .newStudio {
+    padding-top: 20px;
+  }
+  .newStudio .form .inputAddStudio {
+    position: relative;
+    width: 80%;
+    margin: 50px 0 30px 0;
+  }
+  .newStudio .form .form .btnAddStudio {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+  }
+}
+/*
+ * ------------------------------
+ *  Создание студии
+ */
+/*
+ * Студия
+ * --------------------------------------------------
+ */
+.studio {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+.studio .editRole {
+  display: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 60%;
+  height: 60%;
+  text-align: center;
+  color: #1adce4;
+  padding: 10px;
+  border: 1px solid #1adce4;
+  border-radius: 10px;
+  -webkit-box-shadow: #1adce4 0 0 20px 0;
+          box-shadow: #1adce4 0 0 20px 0;
+  background: #131315;
+}
+.studio .editRole .user {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 30%;
+  overflow: hidden;
+}
+.studio .editRole .user img {
+  width: 150px;
+  height: 150px;
+  border-radius: 150px;
+  border: 1px solid #1adce4;
+}
+.studio .editRole .user .name {
+  font-size: 35px;
+  padding: 10px 0 0 0;
+}
+.studio .editRole .role {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 60%;
+}
+.studio .editRole .role .itemRole {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  text-align: left;
+  padding: 7px 0;
+}
+.studio .editRole .role .itemRole input {
+  margin: 0 30px 0 0;
+}
+.studio .modalAddMember {
+  display: none;
+  text-align: center;
+}
+.studio .modalAddMember h1 {
+  padding-top: 30px;
+}
+.studio .modalAddMember .inputAddMember {
+  position: relative;
+  margin: 30px auto 40px auto;
+  width: 90%;
+}
+.studio .modalAddMember .inputAddMember .listUser {
+  position: absolute;
+  top: 48px;
+  left: 10px;
+  width: 70%;
+  text-align: left;
+  border: 1px solid #1adce4;
+  border-top: 0;
+  border-bottom: 0;
+  color: #1adce4;
+  background: #131315;
+}
+.studio .modalAddMember .inputAddMember .listUser div {
+  font-size: 20px;
+  padding: 10px 20px;
+  border-bottom: 1px solid #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .modalAddMember .inputAddMember .listUser div:hover {
+  cursor: pointer;
+  background: #119298;
+  color: #fff;
+}
+.studio .modalAddMember .inputAddMember .input {
+  border-bottom: 1px solid #1adce4;
+}
+.studio .modalAddMember .inputAddMember .inputLable {
+  color: #1adce4;
+}
+.studio .modalAddMember .labelHello {
+  width: 90%;
+  font-size: 20px;
+  text-align: left;
+  padding: 5px 10px;
+  margin: 0 auto;
+}
+.studio .modalAddMember .labelHello span {
+  float: right;
+}
+.studio .modalAddMember textarea {
+  width: 90%;
+}
+.studio .modalAddMember .sendHelloMessage {
+  display: inline-block;
+  color: #1adce4;
+  font-size: 20px;
+  padding: 10px 100px;
+  margin: 45px 0 20px 0;
+  border: 1px solid #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .modalAddMember .sendHelloMessage:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+.studio .modalAddMember .sendHelloMessage.disable {
+  opacity: 0.2;
+}
+.studio .modalAddMember .sendHelloMessage.disable:hover {
+  cursor: auto;
+  color: #1adce4;
+  border: 1px solid #1adce4;
+  background: #131315;
+}
+.studio .studioBack {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  z-index: 1;
+}
+.studio .studioBG {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.studio .studioBG div {
+  width: 100%;
+  height: 100%;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  background: #131315 center center / cover no-repeat;
+}
+.studio .studioTitle {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  text-align: center;
+  background: rgba(19, 19, 21, 0.6);
+}
+.studio .studioTitle .cover {
+  position: relative;
+  height: 530px;
+  padding: 0;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+  background: #119298 center center / cover no-repeat;
+}
+.studio .studioTitle .cover div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  font-size: 100px;
+  line-height: 1;
+  background: rgba(19, 19, 21, 0.5);
+}
+.studio .studioTitle .cover .name span {
+  font-family: 'Lobster';
+  overflow: hidden;
+  padding: 20px 10px;
+}
+.studio .studioTitle .cover .avatar {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 100px);
+  width: 200px;
+  height: 200px;
+  border-radius: 150px;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+  transition: all 1s ease;
+  -webkit-transition: all 1s ease;
+  z-index: 1;
+}
+.studio .studioTitle .cover .avatar.top {
+  position: absolute;
+  top: -100px;
+}
+.studio .studioTitle .cover .avatar.bottom {
+  position: absolute;
+  top: calc(100% - 100px);
+}
+.studio .content {
+  margin: 0 0 70px 0;
+  /*Статус студии*/
+  /*Кнопка подписки на студию*/
+  /* Цитата */
+  /* Лоттереи */
+  /* Призы */
+  /* О нас */
+  /* Контакты */
+}
+.studio .content .status {
+  position: absolute;
+  top: 50px;
+  left: 50px;
+  font-size: 30px;
+  font-family: Lobster;
+}
+.studio .content .btnWorkStudio {
+  position: absolute;
+  top: 40px;
+  right: 50px;
+  width: 260px;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: rgba(13, 150, 158, 0.2);
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .subscribe {
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .subscribe:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 1px #119298;
+          box-shadow: 0 0 20px 1px #119298;
+}
+.studio .content .goOutStudio {
+  background: rgba(13, 150, 158, 0.2);
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .goOutStudio:hover {
+  cursor: pointer;
+  color: #1adce4;
+}
+.studio .content .delStudio {
+  background: #CC0000;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .delStudio:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 1px #CC0000;
+          box-shadow: 0 0 20px 1px #CC0000;
+}
+.studio .content .crossPhoto {
+  display: none;
+  text-align: center;
+  width: 95%;
+  margin: 40px auto 0 auto;
+  padding: 30px;
+  -webkit-box-shadow: #000 0px 0px 20px 5px inset;
+          box-shadow: #000 0px 0px 20px 5px inset;
+}
+.studio .content .crossPhoto .crossPhotoImg {
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-shadow: #000 0px 0px 10px 0;
+          box-shadow: #000 0px 0px 10px 0;
+}
+.studio .content .crossPhoto .crossPhotoImg img {
+  width: 100%;
+}
+.studio .content .crossPhoto .cancel, .studio .content .crossPhoto .clip {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 25px;
+  padding: 10px 50px;
+  margin: 20px 20px 0 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: #000 0 0 20px 0;
+          box-shadow: #000 0 0 20px 0;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .crossPhoto .cancel {
+  background: #CC0000;
+}
+.studio .content .crossPhoto .cancel:hover {
+  -webkit-box-shadow: #CC0000 0 0 20px 0;
+          box-shadow: #CC0000 0 0 20px 0;
+}
+.studio .content .crossPhoto .clip {
+  background: #009900;
+}
+.studio .content .crossPhoto .clip:hover {
+  -webkit-box-shadow: #009900 0 0 20px 0;
+          box-shadow: #009900 0 0 20px 0;
+}
+.studio .content .hiddenInputFile {
+  width: 0.001px;
+  height: 0.001px;
+  overflow: hidden;
+}
+.studio .content .editImg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 50px 0 0 0;
+}
+.studio .content .editImg a:hover {
+  color: #fff;
+}
+.studio .content .editImg .editBtn {
+  display: inline-block;
+  width: 260px;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px 0px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .editImg .editBtn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 1px #119298;
+          box-shadow: 0 0 20px 1px #119298;
+}
+.studio .content textarea {
+  width: calc(100% - 20px);
+  height: 200px;
+  resize: vertical;
+  outline: none;
+  color: #fff;
+  border: 0;
+  padding: 10px;
+  -webkit-box-shadow: 0 0 10px 3px #1adce4;
+          box-shadow: 0 0 10px 3px #1adce4;
+  background: transparent;
+}
+.studio .content .container {
+  position: relative;
+  height: 100%;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+  padding: 100px 50px 50px 50px;
+}
+.studio .content .quote {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: 70px 50px 100px 50px;
+}
+.studio .content .quote .iconLeft, .studio .content .quote .iconRight {
+  font-size: 40px;
+}
+.studio .content .quote .text {
+  width: 100%;
+  font-size: 20px;
+  text-align: center;
+  padding: 0 20px;
+}
+.studio .content .quote .text textarea {
+  height: 200px;
+}
+.studio .content .quote .text hr {
+  width: 70%;
+  margin: 15px auto;
+}
+.studio .content .quote .text .author input {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  font-style: italic;
+  font-family: Text;
+  outline: none;
+  padding: 5px 10px;
+  border: 0;
+  -webkit-box-shadow: 0 0 5px 1px #1adce4;
+          box-shadow: 0 0 5px 1px #1adce4;
+  background: transparent;
+}
+.studio .content .lotteries a {
+  color: #fff;
+}
+.studio .content .lotteries .lottery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: 300px;
+  margin: 30px 0 0 0;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .lotteries .lottery .preview {
+  width: 50%;
+}
+.studio .content .lotteries .lottery .preview .inform {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 30px;
+  background: rgba(19, 19, 21, 0.5);
+}
+.studio .content .lotteries .lottery .preview .inform .iconAddLottery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 70%;
+  color: #1adce4;
+  font-size: 50px;
+  text-align: center;
+  border-right: 1px solid #1adce4;
+}
+.studio .content .lotteries .lottery .preview .inform .iconAddLottery i {
+  display: block;
+  width: 100px;
+  height: 100px;
+  padding: 22px 0 0 0;
+  border: 1px solid #1adce4;
+  border-radius: 150px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .content .lotteries .lottery .description {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 20px;
+  width: 50%;
+  color: #1adce4;
+  padding: 10px 30px;
+  overflow: hidden;
+}
+.studio .content .lotteries .lottery .titleDesc {
+  font-size: 30px;
+  margin: 0px 0 10px 0;
+}
+.studio .content .lotteries .lottery:hover {
+  -webkit-box-shadow: 0 0 10px 1px #119298;
+          box-shadow: 0 0 10px 1px #119298;
+}
+.studio .content .lotteries .lottery:hover .preview {
+  background-color: #119298;
+}
+.studio .content .prizes {
+  color: #1adce4;
+  margin: 70px 0 0 0;
+}
+.studio .content .prizes .year {
+  font-size: 50px;
+  margin: 50px 0 0 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .content .prizes .mounth {
+  font-size: 25px;
+  margin: 10px 0 0 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .content .prizes .year:hover, .studio .content .prizes .mounth:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.studio .content .prizes .prize {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding: 15px 0 0 0;
+}
+.studio .content .prizes .prize .day {
+  font-size: 40px;
+  width: 40px;
+  margin: 0 0 0 50px;
+  text-align: center;
+}
+.studio .content .prizes .prize .name {
+  font-size: 30px;
+  margin: 0 0 10px 20px;
+}
+.studio .content .prizes .prize .name img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+}
+.studio .content .prizes .prize .name a:hover img {
+  border: 1px solid #119298;
+}
+.studio .content .about {
+  /* Команда */
+}
+.studio .content .about .text {
+  padding: 20px;
+  font-size: 20px;
+}
+.studio .content .about .team {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.studio .content .about .team .member {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  margin: 20px 0 0 0;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .about .team .member.noconfirm {
+  opacity: 0.4;
+}
+.studio .content .about .team .member.noconfirm:hover {
+  opacity: 1;
+}
+.studio .content .about .team .member .position {
+  cursor: pointer;
+  position: relative;
+}
+.studio .content .about .team .member .position img,
+.studio .content .about .team .member .position .addMember {
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  margin: 0 0 5px 0;
+  font-size: 70px;
+  line-height: 1;
+  border-radius: 150px;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+}
+.studio .content .about .team .member .position .addMember i {
+  display: block;
+  margin: 43px 0 0 0;
+}
+.studio .content .about .team .member .position .name {
+  font-size: 30px;
+  padding-top: 5px;
+}
+.studio .content .about .team .member .position .editMember, .studio .content .about .team .member .position .oneeditMember {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  font-size: 20px;
+  padding: 5px;
+  border-radius: 50px;
+  -webkit-box-shadow: #000 0 0 20px 0;
+          box-shadow: #000 0 0 20px 0;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+}
+.studio .content .about .team .member .position .editMember i:hover, .studio .content .about .team .member .position .oneeditMember i:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.studio .content .about .team .member .position .oneeditMember {
+  top: 5px;
+  padding-bottom: 0px;
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+.studio .content .about .team .member:hover .position img, .studio .content .about .team .member:hover .position .addMember {
+  cursor: pointer;
+  color: #119298;
+  -webkit-box-shadow: 0 0 10px 1px #119298;
+          box-shadow: 0 0 10px 1px #119298;
+}
+.studio .content .about .team .addMemberBtn .position .name {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .content .about .team .addMemberBtn .position:hover .name {
+  cursor: pointer;
+  color: #119298;
+}
+.studio .content .contacts {
+  margin: 40px 0 0 0;
+}
+.studio .content .contacts .contents {
+  padding: 20px 50px;
+}
+.studio .content .contacts .contents .social {
+  font-size: 40px;
+}
+.studio .content .contacts .contents .info {
+  font-size: 30px;
+  line-height: 1;
+  margin: 20px 0 0 0;
+}
+.studio .content .contacts .contents .info .itemContact {
+  margin: 10px 0 0 0;
+}
+.studio .content .contacts .contents .info .titleContact {
+  color: #1adce4;
+}
+.studio .content .contacts .contents .info .contactPencil {
+  font-size: 22px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .contacts .contents .info .contactPencil:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.studio .content .contacts .contents .info .editContact {
+  display: none;
+  position: relative;
+  margin: 15px 0;
+  padding: 0 30px 30px 30px;
+  -webkit-box-shadow: 0 0 30px 1px #000 inset;
+          box-shadow: 0 0 30px 1px #000 inset;
+}
+.studio .content .contacts .contents .info .editContact .confirm {
+  position: absolute;
+  bottom: 15px;
+  right: 7%;
+  color: #1adce4;
+  font-size: 50px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .contacts .contents .info .editContact .confirm:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.studio .content .contacts .contents .info .editContact input {
+  width: 80%;
+  color: #fff;
+  font-size: 20px;
+  margin: 30px 0 0 0;
+  padding: 10px 15px;
+  border: 0;
+  -webkit-box-shadow: 0 0 10px 1px #1adce4;
+          box-shadow: 0 0 10px 1px #1adce4;
+  background: transparent;
+}
+.studio .content .contacts .contents .info .editContact .addSocial i {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  text-align: center;
+  margin: 30px 5px 0 0;
+  padding: 8px 0 0 0;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.studio .content .contacts .contents .info .editContact .addSocial i:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 1px #119298;
+          box-shadow: 0 0 20px 1px #119298;
+}
+.studio .content .contacts .contents .info .editContact .itemSocial {
+  position: relative;
+  margin: 15px 0 0 0;
+}
+.studio .content .contacts .contents .info .editContact .itemSocial .icon {
+  position: absolute;
+  bottom: 4px;
+  left: 15px;
+  color: #1adce4;
+  font-size: 25px;
+}
+.studio .content .contacts .contents .info .editContact .itemSocial input {
+  padding-left: 60px;
+  margin: 10px 0 0 0;
+}
+.studio .content .contacts .contents .info .editContact .itemSocial .delLink {
+  position: relative;
+  top: 7px;
+  color: #CC0000;
+  font-size: 25px;
+}
+.studio .content .contacts .contents .info .editContact .itemSocial .delLink:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.studio .content .logo {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 80px;
+  margin: 50px 0;
+}
+.studio .content .logo .good, .studio .content .logo div {
+  font-family: 'Lobster';
+}
+.studio .content .logo img {
+  width: 150px;
+  height: 150px;
+  margin: 0 10px 0 20px;
+  border-radius: 150px;
+  -webkit-box-shadow: 0 0 30px 3px #000;
+          box-shadow: 0 0 30px 3px #000;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.studio .content .logoLink:hover img {
+  -webkit-box-shadow: 0 0 30px 3px #119298;
+          box-shadow: 0 0 30px 3px #119298;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .studio .editRole {
+    width: 80%;
+  }
+
+  .studio .studioTitle .cover div {
+    font-size: 80px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .studio .editRole {
+    width: 80%;
+  }
+  .studio .studioBG, .studio .studioTitle {
+    height: 550px;
+  }
+  .studio .studioTitle .cover {
+    height: 400px;
+  }
+  .studio .studioTitle .cover div {
+    font-size: 60px;
+  }
+  .studio .studioTitle .cover .avatar {
+    left: calc(50% - 75px);
+    width: 150px;
+    height: 150px;
+  }
+  .studio .studioTitle .cover .avatar.top {
+    top: -75px;
+  }
+  .studio .studioTitle .cover .avatar.bottom {
+    top: 325px;
+  }
+  .studio .content .container {
+    padding: 70px 20px 0px 20px;
+  }
+  .studio .content .status {
+    top: 20px;
+    left: 30px;
+  }
+  .studio .content .btnWorkStudio {
+    top: 20px;
+    right: 20px;
+    width: 240px;
+  }
+  .studio .content .editImg .editBtn {
+    width: 210px;
+    font-size: 15px;
+  }
+  .studio .content .quote {
+    margin: 70px 50px 50px 50px;
+  }
+  .studio .content .lotteries .lottery {
+    height: 250px;
+  }
+  .studio .content .lotteries .lottery .preview .inform {
+    font-size: 25px;
+  }
+  .studio .content .lotteries .lottery .titleDesc {
+    font-size: 25px;
+  }
+  .studio .content .lotteries .lottery .description {
+    font-size: 17px;
+  }
+  .studio .content .about .team .member {
+    width: 25%;
+  }
+  .studio .content .contacts .contents {
+    padding: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .studio .modalAddMember {
+    padding: 0;
+  }
+  .studio .modalAddMember h1 {
+    padding-top: 25px;
+    padding-bottom: 10px;
+    font-size: 23px;
+  }
+  .studio .modalAddMember .inputAddMember {
+    margin: 20px auto 20px auto;
+  }
+  .studio .modalAddMember .inputAddMember .listUser {
+    top: 38px;
+    left: 0px;
+    width: 90%;
+  }
+  .studio .modalAddMember .labelHello {
+    width: 90%;
+    font-size: 15px;
+    text-align: left;
+    padding: 5px 10px;
+    margin: 0 auto;
+  }
+  .studio .modalAddMember .sendHelloMessage {
+    margin-top: 20px;
+    font-size: 15px;
+  }
+  .studio .editRole {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    width: 100%;
+    height: auto;
+    padding: 20px 10px;
+  }
+  .studio .editRole .user {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    width: 100%;
+  }
+  .studio .editRole .user img {
+    width: 80px;
+    height: 80px;
+    margin-right: 10px;
+  }
+  .studio .editRole .user .name {
+    font-size: 22px;
+  }
+  .studio .editRole .role {
+    margin-top: 15px;
+    width: 90%;
+  }
+  .studio .editRole .role .itemRole input {
+    min-width: 20px;
+    margin-right: 20px;
+  }
+  .studio .studioBG, .studio .studioTitle {
+    height: 100%;
+  }
+  .studio .studioTitle .cover {
+    height: 100%;
+    width: 100%;
+  }
+  .studio .studioTitle .cover div {
+    font-size: 40px;
+  }
+  .studio .studioTitle .cover .avatar {
+    left: calc(50% - 50px);
+    width: 100px;
+    height: 100px;
+  }
+  .studio .studioTitle .cover .avatar.top {
+    top: calc(85% - 50px);
+    opacity: 0.6;
+  }
+  .studio .studioTitle .cover .avatar.bottom {
+    top: calc(100% - 50px);
+  }
+  .studio .content {
+    margin: 0;
+  }
+  .studio .content .container {
+    padding: 60px 10px 0px 10px;
+  }
+  .studio .content .status {
+    position: relative;
+    top: 0px;
+    left: 0px;
+    font-size: 25px;
+  }
+  .studio .content .btnWorkStudio {
+    position: relative;
+    top: 10px;
+    right: inherit;
+    width: 100%;
+  }
+  .studio .content .editImg {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    padding: 0 0 0 0;
+  }
+  .studio .content .editImg .editBtn {
+    width: 100%;
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .studio .content .crossPhoto .cancel, .studio .content .crossPhoto .clip {
+    font-size: 15px;
+    width: 100%;
+    padding: 10px 0px;
+    margin: 15px 0 0 0;
+  }
+  .studio .content .lotteries .lottery {
+    position: relative;
+    height: 200px;
+  }
+  .studio .content .lotteries .lottery .preview {
+    width: 100%;
+  }
+  .studio .content .lotteries .lottery .preview .inform .iconAddLottery {
+    border: 0;
+  }
+  .studio .content .lotteries .lottery .preview .description {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  .studio .content .prizes .year {
+    font-size: 30px;
+    margin-top: 30px;
+  }
+  .studio .content .prizes .mounth {
+    font-size: 20px;
+    margin: 10px 0 0 10px;
+  }
+  .studio .content .prizes .prize {
+    padding: 10px 0;
+  }
+  .studio .content .prizes .prize .day {
+    font-size: 18px;
+    width: 10px;
+    margin: 0 0 0 30px;
+  }
+  .studio .content .prizes .prize .name {
+    font-size: 18px;
+    margin: 0 0 0 20px;
+  }
+  .studio .content .about .text {
+    padding: 20px 0px;
+    font-size: 15px;
+  }
+  .studio .content .about .team {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    padding: 0 10px;
+  }
+  .studio .content .about .team .member {
+    width: 100%;
+    display: block;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: left;
+    margin: 20px 0 0 0;
+  }
+  .studio .content .about .team .member .position a {
+    display: block;
+  }
+  .studio .content .about .team .member .position img,
+  .studio .content .about .team .member .position .addMember {
+    width: 70px;
+    height: 70px;
+    margin: 0 5px 0 0;
+    font-size: 30px;
+    text-align: center;
+    -webkit-box-shadow: 0 0 10px 1px #000;
+            box-shadow: 0 0 10px 1px #000;
+  }
+  .studio .content .about .team .member .position .addMember i {
+    margin-top: 22px;
+  }
+  .studio .content .about .team .member .position .name {
+    display: inline-block;
+    font-size: 20px;
+    padding-top: 0;
+  }
+  .studio .content .about .team .member .position .editMember, .studio .content .about .team .member .position .oneeditMember {
+    top: -10px;
+    right: inherit;
+    left: 40px;
+    font-size: 15px;
+    -webkit-box-shadow: #000 0 0 10px 0;
+            box-shadow: #000 0 0 10px 0;
+  }
+  .studio .content .about .team .member .position .oneeditMember {
+    top: -5px;
+  }
+  .studio .content .about .team .addMemberBtn .position .name {
+    position: relative;
+    top: -10px;
+  }
+  .studio .content .contacts {
+    margin: 0;
+  }
+  .studio .content .contacts .contents {
+    padding: 0 10px;
+  }
+  .studio .content .contacts .contents .info {
+    font-size: 20px;
+    margin-top: 20px;
+  }
+  .studio .content .contacts .contents .info .itemContact {
+    margin-top: 10px;
+  }
+  .studio .content .contacts .contents .info .contactPencil {
+    font-size: 15px;
+  }
+  .studio .content .contacts .contents .info .editContact {
+    margin: 5px 0;
+    padding: 5px 10px 10px 10px;
+    -webkit-box-shadow: 0 0 10px 1px #000 inset;
+            box-shadow: 0 0 10px 1px #000 inset;
+  }
+  .studio .content .contacts .contents .info .editContact .confirm {
+    position: relative;
+    bottom: 0;
+    right: 0;
+    top: 10px;
+    padding-bottom: 5px;
+    text-align: center;
+    font-size: 30px;
+  }
+  .studio .content .contacts .contents .info .editContact input {
+    width: 100%;
+    font-size: 15px;
+    margin: 10px 0 0 0;
+    padding: 10px 10px 5px 10px;
+    -webkit-box-shadow: 0 0 2px 1px #1adce4;
+            box-shadow: 0 0 2px 1px #1adce4;
+  }
+  .studio .content .contacts .contents .info .editContact .addSocial i {
+    width: 35px;
+    height: 35px;
+    margin: 5px 0px 0 0;
+    padding: 6px 0 0 0;
+    -webkit-box-shadow: 0 0 10px 1px #000;
+            box-shadow: 0 0 10px 1px #000;
+  }
+  .studio .content .contacts .contents .info .editContact .itemSocial {
+    margin-top: 10px;
+  }
+  .studio .content .contacts .contents .info .editContact .itemSocial .icon {
+    bottom: 4px;
+    left: 12px;
+    font-size: 15px;
+  }
+  .studio .content .contacts .contents .info .editContact .itemSocial input {
+    padding: 10px 30px 5px 40px;
+    margin: 5px 0 0 0;
+  }
+  .studio .content .contacts .contents .info .editContact .itemSocial .delLink {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 20px;
+  }
+  .studio .content .logo {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 30px;
+    margin: 50px 0;
+  }
+  .studio .content .logo img {
+    width: 80px;
+    height: 80px;
+    margin: 0 5px 0 10px;
+    -webkit-box-shadow: 0 0 20px 3px #000;
+            box-shadow: 0 0 20px 3px #000;
+  }
+  .studio .content .logoLink:hover img {
+    -webkit-box-shadow: 0 0 20px 3px #119298;
+            box-shadow: 0 0 20px 3px #119298;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Студия
+ */
+/*
+ * Настройки
+ * -----------------------------
+ */
+.settings {
+  position: relative;
+  padding: 20px 0;
+  -webkit-box-shadow: 0 0 40px 5px #000;
+          box-shadow: 0 0 40px 5px #000;
+}
+.settings .row {
+  margin: 0 0 60px 0;
+}
+.settings .profileLK {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  height: auto;
+  margin: 50px 0;
+  padding: 0 10px;
+}
+.settings .profileLK .nickAva {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 40%;
+  height: auto;
+  margin: 0 100px 0 0;
+}
+.settings .profileLK .nick {
+  position: relative;
+  width: 100%;
+  margin: 20px 0 0 0;
+}
+.settings .ava {
+  position: relative;
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 15px 0px #119298;
+          box-shadow: 0 0 15px 0px #119298;
+}
+.settings .ava img {
+  width: 100%;
+  height: 100%;
+}
+.settings .ava .inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
+.settings .ava .inputfile + label {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 70px;
+  cursor: pointer;
+  opacity: 0.4;
+  margin: 0;
+  border-radius: 100px;
+  background: #119298;
+}
+.settings .ava .inputfile + label:hover {
+  opacity: 0.8;
+}
+.settings .crossPhoto {
+  display: none;
+  text-align: center;
+  width: 95%;
+  margin: 40px auto 0 auto;
+  padding: 30px;
+  -webkit-box-shadow: #000 0px 0px 20px 5px inset;
+          box-shadow: #000 0px 0px 20px 5px inset;
+}
+.settings .crossPhoto .crossPhotoImg {
+  margin: 0 auto;
+  width: 100%;
+  -webkit-box-shadow: #000 0px 0px 10px 0;
+          box-shadow: #000 0px 0px 10px 0;
+}
+.settings .crossPhoto .crossPhotoImg img {
+  width: 100%;
+}
+.settings .crossPhoto .cancel, .settings .crossPhoto .clip {
+  cursor: pointer;
+  display: inline-block;
+  font-size: 25px;
+  padding: 10px 50px;
+  margin: 20px 20px 0 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: #000 0 0 20px 0;
+          box-shadow: #000 0 0 20px 0;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.settings .crossPhoto .cancel {
+  background: #CC0000;
+}
+.settings .crossPhoto .cancel:hover {
+  -webkit-box-shadow: #CC0000 0 0 20px 0;
+          box-shadow: #CC0000 0 0 20px 0;
+}
+.settings .crossPhoto .clip {
+  background: #009900;
+}
+.settings .crossPhoto .clip:hover {
+  -webkit-box-shadow: #009900 0 0 20px 0;
+          box-shadow: #009900 0 0 20px 0;
+}
+.settings .name {
+  position: relative;
+  width: 50%;
+}
+.settings .name div {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+.settings .name .input, .settings .pass .input,
+.settings .bigCity .input, .settings .birthday .input,
+.settings .birthmounth .input, .settings .birthyear .input {
+  font-size: 25px;
+}
+.settings .name .inputLable, .settings .nick .inputLable,
+.settings .pass .inputLable, .settings .bigCity .inputLable,
+.settings .birthday .inputLable, .settings .birthmounth .inputLable,
+.settings .birthyear .inputLable {
+  font-size: 20px;
+  left: 10px;
+}
+.settings .inputLable .error {
+  color: #CC0000;
+}
+.settings .deffence {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 50px 0;
+  padding: 0 10px;
+}
+.settings .unique {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50%;
+  margin: 0 0px 0 0;
+}
+.settings .unique div, .settings .pass div {
+  position: relative;
+  width: 100%;
+  margin: 40px 0 0 0;
+}
+.settings .pass {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 40%;
+}
+.settings .searchCity {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 70px 0;
+}
+.settings .address {
+  position: relative;
+  margin: 30px auto;
+  width: 90%;
+}
+.settings .searchCity .city {
+  position: relative;
+  width: 50%;
+}
+.settings .searchCity .citiesList {
+  display: none;
+  position: absolute;
+  width: 100%;
+  background: #131315;
+  z-index: 993;
+  border: 1px solid #1adce4;
+  border-top: 0;
+  color: #1adce4;
+}
+.settings .searchCity .citiesList .cityItem {
+  font-size: 15px;
+  width: 100%;
+  padding: 10px 15px;
+  border-bottom: 1px solid #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.settings .searchCity .citiesList .cityItem .info {
+  font-size: 20px;
+}
+.settings .searchCity .citiesList .cityItem .info .name {
+  font-size: 25px;
+}
+.settings .searchCity .citiesList .cityItem.addCity {
+  border-bottom: 0;
+  font-size: 18px;
+  padding: 20px 15px;
+}
+.settings .searchCity .citiesList .cityItem:hover {
+  cursor: pointer;
+  color: #fff;
+  background: #119298;
+}
+.settings .searchCity .bigCity {
+  position: relative;
+  width: 30%;
+}
+.settings .titleMap {
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px 15px;
+}
+.settings .map {
+  width: 100%;
+  height: 500px;
+  opacity: 0.6;
+  margin: 0 0 50px 0;
+  background: #119298;
+}
+.settings .born {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  margin: 50px 0 0 0;
+}
+.settings .blockDate, .settings .gender, .settings .social {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  font-size: 17px;
+  margin: 0 50px 0 0;
+}
+.settings .bornDate {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 0 0 0;
+}
+.settings .blockDate {
+  width: 20%;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+.settings .blockDate div {
+  position: relative;
+  width: 100%;
+}
+.settings .blockDate span.active {
+  color: #1adce4;
+}
+.settings .gender {
+  width: 10%;
+}
+.settings .gender .select {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+}
+.settings .gender .select .man, .settings .gender .select .woman {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  font-size: 15px;
+}
+.settings .gender .select .man.active, .settings .gender .select .woman.active {
+  color: #1adce4;
+}
+.settings .gender .select .man {
+  margin: 0 20px 0 0;
+}
+.settings .social {
+  width: 30%;
+}
+.settings .social .bindSocial {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+}
+.settings .social .bindSocial.active {
+  color: #1adce4;
+}
+.settings .titleBorn {
+  margin: 10px 0 0 0;
+}
+.settings .titleBorn.active {
+  color: #1adce4;
+}
+.settings .save {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-size: 20px;
+  padding: 15px 100px;
+  border-radius: 10px;
+  background: #119298;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+.settings .save:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.settings .delete {
+  display: none;
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  font-size: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+  .settings .profileLK {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .settings .profileLK .nickAva {
+    width: 70%;
+    margin: 0;
+  }
+  .settings .name {
+    width: 70%;
+  }
+  .settings .deffence {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    margin: 0;
+  }
+  .settings .unique {
+    width: 70%;
+  }
+  .settings .pass {
+    width: 70%;
+  }
+  .settings .searchCity {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 70%;
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+  .settings .searchCity .city {
+    width: 100%;
+  }
+  .settings .searchCity .bigCity {
+    width: 100%;
+    margin: 20px 0 0 0;
+  }
+  .settings .born {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    margin: 0px 0 0 0;
+  }
+  .settings .blockDate, .settings .gender, .settings .social {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+    font-size: 17px;
+    width: 70%;
+    margin: 30px 0px 0 0;
+  }
+}
+@media screen and (max-width: 767px) {
+  .settings .name .input, .settings .nick .input, .settings .pass .input, .settings .otherSettings .input, .settings .unique .input,
+  .settings .birthday .input, .settings .birthmounth .input, .settings .birthyear .input {
+    font-size: 20px;
+  }
+  .settings .name .input:focus ~ .inputLable, .settings .name .input:valid ~ .inputLable, .settings .nick .input:focus ~ .inputLable, .settings .nick .input:valid ~ .inputLable, .settings .pass .input:focus ~ .inputLable, .settings .pass .input:valid ~ .inputLable, .settings .otherSettings .input:focus ~ .inputLable, .settings .otherSettings .input:valid ~ .inputLable, .settings .unique .input:focus ~ .inputLable, .settings .unique .input:valid ~ .inputLable,
+  .settings .birthday .input:focus ~ .inputLable,
+  .settings .birthday .input:valid ~ .inputLable, .settings .birthmounth .input:focus ~ .inputLable, .settings .birthmounth .input:valid ~ .inputLable, .settings .birthyear .input:focus ~ .inputLable, .settings .birthyear .input:valid ~ .inputLable {
+    font-size: 15px;
+    top: -10px;
+  }
+  .settings .name .inputLable, .settings .nick .inputLable, .settings .pass .inputLable, .settings .otherSettings .inputLable, .settings .unique .inputLable,
+  .settings .birthday .inputLable, .settings .birthmounth .inputLable, .settings .birthyear .inputLable {
+    font-size: 15px;
+    left: 10px;
+    top: 15px;
+  }
+  .settings .ava {
+    width: 150px;
+    height: 150px;
+  }
+  .settings .ava .inputfile + label {
+    font-size: 50px;
+  }
+  .settings .profileLK .nickAva, .settings .name,
+  .settings .unique, .settings .pass,
+  .settings .searchCity {
+    width: 100%;
+  }
+  .settings .searchCity .city .citiesList .cityItem {
+    font-size: 13px;
+  }
+  .settings .searchCity .city .citiesList .cityItem .info {
+    font-size: 15px;
+  }
+  .settings .searchCity .city .citiesList .cityItem .name {
+    font-size: 18px;
+  }
+  .settings .searchCity .city .citiesList .cityItem.addCity {
+    font-size: 15px;
+  }
+  .settings .address {
+    padding: 0 10px;
+    width: 100%;
+  }
+  .settings .titleMap {
+    font-size: 16px;
+    padding-bottom: 10px;
+  }
+  .settings .map {
+    display: none;
+    height: 300px;
+  }
+  .settings .blockDate, .settings .gender, .settings .social {
+    font-size: 15px;
+    width: 90%;
+    margin: 30px 0px 0 0;
+  }
+  .settings .gender .man, .settings .gender .woman {
+    font-size: 13px;
+  }
+  .settings .bindSocial {
+    font-size: 15px;
+  }
+  .settings .save {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 100%;
+    padding: 20px 0;
+    border-radius: 0px;
+    text-align: center;
+  }
+  .settings .unique div, .settings .pass div, .settings .name div {
+    margin: 30px 0 0 0;
+  }
+}
+/*
+ * ------------------------------
+ * Настройки
+ */
+/*
+ * Профиль
+ * --------------------------------------------------
+ */
+.profile {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.profileBack {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 16px;
+  z-index: 1;
+}
+
+.profileBG {
+  width: 100%;
+  height: 100vh;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+  opacity: 0.5;
+}
+
+.profileTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  background: rgba(19, 19, 21, 0.6);
+}
+.profileTitle .content {
+  padding: 0 8%;
+  max-width: 70%;
+}
+.profileTitle .avaMessage {
+  display: inline-block;
+  position: relative;
+}
+.profileTitle .avaMessage img {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: 2px solid #fff;
+}
+.profileTitle .avaMessage .addDialog {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 40px;
+  padding: 10px 5px 0 0;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  border-radius: 30px;
+  background: #119298;
+}
+.profileTitle .avaMessage .addDialog:hover {
+  color: #1adce4;
+  -webkit-box-shadow: #1adce4 0 0 20px 1px;
+          box-shadow: #1adce4 0 0 20px 1px;
+  background: #131315;
+}
+.profileTitle .name {
+  padding: 20px 0 20px 0;
+  font-size: 70px;
+  color: #fff;
+}
+.profileTitle .achievements div {
+  display: inline-block;
+  color: #fff;
+  font-size: 20px;
+  padding: 0 10px;
+}
+.profileTitle .achievements i {
+  font-size: 25px;
+}
+.profileTitle .social {
+  font-size: 40px;
+}
+.profileTitle .lotteries {
+  position: relative;
+  height: 70vh;
+  min-width: 500px;
+  overflow: hidden;
+}
+.profileTitle .lotteries .lottery {
+  position: relative;
+  width: 100%;
+  margin: 10px 0;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.profileTitle .lotteries .lottery .share {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.profileTitle .lotteries .lottery .share a {
+  font-size: 30px;
+}
+.profileTitle .lotteries .lottery .share a:hover, .profileTitle .lotteries .lottery .share a:active, .profileTitle .lotteries .lottery .share a:focus {
+  cursor: pointer;
+  color: #fff;
+  opacity: 0.5;
+}
+.profileTitle .lotteries .lottery .appellative {
+  font-size: 35px;
+  line-height: 1;
+  padding: 15px;
+}
+.profileTitle .lotteries .lottery .appellative i {
+  font-size: 20px;
+}
+.profileTitle .lotteries .lottery:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+.profileTitle .lotteries .lottery:hover .share {
+  opacity: 0.8;
+}
+
+.myMandatoryInfo {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 50px 0;
+  border-top: 5px solid #119298;
+}
+.myMandatoryInfo .btnDown {
+  position: absolute;
+  top: -80px;
+  right: 30px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myMandatoryInfo .btnDown .icon {
+  width: 70px;
+  height: 80px;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 18px;
+  margin-left: 20px;
+  border-radius: 20px 20px 0 0;
+  background: #119298;
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.myMandatoryInfo .btnDown:hover {
+  cursor: pointer;
+  color: #1adce4;
+}
+.myMandatoryInfo .btnDown:hover .icon {
+  cursor: pointer;
+  background: #131315;
+}
+.myMandatoryInfo .info {
+  width: 80%;
+}
+.myMandatoryInfo .info .return .question {
+  color: #1adce4;
+  margin-top: 10px;
+  padding: 5px 10px;
+  font-size: 20px;
+  border-bottom: 1px solid;
+}
+.myMandatoryInfo .info .return .answer {
+  padding: 10px;
+  font-size: 25px;
+}
+.myMandatoryInfo .refreshWinner {
+  position: relative;
+  display: none;
+  width: 80%;
+  margin-top: 30px;
+}
+.myMandatoryInfo .refreshWinner textarea {
+  height: 200px;
+}
+.myMandatoryInfo .refreshWinner .goRefresh {
+  position: absolute;
+  top: 30px;
+  right: 20px;
+  color: #1adce4;
+  line-height: 0.5;
+  font-size: 40px;
+  opacity: 0.5;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myMandatoryInfo .refreshWinner .goRefresh.active {
+  opacity: 1;
+}
+.myMandatoryInfo .refreshWinner .goRefresh.active:hover {
+  cursor: pointer;
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+.myMandatoryInfo .btnAddWinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 80%;
+  margin-top: 30px;
+}
+.myMandatoryInfo .btnAddWinner .refreshWinnerBtn, .myMandatoryInfo .btnAddWinner .confirmWinnerBtn {
+  font-size: 25px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px 0 #000;
+          box-shadow: 0 0 20px 0 #000;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.myMandatoryInfo .btnAddWinner .refreshWinnerBtn {
+  background: #CC0000;
+}
+.myMandatoryInfo .btnAddWinner .refreshWinnerBtn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 0 #CC0000;
+          box-shadow: 0 0 20px 0 #CC0000;
+}
+.myMandatoryInfo .btnAddWinner .confirmWinnerBtn {
+  background: #009900;
+}
+.myMandatoryInfo .btnAddWinner .confirmWinnerBtn:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 0 #009900;
+          box-shadow: 0 0 20px 0 #009900;
+}
+
+@media screen and (max-width: 1000px) {
+  .profileTitle .content {
+    padding: 0 30px;
+    max-width: 70%;
+  }
+  .profileTitle img {
+    width: 150px;
+    height: 150px;
+    border: 2px solid #fff;
+  }
+  .profileTitle .name {
+    padding: 20px 0 5px 0;
+    font-size: 40px;
+  }
+  .profileTitle .achievements div {
+    font-size: 15px;
+    padding: 0 10px;
+  }
+  .profileTitle .achievements i {
+    font-size: 20px;
+  }
+  .profileTitle .social {
+    font-size: 30px;
+  }
+  .profileTitle h1 {
+    font-size: 25px;
+  }
+  .profileTitle .appellative {
+    font-size: 25px;
+    line-height: 1.1;
+  }
+  .profileTitle .appellative i {
+    font-size: 15px;
+  }
+
+  .myMandatoryInfo .btnAddWinner {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: auto;
+  }
+  .myMandatoryInfo .btnAddWinner .refreshWinnerBtn, .myMandatoryInfo .btnAddWinner .confirmWinnerBtn {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .profile {
+    min-height: 800px;
+  }
+
+  .profileBG {
+    width: 100%;
+    min-height: 800px;
+    -webkit-filter: blur(10px);
+            filter: blur(10px);
+    opacity: 0.5;
+  }
+
+  .profileTitle {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  .profileTitle .content {
+    padding: 50px 0 0 0;
+    max-width: 100%;
+  }
+  .profileTitle .lotteries {
+    height: 300px;
+    min-width: 100%;
+  }
+
+  .myMandatoryInfo {
+    padding: 10px;
+  }
+  .myMandatoryInfo .info {
+    width: 95%;
+  }
+  .myMandatoryInfo .info .return .question {
+    font-size: 15px;
+  }
+  .myMandatoryInfo .info .return .answer {
+    font-size: 20px;
+  }
+  .myMandatoryInfo .btnDown {
+    position: absolute;
+    top: -80px;
+    right: 10px;
+    left: 10px;
+    font-size: 20px;
+  }
+  .myMandatoryInfo .btnDown .icon {
+    min-width: 60px;
+    height: 80px;
+    font-size: 35px;
+    text-align: center;
+    padding-top: 20px;
+  }
+  .myMandatoryInfo .btnAddWinner {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin-top: 10px;
+  }
+  .myMandatoryInfo .btnAddWinner .refreshWinnerBtn, .myMandatoryInfo .btnAddWinner .confirmWinnerBtn {
+    width: 60px;
+    height: 60px;
+    font-size: 20px;
+    margin-top: 0px;
+    padding-top: 20px;
+    border-radius: 70px;
+  }
+  .myMandatoryInfo .btnAddWinner .refreshWinnerBtn {
+    margin-right: 10px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Профиль
+ */
+/*
+ * Модалка
+ * --------------------------------------------------
+ */
+/* Общие настройки модального окна */
+.modalBody {
+  position: fixed;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 997;
+}
+.modalBody .modalWindow {
+  position: fixed;
+  display: none;
+  width: 50%;
+  text-align: center;
+  padding: 20px;
+  background: #131315;
+  opacity: 0;
+  color: #1adce4;
+  border: 1px solid #1adce4;
+  -webkit-box-shadow: #1adce4 0px 0px 20px 0px;
+          box-shadow: #1adce4 0px 0px 20px 0px;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.modalBody .modalWindow .modalClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px;
+}
+.modalBody .modalWindow .modalClose:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.modalBody .modalWindow .inputBlock {
+  position: relative;
+  margin: 30px 0;
+  width: 100%;
+}
+.modalBody .modalWindow .inputBlock .inputLable {
+  color: #1adce4;
+  font-size: 20px;
+}
+.modalBody .modalWindow .inputBlock .input {
+  font-size: 20px;
+  color: #1adce4;
+  border-color: #1adce4;
+}
+.modalBody .modalWindow .inputBlock .lineInput {
+  border-color: #1adce4;
+}
+.modalBody .modalWindow textarea {
+  display: block;
+  color: #1adce4;
+  font-family: "Text", Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: transparent;
+  border: 1px solid #119298;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  resize: vertical;
+}
+.modalBody .modalWindow .icon {
+  font-size: 100px;
+}
+.modalBody .modalWindow .complitAction ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  font-size: 18px;
+}
+.modalBody .modalWindow .btn {
+  margin: 30px auto 10px auto;
+}
+.modalBody .modalWindow .btn.disable {
+  opacity: 0.2;
+}
+.modalBody .modalWindow .btn.disable:hover {
+  color: #1adce4;
+  background: none;
+}
+.modalBody .modalWindow h2 {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+.modalBody .modalWindow.error {
+  color: #CC0000;
+  border: 1px solid #CC0000;
+  -webkit-box-shadow: #CC0000 0px 0px 20px 0px;
+          box-shadow: #CC0000 0px 0px 20px 0px;
+}
+.modalBody .modalWindow.error .modalClose:hover {
+  color: #CC0000;
+  opacity: 0.8;
+}
+.modalBody .modalWindow.error .closeModalBtn {
+  color: #CC0000;
+  border: 1px solid #CC0000;
+}
+.modalBody .modalWindow.error .closeModalBtn:hover {
+  color: #fff;
+  background: #CC0000;
+}
+.modalBody .modalComplaint {
+  display: none;
+}
+.modalBody .modalComplaint textarea {
+  margin: 30px auto 10px auto;
+}
+.modalBody .modalComplaint .inputBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left;
+  margin: 0;
+  padding-left: 50px;
+}
+.modalBody .modalComplaint .inputBlock label {
+  cursor: pointer;
+  margin-left: 25px;
+}
+.modalBody .modalComplaint .btn {
+  margin-top: 20px;
+}
+
+/* Custom complit */
+.modalBody .modalQuestion h1 {
+  font-size: 28px;
+}
+.modalBody .modalQuestion .noBtn {
+  background: #119298;
+  border-color: #119298;
+  color: #fff;
+}
+.modalBody .modalQuestion .noBtn:hover {
+  background: #CC0000;
+  border-color: #CC0000;
+}
+.modalBody .modalQuestion .yesBtn:hover {
+  background: #009900;
+  border-color: #009900;
+}
+
+/* Оценка сайта */
+.modalBody .assessModal h1 {
+  font-size: 40px;
+  padding: 10px 0 5px 0;
+  text-transform: uppercase;
+}
+.modalBody .assessModal .stars {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 350px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 35px;
+}
+.modalBody .assessModal textarea {
+  margin: 30px 0;
+}
+
+/* Появление */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+/*-----------------------*/
+/* Исчезновение */
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+          animation-name: fadeOutUp;
+}
+
+@-webkit-keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+/*-----------------------*/
+/* Планшет */
+@media (max-width: 991px) {
+  .modalBody .modalWindow {
+    width: 70%;
+  }
+
+  .modalBody .modalAddCity {
+    font-size: 15px;
+  }
+}
+/* Мобилка */
+@media (max-width: 767px) {
+  /* Общие стили модальных окон */
+  .modalBody .modalWindow {
+    width: 98%;
+  }
+  .modalBody .modalWindow .modalClose {
+    font-size: 20px;
+  }
+  .modalBody .modalWindow textarea {
+    font-size: 13px;
+    height: 70px;
+  }
+  .modalBody .modalWindow .btn {
+    font-size: 15px;
+  }
+  .modalBody .modalWindow h2 {
+    font-size: 20px;
+  }
+
+  /* Жалоба */
+  .modalBody .modalComplaint textarea {
+    margin: 10px auto;
+  }
+  .modalBody .modalComplaint span {
+    font-size: 14px;
+  }
+  .modalBody .modalComplaint .inputBlock {
+    padding-left: 10px;
+  }
+  .modalBody .modalComplaint .inputBlock label {
+    font-size: 14px;
+  }
+  .modalBody .modalComplaint .btn {
+    margin-top: 20px;
+  }
+
+  /* Оценка сайта */
+  .modalBody .assessModal h1 {
+    font-size: 35px;
+    padding: 10px 0 3px 0;
+  }
+  .modalBody .assessModal .stars {
+    width: 250px;
+    font-size: 30px;
+  }
+  .modalBody .assessModal textarea {
+    margin: 20px 0 10px 0;
+  }
+  .modalBody .assessModal .btn {
+    color: #1adce4;
+    border: 1px solid #1adce4;
+  }
+
+    /*.modalBody .modalWindow .inputBlock {
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+            .modalBody .modalWindow .inputBlock .inputLable {
+                color: #1adce4;
+                font-size: 20px;
+            }
+
+            .modalBody .modalWindow .inputBlock .input {
+                font-size: 20px;
+                color: #1adce4;
+                border-color: #1adce4;
+            }
+
+            .modalBody .modalWindow .inputBlock .lineInput {
+                border-color: #1adce4;
+            }*/
+}
+/*
+ * --------------------------------------------------
+ * Модалки
+ */
+/*
+ * Preloader
+ * --------------------------------------------------
+ */
+#bgPreloader {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #131315 url("images/bg.jpg") repeat;
+  background-size: 300px;
+}
+
+.logoPreloader {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: #119298 url("images/logoLetters.png") no-repeat;
+  background-size: 180px 180px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  -webkit-box-shadow: 0 0 0 10px rgba(13, 228, 228, 0.2), 0 0 25px 2px rgba(0, 0, 0, 0.4), inset 0 0 0 15px rgba(13, 228, 228, 0.4);
+  box-shadow: 0 0 0 10px rgba(13, 228, 228, 0.2), 0 0 25px 2px rgba(0, 0, 0, 0.4), inset 0 0 0 15px rgba(13, 228, 228, 0.4);
+  border-radius: 999px;
+  /* border-radius: 50% has issues on some mobile browsers */
+}
+
+.pulse1 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  border: 3px solid rgba(13, 228, 228, 0.2);
+  -webkit-animation: pulsejg1 4s linear infinite;
+  animation: pulsejg1 4s linear infinite;
+  border-radius: 999px;
+  -webkit-box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.6);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pulse2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+  border: 1px solid rgba(13, 228, 228, 0);
+  -webkit-animation: pulsejg2 4s linear infinite;
+  animation: pulsejg2 4s linear infinite;
+  border-radius: 9999px;
+  -webkit-box-shadow: inset 0px 0px 12px 5px rgba(13, 228, 228, 0.8);
+  box-shadow: inset 0px 0px 12px 5px rgba(13, 228, 228, 0.8);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes pulsejg1 {
+  0% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+    opacity: .2;
+  }
+  70% {
+    -webkit-transform: scale(1.1);
+    opacity: .35;
+  }
+  80% {
+    -webkit-transform: scale(1.25);
+    opacity: .2;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+    opacity: 0;
+  }
+}
+@keyframes pulsejg1 {
+  0% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: .1;
+  }
+  70% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: .25;
+  }
+  80% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes pulsejg2 {
+  0% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: scale(0.8);
+    opacity: .05;
+  }
+  50% {
+    -webkit-transform: scale(1);
+    opacity: .1;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+    opacity: .3;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.3);
+    opacity: 0;
+  }
+}
+@keyframes pulsejg2 {
+  0% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: .05;
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: .1;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: .3;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    opacity: 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ *  Preloader
+ */
+/*
+*   Loader
+* --------------------------------------------------
+*/
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#loading {
+  width: 70px;
+  height: 70px;
+  -webkit-animation: moveLoader 1s infinite linear;
+  animation: moveLoader 1s infinite linear;
+}
+
+@-webkit-keyframes moveLoader {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes moveLoader {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*
+ * --------------------------------------------------
+ *  Loader
+ */
+/*
+* Bootstrap style
+* --------------------------------------------------
+*/
+.hidden {
+  display: none !important;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nav li {
+  float: left;
+  padding-top: 17px;
+}
+
+.navRight {
+  float: right;
+  padding-right: 30px;
+}
+.navRight li {
+  padding-left: 10px;
+}
+.navRight a {
+  color: #119298;
+}
+.navRight a:hover {
+  color: #1adce4;
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+
+  .visible-lg {
+    display: block !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-lg {
+    display: none !important;
+  }
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: block !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-md {
+    display: none !important;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: block !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: block !important;
+  }
+
+  .hidden-xs {
+    display: none !important;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Bootstrap style
+ */
+/*
+ * --------------------------------------
+ * Контент
+ */
+/*
+ * --------------------------------------------------
+ * Личный кабинет
+ */

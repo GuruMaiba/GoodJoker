@@ -1,0 +1,441 @@
+@import "_Common.scss";
+
+a {
+    color: #119298;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:focus, &:hover {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+.btn {
+    display: inline-block;
+    border: 1px solid #1adce4;
+    color: #1adce4;
+    padding: 15px 80px;
+    background: none;
+    transition: all 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #119298;
+        @include bg(#119298, 0);
+    }
+}
+
+@import "UnivStyle/_ListCity.scss";
+
+.bodyAdmin {
+    @extend %listCity;
+}
+
+/*
+ * Админ
+ * --------------------------------------------------
+ */
+
+    .bodyAdmin {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #131315;
+    }
+
+        .bodyAdmin .title {
+            margin: 10px 0 20px 0;
+        }
+
+        .bodyAdmin .adminPageContent input::-webkit-input-placeholder,
+        .bodyAdmin .adminPageContent textarea::-webkit-input-placeholder {color: rgba(255, 255, 255, 0.4);}
+        .bodyAdmin .adminPageContent input::-moz-placeholder,
+        .bodyAdmin .adminPageContent textarea::-moz-placeholder {color: rgba(255, 255, 255, 0.4);}
+        .bodyAdmin .adminPageContent input:-ms-input-placeholder,
+        .bodyAdmin .adminPageContent textarea:-ms-input-placeholder {color: rgba(255, 255, 255, 0.4);}
+
+        .bodyAdmin .adminPageContent .inputBlock {
+            position: relative;
+            width: 70%;
+        }
+
+        .bodyAdmin .adminPageContent .inputCreate,
+        .bodyAdmin .adminPageContent .textareaCreate,
+        .bodyAdmin .adminPageContent .rangeCount {
+            color: #1adce4;
+            outline: none;
+            padding: 7px 10px 5px 10px;
+            border: 1px solid #119298;
+            background: rgba(13, 150, 158, 0.1);
+            width: 100%;
+        }
+
+        .bodyAdmin .adminPageContent .textareaCreate {
+            height: 100px;
+        }
+
+        .bodyAdmin .adminPageContent .rangeCount {
+            width: 100px;
+        }
+
+        .bodyAdmin .row {
+            margin: 20px 0;
+        }
+
+            .bodyAdmin .row h2 {
+                margin: 0 0 5px 0;
+            }
+
+        /* На всякий
+        .bodyAdmin .rowFlex {
+            display: flex;
+        }
+
+            .bodyAdmin .rowFlex .item {
+                padding: 0;
+                margin: 0;
+            }
+        */
+
+        .bodyAdmin .btn {
+            margin: 10px 0 0 0;
+        }
+
+        .bodyAdmin .lcMenu {
+            position: fixed;
+            height: 100%;
+            margin: 0;
+            background: #119298;
+            box-shadow: 0 0 20px 2px #000;
+            z-index: 990;
+        }
+
+            .bodyAdmin .lcMenu a, .lcMenu a:visited {
+                color: #fff;
+            }
+
+                .bodyAdmin .lcMenu a:hover, .lcMenu a:active {
+                    color: #1adce4;
+                    background: #131315;
+                }
+
+            .bodyAdmin .lcMenu .logo a, .lcMenu .logo a:visited {
+                display: block;
+                padding: 10px;
+                font-size: 35px;
+                line-height: 1;
+                text-align: center;
+            }
+
+            .bodyAdmin .lcMenu .name {
+                display: none;
+                font-size: 20px;
+                text-align: center;
+                padding: 10px 3px;
+                transition: all .3s ease;
+            }
+
+            .bodyAdmin .lcMenu ul {
+                list-style: none;
+                padding: 15px 0;
+                margin: 0px 0;
+                border-top: 1px solid #fff;
+            }
+
+                .bodyAdmin .lcMenu ul li {
+                    display: flex;
+                    padding: 10px 0 0 0;
+                }
+
+                    .bodyAdmin .lcMenu ul li:hover {
+                        background: #131315;
+                    }
+
+                    .bodyAdmin .lcMenu ul li i {
+                        display: inline-block;
+                        padding: 0 15px;
+                        font-size: 30px;
+                    }
+
+            .bodyAdmin .lcMenu .menuText {
+                display: none;
+                padding: 8px 20px 8px 0;
+                font-size: 15px;
+            }
+
+            .bodyAdmin .lcMenu .active {
+                color: #1adce4 !important;
+            }
+
+                .bodyAdmin .lcMenu .active li {
+                    background: #131315;
+                }
+
+        .bodyAdmin .adminPageContent {
+            padding: 10px 50px 0 100px;
+            color: #1adce4;
+        }
+
+            .bodyAdmin .adminPageContent .mainWorkZone {
+                padding: 0 0 0 10px;
+            }
+
+        .bodyAdmin table {
+            width: 100%;
+            margin: 50px 0;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+            .bodyAdmin table tr,
+            .bodyAdmin table .action {
+                transition: all 0.2s ease;
+            }
+
+                .bodyAdmin table tr:hover {
+                    background: rgba(13, 150, 158, 0.1);
+                }
+
+            .bodyAdmin table th,
+            .bodyAdmin table td {
+                padding: 5px 0 3px 0;
+                border-bottom: 1px solid #1adce4;
+            }
+
+            .bodyAdmin table th {
+                border-bottom-width: 2px;
+            }
+
+            .bodyAdmin table a {
+                color: #1adce4;
+            }
+
+                .bodyAdmin table .action:hover,
+                .bodyAdmin table a:hover,
+                .bodyAdmin table a:after,
+                .bodyAdmin table a:active {
+                    cursor: pointer;
+                    color: #119298;
+                }
+
+        .bodyAdmin .mapUser {
+            width: 100%;
+            height: 400px;
+            margin: 30px 0 0 0;
+            background: #119298;
+        }
+
+        .bodyAdmin .adminNav {
+            font-size: 20px;
+        }
+
+        .bodyAdmin .ava {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            height: 400px;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 15px 0px #119298;
+            background: center center / cover no-repeat;
+            /*background-image: url('images/Advert/2card.jpg');*/
+        }
+
+            .bodyAdmin .ava img {
+                width: 100%;
+                height: 100%;
+            }
+
+            .bodyAdmin .ava .inputfile {
+                width: 0.1px;
+                height: 0.1px;
+                opacity: 0;
+                overflow: hidden;
+                position: absolute;
+                z-index: -1;
+            }
+
+                .bodyAdmin .ava .inputfile + label {
+                    position: absolute;
+                    top: 0px;
+                    left: 0px;
+                    color: #fff;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    text-align: center;
+                    width: 100%;
+                    height: 100%;
+                    font-size: 100px;
+                    cursor: pointer;
+                    opacity: 0.4;
+                    margin: 0;
+                    background: #119298;
+                    transition: all 0.3s ease;
+                }
+
+                    .bodyAdmin .ava .inputfile + label:hover {
+                        opacity: 0.8;
+                    }
+
+                /*.bodyAdmin .imgPreview {
+                    height: 300px;
+                    overflow: hidden;
+                }
+
+                    .bodyAdmin .imgPreview img {
+                        width: 100%;
+                    }*/
+
+        .bodyAdmin .list {
+            margin: 15px 0 0 0;
+        }
+
+            .bodyAdmin .list .item {
+                position: relative;
+                display: inline-block;
+                margin: 0 25px 10px 0;
+            }
+
+                .bodyAdmin .list .item .name {
+                    font-size: 18px;
+                    color: #1adce4;
+                    padding: 5px 25px 5px 5px;
+                    border: 1px solid #1adce4;
+                    border-radius: 5px;
+                }
+
+                    .bodyAdmin .list .item .name:hover {
+                        cursor: pointer;
+                        background: rgba(13,150,158,0.1);
+                    }
+
+                .bodyAdmin .list .item .actions {
+                    position: absolute;
+                    top: 3px;
+                    right: -20px;
+                    padding: 5px 5px 2px 5px;
+                    color: #fff;
+                    font-size: 13px;
+                    border-radius: 7px;
+                    box-shadow: #000 0 0 20px 1px;
+                    background: #119298;
+                }
+
+                    .bodyAdmin .list .item .actions i:hover {
+                        cursor: pointer;
+                        color: #131315;
+                    }
+
+                .bodyAdmin .list .item.active .name {
+                    color: #fff;
+                    border: 1px solid #119298;
+                    background: #119298;
+                }
+
+                .bodyAdmin .list .item.confirm.active .name {
+                    background: rgba(26, 245, 0, 0.2);
+                }
+
+                .bodyAdmin .list .item.confirm .name {
+                    color: #009900;
+                    border: 1px solid #009900;
+                }
+
+                    .bodyAdmin .list .item.confirm .name:hover {
+                        background: transparent;
+                    }
+
+                .bodyAdmin .list .item.confirm .actions {
+                    background: #009900;
+                }
+
+                .bodyAdmin .list .item.new {
+                    margin-right: 5px;
+                }
+
+                    .bodyAdmin .list .item.new .name {
+                        padding: 5px 10px;
+                    }
+
+        .bodyAdmin .listCity {
+            border: 1px solid #1adce4;
+            border-top: 0;
+        }
+
+        .bodyAdmin .listAddCity {
+            margin-top: 0px;
+            padding: 10px 20px;
+        }
+
+            .bodyAdmin .listAddCity .cityItem {
+                font-size: 15px;
+                margin-top: 10px;
+            }
+
+                .bodyAdmin .listAddCity .cityItem .info {
+                    font-size: 20px;
+                    color: #fff;
+                }
+
+                    .bodyAdmin .listAddCity .cityItem .info .name {
+                        font-size: 25px;
+                    }
+
+        .bodyAdmin .usersList {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: #131315;
+            z-index: 5;
+            border: 1px solid #1adce4;
+            border-top: 0;
+            color: #1adce4;
+        }
+
+            .bodyAdmin .usersList .item {
+                font-size: 20px;
+                padding: 20px 15px;
+                transition: all .3s ease;
+            }
+
+                .bodyAdmin .usersList .item:hover {
+                    cursor: pointer;
+                    color: #fff;
+                    background: #119298;
+                }
+
+/*
+ * Главная страница
+ * --------------------------
+ */
+
+        .bodyAdmin .mainAdmin {
+            display: flex;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .bodyAdmin .mainAdmin .archiveBtn {
+                font-size: 30px;
+                padding: 15px 50px;
+                background: #119298;
+            }
+
+                .bodyAdmin .mainAdmin .archiveBtn:hover {
+                    cursor: pointer;
+                    box-shadow: 0 0 10px 0 #119298;
+                }
+
+@import "Admin/_CreateNews.scss";
+@import "_UnivStyle.scss";
+
+/*
+ * --------------------------------------------------
+ * Админ
+ */

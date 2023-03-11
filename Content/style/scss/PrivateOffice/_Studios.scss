@@ -1,0 +1,377 @@
+/*
+ * Мои студии
+ * -----------------------------
+ */
+
+.myStudios {
+    padding: 30px 20px;
+    box-shadow: 0 0 50px 5px #000;
+
+    .newStudioLink {
+        display: block;
+        width: 90%;
+        font-size: 25px;
+        text-align: center;
+        padding: 25px 0 20px 0;
+        margin: 0 auto;
+        box-shadow: #000 0 0 20px 1px;
+        border-radius: 5px;
+        background: #119298;
+
+        &:hover {
+            color: #fff;
+            box-shadow: #119298 0 0 20px 1px;
+        }
+    }
+
+    .invitation {
+        margin-top: 35px;
+
+        .background {
+            width: 100%;
+            border-radius: 10px;
+            background: #199298 center center / cover no-repeat;
+
+            .info {
+                position: relative;
+                display: flex;
+                justify-content: space-between;
+                padding: 30px;
+                border-radius: 10px;
+                background: rgba(13, 150, 158, 0.7);
+
+                .content {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 150px;
+                    }
+
+                    .about {
+                        margin-left: 30px;
+
+                        .statistics span {
+                            padding-right: 15px;
+                        }
+
+                        .name {
+                            font-size: 35px;
+                            padding: 0 0 5px 0;
+                        }
+
+                        .helloMessage {
+                            font-size: 20px;
+                        }
+                    }
+                } // end content
+
+                .confirm {
+                    position: absolute;
+                    top: -25px;
+                    right: 20px;
+                    display: flex;
+                    padding: 0 0 0 10px;
+
+                    %confirmBtn {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 50px;
+                        height: 50px;
+                        padding-top: 10px;
+                        font-size: 30px;
+                        border-radius: 50px;
+                        box-shadow: #000 0 0 20px 1px;
+                        background: #119298;
+                        transition: all 0.3s ease;
+                    }
+
+                    .no {
+                        @extend %confirmBtn;
+                        margin-left: 10px;
+
+                        &:hover {
+                            cursor: pointer;
+                            background: #CC0000;
+                        }
+                    }
+
+                    .yes {
+                        @extend %confirmBtn;
+                        &:hover {
+                            cursor: pointer;
+                            background: #009900;
+                        }
+                    }
+                } // end confirm
+            } // end info
+        } // end background
+    } // end invitation
+
+    .navigation {
+        position: relative;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        color: #119298;
+        font-size: 30px;
+        text-align: center;
+        margin-top: 20px;
+        border-bottom: 1px solid #119298;
+
+        .item {
+            width: 33.333%;
+            padding: 10px 0;
+            transition: all 0.3s ease;
+
+            &:hover, &.active {
+                cursor: pointer;
+                color: #1adce4;
+            }
+        }
+
+        .underline {
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 33.333%;
+            height: 5px;
+            background: #1adce4;
+            transition: all 0.3s ease;
+        }
+    }
+
+    .contents {
+        width: 100%;
+        margin-top: 20px;
+        overflow: hidden;
+
+        .pages {
+            position: relative;
+            right: 0;
+            display: flex;
+            width: 300%;
+            transition: all 0.3s ease;
+
+            .item {
+                overflow: hidden;
+                width: 33.333%;
+                height: 1px;
+
+                .studioLink {
+                    display: inline-flex;
+                    align-items: center;
+                    color: #199298;
+                    margin: 0 20px 20px 0;
+                    border-radius: 100px 20px 20px 100px;
+                    border: 1px solid #199298;
+
+                    img {
+                        width: 100px;
+                        height: 100px;
+                        border-radius: 100px;
+                        border-right: 1px solid #199298;
+                    }
+
+                    .info {
+                        margin: 0 20px 0 10px;
+                        .name { font-size: 30px; }
+                    }
+
+                    &:hover {
+                        cursor: pointer;
+                        color: #fff;
+                        background: #119298;
+                    }
+                }
+
+                .default {
+                    font-size: 25px;
+                    text-align: center;
+                    padding: 50px 0;
+                }
+
+                &.active { height: auto; }
+            } // item
+        } // end pages
+    } // end contents
+} // end myStudios
+
+@media (max-width: 1000px) {
+
+    .myStudios .invitation .background .info {
+        padding: 20px 10px;
+
+        .content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            img {
+                min-width: 80px;
+                height: 80px;
+            }
+
+            .about {
+                margin-left: 15px;
+            }
+
+            .about .statistics {
+                font-size: 13px;
+            }
+
+            .about .statistics span {
+                padding-right: 5px;
+            }
+
+            .about .name {
+                font-size: 25px;
+            }
+
+            .about .helloMessage {
+                font-size: 15px;
+            }
+        }
+
+        .confirm {
+            top: -20px;
+            right: 10px;
+
+            .yes, .no {
+                width: 35px;
+                height: 35px;
+                padding-top: 7px;
+                font-size: 20px;
+            }
+
+            .no { margin-left: 5px; }
+        }
+    } // END INFO
+} // end media 1000
+
+@media (max-width: 767px) {
+    .myStudios {
+        .newStudioLink {
+            font-size: 20px;
+        }
+
+        .navigation {
+            flex-direction: column;
+            color: #119298;
+            font-size: 20px;
+            text-align: left;
+            margin-top: 20px;
+            border-bottom: 0;
+            border-left: 1px solid #119298;
+
+            .item { width: 90%; }
+            .underline {
+                bottom: inherit;
+                top: 0;
+                left: -3px;
+                width: 5px;
+                height: 33.3333%;
+            }
+        }
+
+        .contents .pages .item {
+            .studioLink {
+                margin: 0 10px 10px 0;
+                border-radius: 70px 20px 20px 70px;
+
+                img {
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 70px;
+                }
+
+                .info {
+                    .name { font-size: 20px; }
+                    .statistics { font-size: 10px; }
+                }
+            }
+
+            .default {
+                font-size: 18px;
+                padding: 30px 0;
+            }
+        } // end item
+    } // END myStudios
+} // END MEDIA 767
+
+/*
+ * ------------------------------
+ * Мои студии
+ */
+
+ /*
+  * Создание студии
+  * -----------------------------
+  */
+
+ .newStudio {
+     box-shadow: 0 0 50px 5px #000;
+
+     .form {
+         display: flex;
+         flex-direction: column;
+         justify-content: center;
+         align-items: center;
+
+         .inputAddStudio {
+             position: relative;
+             width: 50%;
+             margin: 100px 0 50px 0;
+         }
+
+         .btnAddStudio {
+             display: inline-block;
+             font-size: 20px;
+             padding: 10px 50px;
+             margin: 0 0 100px 0;
+             border: 1px solid #fff;
+             opacity: 0.2;
+             transition: all .3s ease;
+         }
+
+         .btnAddStudio.active {
+             opacity: 1;
+         }
+
+         .btnAddStudio.active:hover {
+             cursor: pointer;
+             border: 1px solid #119298;
+             background: #119298;
+         }
+
+         .loading { margin: 0 0 90px 0; }
+     } // end form
+ } // end newStudio
+
+ @media (max-width: 767px) {
+     .newStudio {
+         padding-top: 20px;
+
+         .form {
+             .inputAddStudio {
+                 position: relative;
+                 width: 80%;
+                 margin: 50px 0 30px 0;
+             }
+
+             .form .btnAddStudio {
+                 font-size: 18px;
+                 margin: 0 0 30px 0;
+             }
+         } // end form
+     } // end newStudio
+ } // end media 767
+
+ /*
+  * ------------------------------
+  *  Создание студии
+  */

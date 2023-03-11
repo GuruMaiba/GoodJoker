@@ -1,0 +1,1366 @@
+/*
+ * Розыгрыш
+ * --------------------------------------------------
+ */
+
+.youtubeVideo {
+    z-index: 997;
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #1adce4;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.9);
+
+    // стили публичного frame
+    %mainFrame {
+        width: 80vw;
+        height: 80vh;
+    }
+
+    iframe {
+        @extend %mainFrame;
+    }
+
+    .editYoutube {
+        @extend %mainFrame;
+        background: #131315;
+
+        h1 { margin-top: 30px; }
+
+        .info {
+            width: 80%;
+            margin: 10px auto 30px auto;
+        }
+
+        .inputAddMember {
+            position: relative;
+            margin: 0 auto;
+            width: 40%;
+        }
+
+        // стили организаторского frame
+        %editFrame {
+            width: 50%;
+            height: 50%;
+            margin-top: 25px;
+        }
+
+        iframe {
+            @extend %editFrame;
+        }
+
+        .default {
+            @extend %editFrame;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #fff;
+            margin: 25px auto 0 auto;
+            background: #119298;
+        }
+    } // end editYoutube
+} // end youtubeVideo
+
+.bodyDraw {
+    position: relative;
+    background: #131315;
+    border: 1px solid #119298;
+    box-shadow: 0 5px 15px 0px #119298;
+    padding: 0;
+    background: #131315;
+
+    .drawControlLine {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 15%;
+        height: 100%;
+        background: #119298;
+
+        .moveLine {
+            position: relative;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            font-size: 80px;
+
+            i:hover {
+                cursor: pointer;
+            }
+        }
+    } // end drawControlLine
+
+    .drawContent {
+        position: relative;
+        width: 85%;
+        height: 100%;
+
+        input, textarea {
+            $color: rgba(255, 255, 255, 0.4);
+            &::-webkit-input-placeholder {color: $color;}
+            &::-moz-placeholder {color: $color;}
+            &:-ms-input-placeholder {color: $color;}
+        }
+
+        .title.create {
+            margin: 25px 0 20px 0;
+        }
+
+        .inputAddLottery, .drawPrizes .rangeCount {
+            color: #fff;
+            outline: none;
+            border: 0;
+            background: transparent;
+            width: 70%;
+        }
+
+        .textAddLottery {
+            width: 100%;
+            height: 200px;
+            color: #fff;
+            border: 0;
+            outline: none;
+            resize: vertical;
+            background: transparent;
+
+            &.short {
+                height: 100px;
+            }
+
+            &:focus {
+                border: 1px solid #fff;
+                padding: 9px;
+            }
+        }
+        // Подсказки
+        @import "_LottDetHint.scss";
+    }
+
+    .itemLine {
+        margin: 20px auto;
+        text-align: center;
+        font-size: 25px;
+        line-height: 1;
+
+        i {
+            font-size: 50px;
+            transition: all .3s ease;
+        }
+
+        .icon-cancel { color: #CC0000; }
+        .finger { font-size: 35px; }
+
+        .complaint, .like, .add, .up, .down {
+            &:hover {
+                cursor: pointer;
+                color: #131315;
+            }
+        }
+    }
+
+    .drawPreview {
+        position: relative;
+        height: 600px;
+        background: #119298 center center / cover no-repeat;
+        border-bottom: 1px solid #119298;
+
+        .drawTitle {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 0.9;
+            font-size: 80px;
+            padding: 0 20px;
+            z-index: 1;
+            background: rgba(0, 0, 0, 0.7);
+
+            .addBG {
+                position: absolute;
+                top: 20px;
+                right: 25px;
+                font-size: 50px;
+                transition: all .3s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #119298;
+                }
+            }
+
+            .nameLott,
+            .nameLott .titleLottery {
+                width: 100%;
+                text-align: center;
+            }
+
+            .youtubeId {
+                $color: #CC0000;
+                position: absolute;
+                bottom: 30px;
+                right: 100px;
+                text-align: right;
+                font-size: 20px;
+                width: 0;
+                color: $color;
+                outline: none;
+                border-bottom: 1px solid $color;
+                background: transparent;
+                transition: all .5s ease;
+
+                &::-webkit-input-placeholder {color: $color;}
+                &::-moz-placeholder {color: $color;}
+                &:-moz-placeholder {color: $color;}
+                &:-ms-input-placeholder {color: $color;}
+
+                &.active {
+                    width: 50%;
+                    padding: 5px 10px;
+                }
+            }
+
+            .play {
+                display: block;
+                position: absolute;
+                bottom: 10px;
+                right: 30px;
+                font-size: 50px;
+                transition: all .3s ease;
+
+                &:hover, &.active {
+                    cursor: pointer;
+                    color: #CC0000;
+                }
+            }
+
+            .errorBG {
+                position: absolute;
+                top: 35px;
+                right: 100px;
+                display: none;
+                font-size: 15px;
+                color: #CC0000;
+            }
+
+            .errorTitle {
+                position: absolute;
+                top: 230px;
+                display: none;
+                margin: 0 auto;
+                font-size: 20px;
+                color: #CC0000;
+            }
+        } // end drawTitle
+    } // end drawPreview
+
+    .siteFriend {
+        height: 300px;
+    }
+
+    .drawDescription  {
+        padding: 0 40px;
+
+        .studioInfo {
+            position: absolute;
+            bottom: 5px;
+            right: 10px;
+            color: #1adce4;
+            font-size: 25px;
+        }
+
+        .studioInfo i {
+            font-size: 20px;
+        }
+
+        .studioName {
+            font-size: 80px;
+            text-align: center;
+            line-height: 1;
+            margin-top: 20px;
+        }
+
+        .dateLottery {
+            /*font-size: 40px;*/
+        }
+
+        .dateLottery .datePicker {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-size: 50px;
+        }
+
+        .dateLottery .datePicker .day {
+            width: 50px;
+        }
+
+        .dateLottery .datePicker .pickerMonth {
+            position: relative;
+            margin: 0 20px;
+        }
+
+        .dateLottery .datePicker .pickerMonth .name {
+            font-size: 40px;
+            opacity: 0.4;
+        }
+
+        .dateLottery .datePicker .pickerMonth .name.active {
+            opacity: 1;
+        }
+
+        .dateLottery .datePicker .pickerMonth .name:hover {
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .dateLottery .datePicker .pickerMonth .selectMonth {
+            position: absolute;
+            display: none;
+            width: 200px;
+            list-style-type: none;
+            font-size: 25px;
+            background: #119298;
+            z-index: 1;
+        }
+
+        .dateLottery .datePicker .pickerMonth .selectMonth li {
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #fff;
+            transition: all .3s ease;
+        }
+
+        .dateLottery .datePicker .pickerMonth .selectMonth li:hover {
+            cursor: pointer;
+            background: #fff;
+            color: #119298;
+        }
+
+        .dateLottery .datePicker .time {
+            width: 110px;
+            margin-left: 70px;
+        }
+
+        .dateLottery .date,
+        .countUser,
+        .ageRange {
+            width: 100%;
+            font-size: 50px;
+            padding-left: 10px;
+        }
+
+        .ageRange input {
+            width: 80px;
+            border-bottom: 1px solid #fff;
+            text-align: center;
+        }
+
+        .local {
+            width: 100%;
+            padding-left: 10px;
+
+            @import "../UnivStyle/_ListCity.scss";
+            .city {
+                position: relative;
+                width: 80%;
+                margin: 0 auto;
+                @extend %listCity;
+
+                .citySearch {
+                    width: 100%;
+                    font-size: 25px;
+                    padding: 5px 10px;
+                    text-align: center;
+                }
+            }
+        }
+
+        #shortDescription {
+            position: relative;
+
+            .maxChar {
+                position: absolute;
+                top: 20px;
+                right: 10px;
+                font-size: 30px;
+                color: #1adce4;
+            }
+        }
+
+        .limitGender {
+            display: flex;
+            justify-content: center;
+
+            .itemLimit {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin: 10px 20px;
+                font-size: 20px;
+                input { margin-bottom: 10px; }
+            }
+        }
+
+        .addParticipant {
+            display: none;
+            box-shadow: #000 0px 0px 40px 0px inset;
+            padding: 40px 10px 1px 10px;
+            margin: 40px 0 0 0;
+            text-align: center;
+
+            p {
+                font-size: 20px;
+                padding: 0 0 10px 0;
+            }
+
+            .iconInfoLottery {
+                font-size: 40px;
+
+                a.error { color: #CC0000; }
+            }
+
+            .errorTextGJ, .errorTextCustom {
+                font-size: 20px;
+                color: #CC0000;
+                padding: 0 0 20px 0;
+            }
+
+            form {
+                width: 90%;
+                text-align: left;
+                margin: 0 auto;
+
+                .inputLable {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    width: 95%;
+                }
+            }
+
+            %btnPart {
+                display: inline-block;
+                padding: 10px 50px 0px 50px;
+                font-size: 30px;
+                margin: 0 10px 30px 10px;
+                box-shadow: #000 0 0 20px 1px;
+                transition: all 0.3s ease;
+            }
+
+            .cancel {
+                @extend %btnPart;
+                background: #CC0000;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: #CC0000 0 0 20px 1px;
+                }
+            }
+
+            .participate {
+                @extend %btnPart;
+                background: #009900;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: #009900 0 0 20px 1px;
+                }
+            }
+        } // end addParticipant
+
+        .comments {
+            padding: 20px;
+        }
+
+        .createLottery {
+            display: block;
+            width: 70%;
+            font-size: 30px;
+            text-align: center;
+            margin: 50px auto;
+            padding: 15px 0 10px 0;
+            border-radius: 10px;
+            box-shadow: #000 0 0 20px 1px;
+            background: #119298;
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: #119298 0 0 20px 1px;
+            }
+
+            &.disable {
+                opacity: 0.2;
+
+                &:hover {
+                    cursor: default;
+                    box-shadow: #000 0 0 20px 1px;
+                }
+            }
+        }
+
+        .loading {
+            padding: 50px 0;
+        }
+    } // end drawDescription
+
+    // text and conditions
+    %drawTC {
+        padding: 10px;
+        font-size: 17px;
+    }
+
+    // conditions and prizes
+    %drawCP_li {
+        position: relative;
+        list-style: none;
+
+        &:before {
+            counter-increment: myCounter;
+            content: counter(myCounter);
+            color: #1adce4;
+            display: inline-block;
+            font-size: 25px;
+            padding: 5px 15px 0 0;
+            line-height: 1.5em;
+        }
+    }
+
+    .drawText {
+        @extend %drawTC;
+        white-space: pre-line;
+    }
+
+    .drawConditions {
+        @extend %drawTC;
+        ol {
+            counter-reset: myCounter;
+            padding: 10px 0 0 0;
+
+            li {
+                @extend %drawCP_li;
+                &:before {
+                    text-align: right;
+                    width: 50px;
+                }
+
+                i {
+                    position: absolute;
+                    top: 0px;
+                    left: 30px;
+                    color: #CC0000;
+                    font-size: 20px;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
+                }
+            } // end li
+        } // end ol
+    } // end drawConditions
+
+    .drawPrizes {
+        ol {
+            counter-reset: myCounter;
+            padding: 10px 0 0 25px;
+
+            li {
+                @extend %drawCP_li;
+                font-size: 30px;
+
+                &:before {
+                    font-size: 40px;
+                }
+
+                .head {
+                    position: relative;
+                    display: inline-block;
+                    color: #1adce4;
+
+                    .range {
+                        position: absolute;
+                        top: -17px;
+                        left: -13px;
+                        color: #fff;
+                        font-size: 13px;
+                        padding: 5px 5px 3px 5px;
+                        border-radius: 5px;
+                        opacity: 0.5;
+                        background: #CC0000;
+                        transform: rotate(-10deg);
+                        transition: all 0.3s ease;
+
+                        &:hover {
+                            cursor: pointer;
+                            opacity: 1;
+                        }
+                    }
+
+                    .rangeCount {
+                        color: #1adce4;
+                        width: 60px;
+                    }
+                }
+
+                i {
+                    position: absolute;
+                    top: 26px;
+                    left: -25px;
+                    color: #CC0000;
+                    font-size: 20px;
+
+                    &:hover {
+                        cursor: pointer;
+                        opacity: 0.7;
+                    }
+                }
+            }
+
+            .rangeList {
+                height: 0;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .drawContent .addBtn {
+        display: inline-block;
+        width: 300px;
+        margin: 0 0 0 5px;
+        padding: 10px 20px;
+        font-size: 18px;
+        color: #1adce4;
+        border-radius: 5px;
+        border: 1px solid #1adce4;
+        transition: all .3s ease;
+
+        &:hover {
+            cursor: pointer;
+            color: #fff;
+            border-color: #119298;
+            background: #119298;
+        }
+    }
+
+    .drawLinks, .drawInfo {
+        padding: 10px 10px;
+        font-size: 25px;
+    }
+
+        .drawLinks .addLink, .drawInfo .addInfo {
+            margin: 0 0 10px 0;
+
+            div {
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                margin: 10px 10px 0 0;
+                padding: 10px 0 0 0;
+                border-radius: 5px;
+                box-shadow: 0 0 20px 1px #000;
+                background: #119298;
+                transition: all .3s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    box-shadow: 0 0 20px 1px #119298;
+                }
+            }
+        }
+
+        .drawInfo .itemInfo, .drawLinks .itemLink {
+            position: relative;
+            padding: 10px 20px 0 20px;
+            line-height: 1;
+        }
+
+            .drawInfo .itemInfo .delInfo, .drawLinks .itemLink .delLink {
+                position: absolute;
+                top: 12px;
+                left: -10px;
+                color: #CC0000;
+            }
+
+                .drawInfo .itemInfo .delInfo:hover, .drawLinks .itemLink .delLink:hover {
+                    cursor: pointer;
+                    opacity: 0.5;
+                }
+
+    .drawInfo .itemInfo {
+        .customInfo {
+            width: 90%;
+            margin: 0 0 0 10px;
+        }
+
+        .nameLink {
+            width: 70%;
+        }
+
+        .addressLink {
+            width: 90%;
+            font-size: 20px;
+        }
+    }
+
+    .drawLinks .editLinks {
+        position: relative;
+        display: none;
+
+        .confirmEditLinks {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 50px;
+            line-height: 0;
+            color: #1adce4;
+            z-index: 50;
+            transition: all .3s ease;
+
+            &:hover {
+                cursor: pointer;
+                color: #119298;
+            }
+        }
+    }
+
+    .drawRepost {
+        padding: 20px 60px 0 60px;
+        font-size: 35px;
+    }
+
+    .drawNeedUser {
+        font-size: 80px;
+        margin: 10px 0 0 10px;
+        text-shadow: 0 0 5px #00c6ff;
+
+        &#oddsCountUser {
+            text-align: center;
+            margin: 50px 0;
+        }
+        i { font-size: 50px; }
+    }
+
+    .editOption {
+        display: none;
+        margin-top: 30px;
+        padding: 0px 50px;
+
+        .item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+
+            input { margin-right: 25px; }
+        }
+    }
+
+    .drawDefaultHolding {
+        display: none;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .drawHoldingLink {
+        display: none;
+        font-size: 30px;
+        text-transform: uppercase;
+        text-align: center;
+        margin: 0 auto 40px auto;
+        padding: 20px 0;
+        border-radius: 10px;
+        box-shadow: 0 0 20px 1px #000;
+        background: #119298;
+        transition: all .3s ease;
+
+        &:hover {
+            color: #fff;
+            box-shadow: 0 0 20px 1px #1adce4;
+        }
+    }
+
+    .drawListWinner {
+        text-align: center;
+        font-size: 25px;
+        line-height: 1;
+        color: #1adce4;
+
+        .firstPlace {
+            font-size: 55px;
+            margin: 50px 0 30px 0;
+        }
+
+        .secondPlace {
+            opacity: 0.8;
+            font-size: 40px;
+            margin: 30px 0 20px 0;
+        }
+
+        .firstPlace i, .secondPlace i {
+            font-size: 30px;
+        }
+
+        .thirdPlace {
+            opacity: 0.7;
+            font-size: 30px;
+            margin: 20px 0 10px 0;
+        }
+
+        .otherPlace {
+            opacity: 0.5;
+            margin: 10px 0;
+        }
+
+        .thirdPlace i, .otherPlace i {
+            font-size: 20px;
+        }
+    }
+} // end bodyDraw
+
+.clock {
+    color: #fff;
+
+    ul {
+        margin: 0 auto;
+        padding: 40px 0;
+        list-style: none;
+        text-align: center;
+
+        li {
+            display: inline;
+            font-size: 100px;
+            text-align: center;
+            font-family: 'Text';
+            text-shadow: 0 0 5px #00c6ff;
+        }
+    }
+}
+
+#Date {
+    font-family: 'Text';
+    font-size: 50px;
+    text-align: center;
+    text-shadow: 0 0 5px #00c6ff;
+    padding: 20px 0;
+
+    .timeEdit {
+        width: 114px;
+        border-bottom: 1px solid #fff;
+    }
+}
+
+.point {
+    position: relative;
+    -moz-animation: blink 1s ease infinite;
+    -webkit-animation: blink 1s ease infinite;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #00c6ff;
+    }
+
+    50% {
+        opacity: 0;
+        text-shadow: none;
+    }
+
+    100% {
+        opacity: 1.0;
+        text-shadow: 0 0 20px #00c6ff;
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+    .bodyDraw {
+        .drawPreview {
+            height: 450px;
+            .drawTitle { font-size: 60px; }
+        }
+
+        .siteFriend {
+            height: 300px;
+        }
+
+        .clock #Date {
+            font-size: 30px;
+        }
+
+        .drawListWinner{
+            .firstPlace {
+                font-size: 40px;
+                margin: 30px 0 10px 0;
+            }
+
+            .secondPlace {
+                font-size: 35px;
+                margin: 10px 0 10px 0;
+            }
+
+            .thirdPlace {
+                font-size: 30px;
+                margin: 10px 0 10px 0;
+            }
+
+            .otherPlace {
+                font-size: 20px;
+            }
+        }
+
+        .drawDescription {
+            .studioName {
+                font-size: 60px;
+            }
+
+            .limitGender {
+                flex-direction: column;
+
+                .itemLimit {
+                    flex-direction: row;
+                    margin: 10px 0 0 10px;
+
+                    input { margin-right: 10px; }
+                }
+            }
+        } // end drawDescription
+    } // end bodyDraw
+} // end media
+
+@media (max-width: 767px) {
+
+    %YTiframe {
+        width: 100%;
+        height: auto;
+    }
+
+    .youtubeVideo iframe {
+        @extend %YTiframe;
+    }
+
+    .youtubeVideo .editYoutube {
+        @extend %YTiframe;
+
+        h1 {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .info {
+            width: 95%;
+            margin: 10px auto;
+            font-size: 13px;
+        }
+
+        .inputAddMember {
+            width: 90%;
+        }
+
+        iframe, .default {
+            max-width: 250px;
+            min-width: 250px;
+            height: 30vh;
+            margin: 25px 0;
+        }
+
+        .default {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 30px;
+            color: #fff;
+            margin: 25px auto 0 auto;
+            background: #119298;
+        }
+    } // end youtubeVideo
+
+    .bodyDraw {
+        .drawContent {
+            .title.create { margin: 25px 0 10px 0; }
+            .inputAddLottery { width: 100%; }
+        }
+
+        .drawControlLine .moveLine {
+            font-size: 40px;
+        }
+
+        .itemLine {
+            margin: 20px auto;
+            font-size: 15px;
+
+            i, .finger {
+                font-size: 25px;
+            }
+        }
+
+        .drawDescription {
+            padding: 0 10px;
+
+            .addParticipant {
+                padding: 20px 10px 1px 10px;
+                margin: 10px 0 0 0;
+
+                .errorTextGJ, .errorTextCustom {
+                    font-size: 15px;
+                    padding-bottom: 10px;
+                }
+
+                .iconInfoLottery {
+                    font-size: 25px;
+                }
+
+                form {
+                    width: 100%;
+                }
+
+                .cancel, .participate {
+                    width: 50px;
+                    height: 50px;
+                    padding: 12px 0 0 0;
+                    font-size: 25px;
+                    border-radius: 30px;
+                }
+
+                p { font-size: 13px; }
+            }
+
+            .dateLottery {
+                .datePicker {
+                    display: flex;
+                    align-items: center;
+                    padding: 0 10px;
+                    font-size: 20px;
+
+                    .day {
+                        width: 20px;
+                    }
+
+                    .pickerMonth {
+                        position: relative;
+                        margin: 0 10px;
+
+                        .name {
+                            font-size: 20px;
+                            opacity: 0.4;
+                        }
+
+                        .selectMonth {
+                            width: 150px;
+                            font-size: 15px;
+                        }
+                    }
+
+                    .time {
+                        width: 50px;
+                        margin-left: 20px;
+                    }
+                }
+            }
+
+            #shortDescription .drawText,
+            #description .drawText {
+                width: calc(100% - 20px);
+            }
+
+            .countUser,
+            .ageRange {
+                font-size: 30px;
+            }
+
+            .local {
+                .city {
+                    width: 100%;
+
+                    .citySearch {
+                        font-size: 12px;
+                        text-align: left;
+                    }
+
+                    .listCity .cityItem {
+                        font-size: 12px;
+                        padding: 10px;
+
+                        .info {
+                            font-size: 12px;
+
+                            .name {
+                                font-size: 15px;
+                            }
+                        }
+
+                        &.addCity {
+                            font-size: 15px;
+                            padding: 10px;
+                        }
+                    }
+                } // end city
+
+                .listAddCity {
+                    .cityItem {
+                        font-size: 12px;
+                        margin-top: 5px;
+
+                        .info {
+                            font-size: 15px;
+                            .name { font-size: 20px; }
+                        }
+                    }
+                } // end listAddCity
+            } // end local
+
+            .ageRange input {
+                width: 46px;
+            }
+
+            .studioInfo {
+                font-size: 10px;
+                i { font-size: 10px; }
+            }
+
+            .studioName {
+                font-size: 20px;
+            }
+
+            .title h1 {
+                font-size: 20px;
+            }
+
+            .clock {
+                #Date { font-size: 13px; }
+                .clock ul li { font-size: 35px; }
+            }
+
+            #shortDescription .maxChar {
+                position: absolute;
+                top: 4px;
+                font-size: 20px;
+            }
+
+            .drawText {
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .drawConditions {
+                padding: 0px;
+                font-size: 13px;
+
+                ol li {
+                    font-size: 15px;
+
+                    i { left: 7px; }
+                    &:before {
+                        font-size: 20px;
+                        padding: 0px 15px 0 0;
+                        width: 15px;
+                    }
+                }
+            }
+
+            .drawLinks, .drawInfo {
+                font-size: 15px;
+            }
+
+            .drawLinks .addLink div, .drawInfo .addInfo div {
+                width: 30px;
+                height: 30px;
+                padding-top: 5px;
+                margin: 5px 3px 0 0;
+            }
+
+            .drawInfo .itemInfo .delInfo {
+                top: 10px;
+                left: 0px;
+            }
+
+            .drawLinks {
+                .itemLink {
+                    padding: 5px 0 0 0;
+
+                    .nameLink { width: 70%; }
+
+                    .addressLink {
+                        width: 70%;
+                        font-size: 13px;
+                    }
+
+                    .delLink {
+                        top: 5px;
+                        left: -18px;
+                    }
+                }
+
+                .editLinks .confirmEditLinks {
+                    position: absolute;
+                    right: 0px;
+                    font-size: 30px;
+                }
+            }
+
+            .drawRepost {
+                padding: 10px;
+                font-size: 20px;
+            }
+
+            .drawNeedUser {
+                font-size: 30px;
+                i { font-size: 20px; }
+            }
+
+            .point {
+                padding-left: 0px;
+                padding-right: 0px;
+            }
+
+            .drawHoldingLink {
+                font-size: 15px;
+            }
+
+            .drawListWinner {
+                font-size: 15px;
+
+                .firstPlace {
+                    font-size: 15px;
+                    margin: 20px 0 0 0;
+                }
+
+                .secondPlace {
+                    font-size: 15px;
+                    margin: 10px 0 0 0;
+                }
+
+                .thirdPlace {
+                    font-size: 15px;
+                    margin: 10px 0 0 0;
+                }
+
+                .otherPlace {
+                    margin: 10px 0 0 0;
+                }
+            }
+
+            .limitGender {
+                flex-direction: column;
+
+                .itemLimit {
+                    flex-direction: row;
+                    font-size: 15px;
+                    margin: 10px 0 0 10px;
+
+                    input {
+                        margin-right: 10px;
+                    }
+                }
+            }
+
+            .createLottery {
+                font-size: 20px;
+                width: 90%;
+                margin: 30px auto;
+            }
+        } // end drawDescription
+
+        .drawContent .addBtn {
+            font-size: 13px;
+            width: calc(100% - 10px);
+        }
+
+        .drawPreview {
+            height: 200px;
+
+            .drawTitle {
+                font-size: 30px;
+
+                .youtubeId {
+                    right: 35px;
+                    bottom: 15px;
+                    font-size: 15px;
+
+                    .youtubeId.active {
+                        width: 80%;
+                        padding: 2px 5px;
+                    }
+                }
+
+                .addBG {
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    font-size: 20px;
+                }
+
+                .play {
+                    position: absolute;
+                    bottom: 10px;
+                    right: 10px;
+                    font-size: 20px;
+                }
+            }
+        }
+
+        .siteFriend {
+            height: 150px;
+        }
+
+        .drawPrizes {
+            ol {
+                padding: 10px;
+
+                li {
+                    font-size: 15px;
+                    margin-top: 10px;
+
+                    &:before {
+                        font-size: 20px;
+                        padding: 0 5px 0 0;
+                    }
+
+                    i {
+                        top: 5px;
+                        left: -20px;
+                    }
+
+                    .head .range {
+                        top: -13px;
+                        left: -6px;
+                        font-size: 8px;
+                        padding: 4px 4px 2px 4px;
+                        opacity: 0.7;
+                    }
+                } // end li
+            } // end ol
+        } // end drawPrizes
+    } // end bodyDraw
+} // end media 767
+
+@media (max-width: 500px) {
+    .bodyDraw .itemLine {
+        margin: 20px auto;
+        font-size: 10px;
+
+        i, .finger { font-size: 15px; }
+    }
+}
+
+/*
+ * --------------------------------------------------
+ * Розыгрыш
+ */

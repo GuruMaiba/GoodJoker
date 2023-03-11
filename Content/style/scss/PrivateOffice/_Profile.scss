@@ -1,0 +1,414 @@
+/*
+ * Профиль
+ * --------------------------------------------------
+ */
+
+.profile {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.profileBack {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 16px;
+    z-index: 1;
+}
+
+.profileBG {
+    width: 100%;
+    height: 100vh;
+    filter: blur(10px);
+    opacity: 0.5;
+}
+
+.profileTitle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: rgba(19, 19, 21, 0.6);
+
+    .content {
+        padding: 0 8%;
+        max-width: 70%;
+    }
+
+    .avaMessage {
+        display: inline-block;
+        position: relative;
+
+        img {
+            width: 200px;
+            height: 200px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius: 100px;
+            border-radius: 100px;
+            border: 2px solid #fff;
+        }
+
+        .addDialog {
+            display: block;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 60px;
+            height: 60px;
+            font-size: 40px;
+            padding: 10px 5px 0 0;
+            box-shadow: #000 0 0 20px 1px;
+            border-radius: 30px;
+            background: #119298;
+
+            &:hover {
+                color: #1adce4;
+                box-shadow: #1adce4 0 0 20px 1px;
+                background: #131315;
+            }
+        }
+    }
+
+    .name {
+        padding: 20px 0 20px 0;
+        font-size: 70px;
+        color: #fff;
+    }
+
+    .achievements {
+        div {
+            display: inline-block;
+            color: #fff;
+            font-size: 20px;
+            padding: 0 10px;
+        }
+
+        i { font-size: 25px; }
+    }
+
+    .social {
+        font-size: 40px;
+    }
+
+
+    .lotteries {
+        position: relative;
+        height: 70vh;
+        min-width: 500px;
+        overflow: hidden;
+
+        .lottery {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+
+            .share {
+                position: absolute;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                background: #119298;
+                transition: all 0.3s ease;
+
+                a {
+                    font-size: 30px;
+
+                    &:hover, &:active, &:focus {
+                        cursor: pointer;
+                        color: #fff;
+                        opacity: 0.5;
+                    }
+                }
+            } // end share
+
+            .appellative {
+                font-size: 35px;
+                line-height: 1;
+                padding: 15px;
+
+                i { font-size: 20px; }
+            }
+
+            &:hover {
+                color: #fff;
+                background: rgba(255, 255, 255, 0.2);
+
+                .share {
+                    opacity: 0.8;
+                }
+            } // end hover
+        } // end lottery
+    } // end lotteries
+} // end profileTitle
+
+.myMandatoryInfo {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 50px 0;
+    border-top: 5px solid #119298;
+
+    .btnDown {
+        position: absolute;
+        top: -80px;
+        right: 30px;
+        display: flex;
+        align-items: center;
+        font-size: 30px;
+        transition: all 0.3s ease;
+
+        .icon {
+            width: 70px;
+            height: 80px;
+            font-size: 40px;
+            text-align: center;
+            padding-top: 18px;
+            margin-left: 20px;
+            border-radius: 20px 20px 0 0;
+            background: #119298;
+            transition: background 0.3s ease;
+        }
+
+        &:hover {
+            cursor: pointer;
+            color: #1adce4;
+
+            .icon {
+                cursor: pointer;
+                background: #131315;
+            }
+        }
+    } // end btnDown
+
+    .info {
+        width: 80%;
+
+        .return {
+            .question {
+                color: #1adce4;
+                margin-top: 10px;
+                padding: 5px 10px;
+                font-size: 20px;
+                border-bottom: 1px solid;
+            }
+
+            .answer {
+                padding: 10px;
+                font-size: 25px;
+            }
+        }
+    } // end info
+
+    .refreshWinner {
+        position: relative;
+        display: none;
+        width: 80%;
+        margin-top: 30px;
+
+        textarea {
+            height: 200px;
+        }
+
+        .goRefresh {
+            position: absolute;
+            top: 30px;
+            right: 20px;
+            color: #1adce4;
+            line-height: 0.5;
+            font-size: 40px;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+
+            &.active {
+                opacity: 1;
+
+                &:hover {
+                    cursor: pointer;
+                    transform: rotate(270deg);
+                }
+            }
+        } // end goRefresh
+    } // end refreshWinner
+
+    .btnAddWinner {
+        display: flex;
+        justify-content: space-around;
+        width: 80%;
+        margin-top: 30px;
+
+        %winnerBtn {
+            font-size: 25px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 20px 0 #000;
+            transition: all 0.3s ease;
+        }
+
+        .refreshWinnerBtn {
+            @extend %winnerBtn;
+            background: #CC0000;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 0 #CC0000;
+            }
+        }
+
+        .confirmWinnerBtn {
+            @extend %winnerBtn;
+            background: #009900;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 0 #009900;
+            }
+        }
+    } // end btnAddWinner
+} // end myMandatoryInfo
+
+@media screen and (max-width: 1000px) {
+    .profileTitle {
+        .content {
+            padding: 0 30px;
+            max-width: 70%;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border: 2px solid #fff;
+        }
+
+        .name {
+            padding: 20px 0 5px 0;
+            font-size: 40px;
+        }
+
+        .achievements {
+            div {
+                font-size: 15px;
+                padding: 0 10px;
+            }
+
+            i { font-size: 20px; }
+        }
+
+        .social {
+            font-size: 30px;
+        }
+
+        h1 {
+            font-size: 25px;
+        }
+
+        .appellative {
+            font-size: 25px;
+            line-height: 1.1;
+
+            i { font-size: 15px; }
+        }
+    } // end profileTitle
+
+    .myMandatoryInfo .btnAddWinner {
+        flex-direction: column;
+        width: auto;
+
+        .refreshWinnerBtn, .confirmWinnerBtn {
+            margin-top: 10px;
+        }
+    }
+} // end media 1000
+
+@media screen and (max-width: 767px) {
+    .profile {
+        min-height: 800px;
+    }
+
+    .profileBG {
+        width: 100%;
+        min-height: 800px;
+        filter: blur(10px);
+        opacity: 0.5;
+    }
+
+    .profileTitle {
+        flex-direction: column;
+        justify-content: flex-start;
+
+        .content {
+            padding: 50px 0 0 0;
+            max-width: 100%;
+        }
+
+        .lotteries {
+            height: 300px;
+            min-width: 100%;
+        }
+    }
+
+    .myMandatoryInfo {
+        padding: 10px;
+
+        .info {
+            width: 95%;
+
+            .return {
+                .question { font-size: 15px; }
+                .answer { font-size: 20px; }
+            }
+        } // end info
+
+        .btnDown {
+            position: absolute;
+            top: -80px;
+            right: 10px;
+            left: 10px;
+            font-size: 20px;
+
+            .icon {
+                min-width: 60px;
+                height: 80px;
+                font-size: 35px;
+                text-align: center;
+                padding-top: 20px;
+            }
+        }
+
+        .btnAddWinner {
+            flex-direction: row;
+            margin-top: 10px;
+
+            .refreshWinnerBtn, .confirmWinnerBtn {
+                width: 60px;
+                height: 60px;
+                font-size: 20px;
+                margin-top: 0px;
+                padding-top: 20px;
+                border-radius: 70px;
+            }
+
+            .refreshWinnerBtn {
+                margin-right: 10px;
+            }
+        } // end btnAddWinner
+    } // end myMandatoryInfo
+} // end media 767
+
+/*
+ * --------------------------------------------------
+ * Профиль
+ */

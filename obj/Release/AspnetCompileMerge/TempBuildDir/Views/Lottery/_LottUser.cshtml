@@ -1,0 +1,29 @@
+﻿@using GoodJoker.Models
+@model ICollection<Lottery>
+
+@HelperAdvert.ViewAdvert(null)
+
+@foreach (var lott in Model)
+{
+    <div class="userLott">
+        @if (User.Identity.GetUserRole() == "Admin")
+        {<div class="delLott" lottId="@lott.Id" typeLott="user"><i class="icon-cancel"></i></div>}
+        <a href="/Main/Studio/@lott.Studio.Id" class="studioName hidden-xs">@lott.Studio.Name</a>
+        <a href="/Lottery/Details/@lott.Id" class="link">
+            <div class="background" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@lott.Cover')"></div>
+            <div class="left">
+                <div>
+                    <i class="icon-thumbs-o-up"></i> @lott.Fingers.Where(f => f.UpOrDown).Count()<br class="hidden-xs" />
+                    <i class="icon-thumbs-o-down"></i> @lott.Fingers.Where(f => !f.UpOrDown).Count()<br class="hidden-xs" />
+                    <i class="icon-eye"></i> @lott.View<br class="hidden-xs" />
+                    <i class="icon-user"></i> @lott.Users.Count<br class="hidden-xs" />
+                    <i class="icon-comment-2"></i> @lott.Comments.Count<br class="hidden-xs" />
+                </div>
+            </div>
+            <div class="right">
+                <div class="caption">@lott.Title</div>
+                <div class="text hidden-xs">@lott.ShortDescription</div>
+            </div>
+        </a>
+    </div>
+}

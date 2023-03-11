@@ -1,0 +1,766 @@
+//
+// Подсказки (Mixin`s in the folder with the path "../_Mixins.scss")
+// -----------------------------------------------------------------
+
+.hint {
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    z-index: 2;
+    background: rgba(13, 150, 158, 0.8);
+
+    .headerBG {
+        position: relative;
+        width: 100%;
+        height: 600px;
+
+        .helpImg {
+            position: absolute;
+            top: 0;
+            right: 0px;
+
+            .outline {
+                // top 14px, right 17px, w 65px, h 65px, transf 0, type "outl"
+                @include hint(true, 14px, false, 17px, 65px, 65px, 0, "outl");
+            }
+
+            .arrow {
+                // top 70px, right 35px, w 80px, h 80px, transf -30deg, type "arw", bRad 0 0 50px 30px
+                @include hint(true, 70px, false, 35px, 80px, 80px, -30deg, "arw", 50px 30px);
+
+                .end {
+                    // top 35px, right -10px, w 30px, h 30px, transf -20deg, type "arwE"
+                    @include hint(true, 35px, false, -10px, 30px, 30px, -20deg, "arwE");
+                }
+            }
+
+            .text {
+                // top 50px, right 100px, w 200px, h 0px, transf 20deg
+                @include hint(true, 50px, false, 100px, 200px, 0, 20deg);
+            }
+        }
+
+        .helpTitle {
+            position: absolute;
+            top: 170px;
+            left: 0px;
+
+            .arrow {
+                @include hint(true, -50px, true, 400px, 150px, 150px, -110deg, "arw", 150px 80px);
+
+                .end {
+                    @include hint(false, 30px, true, -15px, 30px, 30px, -60deg, "arwE");
+                }
+            }
+
+            .text {
+                @include hint(true, 0px, true, 20px, 400px, 0, -15deg);
+            }
+        }
+
+        .helpYoutube {
+            position: absolute;
+            bottom: 85px;
+            right: 50px;
+
+            .outline {
+                @include hint(true, 78px, false, -30px, 70px, 50px, 0, "outl");
+            }
+
+            .arrow {
+                @include hint(true, 0px, false, -30px, 80px, 80px, -120deg, "arw");
+
+                .end {
+                    @include hint(false, 0px, true, -10px, 30px, 30px, -80deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 400px;
+                transform: rotate(-15deg);
+            }
+        }
+
+    } // end headerBG
+
+    .helpContent .helpBlock {
+        position: relative;
+        margin: 25px 0 0 0;
+
+        .helpDate {
+            position: absolute;
+            top: 30px;
+            left: 400px;
+
+            .text {
+                width: 400px;
+                font-size: 20px;
+                transform: rotate(-15deg);
+            }
+        }
+
+        .helpShortDescription {
+            position: absolute;
+            top: 15px;
+            right: 50px;
+
+            .arrow {
+                @include hint(true, 20px, true, -50px, 120px, 120px, 0, "arw");
+
+                .end {
+                    @include hint(false, 15px, true, -13px, 30px, 30px, -60deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 400px;
+                transform: rotate(5deg);
+            }
+        }
+
+        .helpDescription {
+            position: absolute;
+            top: 15px;
+            left: 0px;
+
+            .arrow {
+                @include hint(true, -30px, false, -50px, 120px, 120px, -90deg, "arw");
+
+                .end {
+                    @include hint(false, 15px, true, -13px, 30px, 30px, -60deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 400px;
+                transform: rotate(-10deg);
+            }
+        }
+
+        .helpAgeLimit {
+            position: absolute;
+            top: 20px;
+            left: 400px;
+
+            .text {
+                width: 500px;
+                font-size: 20px;
+                transform: rotate(-10deg);
+            }
+        }
+
+        .helpConditions {
+            position: absolute;
+            top: 20px;
+            left: 200px;
+
+            .outline {
+                @include hint(true, 65px, true, -145px, 300px, 45px, 0, "outl");
+            }
+
+            .arrow {
+                @include hint(true, -7px, true, -60px, 80px, 80px, -220deg, "arw");
+
+                .end {
+                    @include hint(false, 10px, false, -7px, 30px, 30px, -10deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 700px;
+                transform: rotate(5deg);
+            }
+        }
+
+        .helpInfo {
+            position: absolute;
+            top: 25px;
+            right: 41px;
+
+            .outline {
+                @include hint(true, -65px, true, -65px, 56px, 55px, 0, "outl");
+            }
+
+            .arrow {
+                @include hint(true, 50px, true, 0px, 80px, 80px, -20deg, "arw");
+
+                .end {
+                    @include hint(false, 0px, true, -10px, 30px, 30px, -80deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 300px;
+                transform: rotate(22deg);
+            }
+        }
+
+        .helpPrizes {
+            position: absolute;
+            top: 50px;
+            left: 200px;
+
+            .outline {
+                @include hint(true, 25px, true, -155px, 300px, 45px, 0, "outl");
+            }
+
+            .arrow {
+                @include hint(true, -35px, true, -70px, 80px, 80px, -200deg, "arw");
+
+                .end {
+                    @include hint(false, 10px, false, -10px, 30px, 30px, -10deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 700px;
+                transform: rotate(5deg);
+            }
+        }
+
+        .helpLinks {
+            position: absolute;
+            top: 100px;
+            right: 10px;
+
+            .text {
+                width: 300px;
+                transform: rotate(13deg);
+            }
+        }
+
+        .helpLocalLimitations {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+
+            .arrow {
+                @include hint(true, 7px, true, 170px, 80px, 80px, 50deg, "arw");
+
+                .end {
+                    @include hint(false, 10px, false, -7px, 30px, 30px, -10deg, "arwE");
+                }
+            }
+
+            .text {
+                width: 700px;
+                transform: rotate(5deg);
+            }
+        }
+
+        .helpGender {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+
+            .text {
+                width: 300px;
+                transform: rotate(-13deg);
+            }
+        }
+
+        .helpEndBlock .helpEnd {
+            position: absolute;
+            bottom: 50px;
+            right: 50px;
+
+            .text {
+                width: 500px;
+                transform: rotate(5deg);
+            }
+        }
+    }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+    .bodyDraw .drawContent .hint .helpContent .helpBlock {
+        .helpAgeLimit {
+            top: 0;
+            left: 260px;
+        }
+
+        .helpConditions {
+            top: 10px;
+
+            .outline { top: 75px; }
+            .arrow { top: 0; }
+            .text { width: 600px; }
+        }
+
+        .helpInfo {
+            top: 10px;
+            right: 0px;
+
+            .outline {
+                top: 85px;
+                left: 64px;
+            }
+
+            .arrow {
+                top: 70px;
+                left: 130px;
+            }
+
+            .text { transform: rotate(10deg); }
+        }
+
+        .helpPrizes {
+            top: 30px;
+
+            .outline { top: 45px; }
+
+            .arrow {
+                top: -30px;
+                left: -60px;
+                transform: rotate(-220deg);
+            }
+
+            .text { width: 600px; }
+        }
+
+    }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+
+
+    .bodyDraw .drawContent .hint {
+        font-size: 15px;
+
+        .headerBG {
+            height: 450px;
+
+            .helpImg {
+                .arrow {
+                    position: absolute;
+                    top: 50px;
+                    right: 65px;
+                    transform: rotate(0deg);
+                }
+
+                .text {
+                    top: 40px;
+                    width: 300px;
+                    transform: rotate(10deg);
+                }
+            }
+
+            .helpTitle {
+                top: 170px;
+                left: 0px;
+
+                .arrow {
+                    top: -30px;
+                    width: 80px;
+                    height: 80px;
+                    border-radius: 0 0 80px 50px;
+                    transform: rotate(-120deg);
+
+                    .arrow .end {
+                        bottom: 0px;
+                        left: -10px;
+                        transform: rotate(-70deg);
+                    }
+                }
+
+                .text { transform: rotate(-10deg); }
+            }
+
+            .helpYoutube { bottom: 90px; }
+        }
+
+        .helpContent .helpBlock {
+            .helpDate {
+                position: absolute;
+                top: 30px;
+                left: inherit;
+                right: 0;
+            }
+
+            .helpAgeLimit {
+                left: inherit;
+                right: 20px;
+
+                .text { font-size: 15px; }
+            }
+
+            .helpConditions {
+                top: -20px;
+                left: inherit;
+                right: 0;
+
+                .outline {
+                    top: 105px;
+                    left: -80px;
+                }
+
+                .arrow {
+                    top: 25px;
+                    left: -40px;
+                }
+
+                .text { width: 500px; }
+            }
+
+            .helpInfo {
+                top: 90px;
+                right: inherit;
+                left: 115px;
+
+                .outline {
+                    top: 65px;
+                    left: -65px;
+                    width: 52px;
+                    height: 53px;
+                }
+
+                .arrow {
+                    top: 45px;
+                    left: 0px;
+                }
+
+                .text { width: 300px; }
+            }
+
+            .helpPrizes {
+                top: 0;
+                left: inherit;
+                right: 10px;
+
+                .outline {
+                    top: 75px;
+                    left: -180px;
+                }
+
+                .arrow {
+                    top: -10px;
+                    left: -50px;
+                    transform: rotate(-240deg);
+
+                    .arrow .end {
+                        bottom: 10px;
+                        right: -10px;
+                        border-radius: 20px 10px 20px 0;
+                    }
+                }
+
+                .text { width: 400px; }
+            }
+
+            .helpLinks {
+                position: absolute;
+                top: 100px;
+                right: 0;
+
+                .text {
+                    width: 300px;
+                    transform: rotate(13deg);
+                }
+            }
+
+            .helpLocalLimitations {
+                left: inherit;
+                right: 10px;
+
+                .arrow {
+                    top: 0px;
+                    left: 0px;
+                }
+
+                .text { width: 500px; }
+            }
+
+            .helpGender {
+                bottom: inherit;
+                left: inherit;
+                right: 0;
+                top: 20px;
+
+                .text { transform: rotate(13deg); }
+            }
+
+        }
+    }
+
+
+}
+
+@media (max-width: 767px) {
+    .bodyDraw .drawContent .hint {
+        font-size: 10px;
+
+        .headerBG {
+            height: 200px;
+
+            .helpImg {
+                .outline {
+                    top: 5px;
+                    right: 5px;
+                    width: 30px;
+                    height: 30px;
+                    border: 1px solid #fff;
+                }
+
+                .arrow {
+                    top: 30px;
+                    right: 30px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 0 0 30px 20px;
+                    transform: rotate(0deg);
+
+                    .end {
+                        top: 10px;
+                        right: -8px;
+                        width: 20px;
+                        height: 20px;
+                        border-top: 2px solid;
+                        border-right: 2px solid;
+                    }
+                }
+
+                .text {
+                    top: 10px;
+                    right: 50px;
+                    width: 200px;
+                    transform: rotate(5deg);
+                }
+            }
+
+            .helpTitle {
+                top: 70px;
+                left: 0px;
+
+                .arrow {
+                    top: 0px;
+                    left: 190px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 0 0 10px 30px;
+                    transform: rotate(-150deg);
+
+                    .end {
+                        bottom: 0px;
+                        left: -5px;
+                        width: 20px;
+                        height: 20px;
+                        border-top: 2px solid;
+                        border-right: 2px solid;
+                        transform: rotate(-80deg);
+                    }
+                }
+
+                .text {
+                    left: 10px;
+                    width: 200px;
+                    transform: rotate(-10deg);
+                }
+            }
+
+            .helpYoutube {
+                bottom: 15px;
+                right: 50px;
+
+                .outline {
+                    top: 25px;
+                    right: -45px;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 5px;
+                    border: 1px solid;
+                }
+
+                .arrow {
+                    top: -10px;
+                    right: -25px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 0 0 40px 20px;
+                    border-bottom: 2px solid #fff;
+                    transform: rotate(-150deg);
+
+                    .end {
+                        bottom: -5px;
+                        left: -7px;
+                        width: 20px;
+                        height: 20px;
+                        border-top: 2px solid;
+                        border-right: 2px solid;
+                    }
+                }
+
+                .text {
+                    width: 200px;
+                    transform: rotate(-10deg);
+                }
+            }
+        } // end headerBG
+
+        .helpContent .helpBlock {
+            .helpDate {
+                top: 30px;
+                left: inherit;
+                right: 10px;
+
+                .text {
+                    width: 200px;
+                    font-size: 13px;
+                    transform: rotate(10deg);
+                }
+            }
+
+            .helpShortDescription {
+                top: 20px;
+                right: 10px;
+
+                .arrow {
+                    position: absolute;
+                    top: 10px;
+                    left: 0px;
+                    width: 50px;
+                    height: 70px;
+                    border-radius: 0 0 50px 70px;
+                    transform: rotate(-30deg);
+
+                    .end {
+                        bottom: 10px;
+                        left: -8px;
+                        width: 20px;
+                        height: 20px;
+                        border-top: 2px solid;
+                        border-right: 2px solid;
+                        transform: rotate(-57deg);
+                    }
+                }
+
+                .text { width: 200px; }
+            }
+
+            .helpDescription {
+                top: 10px;
+                left: 0px;
+
+                .arrow {
+                    top: -10px;
+                    right: -20px;
+                    width: 50px;
+                    height: 70px;
+                    border-radius: 0 0 70px 50px;
+                    border-bottom: 2px solid #fff;
+                    transform: rotate(-120deg);
+
+                    .end {
+                        bottom: 3px;
+                        left: -9px;
+                        width: 20px;
+                        height: 20px;
+                        border-radius: 20px 10px 20px 0;
+                        border-top: 2px solid;
+                        border-right: 2px solid;
+                        transform: rotate(-60deg);
+                    }
+                }
+
+                .text {
+                    width: 200px;
+                    transform: rotate(-10deg);
+                }
+            }
+
+            .helpAgeLimit {
+                top: 0px;
+                left: inherit;
+                right: 10px;
+
+                .text {
+                    width: 200px;
+                    font-size: 10px;
+                    transform: rotate(10deg);
+                }
+            }
+
+            .helpConditions {
+                top: -10px;
+                left: 10px;
+
+                .outline, .arrow { display: none; }
+                .text {
+                    width: 200px;
+                    transform: rotate(-5deg);
+                }
+            }
+
+            .helpInfo {
+                top: 50px;
+                right: 0px;
+
+                .outline, .arrow { display: none; }
+                .text {
+                    width: 200px;
+                    transform: rotate(22deg);
+                }
+            }
+
+            .helpPrizes {
+                top: 10px;
+                left: inherit;
+                right: 10px;
+
+                .outline, .arrow { display: none; }
+                .text {
+                    width: 200px;
+                    transform: rotate(5deg);
+                }
+            }
+
+            .helpLinks {
+                top: 40px;
+                right: 0;
+
+                .text {
+                    width: 200px;
+                    transform: rotate(13deg);
+                }
+            }
+
+            .helpLocalLimitations {
+                top: 0px;
+                left: inherit;
+                right: 10px;
+
+                .arrow { display: none; }
+                .text {
+                    width: 200px;
+                    transform: rotate(5deg);
+                }
+            }
+
+            .helpGender {
+                bottom: inherit;
+                left: inherit;
+                top: 40px;
+                right: 0;
+
+                .text {
+                    width: 200px;
+                    transform: rotate(-13deg);
+                }
+            }
+        } // end helpBlock
+
+        .helpContent .helpEndBlock .helpEnd {
+            bottom: 10px;
+            right: 30px;
+
+            .text {
+                width: 200px;
+                transform: rotate(5deg);
+            }
+        } // end helpContent
+    }
+}

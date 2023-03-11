@@ -1,0 +1,20 @@
+﻿@model ICollection<GoodJoker.Models.CommentChatLottery>
+
+@if (Model.Count > 0)
+{
+    foreach (var comment in Model)
+    {
+        var date = comment.DateCreate;
+        <div class="comment" commentId="@comment.Id" commentDate="@date.ToString("dd.MM.yyyy HH:mm:ss")">
+            <div class="name">
+                <a href="/Main/Joker/@comment.Author.Id">@comment.Author.Nick</a>
+                @if (ViewBag.Organizer)
+                {<i class="icon-gavel" title="Заблокировать чат пользователю"></i>}
+            </div>
+            <div class="text">
+                @comment.Text
+            </div>
+            <div class="date">@date.ToLocalTime().ToString("HH:mm")</div>
+        </div>
+    }
+}

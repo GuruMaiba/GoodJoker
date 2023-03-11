@@ -1,0 +1,353 @@
+/*
+ * Модалка
+ * --------------------------------------------------
+ */
+
+/* Общие настройки модального окна */
+.modalBody {
+    position: fixed;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 997;
+
+    .modalWindow {
+        position: fixed;
+        display: none;
+        width: 50%;
+        text-align: center;
+        padding: 20px;
+        background: #131315;
+        opacity: 0;
+        color: $mainColor2;
+        border: 1px solid $mainColor2;
+        box-shadow: $mainColor2 0px 0px 20px 0px;
+        animation-duration: 1s;
+        animation-fill-mode: both;
+
+        .modalClose {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            font-size: 25px;
+
+            &:hover {
+                cursor: pointer;
+                color: $mainColor1;
+            }
+        }
+
+        .inputBlock {
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+
+            .inputLable {
+                color: $mainColor2;
+                font-size: 20px;
+            }
+
+            .input {
+                font-size: 20px;
+                color: $mainColor2;
+                border-color: $mainColor2;
+            }
+
+            .lineInput {
+                border-color: $mainColor2;
+            }
+        }
+
+        textarea {
+            display: block;
+            color: $mainColor2;
+            font-family: "Text", Arial, sans-serif;
+            font-size: 18px;
+            text-align: center;
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            margin: 0 auto;
+            background-color: transparent;
+            border: 1px solid $mainColor1;
+            box-sizing: border-box;
+            outline: 0;
+            transition: all 0.3s;
+            resize: vertical;
+        }
+
+        .icon {
+            font-size: 100px;
+        }
+
+        .complitAction ul {
+            width: 100%;
+            list-style: none;
+            padding: 0;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .btn {
+            margin: 30px auto 10px auto;
+
+            &.disable {
+                opacity: 0.2;
+
+                &:hover {
+                    color: #1adce4;
+                    background: none;
+                }
+            }
+        }
+
+        h2 {
+            text-align: center;
+            margin: 0 0 10px 0;
+            padding: 0;
+        }
+
+        &.error {
+            color: #CC0000;
+            border: 1px solid #CC0000;
+            box-shadow: #CC0000 0px 0px 20px 0px;
+
+            .modalClose:hover {
+                color: #CC0000;
+                opacity: 0.8;
+            }
+
+            .closeModalBtn {
+                color: #CC0000;
+                border: 1px solid #CC0000;
+
+                &:hover {
+                    color: #fff;
+                    background: #CC0000;
+                }
+            }
+        }
+    }
+
+    .modalComplaint {
+        display: none;
+
+        textarea {
+            margin: 30px auto 10px auto;
+        }
+
+        .inputBlock {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: left;
+            margin: 0;
+            padding-left: 50px;
+
+            label {
+                cursor: pointer;
+                margin-left: 25px;
+            }
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    }
+}
+
+/* Custom complit */
+.modalBody .modalQuestion {
+    h1 {
+        font-size: 28px;
+    }
+
+    .noBtn {
+        background: #119298;
+        border-color: #119298;
+        color: #fff;
+
+        &:hover {
+            background: #CC0000;
+            border-color: #CC0000;
+        }
+    }
+
+    .yesBtn:hover {
+        background: #009900;
+        border-color: #009900;
+    }
+}
+
+    /* Оценка сайта */
+.modalBody .assessModal {
+    h1 {
+        font-size: 40px;
+        padding: 10px 0 5px 0;
+        text-transform: uppercase;
+    }
+
+    .stars {
+        display: inline-flex;
+        width: 350px;
+        justify-content: space-around;
+        font-size: 35px;
+    }
+
+    textarea {
+        margin: 30px 0;
+    }
+}
+
+/* Появление */
+.fadeInDown {
+    animation-name: fadeInDown;
+}
+
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+
+    100% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+}
+/*-----------------------*/
+
+/* Исчезновение */
+.fadeOutUp {
+    animation-name: fadeOutUp;
+}
+
+@keyframes fadeOutUp {
+    0% {
+        opacity: 1;
+        -webkit-transform: none;
+        transform: none;
+    }
+
+    100% {
+        opacity: 0;
+        -webkit-transform: translate3d(0, -100%, 0);
+        transform: translate3d(0, -100%, 0);
+    }
+}
+/*-----------------------*/
+
+/* Планшет */
+@media (max-width: 991px) {
+    .modalBody .modalWindow {
+        width: 70%;
+    }
+
+    .modalBody .modalAddCity {
+        font-size: 15px;
+    }
+}
+
+/* Мобилка */
+@media (max-width: 767px) {
+
+    /* Общие стили модальных окон */
+    .modalBody .modalWindow {
+        width: 98%;
+
+        .modalClose {
+            font-size: 20px;
+        }
+
+        textarea {
+            font-size: 13px;
+            height: 70px;
+        }
+
+        .btn {
+            font-size: 15px;
+        }
+
+        h2 {
+            font-size: 20px;
+        }
+    }
+
+    /* Жалоба */
+    .modalBody .modalComplaint {
+        textarea {
+            margin: 10px auto;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        .inputBlock {
+            padding-left: 10px;
+
+            label {
+                font-size: 14px;
+            }
+        }
+
+        .btn {
+            margin-top: 20px;
+        }
+    }
+
+    /* Оценка сайта */
+    .modalBody .assessModal {
+        h1 {
+            font-size: 35px;
+            padding: 10px 0 3px 0;
+        }
+
+        .stars {
+            width: 250px;
+            font-size: 30px;
+        }
+
+        textarea {
+            margin: 20px 0 10px 0;
+        }
+
+        .btn {
+            color: #1adce4;
+            border: 1px solid #1adce4;
+        }
+    }
+
+    /*.modalBody .modalWindow .inputBlock {
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+            .modalBody .modalWindow .inputBlock .inputLable {
+                color: #1adce4;
+                font-size: 20px;
+            }
+
+            .modalBody .modalWindow .inputBlock .input {
+                font-size: 20px;
+                color: #1adce4;
+                border-color: #1adce4;
+            }
+
+            .modalBody .modalWindow .inputBlock .lineInput {
+                border-color: #1adce4;
+            }*/
+}
+
+/*
+ * --------------------------------------------------
+ * Модалки
+ */

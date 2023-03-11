@@ -1,0 +1,565 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="goodjoker, гудджокер, @ViewBag.KeyWords" />
+    <meta name="description" content="@ViewBag.Description" />
+
+    <!-- Открытые данные графа -->
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:url" content="@ViewBag.URL" />
+    <meta property="og:image" content="@ViewBag.MetaImg" />
+    <meta property="og:description" content="@ViewBag.Description" />
+    <meta property="og:site_name" content="GoodJoker" />
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+
+    <script>var youtubeId, getbackYoutube;</script>
+</head>
+<body>
+    @Html.Partial("_Preloader")
+    @RenderSection("Add", required: false)
+    <div class="modalBody">
+        <div class="modalWindow assessModal">
+            <h1>ВАША ОЦЕНКА</h1>
+            <div class="stars"></div>
+            <form class="formComplaint">
+                <input name="Rate" type="hidden" value="5,01" />
+                <textarea name="Text" placeholder="Если у Вас есть желание, Вы можете добавить текстовое описание Вашему отзыву!"></textarea>
+            </form>
+            <button class="btn">Отправить</button>
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+        </div>
+        @RenderSection("Modal", required: false)
+    </div>
+    @Html.AntiForgeryToken()
+    <div class="wrapper">
+        <div id="previewImg">
+            <ul id="scene" data-clipRelativeInput="true" data-relativeInput="true">
+                <li id="liBg" class="layer" data-depth="0.00"><div id="bgPrevImg"><canvas id="canvasBG"></canvas></div></li>
+                <li class="layer" data-depth="0.10"><img style="width: 85%; margin: 0 auto;" class="img-responsive" src="~/Content/style/images/Preview/PreviewText.png"></li>
+                <li id="liTopName" class="layer" data-depth="0.20"><div id="topName"><canvas id="canvasTopName"></canvas></div></li>
+                <li class="layer" data-depth="0.40"><img style="width: 85%; margin: 0 auto;" class="img-responsive" src="~/Content/style/images/Preview/PreviewMask.png"></li>
+                <li id="liTopMask" class="layer" data-depth="1.00"><div id="topMask"><canvas id="canvasTopMask"></canvas></div></li>
+                <li id="liPreviewClose" class="layer" data-depth="0.60"><div id="previewClose"><i class="icon-up-open"></i></div></li>
+            </ul>
+        </div>
+
+
+        <div class="mask"></div>
+
+        <div class="mobileMenu">
+
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Main/Auth"><img id="mobileAva" src="~/Content/style/images/Users/Avatars/Normal/defaultAva.jpg" /></a>
+                    <div class="entry">
+                        <a href="/Main/Auth">ВХОД</a>
+                    </div>
+                }
+                else
+                {
+                    <a href="/PrivateOffice"><img id="mobileAva" src="~/Content/style/images/Users/Avatars/Normal/defaultAva.jpg" /></a>
+                    <div class="nick">
+                        <a href="/PrivateOffice">@User.Identity.Name</a>
+                    </div>
+                }
+
+            <div class="itemMobileMenu">
+                <a href="/"><i class="icon-home-1"></i> Главная</a>
+            </div>
+            <div class="itemMobileMenu">
+                <a href="/News"><i class="icon-news"></i> Новости</a>
+            </div>
+            <div class="itemMobileMenu">
+                <a href="/Lottery"><i class="icon-empire"></i> Розыгрыши</a>
+            </div>
+
+            @if (User.Identity.IsAuthenticated)
+            {
+                <br />
+                <div class="itemMobileMenu">
+                    <a href="/PrivateOffice/Settings"><i class="icon-cog"></i> Настройки</a>
+                </div>
+                <div class="itemMobileMenu">
+                    <a href="/Account/Logout"><i class="icon-login"></i> Выход</a>
+                </div>
+            }
+
+        </div>
+
+        @* //Header.. *@
+        <header>
+            @* Логотип *@
+            <div id="navbarLogo">
+                <div class="menuLogoImg"><img src="~/Content/style/images/logoNav.png" alt="GoodJoker"></div>
+                @*<div class="menuLogoArrow"><i class="icon-down-open"></i></div>*@
+                <div class="menuLogoPhone">GoodJoker</div>
+                <div class="menuLogoArrowUp"><i class="icon-angle-double-up"></i></div>
+            </div>
+            <div class="menu">
+                <ul class="nav">
+                    <li>@Html.ActionLink("Главная", "Index", "Main", null, new { @class = "itemMenu" })</li>
+                    <li>@Html.ActionLink("Новости", "Index", "News", null, new { @class = "itemMenu" })</li>
+                    <li>@Html.ActionLink("Розыгрыши", "Index", "Lottery", null, new { @class = "itemMenu" })</li>
+                </ul>
+                <ul class="nav navRight">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/PrivateOffice"><i class="icon-user"></i> @User.Identity.Name</a></li>
+                        <li><a href="/Account/Logout"><i class="icon-login"></i></a></li>
+                    }
+                    else
+                    {
+                        <li><a href="/Main/Auth">Вход</a></li>
+                    }
+
+                </ul>
+            </div>
+            <div class="menubtn"><i class="icon-menu"></i></div>
+        </header>
+        @* ..Header// *@
+
+        @* Контент *@
+        <div class="bodyStyle">
+            @if (ViewBag.NoSlider != 1)
+            {
+                @* /////Слайдер... *@
+                <div class='slideBlock'>
+                    <ul class='slider'>
+                        <li class='slide'>
+                            <img src="~/Content/style/images/slider/top.jpg" />
+                        </li>
+                        <li class='slide'>
+                            <img src="~/Content/style/images/slider/lucky.jpg" />
+                        </li>
+                        <li class='slide'>
+                            <img src="~/Content/style/images/slider/constructor.jpg" />
+                        </li>
+                    </ul>
+                    <a href='#' id='prevSlide' class='navSlider'><</a>
+                    <a href='#' id='nextSlide' class='navSlider'>></a>
+                </div>
+                @* ...Слайдер///// *@
+            }
+
+            @* Тело *@
+            @RenderBody()
+        </div>
+    </div>
+    <footer>
+        <div class="left">
+            <div class="putCenter">
+                <div class="row links">
+                    <div class="content">
+                        <span class="desc">Полезные ссылки</span>
+                        <a href="#">Пользовательское соглашение</a>
+                        <a href="#">Правила проекта</a>
+                        <a href="#">Рекламодателям</a>
+                        <a href="#">О нас</a>
+                        <a href="#">FAQ</a>
+                        <a href="#">Служба поддержки</a>
+                    </div>
+                    <div class="name"><i class="icon-share-square-o"></i></div>
+                </div>
+                <div class="row">
+                    <div class="content">
+                        <span class="desc">Зарегистрированных пользователей</span>
+                        <span class="value countRegUser">0</span>
+                    </div>
+                    <div class="name"><i class="icon-user"></i></div>
+                </div>
+                <div class="row">
+                    <div class="content">
+                        <span class="desc">Проведённых розыгрышей</span>
+                        <span class="value countArchLott">0</span>
+                    </div>
+                    <div class="name"><i class="icon-empire"></i></div>
+                </div>
+                <div class="row">
+                    <div class="content">
+                        <span class="desc">Пользовательская оценка</span>
+                        <div class="reviewRate">
+                            <div class="rate">
+                                <div class="star" number="1"><i class="icon-star"></i></div>
+                                <div class="star" number="2"><i class="icon-star"></i></div>
+                                <div class="star" number="3"><i class="icon-star"></i></div>
+                                <div class="star" number="4"><i class="icon-star"></i></div>
+                                <div class="star" number="5"><i class="icon-star"></i></div>
+                            </div>
+                        </div>
+                        <div class="stars active">
+                            <div class="star" number="1">
+                                <i class="icon-star-o"></i>
+                                <div class="half"></div>
+                                <div class="int"></div>
+                            </div>
+                            <div class="star" number="2">
+                                <i class="icon-star-o"></i>
+                                <div class="half"></div>
+                                <div class="int"></div>
+                            </div>
+                            <div class="star" number="3">
+                                <i class="icon-star-o"></i>
+                                <div class="half"></div>
+                                <div class="int"></div>
+                            </div>
+                            <div class="star" number="4">
+                                <i class="icon-star-o"></i>
+                                <div class="half"></div>
+                                <div class="int"></div>
+                            </div>
+                            <div class="star" number="5">
+                                <i class="icon-star-o"></i>
+                                <div class="half"></div>
+                                <div class="int"></div>
+                            </div>
+                        </div>
+                        <div class="rating">
+                            <div class="number">5,0</div>
+                            <div class="fraction"></div>
+                            <div class="count"><i class="icon-user"></i> <span>0</span></div>
+                        </div>
+                    </div>
+                    <div class="name"><i class="icon-thumbs-up-1"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <div class="arrowUp"><i class="icon-angle-double-up"></i></div>
+            <a href="/Main/Studio/1" class="logo"><img src="~/Content/style/images/logo200.png" /></a>
+            <div class="year"><span>2018 - </span>2020</div>
+        </div>
+        <div class="right">
+            <div class="putCenter">
+                <div class="row">
+                    <div class="name"><i class="icon-share-square-o"></i></div>
+                    <div class="content">
+                        <span class="desc">Полезные ссылки</span>
+                        <a href="#">Пользовательское соглашение</a>
+                        <a href="#">Правила проекта</a>
+                        <a href="#">Рекламодателям</a>
+                        <a href="#">О нас</a>
+                        <a href="#">FAQ</a>
+                        @if (User.Identity.IsAuthenticated)
+                        {<a href="/PrivateOffice/AddDialogLK/2">Служба поддержки</a>}
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<a href="/Main/Studio/1" class="logo">
+            <div class="name good">Good</div>
+            <img src="~/Content/style/images/logo250.png" />
+            <div class="name joker">Joker</div>
+        </a>*@
+    </footer>    
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/action")
+    @Scripts.Render("~/Scripts/ThirdParty")
+    
+    @RenderSection("Scripts", required: false)
+    <script type="text/javascript">
+
+        @*Сессионный токен*@
+        var token = $("input[name='__RequestVerificationToken']").val();
+        updateInfoSite();
+
+        $(document).ready(function () {
+
+            // Создаём параллакс эффект для списка с картинками "scene"
+            if (device.mobile()) {
+                $("#previewImg").html("<div class=\"mobileMask\"><img src=\"../../Content/style/images/Preview/MaskMobile.png\" /></div>");
+            } else {
+                var scene = document.getElementById('scene');
+                var parallax = new Parallax(scene);
+                parallax.disable();
+            }
+
+            // Инициализируем слайдер
+            var sliderMain = Object.create(slider);
+            sliderMain.resize();
+            sliderMain.moveSlider();
+
+            // Выделяем активный пункт меню
+            $('.itemMenu').each(function () {
+
+                var link = document.location.href;
+                // Вытаскиваем адресную строку и проверяем её на наличие той страницы на которой мы находимся
+                if (link.indexOf($(this).attr('href')) > 0) {
+                    $('.itemMenu').removeClass('activeMenu');
+                    $(this).addClass('activeMenu');
+                }
+
+            });
+
+            $('.itemMobileMenu a').each(function () {
+
+                var link = document.location.href;
+                // Вытаскиваем адресную строку и проверяем её на наличие той страницы на которой мы находимся
+                if (link.indexOf($(this).attr('href')) > 0) {
+                    $('.itemMobileMenu a').removeClass('active');
+                    $(this).addClass('active');
+                }
+
+            });
+
+            $("#previewImg").click(function () {
+                if (!device.mobile()) {
+                    parallax.disable();
+                }
+                $('#previewImg').slideUp(1000);
+                $("html").css("overflow", "visible");
+            });
+
+            $('#navbarLogo').click(function () {
+                if ($(window).scrollTop() == 0) {
+                    if (!device.mobile()) {
+                        parallax.enable();
+                    }
+                    $('#previewImg').slideDown(1000);
+                    $("html").css("overflow", "hidden");
+                } else {
+                    scrollTop();
+                }
+
+            });
+
+            $(".menubtn").click(function () {
+                var ava = "../../Content/style/images/Default/defaultAva.jpg";
+                if ($.cookie('cookieWork') == '1') {
+                    ava = "../../Content/style/images/Users/Avatars/Reduced/" + $.cookie('ava');
+                }
+                $("footer").fadeOut(0);
+                $("body").addClass("left");
+                $(".mobileMenu").css("margin", "0");
+                $(".mobileMenu #mobileAva").attr("src", ava);
+                $(".mask").fadeIn(0);
+                $("html").css("overflow", "hidden");
+                $("html").css("overflow", "hidden");
+            });
+
+            $(".mask").click(function () {
+                $("body").removeClass("left");
+                $(".mobileMenu").css("margin", "0 -200px 0 0");
+                $(".mask").fadeOut(0);
+                $("html").css("overflow", "visible");
+                $("footer").fadeIn(500);
+
+            });
+
+            $(".mobileMenu img").click(function () {
+                $("body").removeClass("left");
+                $(".mobileMenu").css("margin", "0 -200px 0 0");
+                $(".mask").css("display", "none");
+            });
+
+            $("footer .center .arrowUp").click(function () {
+                scrollTop();
+            });
+
+            $("footer .stars.active").mouseleave(function () {
+                assessStar($("footer .rating .number").text());
+            });
+
+            $("footer .stars.active .star .half").hover(function () {
+                var flag = false;
+                var numb = $(this).parent().attr("number") - 1;
+                $("footer .stars .star").each(function (inx) {
+                    if (!flag) {
+                        if (inx != numb) {
+                            $(this).children("i").attr("class", "icon-star");
+                        } else {
+                            $(this).children("i").attr("class", "icon-star-half-o");
+                            flag = true;
+                        }
+                    } else {
+                        $(this).children("i").attr("class", "icon-star-o");
+                    }
+                });
+            });
+
+            $("footer .stars.active .star .half").click(function () {
+                clickStar(`${$(this).parent().attr("number") - 0.5}`);
+            });
+
+            $("footer .stars.active .star .int").hover(function () {
+                var flag = false;
+                var numb = $(this).parent().attr("number") - 1;
+                $("footer .stars .star").each(function (inx) {
+                    if (!flag) {
+                        $(this).children("i").attr("class", "icon-star");
+                        if (inx == numb) { flag = true; }
+                    } else {
+                        $(this).children("i").attr("class", "icon-star-o");
+                    }
+                });
+            });
+
+            $("footer .stars.active .star .int").click(function () {
+                clickStar($(this).parent().attr("number"));
+            });
+
+            $(".assessModal .btn").click(function () {
+                var data = $(".assessModal form").serialize() + `&__RequestVerificationToken=${token}`;
+                console.log(data);
+                $.ajax({
+                    url: "/Main/AddAssess",
+                    type: "POST",
+                    data: data,
+                    success: function () {
+                        updateInfoSite();
+                    }
+                });
+                closeModal(".assessModal");
+            });
+
+            $(window).resize(function () {
+                if ($(window).width() + 17 < 768) {
+                    $("#navbarLogo").addClass("colapse");
+                } else {
+                    if ($(window).scrollTop() == 0) {
+                        $("#navbarLogo").removeClass("colapse");
+                    }
+                }
+                sliderMain.clear();
+                sliderMain.resize();
+                sliderMain.moveSlider();
+            });
+
+            var scroll = $(window).scrollTop();
+            var footer = $("footer").outerHeight();
+
+            $(window).on('scroll', function () {
+
+                var scrollWin = $(window).scrollTop();
+                var widthWin = $(window).width() + 17;
+
+                // Изменение логотипа при скролле
+                if (scrollWin > 0) {
+                    if (widthWin > 767) {
+                        $(".menuLogoImg").css("display", "none");
+                        $(".menuLogoArrow").css("display", "none");
+                    } else {
+                        $(".menuLogoPhone").css("display", "none");
+                    }
+                    $("#navbarLogo").addClass("colapse");
+                    $(".menuLogoArrowUp").fadeIn(300);
+                } else {
+                    $(".menuLogoArrowUp").css("display", "none");
+                    if (widthWin > 767) {
+                        $(".menuLogoImg").fadeIn(0);
+                        $(".menuLogoArrow").slideDown(500);
+                        $("#navbarLogo").removeClass("colapse");
+                    } else {
+                        $(".menuLogoPhone").fadeIn(500);
+                    }
+                }
+
+                // Изменения меню при скролле
+                if (scrollWin + 1 > scroll && scroll > 200 || scroll > $(document).height() - $(window).height() - 500) {
+                    $("header").css("margin", "-56px 0 0 0");
+                    scroll = scrollWin;
+                } else {
+                    $("header").css("margin", "0");
+                    scroll = scrollWin;
+                }
+
+            });
+
+            if ($.cookie("viewHellowImg") != "1") {
+                if (!device.mobile()) {
+                    parallax.enable();
+                }
+                $('#previewImg').css("display", "block");
+                $("html").css("overflow", "hidden");
+                $.cookie("viewHellowImg", "1", { expires: 1 });
+            }
+
+            if ($.cookie('cookieWork') != '1') {
+                $.cookie('cookieWork', '1', { expires: 9999 });
+            }
+        });
+
+        // Функция нажатия на звезду
+        function clickStar(rate) {
+            console.log(rate.replace('.', ','));
+            $('.assessModal input[name="Rate"]').val(rate.replace('.',','));
+            $(".assessModal .stars").html($("footer .stars").html());
+            openModal(".assessModal");
+        }
+
+        // Выставления нужного количества 
+        function assessStar(assess) {
+            var numb = 0;
+            assess = parseFloat(assess.replace(',', '.'));
+            $("footer .stars .star i").attr("class", "icon-star-o");
+            if (assess > 0) {
+                $("footer .stars .star").each(function (inx) {
+                    numb = parseFloat($(this).attr("number"));
+                    if (assess > numb || assess == numb) {
+                        $(this).children("i").attr("class", "icon-star");
+                        if (assess == numb) { return false; }
+                    } else {
+                        if (assess >= numb - 0.5) {
+                            $(this).children("i").attr("class", "icon-star-half-o");
+                        }
+                        return false;
+                    }
+                });
+            }
+        }
+
+        function updateInfoSite() {
+            $.ajax({
+                url: "/Main/InfoSite",
+                type: "POST",
+                data: { "__RequestVerificationToken": token },
+                success: function (data) {
+                    console.log(data);
+                    var info = JSON.parse(data);
+                    $(".countRegUser").text(info['Reg']);
+                    $(".countArchLott").text(info['Arch']);
+                    assessStar(info['Average']);
+                    $("footer .rating .number").text(info['Average']);
+                    $("footer .rating .count span").text(info['Assess']);
+                    if (info['UserRate'] != "-") {
+                        // Принимаем значение которое выставил пользователь, переводим в флоат и определяем процент...
+                        $(".reviewRate .rate").width( (parseFloat(info['UserRate'].replace(',', '.')) / 0.5 * 10) + "%");
+                    }
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
+
+@*
+    // LocalStorage для просмотров
+    //Добавляем или изменяем значение:
+    localStorage.setItem('myKey', 'myValue'); //теперь у вас в localStorage хранится ключ "myKey" cо значением "myValue"
+
+    //Выводм его в консоль:
+    var localValue = localStorage.getItem('myKey');
+    console.log(localValue); //"myValue"
+
+    //удаляем:
+    localStorage.removeItem("myKey");
+
+    //очищаем все хранилище
+    localStorage.clear()
+
+    То же самое, только с квадратными скобками:
+
+    localStorage["Ключ"] = "Значение" //установка значения
+    localStorage["Ключ"] // Получение значения
+    delete localStorage["Ключ"] // Удаление значения
+*@

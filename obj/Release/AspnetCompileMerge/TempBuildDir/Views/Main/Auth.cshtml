@@ -1,0 +1,165 @@
+﻿
+@{
+    Layout = null;
+    var title = "Авторизация | GoodJoker";
+    var desc = "Авторизация на сайте GoodJoker.ru. Авторизация с помощью социальных сетей: Vkontakte, Odnoklassniki, Google, Facebook.";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@title</title>
+    <meta name="description" content="@desc" />
+    <meta name="keywords" content="goodjoker, авторизация, регистрация, вход" />
+
+    <!-- Открытые данные графа -->
+    <meta property="og:title" content="@title" />
+    <meta property="og:url" content="https://goodjoker.ru/Main/Auth" />
+    <meta property="og:image" content="https://goodjoker.ru/Content/style/images/bgAuth.jpg" />
+    <meta property="og:description" content="@desc" />
+    <meta property="og:site_name" content="GoodJoker" />
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+
+</head>
+<body>
+    @Html.Partial("_Preloader")
+    
+    <div id="video-bg">
+        <video id="video" autoplay="autoplay" loop="loop" preload="auto" poster="http://i.ytimg.com/vi/2yN5LcXUeuQ/sddefault.jpg">
+            <source src="~/Content/style/video/background.mp4" type="video/mp4" />
+            <source src="~/Content/style/video/background.webm" type="video/webm" />
+        </video>
+    </div>
+    <div class="authContent">
+        <div class="authBlock">
+            <div class="authBackSite"><a href="/"><i class="icon-reply"> </i>На главную</a></div>
+            <div class="authTitle"><span class="authTitleEntry active">Вход</span> <span class="authTitleReg">Регистрация</span></div>
+            <div class="authLineTitle"><div class="active"></div><hr /></div>
+            
+            <div class="authReg">
+                <div class="authEntry">
+                    <div class="authSlideForm">
+
+                        @* Вход *@
+                        <form class="authFormEntry active">
+                            <div class="authLine">
+                                <input class="input" name="Email" type="text" required /><span class="lineInput"></span>
+                                <label class="inputLable"><i class="icon-mail-1"></i> Email</label>
+                            </div>
+                            <div class="authLine">
+                                <input class="input" name="Pass" type="password" required /><span class="lineInput"></span>
+                                <label class="inputLable"><i class="icon-lock"></i> Пароль</label>
+                                <a class="reestablishPass" href="/Account/ForgotPass">Забыли пароль?</a>
+                            </div>
+                            <button class="btn signEntr">Вход</button>
+                        </form>
+
+                        @* Регистрация *@
+                        <form class="authFormReg">
+                            <div class="authLine">
+                                <input class="input" name="Email" type="text" required disabled /><span class="lineInput"></span>
+                                <label class="inputLable"><i class="icon-mail-1"></i> Email</label>
+                            </div>
+                            <div class="authLine">
+                                <input class="input" name="Pass" type="password" required disabled /><span class="lineInput"></span>
+                                <label class="inputLable"><i class="icon-lock"></i> Пароль</label>
+                            </div>
+                            <div class="authLine">
+                                <input class="input" name="PassConfirm" type="password" required disabled /><span class="lineInput"></span>
+                                <label class="inputLable"><i class="icon-lock"></i> Повторите пароль</label>
+                            </div>
+                            <button class="btn signReg" disabled>Регистрация</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                <div class="authSocial">
+                    <h1>ИЛИ</h1>
+                    <a href="https://oauth.vk.com/authorize?client_id=5869965&display=page&redirect_uri=https://goodjoker.ru/Account/AuthVK&scope=email&response_type=code&v=5.62"><i class="icon-vk"></i></a>
+                    <a href="https://connect.ok.ru/oauth/authorize?client_id=1250916352&scope=GET_EMAIL&response_type=code&redirect_uri=https://goodjoker.ru/Account/AuthOK&layout=w"><i class="icon-odnoklassniki"></i></a>
+                    <a href="https://www.facebook.com/dialog/oauth?client_id=257488578009120&redirect_uri=https://goodjoker.ru/Account/AuthFB&scope=public_profile,email&response_type=code"><i class="icon-facebook"></i></a>
+                    <a href="https://accounts.google.com/o/oauth2/auth?redirect_uri=https://goodjoker.ru/Account/AuthGL&response_type=code&client_id=406011974796-g5qccf92uhm8lc4k3avvlgcatb8ptb79.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile"><i class="icon-google"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    $(document).ready(function () {
+
+        $(".authTitle span").click(function () {
+            if (!$(this).hasClass("active")) {
+                $(".authTitle span").removeClass("active");
+                $(this).addClass("active");
+                if ($(this).hasClass("authTitleEntry")) {
+                    $(".authLineTitle .active").css("left", "0");
+                    $(".authSlideForm").css("left", "0");
+                    $(".authFormReg input").prop("disabled", true);
+                    $(".authFormReg .btn").prop("disabled", true);
+                    $(".authFormEntry input").prop("disabled", false);
+                    $(".authFormEntry .btn").prop("disabled", false);
+                } else {
+                    $(".authLineTitle .active").css("left", "50%");
+                    $(".authSlideForm").css("left", "-100%");
+                    $(".authFormEntry input").prop("disabled", true);
+                    $(".authFormEntry .btn").prop("disabled", true);
+                    $(".authFormReg input").prop("disabled", false);
+                    $(".authFormReg .btn").prop("disabled", false);
+                }
+            }
+        });
+
+        $(".signEntr").click(function (e) {
+            e.preventDefault();
+            var data = $(".authFormEntry").serialize();
+            var returnUrl = "@ViewBag.ReturnUrl";
+            if (returnUrl == "") {
+                returnUrl = "/PrivateOffice";
+            }
+            $.ajax({
+                url: "/Account/Login",
+                method: "POST",
+                data: data,
+                success: function (content) {
+                    if (content != "1") {
+                        alert(content);
+                    } else {
+                        location.href = returnUrl;
+                    }
+                },
+                error: function () { globalError(); }
+            });
+        });
+
+        $(".signReg").click(function (e) {
+            e.preventDefault();
+            var data = $(".authFormReg").serialize();
+            $.ajax({
+                url: "/Account/Registration",
+                method: "POST",
+                data: data,
+                success: function (content) {
+                    if (content != "1") {
+                        alert(content);
+                    } else {
+                        location.href = "/Account/RedirectEmail?Email=" + $(".authFormReg input[name=Email]").val();
+                    }
+                },
+                error: function () { globalError(); }
+            });
+        });
+    });
+
+</script>
+

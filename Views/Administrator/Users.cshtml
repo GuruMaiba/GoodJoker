@@ -1,0 +1,208 @@
+﻿@model ICollection<GoodJoker.Models.User>
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="modalBody">
+    <div class="modalWindow modalAddBan">
+        <form class="banForm">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <h2>БАН</h2>
+            <input type="hidden" name="Id" />
+            <input type="hidden" name="Type" />
+            <textarea name="Message" placeholder="Введите сообщение"></textarea>
+            <button class="btn addBanBtn">Отправить</button>
+        </form>
+    </div>
+</div>
+
+<div class="title"><h1><span>@ViewBag.Title</span></h1></div>
+<div  class="adminNav">
+    <span>Все</span>
+    <span>Обычные</span>
+    <span>Студии</span>
+    Поиск по:
+    <input type="email" name="email" placeholder="Email" />
+    <input type="text" name="phone" placeholder="Телефон" />
+    <input type="text" name="nick" placeholder="Nick" />
+    <input type="date" name="dateBirthday" placeholder="Дата рождения" />
+    <select name="city">
+        <option selected value="1">Все города</option>
+        <option value="2">Сургут</option>
+    </select>
+</div>
+
+<div id="map" class="mapUser hidden-xs"></div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nick</th>
+            <th>Email</th>
+            <th>Телефон</th>
+            <th>Пол</th>
+            <th>Дата рождения</th>
+            <th>Кол.роз.</th>
+            <th>Победы</th>
+            <th><i class="icon-exclamation-circle"></i></th>
+            <th>Бан</th>
+            <th>SignIn</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            var g = user.Option.Gender;
+            var gend = "";
+            var iconBan = (user.Option.Ban) ? "lock" : "unlocked";
+            if (g == 0) { gend = "Нет"; }
+            if (g == 1) { gend = "М"; }
+            if (g == 2) { gend = "Ж"; }
+            var countWin = user.WinLott.Count + user.WinEveryday.Count + user.ArchiveWinLott.Count + user.ArchiveWinEver.Count;
+            <tr id="user@(user.Id)" class="userLine">
+                <td class="id">@user.Id</td>
+                <td class="nick">@user.Nick</td>
+                <td class="email">@user.Email</td>
+                <td>@user.Option.Phone</td>
+                <td>@gend</td>
+                <td>@user.Option.Birthday.ToString("dd.MM.yyyy")</td>
+                <td>@user.Option.CountShareLottery</td>
+                <td>@countWin</td>
+                <td><span class="countWar">@user.Option.Warnings</span><i class="addWarning icon-plus-1 action"></i></td>
+                <td><i class="addBan icon-@iconBan action"></i></td>
+                <td><a href="/Administrator/SignIn?Id=@user.Id"><i class="icon-login"></i></a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@Scripts.Render("~/bundles/jquery")
+<script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+<script>
+    $(document).ready(function () {
+        $("body").on("click", ".addWarning", function () {
+            Ban($(this).parents(".userLine"), "war");
+        });
+
+        $("body").on("click", ".addBan", function () {
+            if ($(this).hasClass("icon-lock")) {
+                Ban($(this).parents(".userLine"), "unban");
+            } else {
+                Ban($(this).parents(".userLine"), "ban");
+            }
+        });
+
+        $(".addBanBtn").click(function (e) {
+            e.preventDefault();
+            var id = $("input[name='Id']").val();
+            var type = $("input[name='Type']").val();
+            var data = $(".banForm").serialize();
+            $.ajax({
+                url: "/Administrator/Ban",
+                type: "POST",
+                data: data,
+                success: function () {
+                    if (type == "war") {
+                        var count = $(`#user${id} .countWar`);
+                        count.text(parseInt(count.text()) + 1);
+                    } else {
+                        $(`#user${id} .addBan`).removeClass("icon-unlocked").addClass("icon-lock");
+                    }
+                    closeModal();
+                },
+                error: function () {
+                    globalError();
+                }
+            });
+        });
+
+        $(".modalBody").click(function (e) {
+            if (e.target.className.indexOf("modalBody") > -1) {
+                closeModal();
+            }
+        });
+
+        $(".modalClose").click(function () {
+            closeModal();
+        });
+
+        ymaps.ready(function () {
+
+            var myPlacemarkets = `{ "type": "FeatureCollection", "features": [`;
+
+            var myMap = new ymaps.Map("map", {
+                    center: [55.76, 37.64],
+                    zoom: 4
+                }, {
+                    searchControlProvider: 'yandex#search'
+                }),
+                objectManager = new ymaps.ObjectManager({
+                    // Чтобы метки начали кластеризоваться, выставляем опцию.
+                    clusterize: true,
+                    // ObjectManager принимает те же опции, что и кластеризатор.
+                    gridSize: 32,
+                    clusterDisableClickZoom: true
+                });
+
+            // Чтобы задать опции одиночным объектам и кластерам,
+            // обратимся к дочерним коллекциям ObjectManager.
+            objectManager.objects.options.set('preset', 'islands#greenDotIcon');
+            objectManager.clusters.options.set('preset', 'islands#greenClusterIcons');
+            myMap.geoObjects.add(objectManager);
+
+            @{var flag = false;}
+            @foreach(var user in Model)
+            {
+                if (user.Option.GeoMap != null && user.Option.GeoMap != "")
+                {
+                    if (flag) {<text>myPlacemarkets += ',';</text>}
+                    <text> myPlacemarkets += `{ "type": "Feature", "id": @user.Id, "geometry": { "type": "Point", "coordinates": [@user.Option.GeoMap] }, "properties": {"balloonContentHeader": "", "balloonContentBody": "", "balloonContentFooter": "", "clusterCaption": "@user.Nick"} }`; </text>
+                    flag = true;
+                }
+            }
+            myPlacemarkets += `]}`;
+
+            objectManager.add(myPlacemarkets);
+        });
+    });
+
+    function Ban(parent, type) {
+        var id = parent.children(".id").text();
+        var nick = parent.children(".nick").text();
+        
+        if (type != "unban") {
+            if (type == "ban") {
+                $(".modalAddBan h2").text("БАН");
+                $(".modalAddBan textarea").attr("placeholder", "Введите причину бана для " + nick);
+            } else {
+                $(".modalAddBan h2").text("ПРЕДУПРЕЖДЕНИЕ");
+                $(".modalAddBan textarea").attr("placeholder", "Введите текст предупреждения для " + nick);
+            }
+
+            $("input[name='Id']").val(id);
+            $("input[name='Type']").val(type);
+            $(".modalBody").css("display", "flex");
+            $(".modalAddBan").css("display", "block").addClass("fadeInDown");
+        } else {
+            $.ajax({
+                url: "/Administrator/Ban",
+                type: "POST",
+                data: {
+                    Type: "ban",
+                    Message: null,
+                    Id: id
+                },
+                success: function () {
+                    $(`#user${id} .addBan`).removeClass("icon-lock").addClass("icon-unlocked");
+                },
+                error: function () {
+                    globalError();
+                }
+            });
+        }
+        
+    }
+</script>

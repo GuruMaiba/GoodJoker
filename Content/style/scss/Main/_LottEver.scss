@@ -1,0 +1,365 @@
+/*
+ * Ежедневные розыгрыши
+ * --------------------------------------------------
+ */
+
+.everyDay .header {
+    width: 100%;
+    height: 100vh;
+    background: #119298 center center / cover fixed;
+
+    .content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        background: rgba(0, 0, 0, 0.8);
+
+        .name {
+            font-size: 100px;
+            line-height: 1;
+            padding: 0 50px 30px 50px;
+        }
+
+        .company {
+            font-size: 50px;
+            line-height: 1;
+            padding: 0 50px 100px 50px;
+        }
+    }
+}
+
+.everyDay main {
+    position: relative;
+    margin-top: -200px;
+    margin-bottom: 100px;
+    box-shadow: #000 0 0 20px 5px;
+    border-radius: 20px;
+    background: rgba(0, 0, 0, 0.4);
+
+    .top {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 90%;
+        height: 200px;
+        margin: 0 auto;
+        border-bottom: 1px solid #1adce4;
+
+        .btnViewWinner {
+            display: none;
+            font-size: 40px;
+            text-align: center;
+            padding: 15px 150px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px 1px #000;
+            background: #119298;
+            transition: all 0.3s ease;
+
+            &:hover {
+                cursor: pointer;
+                box-shadow: 0 0 20px 0 #1adce4;
+            }
+        }
+
+        .nowWinner {
+            display: none;
+            font-size: 50px;
+            text-align: center;
+
+            img {
+                width: 150px;
+                height: 150px;
+                border: 2px solid #fff;
+                border-radius: 200px;
+                transition: all 0.3s ease;
+            }
+
+            a:hover img {
+                border: 2px solid #119298;
+            }
+        }
+
+        .clock ul {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            height: 200px;
+            padding: 15px 0 0 0;
+
+            li { font-size: 180px; }
+        }
+    } // end top
+
+    .center {
+        padding: 50px;
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .likes {
+                font-size: 80px;
+
+                .like {
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: #119298;
+                    }
+                }
+            } // end likes
+
+            .addParticipant {
+                font-size: 40px;
+
+                .becomeMember {
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        color: #119298;
+                    }
+                }
+            } // end addParticipant
+        } // end navbar
+
+        .description .content {
+            padding: 10px 20px 0 10px;
+            font-size: 18px;
+            white-space: pre-line;
+        }
+
+        .winner {
+            color: #1adce4;
+            margin: 70px 0 0 0;
+
+            .title h1 {
+                font-size: 80px;
+                text-align: center;
+
+                span {
+                    padding: 7px 15%;
+                }
+            }
+
+            .year {
+                display: inline-block;
+                font-size: 50px;
+                margin: 50px 0 0 0;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #119298;
+                }
+            }
+
+            .mounth {
+                display: inline-block;
+                font-size: 25px;
+                margin: 10px 0 0 20px;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #119298;
+                }
+            }
+
+            .prize {
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 15px 0 0 0;
+
+                .day {
+                    font-size: 40px;
+                    width: 40px;
+                    margin: 0 0 0 50px;
+                    text-align: center;
+                }
+
+                .name {
+                    font-size: 30px;
+                    margin: 0 0 0 20px;
+
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        border-radius: 50px;
+                        border: 1px solid #fff;
+                    }
+
+                    a:hover img {
+                        border: 1px solid #119298;
+                    }
+                } // end name
+            } // end prize
+        } // end winner
+    } // end center
+} // end everyday
+
+@media (max-width: 991px) and (min-width: 768px) {
+    .everyDay {
+        .header .content {
+            .name {
+                font-size: 70px;
+                line-height: 1;
+                padding: 0 50px 30px 50px;
+            }
+
+            .company {
+                font-size: 40px;
+                line-height: 1;
+                padding: 0 50px 100px 50px;
+            }
+        } // end header
+
+        .everyDay main {
+            .top .btnViewWinner {
+                font-size: 30px;
+            }
+
+            .top .clock ul {
+                padding: 30px 0 0 0;
+                li { font-size: 150px; }
+            }
+
+            .center .winner .title h1 {
+                font-size: 50px;
+            }
+        } // end main
+    } // end everyDay
+} // end media 991
+
+@media (max-width: 767px) {
+
+    .everyDay {
+        .header .content {
+            .name {
+                font-size: 30px;
+                padding: 0 10px 10px 10px;
+            }
+
+            .company {
+                font-size: 20px;
+                padding: 0 10px;
+            }
+        } // end header
+
+        main {
+            margin-top: -100px;
+            margin-bottom: 20px;
+
+            .top {
+                height: 100px;
+
+                .btnViewWinner {
+                    font-size: 20px;
+                    text-align: center;
+                    padding: 15px 35px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 20px 1px #000;
+                    background: #119298;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        cursor: pointer;
+                        box-shadow: 0 0 20px 0 #1adce4;
+                    }
+                }
+
+                .nowWinner {
+                    font-size: 30px;
+
+                    img {
+                        display: block;
+                        margin: -70px auto 10px auto;
+                        width: 100px;
+                        height: 100px;
+                        border: 1px solid #fff;
+                        border-radius: 200px;
+                        transition: all 0.3s ease;
+                    }
+
+                    a:hover img {
+                        border: 1px solid #119298;
+                    }
+                }
+
+                .top .clock ul {
+                    height: 100px;
+                    padding: 35px 0 0 0;
+                    li { font-size: 30px; }
+                }
+            } // end top
+
+            .center {
+                padding: 10px;
+
+                .navbar {
+                    flex-direction: column;
+
+                    .likes {
+                        font-size: 50px;
+                        margin: 20px 0;
+                    }
+
+                    .addParticipant {
+                        font-size: 30px;
+                    }
+                }
+
+                .description .content {
+                    font-size: 15px;
+                }
+
+                .winner {
+                    margin: 20px 0 0 0;
+
+                    .title h1 {
+                        font-size: 30px;
+                    }
+
+                    .year {
+                        font-size: 30px;
+                        margin: 30px 0 0 0;
+                    }
+
+                    .mounth {
+                        font-size: 20px;
+                        margin: 10px 0 0 10px;
+                    }
+
+                    .prize {
+                        padding: 10px 0;
+
+                        .day {
+                            font-size: 18px;
+                            width: 10px;
+                            margin: 0 0 0 30px;
+                        }
+
+                        .name {
+                            font-size: 18px;
+                            margin: 0 0 0 20px;
+                        }
+                    } // end prize
+                } // end winner
+            } // end center
+        } // end main
+    } // end everyDay
+} // end media 767
+
+/*
+ * --------------------------------------------------
+ * Ежедневные розыгрыши
+ */

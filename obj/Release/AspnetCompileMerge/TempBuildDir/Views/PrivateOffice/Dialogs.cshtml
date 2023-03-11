@@ -1,0 +1,352 @@
+﻿@using GoodJoker.Models
+@model ICollection<Dialog>
+@{
+    ViewBag.Title = "Диалоги";
+    Layout = "~/Views/Shared/_PrivateOfficeLayout.cshtml";
+}
+
+<div class="noise">
+    <div class="btnViewDialog"><i class="icon-comment-discussion"></i></div>
+    <div class="header">
+        <div class="headDialogs">
+            Диалоги
+        </div>
+        <div class="headMessages">
+            <div class="titleAddDialog">Добавить диалог</div>
+            <div class="nameUserDialog" style="display:none;">
+                <div class="himName"></div>
+                <div class="myName hidden-xs">
+                    @User.Identity.Name <img src="~/Content/style/images/Users/Avatars/Reduced/@ViewBag.Ava" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="blockDialogs">
+        <div class="dialogs">
+            <div class="dialog addDialog active" dialogId="0">
+                <div class="addDialogIcon">+</div>
+                <div class="name">Добавить диалог</div>
+            </div>
+            @if (Model.Count > 0)
+            {
+                var i = 1;
+                foreach (var dialog in Model)
+                {
+                    var id = User.Identity.GetUserId<int>();
+                    var user = (dialog.AuthorId == id) ? dialog.Invitation : dialog.Author;
+                    var count = dialog.Messages.Where(m => m.Author.Id != id && !m.View).Count();
+                    var newMessageCount = (count > 99) ? "99+" : $"{count}";
+                    <div id="@dialog.Id" class="dialog @if (i == Model.Count) {<text>last</text>}">
+                        @if (count > 0) {<div class="countNewMessage">@newMessageCount</div>}
+                        <img src="~/Content/style/images/Users/Avatars/Reduced/@user.Option.Ava" />
+                        <div class="name">@user.Nick</div>
+                        <i class="delDialog icon-cancel"></i>
+                    </div>
+                    ++i;
+                }
+            }
+        </div>
+    </div>
+    <div class="blockMessages">
+        <div class="searchUser">
+            <div class="inputAddDialog">
+                <input type="hidden" name="Id" value="0" />
+                <input class="input" name="Nick" type="text" required /><span class="lineInput"></span>
+                <label class="inputLable">Ник пользователя</label>
+                <div class="listUser"></div>
+            </div>
+        </div>
+        <div class="messages" style="display: none;"></div>
+        <div class="createMessage">
+            <div class="addDialogBtn"><div>СОЗДАТЬ ДИАЛОГ</div></div>
+            <div class="sendMessageDialog" style="display: none;">
+                <input type="hidden" name="DialogId" value="0" />
+                <textarea name="Text" class="textareaHolding" placeholder="Напишите сообщение..."></textarea>
+                <div class="sendComment"><i class="icon-email-plane"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        var activeDialog = @ViewBag.id;
+        $(document).ready(function () {
+
+            $(".textareaHolding").mCustomScrollbar({
+                theme: "minimal-dark"
+            });
+
+            $(".dialogs").mCustomScrollbar({
+                theme: "minimal-dark"
+            });
+
+            //$(".messages").mCustomScrollbar({
+            //    theme: "minimal-dark",
+            //    setTop: ($(".message").length * 1000) + "px"
+            //});
+
+            $(".btnViewDialog").click(function () {
+                if ($(".headDialogs").hasClass("active")) {
+                    $(".mask").fadeOut(0);
+                    $(".headDialogs").removeClass("active");
+                    $(".blockDialogs").removeClass("active");
+                } else {
+                    $(".mask").fadeIn(0);
+                    $(".headDialogs").addClass("active");
+                    $(".blockDialogs").addClass("active");
+                }
+            });
+
+            $(".textareaHolding").keypress(function (e) {
+                if (e.keyCode == 10) {
+                    $(".sendComment").click();
+                }
+            });
+
+            $("input[name='Nick']").keyup(function () {
+                var nick = $(this).val();
+                if (nick.length > 2) {
+                    $.ajax({
+                        url: "/PrivateOffice/SearchUser",
+                        type: "POST",
+                        data: {
+                            Nick: nick
+                        },
+                        success: function (data) {
+                            $(".listUser").html(data);
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            $("body").on("click", ".listUser div", function () {
+                var id = $(this).attr("userid");
+                $("input[name='Id']").val(id);
+                if (id != 0) {
+                    $("input[name='Nick']").val($(this).text());
+                }
+                $(".listUser").html("");
+            });
+
+            $(".addDialogBtn").click(function () {
+                var id = $("input[name='Id']").val();
+                var nick = $("input[name='Nick']").val();
+                if ($(".listUser div").length == 1) {
+                    id = $(".listUser div").attr("userid");
+                    nick = $(".listUser div").text();
+                }
+                $.ajax({
+                    url: "/PrivateOffice/AddDialog",
+                    type: "POST",
+                    data: {
+                        Id: id
+                    },
+                    success: function (data) {
+                        if (data != "0") {
+                            data = data.split(";");
+
+                            if (!$("#" + data[0]).length) {
+                                var newDialog = `<div id='${data[0]}' class='dialog'>` +
+                                    `<img src='../../Content/style/images/Users/Avatars/Reduced/${data[1]}' />` +
+                                    `<div class='name'>${nick}</div>` +
+                                    `<i class="delDialog icon-cancel"></i>` +
+                                    "</div>";
+                                var parent = $(".dialog").parent();
+                                var addDialog = $(".addDialog").detach();
+
+                                parent.prepend(newDialog);
+                                parent.prepend(addDialog);
+
+                                $(".himName").html(`<img src="../../Content/style/images/Users/Avatars/Reduced/${data[1]}" /> ${nick}`);
+                            }
+
+                            $("#" + data[0]).click();
+                        } else {
+                            console.log("Отсутствует идентификатор пользователя или произошла ошибка в добавление диалога!");
+                            globalError();
+                        }
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            $("body").on("click", ".dialog", function (e) {
+                if (!$(this).children(".delDialog").hasClass(e.target.className)) {
+                    var id = $(this).attr("id");
+                    var ava = $(this).children("img").attr("src");
+                    var nick = $(this).children(".name").text();
+                    var divCount = $(this).children(".countNewMessage");
+
+                    if (divCount.length > 0) {
+                        var CNM = parseInt($(".newMessage").text()) - parseInt(divCount.text());
+                        if (CNM > 0) {
+                            $(".newMessage").text(CNM);
+                        } else {
+                            $(".newMessage").fadeOut(0);
+                        }
+                    }
+
+                    $(".dialog").removeClass("active");
+                    $(this).addClass("active");
+                    divCount.remove();
+
+                    $(".messages").css("display", "none");
+
+                    if ($(this).hasClass("addDialog")) { // Добавление диалога
+
+                        $("input[name='DialogId']").val(0);
+
+                        $(".nameUserDialog").css("display", "none");
+                        $(".sendMessageDialog").css("display", "none");
+
+                        $(".titleAddDialog").fadeIn(400);
+                        $(".searchUser").fadeIn(400);
+                        $(".addDialogBtn").fadeIn(400);
+
+                    } else { // Переключение между диалогами
+
+                        $("input[name='DialogId']").val(id);
+                        $(".himName").html(`<img src="../../${ava}" /> ${nick}`);
+
+                        $.ajax({
+                            url: "/PrivateOffice/DialogMessage",
+                            type: "POST",
+                            data: {
+                                Id: id
+                            },
+                            success: function (data) {
+                                $(".messages").mCustomScrollbar("destroy");
+                                $(".messages").html(data);
+                                if ($(".message").length > 0) {
+                                    $(".messages").mCustomScrollbar({
+                                        theme: "minimal-dark"
+                                    });
+                                }
+
+                                $(".titleAddDialog").css("display", "none");
+                                $(".searchUser").css("display", "none");
+                                $(".addDialogBtn").css("display", "none");
+
+                                $(".nameUserDialog").fadeIn(400);
+                                $(".messages").fadeIn(400);
+                                $(".sendMessageDialog").fadeIn(400);
+
+                                $(".messages").mCustomScrollbar("scrollTo", "bottom");
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                    }
+                } else { // Удаление диалога
+                    if (confirm('Вы уверенны что хотите удалить этот диалог?')) {
+                        var id = $(this).attr("id");
+                        $(this).remove();
+                        $("input[name='DialogId']").val(0);
+
+                        $(".nameUserDialog").css("display", "none");
+                        $(".sendMessageDialog").css("display", "none");
+
+                        $(".titleAddDialog").fadeIn(400);
+                        $(".searchUser").fadeIn(400);
+                        $(".addDialogBtn").fadeIn(400);
+                        $.ajax({
+                            url: "/PrivateOffice/DelDialog",
+                            type: "POST",
+                            data: {
+                                Id: id
+                            },
+                            error: function () {
+                                globalError();
+                            }
+                        });
+                    }
+                }
+            });
+
+            $(".sendComment").click(function () {
+                $.ajax({
+                    url: "/PrivateOffice/AddMessage",
+                    type: "POST",
+                    data: {
+                        Id: $("input[name=DialogId]").val(),
+                        Text: $("textarea[name=Text]").val()
+                    },
+                    success: function (data) {
+                        $("textarea[name=Text]").val("");
+                        var messageCount = $(".message").length;
+
+                        if (messageCount > 0) {
+                            var parent = $(".message").parent();
+                        } else {
+                            var parent = $(".messages");
+                        }
+
+                        parent.append(data);
+
+                        if (messageCount == 0) {
+                            $(".messages").mCustomScrollbar({
+                                theme: "minimal-dark"
+                            });
+                        }
+
+                        $(".messages").mCustomScrollbar("scrollTo", "bottom");
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            if (activeDialog != 0) {
+                $("#" + activeDialog).click();
+            }
+
+            var lettersTime = setInterval(function letter() {
+                var id = $("input[name='DialogId']").val();
+                if (id != 0) {
+                    $.ajax({
+                        url: "/PrivateOffice/NewMessage",
+                        type: "POST",
+                        data: {
+                            Id: id
+                        },
+                        success: function (data) {
+                            if (data != 0) {
+                                var parent;
+                                var count = $(".message").length;
+
+                                if (count > 0) {
+                                    parent = $(".message").parent();
+                                } else {
+                                    parent = $(".messages");
+                                }
+
+                                parent.append(data);
+                                $(".icon-eye-slash").removeClass("icon-eye-slash").addClass("icon-eye");
+
+                                if (count > 0) {
+                                    $(".messages").mCustomScrollbar({
+                                        theme: "minimal-dark"
+                                    });
+                                }
+
+                                $(".messages").mCustomScrollbar("scrollTo", "bottom");
+                            }
+                        }
+                    });
+                }
+            }, 10000);
+                
+        });
+        
+    </script>
+
+}

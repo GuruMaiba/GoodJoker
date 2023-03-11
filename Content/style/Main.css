@@ -1,0 +1,7320 @@
+@charset "UTF-8";
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: "Text";
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+:after, :before {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Text;
+  /* Имя шрифта */
+  src: url("../../fonts/BloggerSans.ttf");
+}
+@font-face {
+  font-family: Number;
+  src: url("../../fonts/Lighthaus.otf");
+}
+@font-face {
+  font-family: Lobster;
+  src: url("../../fonts/Lobster.ttf");
+}
+/*///// Убираем стрелочки у числового input`a /////*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+/*///// Стилизуем radio & checkbox /////*/
+input[type=radio]:after,
+input[type=checkbox][type=radio]:after,
+input[type=checkbox]:after {
+  -webkit-transition: all 0.25s cubic-bezier(0.75, 0.01, 0.48, 2);
+  transition: all 0.25s cubic-bezier(0.75, 0.01, 0.48, 2);
+}
+
+input[type=radio]:before,
+input[type=checkbox][type=radio]:before,
+input[type=checkbox]:before {
+  -webkit-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+
+input[type=radio],
+input[type=checkbox] {
+  position: relative;
+}
+input[type=radio]:after, input[type=radio]:before,
+input[type=checkbox]:after,
+input[type=checkbox]:before {
+  content: "";
+  position: absolute;
+}
+input[type=radio]:before,
+input[type=checkbox]:before {
+  height: 100%;
+}
+
+input[type=radio][type=radio],
+input[type=checkbox][type=radio] {
+  border-radius: 30px;
+}
+input[type=radio][type=radio]:before,
+input[type=checkbox][type=radio]:before {
+  width: 100%;
+  border-radius: 30px;
+  background-color: #2c3f52;
+  -webkit-box-shadow: 0 0 0 1px #2c3f52;
+          box-shadow: 0 0 0 1px #2c3f52;
+}
+input[type=radio][type=radio]:after,
+input[type=checkbox][type=radio]:after {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background-color: #15202a;
+  -webkit-transform: scale(0, 0);
+          transform: scale(0, 0);
+}
+input[type=radio][type=radio]:checked:after, input[type=radio][type=radio]:checked:after,
+input[type=checkbox][type=radio]:checked:after,
+input[type=checkbox][type=radio]:checked:after {
+  -webkit-transform: scale(0.75, 0.75);
+          transform: scale(0.75, 0.75);
+}
+input[type=radio][type=radio]:checked:before, input[type=radio][type=radio]:checked:before,
+input[type=checkbox][type=radio]:checked:before,
+input[type=checkbox][type=radio]:checked:before {
+  background-color: #0d969e;
+  -webkit-box-shadow: 0 0 0 1px #0d969e;
+          box-shadow: 0 0 0 1px #0d969e;
+}
+
+input[type=radio][type=checkbox]:before,
+input[type=checkbox][type=checkbox]:before {
+  width: 200%;
+  background-color: #2c3f52;
+  -webkit-box-shadow: 0 0 0 1px #2c3f52;
+          box-shadow: 0 0 0 1px #2c3f52;
+  -webkit-transform: translate(-25%, 0);
+          transform: translate(-25%, 0);
+  border-radius: 30px;
+}
+input[type=radio][type=checkbox]:after,
+input[type=checkbox][type=checkbox]:after {
+  width: 80%;
+  height: 80%;
+  margin-top: 10%;
+  margin-left: 10%;
+  background-color: #15202a;
+  border-radius: 30px;
+  -webkit-transform: translate(60%, 0);
+          transform: translate(60%, 0);
+}
+input[type=radio][type=checkbox]:checked:after,
+input[type=checkbox][type=checkbox]:checked:after {
+  -webkit-transform: translate(-60%, 0);
+          transform: translate(-60%, 0);
+}
+input[type=radio][type=checkbox]:checked:before,
+input[type=checkbox][type=checkbox]:checked:before {
+  background-color: #0d969e;
+  -webkit-box-shadow: 0 0 0 1px #0d969e;
+          box-shadow: 0 0 0 1px #0d969e;
+}
+
+input[type=radio], input[type=checkbox] {
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+
+.radio, .check {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+@media (max-width: 767px) {
+  input[type=radio], input[type=checkbox] {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+  }
+}
+/*///// Тело /////*/
+body {
+  background: #131315;
+  color: #fff;
+  line-height: 1;
+  -webkit-transition: margin .5s ease;
+  transition: margin .5s ease;
+}
+body.left, body footer.left {
+  margin: 0 0 0 -200px;
+}
+
+.bodyStyle {
+  padding: 56px 0 0 0;
+}
+
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  font-weight: 500;
+  line-height: 1.1;
+  color: inherit;
+}
+
+/*ul li {
+    list-style: none;
+}*/
+/*.carousel-inner > .item > a > img, .carousel-inner > .item > img, .img-responsive, .thumbnail a > img, .thumbnail > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}*/
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  vertical-align: middle;
+  border: 0;
+}
+
+/*///// input /////*/
+input, select, textarea {
+  color: #1adce4;
+  font-size: inherit;
+  font-family: "Text";
+  background: transparent;
+}
+
+textarea {
+  color: #1adce4;
+  font-family: "Text", Arial, sans-serif;
+  font-size: 18px;
+  width: 90%;
+  padding: 13px;
+  background-color: transparent;
+  border: 1px solid #1adce4;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  resize: vertical;
+  overflow: hidden;
+}
+textarea::-webkit-input-placeholder {
+  color: #1adce4;
+}
+textarea::-moz-placeholder {
+  color: #1adce4;
+}
+textarea:-moz-placeholder {
+  color: #1adce4;
+}
+textarea:-ms-input-placeholder {
+  color: #1adce4;
+}
+
+/*///// Автозаполнение input /////*/
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  border: 0;
+  -webkit-text-fill-color: #119298;
+  -webkit-box-shadow: #131315 0 0 0px 1000px inset;
+}
+input:-webkit-autofill:hover, input:-webkit-autofill:focus, .slideBlock input.navSlider:-webkit-autofill:hover,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+.slideBlock textarea.navSlider:-webkit-autofill:hover,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus,
+.slideBlock select.navSlider:-webkit-autofill:hover {
+  border: 0;
+  -webkit-text-fill-color: #119298;
+  -webkit-box-shadow: #131315 0 0 0px 1000px inset;
+}
+
+/* Маска */
+.mask {
+  cursor: pointer;
+  position: fixed;
+  display: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  background: #131315;
+  z-index: 993;
+}
+
+/* Полоса с опр. контентом */
+.row {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+/* Donate */
+.siteFriend {
+  position: relative;
+  display: block;
+  width: 100%;
+  background: #119298 center center/cover no-repeat;
+  -webkit-transition: initial;
+  transition: initial;
+}
+.siteFriend .bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(13, 150, 158, 0.5);
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.siteFriend .desc {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 10px 20px;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+.siteFriend .desc .name {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+.siteFriend .desc .text {
+  font-size: 21px;
+}
+.siteFriend.hiddenText .bg {
+  background: rgba(13, 150, 158, 0.2);
+}
+.siteFriend.hiddenText .desc {
+  opacity: 0;
+}
+.siteFriend.hiddenText:focus .desc, .slideBlock .siteFriend.hiddenText.navSlider:hover .desc, .siteFriend.hiddenText:hover .desc {
+  opacity: 1;
+}
+.siteFriend:focus, .slideBlock .siteFriend.navSlider:hover, .siteFriend:hover {
+  color: #fff;
+}
+.siteFriend:focus .bg, .slideBlock .siteFriend.navSlider:hover .bg, .siteFriend:hover .bg {
+  background: rgba(13, 150, 158, 0.6);
+}
+
+@media screen and (max-width: 767px) {
+  .siteFriend .desc .name {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .siteFriend .desc .text {
+    font-size: 15px;
+  }
+}
+/*
+ * Заголовки
+ * --------------------------------------------------
+ */
+.title {
+  position: relative;
+  padding: 0;
+  margin: 25px 0 0 0;
+}
+.title h1 {
+  color: #1adce4;
+  padding: 6px 0;
+  border-bottom: 1px solid #1adce4;
+  font-size: 40px;
+}
+.title h1 span {
+  padding: 7px 10px;
+  border-bottom: 4px solid #1adce4;
+}
+.title h1.error {
+  color: #CC0000;
+  border-color: #CC0000;
+}
+.title h1.error span {
+  border-color: #CC0000;
+}
+.title .editInTitle {
+  position: absolute;
+  top: 15px;
+  right: 5px;
+  font-size: 25px;
+  color: #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.title .editInTitle:hover {
+  cursor: pointer;
+  color: #119298;
+}
+
+@media screen and (max-width: 767px) {
+  .title h1 {
+    font-size: 30px;
+  }
+  .title .editInTitle {
+    position: absolute;
+    top: 7px;
+    font-size: 15px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Заголовки
+ */
+/*
+ * Стилизованные инпуты
+ * --------------------------------------------------
+ */
+.input {
+  background: none;
+  color: #fff;
+  font-size: 25px;
+  padding: 10px 10px 5px 10px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+}
+.input:focus, .slideBlock .input.navSlider:hover {
+  outline: none;
+}
+.input:focus ~ .inputLable, .slideBlock .input.navSlider:hover ~ .inputLable, .input:valid ~ .inputLable {
+  top: -18px;
+  font-size: 20px;
+  color: #1adce4;
+}
+.input:focus ~ .lineInput:before, .slideBlock .input.navSlider:hover ~ .lineInput:before, .input:valid ~ .lineInput:before {
+  width: 100%;
+}
+.input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+.inputLable {
+  color: #fff;
+  font-size: 25px;
+  font-weight: normal;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 5px;
+  -webkit-transition: 300ms ease all;
+  transition: 300ms ease all;
+}
+
+.lineInput {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 1px;
+  background: #fff;
+}
+.lineInput:before {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 0px;
+  position: absolute;
+  background: #1adce4;
+  -webkit-transition: 300ms ease all;
+  transition: 300ms ease all;
+  left: 0%;
+}
+
+@media screen and (max-width: 767px) {
+  .input {
+    font-size: 20px;
+    padding: 10px 10px 5px 10px;
+  }
+  .input:focus ~ .inputLable, .slideBlock .input.navSlider:hover ~ .inputLable, .input:valid ~ .inputLable {
+    top: -8px;
+    font-size: 15px;
+  }
+  .input[type="password"] {
+    letter-spacing: 0.15em;
+  }
+
+  .inputLable {
+    font-size: 17px;
+    left: 10px;
+    top: 10px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Стилизованные инпуты
+ */
+/*///// Анимация тела /////*/
+.wrapper {
+  -webkit-box-shadow: 0 0 30px 5px #119298;
+          box-shadow: 0 0 30px 5px #119298;
+  background: #131315 url("images/bg.jpg") repeat;
+  background-size: 300px;
+  position: relative;
+  margin: 0 0 100vh 0;
+  padding: 0 0 50px 0;
+  z-index: 2;
+}
+
+@media screen and (max-width: 767px) {
+  .wrapper {
+    padding: 0;
+  }
+}
+a {
+  color: #fff;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+a:focus, .slideBlock a.navSlider:hover, a:hover {
+  color: #119298;
+  text-decoration: none;
+}
+
+.btn {
+  display: inline-block;
+  border: 1px solid #1adce4;
+  color: #1adce4;
+  padding: 15px 80px;
+  background: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+
+/*
+ * PreviewImg
+ * --------------------------------------------------
+ */
+.previewImg {
+  width: 100%;
+  height: 100vh;
+  display: none;
+  text-align: center;
+  background: #131315;
+  background: linear-gradient(45deg, #131315, black);
+}
+.previewImg .mobileMask {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+}
+.previewImg .mobileMask img {
+  width: 90%;
+}
+.previewImg .scene {
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+}
+.previewImg .scene .bg {
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+}
+.previewImg .scene .topName {
+  float: left;
+  left: -150px !important;
+  top: -150px !important;
+  -webkit-filter: blur(1px);
+          filter: blur(1px);
+}
+.previewImg .scene .topMask {
+  float: left;
+  left: -250px !important;
+  top: -250px !important;
+  -webkit-filter: blur(10px);
+          filter: blur(10px);
+}
+.previewImg .scene .previewClose {
+  width: 100%;
+  height: 100%;
+}
+.previewImg .scene .previewClose div {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #119298;
+  opacity: 0.3;
+  bottom: 50px;
+  left: 150px;
+  font-size: 80px;
+  padding: 7px 0 0 0;
+  border-radius: 50px;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+  -webkit-animation: moveArrowCLose 1.4s infinite linear;
+          animation: moveArrowCLose 1.4s infinite linear;
+}
+.previewImg .scene .previewClose div:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+
+@-webkit-keyframes moveArrowCLose {
+  from, to {
+    padding: 3px 0 0 0;
+  }
+  25%, 75% {
+    padding: 7px 0 0 0;
+  }
+  50% {
+    padding: 10px 0 0 0;
+  }
+}
+
+@keyframes moveArrowCLose {
+  from, to {
+    padding: 3px 0 0 0;
+  }
+  25%, 75% {
+    padding: 7px 0 0 0;
+  }
+  50% {
+    padding: 10px 0 0 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ * PreviewImg
+ */
+/*
+ * Header
+ * --------------------------------------------------
+ */
+header {
+  width: 100%;
+  height: 56px;
+  position: fixed;
+  border-top: 1px solid #119298;
+  border-bottom: 1px solid #119298;
+  z-index: 992;
+  /*background: linear-gradient(to bottom, #131315 0%, #151513 100%);*/
+  background: #131315;
+  background: linear-gradient(45deg, #131315, black);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+/*
+ * Логотип
+ * -----------------------------
+ */
+#navbarLogo {
+  position: absolute;
+  text-align: center;
+  width: 125px;
+  height: 110px;
+  margin: 0 0 0 30px;
+  overflow: hidden;
+  z-index: 30;
+  border-radius: 0 0 15px 15px;
+  background: #119298;
+  background: linear-gradient(45deg, #029fa6 0%, #119298 100%);
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+#navbarLogo.colapse {
+  height: 56px;
+  border-radius: 0;
+}
+#navbarLogo:hover {
+  cursor: pointer;
+}
+
+.menuLogoImg {
+  width: 100%;
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+.menuLogoImg img {
+  width: 90%;
+}
+
+.menuLogoPhone {
+  display: none;
+  font-size: 25px;
+  padding: 15px 0 0 0;
+}
+
+.menuLogoArrowUp {
+  display: none;
+  font-size: 50px;
+  -webkit-animation: moveArrowUp 1.3s infinite linear;
+          animation: moveArrowUp 1.3s infinite linear;
+}
+
+@-webkit-keyframes moveArrowUp {
+  from, to {
+    margin: -3px 0 0 0;
+  }
+  25%, 75% {
+    margin: 0;
+  }
+  50% {
+    margin: 3px 0 0 0;
+  }
+}
+
+@keyframes moveArrowUp {
+  from, to {
+    margin: -3px 0 0 0;
+  }
+  25%, 75% {
+    margin: 0;
+  }
+  50% {
+    margin: 3px 0 0 0;
+  }
+}
+/*
+ * Меню
+ * -----------------------------
+ */
+header {
+  font-size: 20px;
+}
+header .menu {
+  padding: 0 0 0 180px;
+}
+header .menu ul li a:hover {
+  background: none;
+}
+
+.itemMenu {
+  color: #10868b;
+  text-decoration: none;
+  padding: 12px 20px;
+  -webkit-transition: all 0.1s ease;
+  transition: all 0.1s ease;
+}
+.itemMenu:hover {
+  color: #139da3;
+  border-bottom: 5px solid #139da3;
+}
+.itemMenu:focus, .slideBlock .itemMenu.navSlider:hover {
+  background-color: transparent;
+}
+
+.activeMenu {
+  color: #1adce4;
+  border-bottom: 5px solid #1adce4;
+  text-shadow: 0 0 10px #1adce4;
+}
+
+.menubtn {
+  display: none;
+  float: right;
+  font-size: 35px;
+  color: #1adce4;
+  padding: 8px;
+}
+.menubtn:hover {
+  cursor: pointer;
+  color: #119298;
+}
+
+.mobileMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 200px;
+  padding: 10px 40px;
+  margin: 0 -200px 0 0;
+  z-index: 0;
+  -webkit-transition: margin .5s ease;
+  transition: margin .5s ease;
+}
+.mobileMenu .mobileMenu img {
+  display: block;
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  border: 2px solid #fff;
+  margin: 10px auto 15px auto;
+}
+.mobileMenu .entry, .mobileMenu .nick {
+  text-align: center;
+  font-size: 30px;
+  line-height: 1;
+  margin: 30px 0;
+}
+.mobileMenu .nick {
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.itemMobileMenu {
+  font-size: 15px;
+  padding: 5px;
+}
+.itemMobileMenu .active {
+  color: #1adce4;
+}
+.itemMobileMenu .active:hover {
+  color: #119298;
+}
+
+@media screen and (max-width: 767px) {
+  .menu {
+    display: none;
+  }
+
+  #navbarLogo {
+    border-radius: 0;
+    height: 56px;
+  }
+
+  .menuLogoArrow {
+    display: none;
+  }
+
+  .menuLogoImg {
+    display: none;
+  }
+
+  .menuLogoPhone {
+    display: block;
+  }
+
+  .menuLogoArrowUp {
+    font-size: 40px;
+    padding: 5px 0 0 0;
+  }
+
+  .menubtn {
+    display: block;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Header
+ */
+/*
+ * Слайдер
+ * --------------------------------------------------
+ */
+.slideBlock {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #119298;
+  background: #119298;
+  background: linear-gradient(45deg, #029fa6 0%, #119298 100%);
+  /*///// Навигация слайдера /////*/
+}
+.slideBlock img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.slideBlock .slider {
+  z-index: 1;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  height: calc(100%-56px);
+}
+.slideBlock .slider .slide {
+  float: left;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: #ff0000;
+}
+.slideBlock .slider .slide img {
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+}
+.slideBlock .prev {
+  left: 0;
+  border-radius: 0 30px 30px 0;
+  padding: 12px 0 8px 10px;
+}
+.slideBlock .next {
+  right: 0;
+  border-radius: 30px 0 0 30px;
+  padding: 12px 0 8px 20px;
+}
+.slideBlock .navSlider {
+  z-index: 2;
+  position: absolute;
+  top: 45%;
+  color: #ffffff;
+  font-size: 30px;
+  width: 50px;
+  background: #119298;
+  opacity: 0.2;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.slideBlock .navSlider:focus, .slideBlock .navSlider:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+.slideBlock .navSlider:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 767px) {
+  .slideBlock .navSlider {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    font-size: 20px;
+    width: 30px;
+  }
+  .slideBlock .prev, .slideBlock .next {
+    border-radius: 0 0 0 0;
+    padding: 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Слайдер
+ */
+/*
+ * Главная страница
+ * --------------------------------------------------
+ */
+.blockContent {
+  margin: 40px auto;
+  padding: 20px 60px 60px 60px;
+  border: 1px solid #119298;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 20px 1px #119298;
+          box-shadow: 0 0 20px 1px #119298;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/*
+ * Свежее
+ * -----------------------------
+ */
+.main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.main .news .default, .main .news .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .main .news .ban, .main .lott .default, .main .lott .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .main .lott .ban {
+  font-size: 20px;
+  text-align: center;
+  padding: 30px 10px;
+}
+.main .news {
+  width: 60%;
+}
+.main .news .item {
+  width: 100%;
+  height: 250px;
+  padding: 0;
+  margin: 10px 0 0 0;
+  background: #000 center center / cover no-repeat;
+  border: 1px solid #119298;
+}
+.main .news .item div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  font-size: 40px;
+  line-height: 1;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.main .news .item div:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.main .lott {
+  width: 35%;
+}
+.main .lott a:hover {
+  color: #1adce4;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.main .lott .item {
+  margin: 10px 0 0 0;
+  background: rgba(13, 150, 158, 0.2) center center/cover no-repeat;
+}
+.main .lott .item .blackout {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 120px;
+  border: 1px solid #119298;
+  background: rgba(0, 0, 0, 0.6);
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.main .lott .item .blackout:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+.main .lott .item .name {
+  font-size: 20px;
+  line-height: 1;
+}
+.main .lott .item .date {
+  font-size: 13px;
+  padding: 5px 0 0 0;
+}
+
+/*
+ * О нас
+ * -----------------------------
+ */
+.aboutUs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  margin-top: 10px;
+  background: #131315;
+}
+.aboutUs .titleAbout {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #1adce4;
+  text-align: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  line-height: 1;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-transition: background 0.3s ease;
+  transition: background 0.3s ease;
+}
+.aboutUs .titleAbout:hover {
+  background: rgba(1, 173, 206, 0.7);
+  color: #fff;
+}
+.aboutUs .single, .aboutUs .triple, .aboutUs .double {
+  position: relative;
+  width: 33.333333%;
+  height: 250px;
+  font-size: 30px;
+  border: 1px solid #1adce4;
+  background: #119298 center center / cover no-repeat;
+}
+.aboutUs .triple {
+  width: 100%;
+  height: 400px;
+  font-size: 40px;
+}
+.aboutUs .double {
+  width: 66.666666%;
+}
+.aboutUs .freeLott {
+  background-image: url("images/About/free.jpg");
+}
+.aboutUs .myLottery {
+  background-image: url("images/About/myLott.jpg");
+}
+.aboutUs .everyDayLott {
+  background-image: url("images/About/365.jpg");
+}
+.aboutUs .systemComplaint {
+  background-image: url("images/About/complaint.jpg");
+}
+.aboutUs .randomWinner {
+  background-image: url("images/About/random.jpg");
+}
+.aboutUs .noRisk {
+  background-image: url("images/About/noRisk.jpg");
+}
+.aboutUs .reviewTruth {
+  background-image: url("images/About/review.jpg");
+}
+.aboutUs .advertYourself {
+  background-image: url("images/About/advert.jpg");
+}
+
+/*
+ * Видео отзывы
+ * ----------------------------
+ */
+.video {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.video .infoVideoRev {
+  margin: 10px 0;
+  width: 45%;
+}
+.video .infoVideoRev .youtube {
+  background-color: #000;
+  position: relative;
+  display: block;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  cursor: pointer;
+  padding: 0;
+  width: 99.9%;
+  height: 99.9%;
+}
+.video .infoVideoRev .youtube img {
+  width: 100%;
+  vertical-align: middle;
+  text-align: center;
+  border: 1px solid #119298;
+}
+.video .infoVideoRev .youtube .blackout {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.video .infoVideoRev .youtube .blackout .play {
+  font-size: 60px;
+  color: #1adce4;
+  opacity: 0.6;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.video .infoVideoRev .youtube .blackout:hover {
+  background: rgba(0, 0, 0, 0.6);
+}
+.video .infoVideoRev .youtube .blackout:hover .play {
+  color: #CC0000;
+  opacity: 1;
+}
+.video .infoVideoRev .youtubeFrame {
+  position: relative;
+  display: block;
+  -webkit-transition: all 200ms ease-out;
+  transition: all 200ms ease-out;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid #119298;
+  background: #000;
+}
+
+/*
+ * Отзывы
+ * -----------------------------
+ */
+.review {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 20px 0;
+}
+.review.noconfirm {
+  opacity: 0.6;
+}
+.review.noconfirm:hover {
+  opacity: 1;
+}
+.review .avatar {
+  margin: 10px 10px;
+  padding: 10px;
+}
+.review img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+  -webkit-transition: border .3s ease;
+  transition: border .3s ease;
+}
+.review img:hover {
+  border: 1px solid #119298;
+}
+.review .content {
+  position: relative;
+  width: 100%;
+}
+.review .content .triangle {
+  position: absolute;
+  top: 50px;
+  left: -15px;
+  width: 0;
+  height: 0;
+  border-right: 20px solid #119298;
+  border-bottom: 15px solid transparent;
+}
+.review .content .name {
+  padding: 10px 20px;
+}
+.review .content .name span {
+  float: right;
+}
+.review .content .name span i:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.review .content .name a {
+  font-size: 20px;
+  line-height: 1;
+}
+.review .content .name a:hover {
+  color: #119298;
+}
+.review .content .desc {
+  padding: 15px 20px;
+  border-radius: 10px;
+  background: #119298;
+}
+
+@media screen and (max-width: 991px) {
+  .main {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .main .news {
+    width: 100%;
+  }
+  .main .lott {
+    width: 100%;
+  }
+  .main .lott .item .blackout {
+    height: 200px;
+  }
+  .main .lott .item .blackout .name {
+    font-size: 30px;
+  }
+
+  .aboutUs .single, .aboutUs .triple, .aboutUs .double, .aboutUs .double {
+    width: 100%;
+  }
+  .aboutUs .triple {
+    width: 100%;
+    height: 250px;
+    font-size: 30px;
+  }
+
+  .video .infoVideoRev {
+    width: 49%;
+  }
+
+  .review .avatar {
+    display: none;
+  }
+  .review .content .desc {
+    max-height: 200px;
+    overflow: hidden;
+  }
+}
+@media screen and (max-width: 767px) {
+  .blockContent {
+    margin: 0;
+    padding: 1px 20px 60px 20px;
+    border: 0;
+    -webkit-box-shadow: 0 0 0 0;
+            box-shadow: 0 0 0 0;
+  }
+
+  .main .news .item, .main .lott .item .blackout {
+    height: 150px;
+  }
+
+  .main .news .item div, .main .lott .item .blackout .name {
+    font-size: 20px;
+  }
+
+  .aboutUs .triple, .aboutUs .double, .aboutUs .single, .aboutUs .triple, .aboutUs .double {
+    height: 150px;
+    font-size: 20px;
+  }
+
+  .video {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .video .infoVideoRev {
+    width: 100%;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Главная страница
+ */
+/*
+ * Новости
+ * --------------------------------------------------
+ */
+/* Основной блок содержащий всю страницу новостей*/
+.bodyNews {
+  position: relative;
+  /* Полоса социальных сетей */
+}
+.bodyNews .bandSocialNetwork {
+  position: absolute;
+  right: 0px;
+  top: 0;
+  width: 60px;
+  height: 100%;
+  background: #131315;
+  -webkit-box-shadow: 0 0 10px 3px #000;
+          box-shadow: 0 0 10px 3px #000;
+}
+.bodyNews .newsContent {
+  position: relative;
+  margin: 0 0 50px 0;
+  /* Навигация по новостям */
+  /* Все социальные сети сайта */
+  /* Блок со статьёй */
+}
+.bodyNews .newsContent .navNews {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #131315;
+  height: 400px;
+  -webkit-box-shadow: 0 0 10px 3px #000;
+          box-shadow: 0 0 10px 3px #000;
+}
+.bodyNews .newsContent .navNews .new {
+  width: 30%;
+  height: 100%;
+  margin: 0 0 0 15px;
+}
+.bodyNews .newsContent .navNews .new .title h1 {
+  padding: 0 0 1px 0;
+}
+.bodyNews .newsContent .navNews .new .title span {
+  font-size: 20px;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav,
+.bodyNews .newsContent .navNews .new .winnerNav,
+.bodyNews .newsContent .navNews .new .tagsNav {
+  overflow: hidden;
+  height: 79%;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0 0 0;
+  padding: 0 10px;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item img {
+  width: 50px;
+  height: 50px;
+  margin-right: 10px;
+  border-radius: 50px;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item .context {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item .context .name {
+  font-size: 20px;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item .context .prize {
+  font-size: 15px;
+  margin-top: 3px;
+}
+.bodyNews .newsContent .navNews .new .winnerNav .item:hover .context {
+  color: #1adce4;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item {
+  position: relative;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(13, 150, 158, 0.2) center center/cover no-repeat;
+  z-index: 1;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item .lottery {
+  position: relative;
+  display: block;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item .lottery .date {
+  font-size: 13px;
+  margin-top: 5px;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item .lottery .name {
+  font-size: 18px;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .item .lottery:hover {
+  color: #1adce4;
+}
+.bodyNews .newsContent .navNews .new .lotteriesNav .default, .bodyNews .newsContent .navNews .new .lotteriesNav .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .bodyNews .newsContent .navNews .new .lotteriesNav .ban, .bodyNews .newsContent .navNews .new .winnerNav .default, .bodyNews .newsContent .navNews .new .winnerNav .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .bodyNews .newsContent .navNews .new .winnerNav .ban {
+  text-align: center;
+  padding: 30px 0;
+}
+.bodyNews .newsContent .navNews .new .tagsNav a {
+  display: inline-block;
+  font-size: 13px;
+  padding: 5px 10px;
+  margin: 10px 0 0 5px;
+  border: 1px solid #1adce4;
+  color: #1adce4;
+  border-radius: 5px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyNews .newsContent .navNews .new .tagsNav a:hover {
+  color: #fff;
+  background: #119298;
+  border-color: #119298;
+}
+.bodyNews .newsContent .navSocial {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 104%;
+  padding: 15px 0;
+  background: #131315;
+}
+.bodyNews .newsContent .navSocial i {
+  line-height: 1.5;
+  font-size: 31px;
+}
+.bodyNews .newsContent .navSocial i:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.bodyNews .newsContent .siteFriend .advertSocial, .bodyNews .newsContent .blockArticle .social {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 108%;
+  background: #131315;
+  margin: -13px 0 0 0;
+  padding: 15px 0;
+  text-align: center;
+}
+.bodyNews .newsContent .siteFriend {
+  height: 400px;
+  margin: 100px 0 0 0;
+  padding: 0 60px 0 0;
+  -webkit-box-shadow: -3px 0 10px 3px #000;
+          box-shadow: -3px 0 10px 3px #000;
+}
+.bodyNews .newsContent .siteFriend .advertSocial {
+  font-size: 45px;
+  line-height: 1;
+  padding: 50px 0;
+}
+.bodyNews .newsContent .siteFriend:hover .bg {
+  background: rgba(0, 0, 0, 0.6);
+}
+.bodyNews .newsContent .blockArticle {
+  position: relative;
+  height: 500px;
+  margin: 100px 0 0 0;
+  padding: 0 60px 0 0;
+  background: #119298;
+  -webkit-box-shadow: -3px 0 10px 3px #000;
+          box-shadow: -3px 0 10px 3px #000;
+  /* Блок репоста статьи */
+}
+.bodyNews .newsContent .blockArticle .bg {
+  position: relative;
+  height: 100%;
+  background: #119298 center center / cover no-repeat;
+}
+.bodyNews .newsContent .blockArticle .content {
+  position: relative;
+  display: block;
+  height: 100%;
+  background: rgba(13, 150, 158, 0.7);
+}
+.bodyNews .newsContent .blockArticle .content:hover, .bodyNews .newsContent .blockArticle .content:active, .bodyNews .newsContent .blockArticle .content:focus, .bodyNews .newsContent .blockArticle .slideBlock .content.navSlider:hover, .slideBlock .bodyNews .newsContent .blockArticle .content.navSlider:hover {
+  color: #fff;
+  background: rgba(0, 0, 0, 0.8);
+}
+.bodyNews .newsContent .blockArticle .popularity {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 17px;
+  text-align: right;
+  line-height: 1.2;
+}
+.bodyNews .newsContent .blockArticle .popularity i {
+  font-size: 15px;
+}
+.bodyNews .newsContent .blockArticle .text {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.bodyNews .newsContent .blockArticle .titleArt {
+  width: 100%;
+  font-size: 50px;
+  text-align: center;
+  padding: 0 0 20px 0;
+}
+.bodyNews .newsContent .blockArticle .desc {
+  width: 100%;
+  font-size: 30px;
+  line-height: 1;
+  text-align: center;
+}
+.bodyNews .newsContent .blockArticle .autor {
+  position: absolute;
+  font-size: 17px;
+  top: 20px;
+  left: 20px;
+}
+.bodyNews .newsContent .blockArticle .tags {
+  position: absolute;
+  font-size: 17px;
+  bottom: 20px;
+  left: 20px;
+}
+.bodyNews .newsContent .blockArticle .tags a:hover,
+.bodyNews .newsContent .blockArticle .tags a:active,
+.bodyNews .newsContent .blockArticle .tags a:focus,
+.bodyNews .newsContent .blockArticle .tags .slideBlock a.navSlider:hover,
+.slideBlock .bodyNews .newsContent .blockArticle .tags a.navSlider:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.bodyNews .newsContent .blockArticle .more {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  text-align: center;
+  color: #fff;
+  font-size: 30px;
+  border: 1px solid #fff;
+  padding: 5px 80px;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+}
+.bodyNews .newsContent .blockArticle .more:hover {
+  color: #119298;
+  text-decoration: none;
+  background-color: #fff;
+}
+.bodyNews .newsContent .blockArticle .social .date, .bodyNews .newsContent .blockArticle .social .actions,
+.bodyNews .newsContent .blockArticle .social .actions .newsRepost {
+  margin: 10px 0;
+}
+.bodyNews .newsContent .blockArticle .social .date .day {
+  font-family: Number;
+  letter-spacing: 0px;
+  font-size: 40px;
+  line-height: 1;
+}
+.bodyNews .newsContent .blockArticle .social .date .month {
+  font-family: 'Times New Roman';
+  font-size: 25px;
+  line-height: 1;
+}
+.bodyNews .newsContent .blockArticle .social .actions i {
+  line-height: 1.5;
+  font-size: 35px;
+}
+.bodyNews .newsContent .blockArticle .social .actions i:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.bodyNews .newsContent .blockArticle .social .actions .repost i {
+  font-size: 30px;
+}
+.bodyNews .newsContent .blockArticle .social .actions .repost .shareBtn {
+  display: none;
+}
+.bodyNews .newsContent .loading {
+  position: relative;
+  font-family: Lobster;
+  font-size: 50px;
+  margin: 100px 0 50px 0;
+  padding: 70px 0;
+  -webkit-box-shadow: -3px 0 10px 3px #000;
+          box-shadow: -3px 0 10px 3px #000;
+  background: #119298;
+}
+.bodyNews .newsContent .loading #loading {
+  width: 100px;
+  height: 100px;
+  margin-right: 30px;
+}
+.bodyNews .newsContent .loading .line {
+  position: absolute;
+  top: -20px;
+  right: 0;
+  width: 60px;
+  height: 110%;
+  background: #131315;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .bodyNews .newsContent .navNews .new {
+    width: 45%;
+  }
+  .bodyNews .newsContent .navNews .new .tagsNav a {
+    font-size: 10px;
+  }
+  .bodyNews .newsContent .blockArticle .desc {
+    font-size: 20px;
+  }
+  .bodyNews .newsContent .blockArticle .blockArticle .titleArt {
+    font-size: 35px;
+  }
+}
+@media (max-width: 767px) {
+  .bodyNews .bandSocialNetwork {
+    width: 40px;
+  }
+  .bodyNews .newsContent .navNews {
+    height: 250px;
+  }
+  .bodyNews .newsContent .navNews .new {
+    width: 80%;
+  }
+  .bodyNews .newsContent .navNews .new .title h1 span {
+    padding: 4px 10px;
+  }
+  .bodyNews .newsContent .navSocial {
+    width: 40px;
+  }
+  .bodyNews .newsContent .navSocial i {
+    font-size: 20px;
+  }
+  .bodyNews .newsContent .blockArticle {
+    height: 250px;
+    padding: 0 40px 0 0;
+    margin: 50px 0 0 0;
+  }
+  .bodyNews .newsContent .blockArticle .desc {
+    font-size: 15px;
+  }
+  .bodyNews .newsContent .blockArticle .titleArt {
+    font-size: 20px;
+  }
+  .bodyNews .newsContent .blockArticle .social {
+    width: 40px;
+  }
+  .bodyNews .newsContent .blockArticle .social .date .day {
+    font-size: 30px;
+  }
+  .bodyNews .newsContent .blockArticle .social .date .month {
+    font-size: 15px;
+  }
+  .bodyNews .newsContent .blockArticle .social .actions i {
+    font-size: 20px;
+  }
+  .bodyNews .newsContent .blockArticle .social .actions .repost i {
+    font-size: 20px;
+  }
+  .bodyNews .newsContent .blockArticle .social .actions .repost .repost .share {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    padding: 10px 10px 0px 10px;
+    background: #119298;
+  }
+  .bodyNews .newsContent .blockArticle .social .actions .repost .repost .share i:hover {
+    color: #131315;
+  }
+  .bodyNews .newsContent .siteFriend {
+    height: 250px;
+    margin: 50px 0 0 0;
+    padding: 0 40px 0 0;
+  }
+  .bodyNews .newsContent .siteFriend .advertSocial {
+    width: 40px;
+    padding: 20px 0 0 0;
+    font-size: 35px;
+  }
+  .bodyNews .newsContent .loading {
+    font-size: 20px;
+    margin: 50px 0 20px 0;
+    padding: 30px 0;
+    -webkit-box-shadow: -3px 0 10px 3px #000;
+            box-shadow: -3px 0 10px 3px #000;
+  }
+  .bodyNews .newsContent .loading #loading {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+  }
+  .bodyNews .newsContent .loading .line {
+    top: -10px;
+    width: 40px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Новости
+ */
+/*
+ * Статья
+ * --------------------------------------------------
+ */
+/*
+ * Отображение статьи
+ * --------------------------------------
+ */
+.bodyArticle {
+  width: 100%;
+}
+.bodyArticle .articleImg {
+  width: 100%;
+}
+.bodyArticle .articlePreview {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 90vh;
+  background: rgba(19, 19, 21, 0.8);
+  border-bottom: 1px solid #119298;
+}
+.bodyArticle .articalHeader {
+  width: 90%;
+}
+.bodyArticle .articleTitle {
+  font-size: 70px;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1em;
+}
+.bodyArticle .articleStatus {
+  font-size: 30px;
+  text-align: center;
+  padding: 0 0 10px 0;
+  margin: 0 0 30px 0;
+  border-bottom: 1px solid #fff;
+}
+.bodyArticle .articleStatus i {
+  font-size: 25px;
+}
+.bodyArticle .articleSocial {
+  font-size: 40px;
+  text-align: center;
+  margin: 10px 0 0 0;
+}
+.bodyArticle .articalNavBack, .bodyArticle .articalNavNext {
+  position: absolute;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  font-size: 50px;
+  opacity: 0.2;
+}
+.bodyArticle .articalNavBack:hover, .bodyArticle .articalNavNext:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.bodyArticle .articalNavBack {
+  left: 0;
+}
+.bodyArticle .articalNavNext {
+  right: 0;
+}
+.bodyArticle .articleContent {
+  background: #131315;
+  padding: 0;
+  font-size: 130%;
+  border: 1px solid #119298;
+  -webkit-box-shadow: 0 0 10px 3px #119298;
+          box-shadow: 0 0 10px 3px #119298;
+}
+.bodyArticle .siteFriend {
+  height: 400px;
+}
+.bodyArticle .siteFriend .desc .name {
+  font-size: 50px;
+}
+.bodyArticle .articleText {
+  margin: 40px 0;
+}
+.bodyArticle .articleText .row {
+  margin: 0 0 40px 0;
+}
+.bodyArticle .articleText iframe {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #1adce4;
+}
+.bodyArticle .articleText .imgFull {
+  margin: 20px 0;
+  width: 100%;
+  border: 1px solid #119298;
+}
+.bodyArticle .articleText .imgLeft {
+  margin: 10px 30px 10px 0;
+  float: left;
+}
+.bodyArticle .articleText .imgRight {
+  margin: 10px 0 10px 30px;
+  float: right;
+}
+.bodyArticle .articleText .imgLeft, .bodyArticle .articleText .imgRight {
+  border: 1px solid #119298;
+}
+.bodyArticle .articleText h1 {
+  text-align: center;
+  font-size: 50px;
+}
+.bodyArticle .articleText h2 {
+  margin: 20px 0 20px 0;
+  font-size: 40px;
+  padding: 0 0 10px 20px;
+  border-bottom: 1px solid #1adce4;
+}
+.bodyArticle .articleText h3 {
+  display: inline-block;
+  font-size: 30px;
+  padding: 15px 20px 10px 150px;
+  margin-bottom: 30px;
+  background: #119298;
+  text-align: right;
+  text-transform: uppercase;
+}
+.bodyArticle .articleText hr {
+  margin: 30px auto;
+  height: 1px;
+  width: 80%;
+  border: none;
+  background-color: #fff;
+}
+.bodyArticle .articleText p {
+  text-indent: 40px;
+}
+.bodyArticle .articleText a {
+  color: #119298;
+  border-bottom: 1px dashed #119298;
+}
+.bodyArticle .articleText a:hover, .bodyArticle .articleText a:active, .bodyArticle .articleText a:focus, .bodyArticle .articleText .slideBlock a.navSlider:hover, .slideBlock .bodyArticle .articleText a.navSlider:hover, .bodyArticle .articleText a:visited {
+  color: #1adce4;
+  text-decoration: none;
+}
+.bodyArticle .articleText .text {
+  padding: 0 200px;
+}
+.bodyArticle .articleText ol {
+  counter-reset: myCounter;
+  padding: 0;
+}
+.bodyArticle .articleText ol li {
+  font-size: 20px;
+  list-style: none;
+}
+.bodyArticle .articleText ol li:before {
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  color: #1adce4;
+  display: inline-block;
+  font-size: 30px;
+  text-align: right;
+  padding: 5px 15px 0 0;
+  line-height: 1.5em;
+  width: 40px;
+}
+.bodyArticle .articleText .youtube {
+  display: block;
+  height: 400px;
+  width: 100%;
+  margin: 10px 0;
+}
+.bodyArticle .articleText .output {
+  color: #1adce4;
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .bodyArticle .articleText .text {
+    padding: 0 100px;
+  }
+}
+@media (max-width: 992px) and (min-width: 768px) {
+  .bodyArticle .articleText .text {
+    padding: 0 70px;
+  }
+}
+@media (max-width: 767px) {
+  .bodyArticle .articleTitle {
+    font-size: 30px;
+  }
+  .bodyArticle .articleStatus {
+    font-size: 15px;
+    padding: 0 0 5px 0;
+    margin: 0 0 10px 0;
+  }
+  .bodyArticle .articleStatus i {
+    font-size: 15px;
+  }
+  .bodyArticle .articleSocial {
+    font-size: 20px;
+    margin: 5px 0 0 0;
+  }
+  .bodyArticle .siteFriend {
+    height: 200px;
+  }
+  .bodyArticle .siteFriend .desc .name {
+    font-size: 25px;
+  }
+  .bodyArticle .articleText h1 {
+    font-size: 25px;
+  }
+  .bodyArticle .articleText h2 {
+    margin: 0 0 10px 0;
+    font-size: 23px;
+    padding: 0 0 5px 10px;
+  }
+  .bodyArticle .articleText h3 {
+    font-size: 20px;
+    padding: 15px 20px 10px 20px;
+  }
+  .bodyArticle .articleText hr {
+    width: 95%;
+    margin: 10px auto;
+  }
+  .bodyArticle .articleText .text {
+    padding: 0 10px;
+    font-size: 15px;
+  }
+  .bodyArticle .articleText p {
+    text-indent: 15px;
+    font-size: 15px;
+  }
+  .bodyArticle .articleText .imgLeft {
+    margin: 5px 10px 0px 0;
+  }
+  .bodyArticle .articleText .imgRight {
+    margin: 5px 0 0px 5px;
+  }
+  .bodyArticle .articleText ol li {
+    font-size: 15px;
+  }
+  .bodyArticle .articleText ol li:before {
+    font-size: 25px;
+    padding: 15px 15px 0 0;
+    line-height: 1em;
+  }
+}
+/*
+ * --------------------------------------
+ * Отображение статьи
+ */
+/*
+ * Блок комментариев
+ * ----------------------------------------------------
+ */
+.blockComments {
+  padding: 30px 100px 50px 100px;
+}
+.blockComments .formComment {
+  position: relative;
+}
+.blockComments .formComment textarea {
+  margin: 0;
+}
+.blockComments .formComment .replyName {
+  position: absolute;
+  top: -30px;
+  left: 10px;
+  font-size: 22px;
+  color: #fff;
+}
+.blockComments .formComment .replyName:hover {
+  cursor: pointer;
+}
+.blockComments .formComment .default, .blockComments .formComment .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .blockComments .formComment .ban {
+  color: #1adce4;
+  text-align: center;
+  font-size: 18px;
+  padding: 40px 10px;
+  border: 1px dashed #1adce4;
+}
+.blockComments .beginDashedLine {
+  width: 100%;
+  height: 70px;
+  border-left: 1px dashed #1adce4;
+  margin: -5px 0 0 0;
+}
+.blockComments .comment {
+  position: relative;
+  width: 100%;
+  padding: 0 0 50px 0;
+  border-left: 1px dashed #1adce4;
+}
+.blockComments .comment.last {
+  border-left: 0;
+}
+.blockComments .comment img {
+  position: absolute;
+  top: -10px;
+  left: -35px;
+  width: 70px;
+  border-radius: 100px;
+  border: 2px solid #1adce4;
+}
+.blockComments .comment .commentHeader {
+  padding: 17px 0 0 50px;
+  font-size: 20px;
+  line-height: 1;
+}
+.blockComments .comment .commentHeader i, .blockComments .comment .commentHeader .blockComments .comment .respondsTo .header i {
+  font-size: 15px;
+  opacity: 0.5;
+}
+.blockComments .comment .respondsTo {
+  position: relative;
+  margin: 10px 0 0 50px;
+  padding: 10px 10px 10px 170px;
+  font-size: 15px;
+  border: 1px solid #119298;
+}
+.blockComments .comment .respondsTo .quote {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  font-size: 40px;
+  padding: 20px 15px 0 15px;
+  background: #119298;
+}
+.blockComments .comment .respondsTo img {
+  top: 10px;
+  left: 85px;
+}
+.blockComments .comment .respondsTo .header {
+  padding: 17px 0 0 0;
+  font-size: 20px;
+  line-height: 1;
+}
+.blockComments .comment .respondsTo .text {
+  padding: 10px 0 0 0;
+  white-space: pre-line;
+}
+.blockComments .comment .text {
+  padding: 15px 0 0 50px;
+  font-size: 15px;
+  white-space: pre-line;
+}
+.blockComments .comment .text textarea {
+  width: 100%;
+}
+.blockComments .comment .reply {
+  position: absolute;
+  top: -8px;
+  left: 50px;
+  font-size: 15px;
+}
+.blockComments .comment a, .blockComments .comment .reply i {
+  color: #1adce4;
+}
+.blockComments .comment a:hover, .blockComments .comment .reply i:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.blockComments .ajaxComment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 70px;
+  height: 70px;
+  color: #1adce4;
+  font-size: 20px;
+  margin-left: -35px;
+  margin-bottom: 30px;
+  border: 1px solid #1adce4;
+  border-radius: 70px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.blockComments .ajaxComment:hover {
+  cursor: pointer;
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+.blockComments .sendComment {
+  position: absolute;
+  top: 25px;
+  right: 10px;
+  display: inline-block;
+  font-size: 35px;
+  color: #1adce4;
+  -webkit-transition: all 0.6s ease;
+  transition: all 0.6s ease;
+}
+.blockComments .sendComment:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.blockComments .sendComment {
+  top: 25px;
+  right: 10px;
+}
+
+.lotteryCommentPadding {
+  padding: 60px 0 0 40px;
+}
+
+.defaultCommentLottery {
+  color: #1adce4;
+  font-size: 20px;
+  text-align: center;
+  padding: 30px;
+  margin: 0 0 40px 0;
+}
+
+/*
+ * --------------------------------------
+ * end Блок комментариев
+ */
+@media (max-width: 767px) {
+  .formComment {
+    position: relative;
+    margin: 50px 0 0 0;
+  }
+
+  .listComment .sendComment {
+    position: absolute;
+    top: 0;
+    font-size: 25px;
+    width: 30px;
+    height: 35px;
+    padding: 0px;
+  }
+
+  .defaultCommentLottery {
+    font-size: 13px;
+    padding: 10px;
+    margin: 0 0 20px 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Статья
+ */
+/*
+ * Розыгрыши
+ * --------------------------------------------------
+ */
+.bodyLottery {
+  background: #131315;
+  -webkit-box-shadow: 0 0 10px 3px #119298;
+          box-shadow: 0 0 10px 3px #119298;
+  padding: 10px 70px 100px 70px;
+  min-height: 400px;
+}
+.bodyLottery .default, .bodyLottery .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .bodyLottery .ban {
+  padding: 50px 0 0 0;
+  font-size: 20px;
+  text-align: center;
+}
+.bodyLottery .default a, .bodyLottery .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban a, .bodyHoldingLottery .holdingLottery .listComment .writeComment .bodyLottery .ban a {
+  display: block;
+  margin-top: 10px;
+  font-size: 35px;
+  color: #1adce4;
+}
+.bodyLottery .default a:hover, .bodyLottery .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban a:hover, .bodyHoldingLottery .holdingLottery .listComment .writeComment .bodyLottery .ban a:hover {
+  color: #119298;
+}
+.bodyLottery .viewAllEnd {
+  cursor: pointer;
+  font-size: 20px;
+  color: #1adce4;
+  padding: 10px 0 0 0;
+}
+.bodyLottery .allEndLott {
+  display: none;
+}
+.bodyLottery .siteFriend, .bodyLottery .gjLott, .bodyLottery .endLott,
+.bodyLottery .everyDayLott {
+  margin-top: 30px;
+  border-radius: 10px;
+}
+.bodyLottery .siteFriend {
+  height: 300px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+}
+.bodyLottery .gjLott .bg, .bodyLottery .endLott .bg,
+.bodyLottery .everyDayLott .bg {
+  position: relative;
+  height: 300px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  border-radius: 10px;
+  -webkit-transition: background, -webkit-box-shadow .3s ease;
+  transition: background, -webkit-box-shadow .3s ease;
+  transition: background, box-shadow .3s ease;
+  transition: background, box-shadow .3s ease, -webkit-box-shadow .3s ease;
+  background: #119298 center center / cover no-repeat;
+}
+.bodyLottery .gjLott .bg .blackout, .bodyLottery .endLott .bg .blackout,
+.bodyLottery .everyDayLott .bg .blackout {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  background: rgba(13, 150, 158, 0.7);
+}
+.bodyLottery .gjLott .bg .blackout h1, .bodyLottery .everyDayLott .bg .blackout h1 {
+  font-size: 70px;
+  line-height: 1;
+  padding: 0 20px;
+}
+.bodyLottery .gjLott .bg .blackout .delLott, .bodyLottery .userLott .delLott {
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 30px;
+  color: #CC0000;
+  z-index: 5;
+}
+.bodyLottery .gjLott .bg .blackout h1 {
+  margin-top: 50px;
+}
+.bodyLottery .gjLott .bg .blackout .more {
+  display: block;
+  border: 2px solid #fff;
+  font-size: 30px;
+  color: #fff;
+  margin-top: 10px;
+  padding: 5px 90px;
+}
+.bodyLottery .gjLott .bg .blackout .more:hover {
+  color: #119298;
+  background: #fff;
+}
+.bodyLottery .gjLott .content {
+  display: none;
+  width: 97%;
+  margin: 0 auto;
+  padding: 10px;
+  border-radius: 0 0 10px 10px;
+  background: #119298;
+}
+.bodyLottery .gjLott .content .info {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  min-height: 100px;
+}
+.bodyLottery .gjLott .content .info .desc h3, .bodyLottery .gjLott .content .info .conditions h3 {
+  margin-bottom: 5px;
+}
+.bodyLottery .gjLott .content .info .desc {
+  width: 70%;
+  padding: 20px 10px;
+}
+.bodyLottery .gjLott .content .info .conditions {
+  width: 30%;
+  padding: 20px 10px;
+}
+.bodyLottery .gjLott .content .info .conditions ol {
+  margin-left: 15px;
+}
+.bodyLottery .gjLott .content .social {
+  padding: 0 10px;
+  font-size: 20px;
+}
+.bodyLottery .gjLott .content .social .links {
+  padding-right: 30px;
+}
+.bodyLottery .gjLott .content .social .item {
+  padding-right: 15px;
+}
+.bodyLottery .gjLott .content .social .item i {
+  font-size: 15px;
+}
+.bodyLottery .gjLott .content .social a:hover {
+  color: #131315;
+}
+.bodyLottery .gjLott .content .social .statistics {
+  float: right;
+}
+.bodyLottery .endLott, .bodyLottery .everyDayLott {
+  display: block;
+}
+.bodyLottery .endLott:hover, .bodyLottery .everyDayLott:hover {
+  color: #fff;
+}
+.bodyLottery .endLott:hover .bg, .bodyLottery .everyDayLott:hover .bg {
+  -webkit-box-shadow: #119298 0 0 20px 1px;
+          box-shadow: #119298 0 0 20px 1px;
+}
+.bodyLottery .endLott:hover .bg .blackout, .bodyLottery .everyDayLott:hover .bg .blackout {
+  background: rgba(0, 0, 0, 0.7);
+}
+.bodyLottery .endLott .bg .blackout .nameEndLott {
+  position: absolute;
+  top: 15px;
+  left: 20px;
+  font-size: 25px;
+}
+.bodyLottery .endLott .bg .blackout .winner {
+  font-size: 50px;
+}
+.bodyLottery .everyDayLott .fromWhom {
+  position: absolute;
+  top: 20px;
+  left: -40px;
+  font-size: 20px;
+  padding: 10px 15px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+  background: #119298;
+}
+.bodyLottery .userLott {
+  position: relative;
+  height: 300px;
+  margin-top: 30px;
+}
+.bodyLottery .userLott .studioName {
+  position: absolute;
+  top: 20px;
+  left: -40px;
+  display: block;
+  font-size: 20px;
+  max-width: 400px;
+  padding: 10px 20px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  background: #119298;
+  z-index: 5;
+}
+.bodyLottery .userLott .studioName:hover {
+  cursor: pointer;
+  color: #fff;
+  -webkit-box-shadow: #fff 0 0 20px 1px;
+          box-shadow: #fff 0 0 20px 1px;
+}
+.bodyLottery .userLott .link {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 100%;
+  border-radius: 10px;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyLottery .userLott .link .background {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  border-radius: 10px 0 0 10px;
+  background: #119298 center center / cover no-repeat;
+}
+.bodyLottery .userLott .link .left {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+  width: 50%;
+  border-radius: 10px 0 0 10px;
+  background: rgba(13, 150, 158, 0.5);
+}
+.bodyLottery .userLott .link .right {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 50%;
+  padding: 20px;
+  border-radius: 0 10px 10px 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyLottery .userLott .link .right .caption {
+  font-size: 25px;
+}
+.bodyLottery .userLott .link .right .text {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.bodyLottery .userLott .link:hover {
+  cursor: pointer;
+  color: #fff;
+  -webkit-box-shadow: #119298 0 0 20px 1px;
+          box-shadow: #119298 0 0 20px 1px;
+}
+.bodyLottery .userLott .link:hover .right {
+  background: rgba(13, 150, 158, 0.7);
+}
+.bodyLottery .loading {
+  padding: 30px 0;
+  margin-top: 30px;
+  border-radius: 10px;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  background: rgba(13, 150, 158, 0.4);
+}
+
+@media (max-width: 1199px) {
+  .bodyLottery .gjLott .bg .blackout h1, .bodyLottery .everyDayLott .bg .blackout h1 {
+    font-size: 50px;
+  }
+  .bodyLottery .endLott .bg .blackout .winner {
+    font-size: 40px;
+  }
+}
+@media (max-width: 991px) {
+  .bodyLottery {
+    padding: 1px 50px 50px 50px;
+    min-height: 500px;
+  }
+  .bodyLottery .gjLott .bg, .bodyLottery .everyDayLott .bg,
+  .bodyLottery .endLott .bg, .bodyLottery .siteFriend {
+    height: 250px;
+  }
+  .bodyLottery .gjLott .bg .blackout h1, .bodyLottery .everyDayLott .bg .blackout h1 {
+    font-size: 40px;
+  }
+  .bodyLottery .gjLott .bg .blackout h1 {
+    margin-top: 10px;
+  }
+  .bodyLottery .gjLott .bg .blackout .winner {
+    font-size: 30px;
+  }
+  .bodyLottery .gjLott .bg .blackout .more {
+    border: 1px solid #fff;
+    font-size: 20px;
+    margin-top: 10px;
+    padding: 5px 50px;
+  }
+  .bodyLottery .gjLott .content .info {
+    min-height: 60px;
+  }
+  .bodyLottery .gjLott .content .info .desc {
+    width: 100%;
+    padding: 5px 0;
+    font-size: 14px;
+  }
+  .bodyLottery .gjLott .content .social {
+    padding: 0 10px;
+    font-size: 15px;
+  }
+  .bodyLottery .gjLott .content .social .links {
+    padding-right: 30px;
+  }
+  .bodyLottery .gjLott .content .social .item {
+    padding-right: 15px;
+  }
+  .bodyLottery .gjLott .content .social .item i {
+    font-size: 15px;
+  }
+  .bodyLottery .userLott {
+    height: 220px;
+  }
+  .bodyLottery .userLott .studioName {
+    position: absolute;
+    top: 10px;
+    font-size: 16px;
+  }
+  .bodyLottery .userLott .link .left {
+    font-size: 20px;
+  }
+  .bodyLottery .userLott .link .right .caption {
+    font-size: 20px;
+  }
+  .bodyLottery .userLott .link .right .text {
+    font-size: 13px;
+    margin-top: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .bodyLottery {
+    padding: 10px;
+  }
+  .bodyLottery .gjLott .bg, .bodyLottery .everyDayLott .bg,
+  .bodyLottery .endLott .bg, .bodyLottery .siteFriend {
+    height: 180px;
+  }
+  .bodyLottery .gjLott .bg .blackout h1, .bodyLottery .everyDayLott .bg .blackout h1 {
+    font-size: 25px;
+  }
+  .bodyLottery .gjLott .bg .blackout h1 {
+    margin-top: 10px;
+  }
+  .bodyLottery .gjLott .bg .blackout .more {
+    border: 1px solid #fff;
+    font-size: 15px;
+    margin-top: 5px;
+    padding: 5px 20px;
+  }
+  .bodyLottery .endLott .bg .blackout .winner {
+    font-size: 20px;
+  }
+  .bodyLottery .endLott .bg .blackout .nameEndLott {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 15px;
+  }
+  .bodyLottery .everyDayLott .fromWhom {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    font-size: 15px;
+    padding: 10px 15px;
+    border: 0;
+    background: transparent;
+  }
+  .bodyLottery .userLott {
+    height: 180px;
+  }
+  .bodyLottery .userLott .link {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .bodyLottery .userLott .link .background {
+    width: 100%;
+    border-radius: 10px;
+  }
+  .bodyLottery .userLott .link .left {
+    position: absolute;
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    width: 100%;
+    font-size: 15px;
+    padding: 10px 15px;
+    background: transparent;
+    z-index: 5;
+  }
+  .bodyLottery .userLott .link .right {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    background: rgba(13, 150, 158, 0.5);
+  }
+  .bodyLottery .userLott .link .right .caption {
+    font-size: 20px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Розыгрыши
+ */
+/*
+ * Розыгрыш
+ * --------------------------------------------------
+ */
+.youtubeVideo {
+  z-index: 997;
+  position: fixed;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  color: #1adce4;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.9);
+}
+.youtubeVideo iframe, .youtubeVideo .editYoutube {
+  width: 80vw;
+  height: 80vh;
+}
+.youtubeVideo .editYoutube {
+  background: #131315;
+}
+.youtubeVideo .editYoutube h1 {
+  margin-top: 30px;
+}
+.youtubeVideo .editYoutube .info {
+  width: 80%;
+  margin: 10px auto 30px auto;
+}
+.youtubeVideo .editYoutube .inputAddMember {
+  position: relative;
+  margin: 0 auto;
+  width: 40%;
+}
+.youtubeVideo .editYoutube iframe, .youtubeVideo .editYoutube .default, .youtubeVideo .editYoutube .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .youtubeVideo .editYoutube .ban {
+  width: 50%;
+  height: 50%;
+  margin-top: 25px;
+}
+.youtubeVideo .editYoutube .default, .youtubeVideo .editYoutube .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .youtubeVideo .editYoutube .ban {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-size: 30px;
+  color: #fff;
+  margin: 25px auto 0 auto;
+  background: #119298;
+}
+
+.bodyDraw {
+  position: relative;
+  background: #131315;
+  border: 1px solid #119298;
+  -webkit-box-shadow: 0 5px 15px 0px #119298;
+          box-shadow: 0 5px 15px 0px #119298;
+  padding: 0;
+  background: #131315;
+}
+.bodyDraw .drawControlLine {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15%;
+  height: 100%;
+  background: #119298;
+}
+.bodyDraw .drawControlLine .moveLine {
+  position: relative;
+  top: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  font-size: 80px;
+}
+.bodyDraw .drawControlLine .moveLine i:hover {
+  cursor: pointer;
+}
+.bodyDraw .drawContent {
+  position: relative;
+  width: 85%;
+  height: 100%;
+}
+.bodyDraw .drawContent input::-webkit-input-placeholder, .bodyDraw .drawContent textarea::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.bodyDraw .drawContent input::-moz-placeholder, .bodyDraw .drawContent textarea::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.bodyDraw .drawContent input:-ms-input-placeholder, .bodyDraw .drawContent textarea:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+.bodyDraw .drawContent .title.create {
+  margin: 25px 0 20px 0;
+}
+.bodyDraw .drawContent .inputAddLottery, .bodyDraw .drawContent .drawPrizes .rangeCount {
+  color: #fff;
+  outline: none;
+  border: 0;
+  background: transparent;
+  width: 70%;
+}
+.bodyDraw .drawContent .textAddLottery {
+  width: 100%;
+  height: 200px;
+  color: #fff;
+  border: 0;
+  outline: none;
+  resize: vertical;
+  background: transparent;
+}
+.bodyDraw .drawContent .textAddLottery.short {
+  height: 100px;
+}
+.bodyDraw .drawContent .textAddLottery:focus, .bodyDraw .drawContent .slideBlock .textAddLottery.navSlider:hover, .slideBlock .bodyDraw .drawContent .textAddLottery.navSlider:hover {
+  border: 1px solid #fff;
+  padding: 9px;
+}
+.bodyDraw .drawContent .hint {
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+  background: rgba(13, 150, 158, 0.8);
+}
+.bodyDraw .drawContent .hint .headerBG {
+  position: relative;
+  width: 100%;
+  height: 600px;
+}
+.bodyDraw .drawContent .hint .headerBG .helpImg {
+  position: absolute;
+  top: 0;
+  right: 0px;
+}
+.bodyDraw .drawContent .hint .headerBG .helpImg .outline {
+  position: absolute;
+  top: 14px;
+  right: 17px;
+  width: 65px;
+  height: 65px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .headerBG .helpImg .arrow {
+  position: absolute;
+  top: 70px;
+  right: 35px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 50px 30px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-30deg);
+          transform: rotate(-30deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpImg .arrow .end {
+  position: absolute;
+  top: 35px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpImg .text {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  width: 200px;
+  -webkit-transform: rotate(20deg);
+          transform: rotate(20deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpTitle {
+  position: absolute;
+  top: 170px;
+  left: 0px;
+}
+.bodyDraw .drawContent .hint .headerBG .helpTitle .arrow {
+  position: absolute;
+  top: -50px;
+  left: 400px;
+  width: 150px;
+  height: 150px;
+  border-radius: 0 0 150px 80px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-110deg);
+          transform: rotate(-110deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpTitle .arrow .end {
+  position: absolute;
+  bottom: 30px;
+  left: -15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpTitle .text {
+  position: absolute;
+  top: 0px;
+  left: 20px;
+  width: 400px;
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpYoutube {
+  position: absolute;
+  bottom: 85px;
+  right: 50px;
+}
+.bodyDraw .drawContent .hint .headerBG .helpYoutube .outline {
+  position: absolute;
+  top: 78px;
+  right: -30px;
+  width: 70px;
+  height: 50px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .headerBG .helpYoutube .arrow {
+  position: absolute;
+  top: 0px;
+  right: -30px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-120deg);
+          transform: rotate(-120deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpYoutube .arrow .end {
+  position: absolute;
+  bottom: 0px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-80deg);
+          transform: rotate(-80deg);
+}
+.bodyDraw .drawContent .hint .headerBG .helpYoutube .text {
+  width: 400px;
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock {
+  position: relative;
+  margin: 25px 0 0 0;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDate {
+  position: absolute;
+  top: 30px;
+  left: 400px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDate .text {
+  width: 400px;
+  font-size: 20px;
+  -webkit-transform: rotate(-15deg);
+          transform: rotate(-15deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription {
+  position: absolute;
+  top: 15px;
+  right: 50px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .arrow {
+  position: absolute;
+  top: 20px;
+  left: -50px;
+  width: 120px;
+  height: 120px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .arrow .end {
+  position: absolute;
+  bottom: 15px;
+  left: -13px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .text {
+  width: 400px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .arrow {
+  position: absolute;
+  top: -30px;
+  right: -50px;
+  width: 120px;
+  height: 120px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .arrow .end {
+  position: absolute;
+  bottom: 15px;
+  left: -13px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .text {
+  width: 400px;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit {
+  position: absolute;
+  top: 20px;
+  left: 400px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit .text {
+  width: 500px;
+  font-size: 20px;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions {
+  position: absolute;
+  top: 20px;
+  left: 200px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .outline {
+  position: absolute;
+  top: 65px;
+  left: -145px;
+  width: 300px;
+  height: 45px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .arrow {
+  position: absolute;
+  top: -7px;
+  left: -60px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-220deg);
+          transform: rotate(-220deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .arrow .end {
+  position: absolute;
+  bottom: 10px;
+  right: -7px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .text {
+  width: 700px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo {
+  position: absolute;
+  top: 25px;
+  right: 41px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .outline {
+  position: absolute;
+  top: -65px;
+  left: -65px;
+  width: 56px;
+  height: 55px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .arrow {
+  position: absolute;
+  top: 50px;
+  left: 0px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-20deg);
+          transform: rotate(-20deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .arrow .end {
+  position: absolute;
+  bottom: 0px;
+  left: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-80deg);
+          transform: rotate(-80deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .text {
+  width: 300px;
+  -webkit-transform: rotate(22deg);
+          transform: rotate(22deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes {
+  position: absolute;
+  top: 50px;
+  left: 200px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .outline {
+  position: absolute;
+  top: 25px;
+  left: -155px;
+  width: 300px;
+  height: 45px;
+  border-radius: 5px;
+  border: 2px solid #fff;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow {
+  position: absolute;
+  top: -35px;
+  left: -70px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(-200deg);
+          transform: rotate(-200deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow .end {
+  position: absolute;
+  bottom: 10px;
+  right: -10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .text {
+  width: 700px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks {
+  position: absolute;
+  top: 100px;
+  right: 10px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks .text {
+  width: 300px;
+  -webkit-transform: rotate(13deg);
+          transform: rotate(13deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .arrow {
+  position: absolute;
+  top: 7px;
+  left: 170px;
+  width: 80px;
+  height: 80px;
+  border-radius: 0 0 80px 50px;
+  border-bottom: 2px solid #fff;
+  -webkit-transform: rotate(50deg);
+          transform: rotate(50deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .arrow .end {
+  position: absolute;
+  bottom: 10px;
+  right: -7px;
+  width: 30px;
+  height: 30px;
+  border-radius: 20px 10px 20px 0;
+  border-top: 3px solid #fff;
+  border-right: 3px solid #fff;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .text {
+  width: 700px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender {
+  position: absolute;
+  bottom: 30px;
+  left: 0;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender .text {
+  width: 300px;
+  -webkit-transform: rotate(-13deg);
+          transform: rotate(-13deg);
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpEndBlock .helpEnd {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+.bodyDraw .drawContent .hint .helpContent .helpBlock .helpEndBlock .helpEnd .text {
+  width: 500px;
+  -webkit-transform: rotate(5deg);
+          transform: rotate(5deg);
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit {
+    top: 0;
+    left: 260px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions {
+    top: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .outline {
+    top: 75px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .arrow {
+    top: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .text {
+    width: 600px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo {
+    top: 10px;
+    right: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .outline {
+    top: 85px;
+    left: 64px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .arrow {
+    top: 70px;
+    left: 130px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .text {
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes {
+    top: 30px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .outline {
+    top: 45px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow {
+    top: -30px;
+    left: -60px;
+    -webkit-transform: rotate(-220deg);
+            transform: rotate(-220deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .text {
+    width: 600px;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint {
+    font-size: 15px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG {
+    height: 450px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .arrow {
+    position: absolute;
+    top: 50px;
+    right: 65px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .text {
+    top: 40px;
+    width: 300px;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle {
+    top: 170px;
+    left: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .arrow {
+    top: -30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 0 0 80px 50px;
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .arrow .arrow .end {
+    bottom: 0px;
+    left: -10px;
+    -webkit-transform: rotate(-70deg);
+            transform: rotate(-70deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .text {
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube {
+    bottom: 90px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDate {
+    position: absolute;
+    top: 30px;
+    left: inherit;
+    right: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit {
+    left: inherit;
+    right: 20px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit .text {
+    font-size: 15px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions {
+    top: -20px;
+    left: inherit;
+    right: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .outline {
+    top: 105px;
+    left: -80px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .arrow {
+    top: 25px;
+    left: -40px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .text {
+    width: 500px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo {
+    top: 90px;
+    right: inherit;
+    left: 115px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .outline {
+    top: 65px;
+    left: -65px;
+    width: 52px;
+    height: 53px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .arrow {
+    top: 45px;
+    left: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .text {
+    width: 300px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes {
+    top: 0;
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .outline {
+    top: 75px;
+    left: -180px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow {
+    top: -10px;
+    left: -50px;
+    -webkit-transform: rotate(-240deg);
+            transform: rotate(-240deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow .arrow .end {
+    bottom: 10px;
+    right: -10px;
+    border-radius: 20px 10px 20px 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .text {
+    width: 400px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks {
+    position: absolute;
+    top: 100px;
+    right: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks .text {
+    width: 300px;
+    -webkit-transform: rotate(13deg);
+            transform: rotate(13deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations {
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .arrow {
+    top: 0px;
+    left: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .text {
+    width: 500px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender {
+    bottom: inherit;
+    left: inherit;
+    right: 0;
+    top: 20px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender .text {
+    -webkit-transform: rotate(13deg);
+            transform: rotate(13deg);
+  }
+}
+@media (max-width: 767px) {
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint {
+    font-size: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG {
+    height: 200px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .outline {
+    top: 5px;
+    right: 5px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #fff;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .arrow {
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 0 0 30px 20px;
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .arrow .end {
+    top: 10px;
+    right: -8px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpImg .text {
+    top: 10px;
+    right: 50px;
+    width: 200px;
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle {
+    top: 70px;
+    left: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .arrow {
+    top: 0px;
+    left: 190px;
+    width: 30px;
+    height: 30px;
+    border-radius: 0 0 10px 30px;
+    -webkit-transform: rotate(-150deg);
+            transform: rotate(-150deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .arrow .end {
+    bottom: 0px;
+    left: -5px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    -webkit-transform: rotate(-80deg);
+            transform: rotate(-80deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpTitle .text {
+    left: 10px;
+    width: 200px;
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube {
+    bottom: 15px;
+    right: 50px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube .outline {
+    top: 25px;
+    right: -45px;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube .arrow {
+    top: -10px;
+    right: -25px;
+    width: 40px;
+    height: 40px;
+    border-radius: 0 0 40px 20px;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotate(-150deg);
+            transform: rotate(-150deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube .arrow .end {
+    bottom: -5px;
+    left: -7px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .headerBG .helpYoutube .text {
+    width: 200px;
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDate {
+    top: 30px;
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDate .text {
+    width: 200px;
+    font-size: 13px;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription {
+    top: 20px;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .arrow {
+    position: absolute;
+    top: 10px;
+    left: 0px;
+    width: 50px;
+    height: 70px;
+    border-radius: 0 0 50px 70px;
+    -webkit-transform: rotate(-30deg);
+            transform: rotate(-30deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .arrow .end {
+    bottom: 10px;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    -webkit-transform: rotate(-57deg);
+            transform: rotate(-57deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpShortDescription .text {
+    width: 200px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription {
+    top: 10px;
+    left: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .arrow {
+    top: -10px;
+    right: -20px;
+    width: 50px;
+    height: 70px;
+    border-radius: 0 0 70px 50px;
+    border-bottom: 2px solid #fff;
+    -webkit-transform: rotate(-120deg);
+            transform: rotate(-120deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .arrow .end {
+    bottom: 3px;
+    left: -9px;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px 10px 20px 0;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    -webkit-transform: rotate(-60deg);
+            transform: rotate(-60deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpDescription .text {
+    width: 200px;
+    -webkit-transform: rotate(-10deg);
+            transform: rotate(-10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit {
+    top: 0px;
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpAgeLimit .text {
+    width: 200px;
+    font-size: 10px;
+    -webkit-transform: rotate(10deg);
+            transform: rotate(10deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions {
+    top: -10px;
+    left: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .outline, .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .arrow {
+    display: none;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpConditions .text {
+    width: 200px;
+    -webkit-transform: rotate(-5deg);
+            transform: rotate(-5deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo {
+    top: 50px;
+    right: 0px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .outline, .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .arrow {
+    display: none;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpInfo .text {
+    width: 200px;
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes {
+    top: 10px;
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .outline, .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .arrow {
+    display: none;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpPrizes .text {
+    width: 200px;
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks {
+    top: 40px;
+    right: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLinks .text {
+    width: 200px;
+    -webkit-transform: rotate(13deg);
+            transform: rotate(13deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations {
+    top: 0px;
+    left: inherit;
+    right: 10px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .arrow {
+    display: none;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpLocalLimitations .text {
+    width: 200px;
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender {
+    bottom: inherit;
+    left: inherit;
+    top: 40px;
+    right: 0;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpBlock .helpGender .text {
+    width: 200px;
+    -webkit-transform: rotate(-13deg);
+            transform: rotate(-13deg);
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpEndBlock .helpEnd {
+    bottom: 10px;
+    right: 30px;
+  }
+  .bodyDraw .drawContent .bodyDraw .drawContent .hint .helpContent .helpEndBlock .helpEnd .text {
+    width: 200px;
+    -webkit-transform: rotate(5deg);
+            transform: rotate(5deg);
+  }
+}
+.bodyDraw .itemLine {
+  margin: 20px auto;
+  text-align: center;
+  font-size: 25px;
+  line-height: 1;
+}
+.bodyDraw .itemLine i {
+  font-size: 50px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .itemLine .icon-cancel {
+  color: #CC0000;
+}
+.bodyDraw .itemLine .finger {
+  font-size: 35px;
+}
+.bodyDraw .itemLine .complaint:hover, .bodyDraw .itemLine .like:hover, .bodyDraw .itemLine .add:hover, .bodyDraw .itemLine .up:hover, .bodyDraw .itemLine .down:hover {
+  cursor: pointer;
+  color: #131315;
+}
+.bodyDraw .drawPreview {
+  position: relative;
+  height: 600px;
+  background: #119298 center center / cover no-repeat;
+  border-bottom: 1px solid #119298;
+}
+.bodyDraw .drawPreview .drawTitle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  line-height: 0.9;
+  font-size: 80px;
+  padding: 0 20px;
+  z-index: 1;
+  background: rgba(0, 0, 0, 0.7);
+}
+.bodyDraw .drawPreview .drawTitle .addBG {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 50px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawPreview .drawTitle .addBG:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.bodyDraw .drawPreview .drawTitle .nameLott,
+.bodyDraw .drawPreview .drawTitle .nameLott .titleLottery {
+  width: 100%;
+  text-align: center;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId {
+  position: absolute;
+  bottom: 30px;
+  right: 100px;
+  text-align: right;
+  font-size: 20px;
+  width: 0;
+  color: #CC0000;
+  outline: none;
+  border-bottom: 1px solid #CC0000;
+  background: transparent;
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId::-webkit-input-placeholder {
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId::-moz-placeholder {
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId:-moz-placeholder {
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId:-ms-input-placeholder {
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .youtubeId.active {
+  width: 50%;
+  padding: 5px 10px;
+}
+.bodyDraw .drawPreview .drawTitle .play {
+  display: block;
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  font-size: 50px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawPreview .drawTitle .play:hover, .bodyDraw .drawPreview .drawTitle .play.active {
+  cursor: pointer;
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .errorBG {
+  position: absolute;
+  top: 35px;
+  right: 100px;
+  display: none;
+  font-size: 15px;
+  color: #CC0000;
+}
+.bodyDraw .drawPreview .drawTitle .errorTitle {
+  position: absolute;
+  top: 230px;
+  display: none;
+  margin: 0 auto;
+  font-size: 20px;
+  color: #CC0000;
+}
+.bodyDraw .siteFriend {
+  height: 300px;
+}
+.bodyDraw .drawDescription {
+  padding: 0 40px;
+}
+.bodyDraw .drawDescription .studioInfo {
+  position: absolute;
+  bottom: 5px;
+  right: 10px;
+  color: #1adce4;
+  font-size: 25px;
+}
+.bodyDraw .drawDescription .studioInfo i {
+  font-size: 20px;
+}
+.bodyDraw .drawDescription .studioName {
+  font-size: 80px;
+  text-align: center;
+  line-height: 1;
+  margin-top: 20px;
+}
+.bodyDraw .drawDescription .dateLottery {
+  /*font-size: 40px;*/
+}
+.bodyDraw .drawDescription .dateLottery .datePicker {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 10px;
+  font-size: 50px;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .day {
+  width: 50px;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth {
+  position: relative;
+  margin: 0 20px;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .name {
+  font-size: 40px;
+  opacity: 0.4;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .name.active {
+  opacity: 1;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .name:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .selectMonth {
+  position: absolute;
+  display: none;
+  width: 200px;
+  list-style-type: none;
+  font-size: 25px;
+  background: #119298;
+  z-index: 1;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .selectMonth li {
+  text-align: center;
+  padding: 10px;
+  border-top: 1px solid #fff;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .selectMonth li:hover {
+  cursor: pointer;
+  background: #fff;
+  color: #119298;
+}
+.bodyDraw .drawDescription .dateLottery .datePicker .time {
+  width: 110px;
+  margin-left: 70px;
+}
+.bodyDraw .drawDescription .dateLottery .date,
+.bodyDraw .drawDescription .countUser,
+.bodyDraw .drawDescription .ageRange {
+  width: 100%;
+  font-size: 50px;
+  padding-left: 10px;
+}
+.bodyDraw .drawDescription .ageRange input {
+  width: 80px;
+  border-bottom: 1px solid #fff;
+  text-align: center;
+}
+.bodyDraw .drawDescription .local {
+  width: 100%;
+  padding-left: 10px;
+}
+.bodyDraw .drawDescription .local .city .listCity {
+  position: absolute;
+  display: none;
+  width: 100%;
+  color: #1adce4;
+  border-top: 1px solid #1adce4;
+  background: #131315;
+  z-index: 5;
+}
+.bodyDraw .drawDescription .local .city .listCity .cityItem {
+  font-size: 15px;
+  padding: 10px 30px;
+  background: rgba(13, 150, 158, 0.1);
+}
+.bodyDraw .drawDescription .local .city .listCity .cityItem.addCity {
+  font-size: 20px;
+  padding: 20px 30px;
+}
+.bodyDraw .drawDescription .local .city .listCity .cityItem:hover {
+  cursor: pointer;
+  background: rgba(13, 150, 158, 0.4);
+}
+.bodyDraw .drawDescription .local .city .listCity .cityItem .info {
+  font-size: 20px;
+}
+.bodyDraw .drawDescription .local .city .listCity .cityItem .info .name {
+  font-size: 25px;
+}
+.bodyDraw .drawDescription .local .city .listAddCity {
+  margin-top: 30px;
+}
+.bodyDraw .drawDescription .local .city .listAddCity .cityItem {
+  font-size: 20px;
+  color: #1adce4;
+  margin-top: 15px;
+}
+.bodyDraw .drawDescription .local .city .listAddCity .cityItem .delCity {
+  color: #CC0000;
+}
+.bodyDraw .drawDescription .local .city .listAddCity .cityItem .delCity:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+.bodyDraw .drawDescription .local .city .listAddCity .cityItem .info {
+  font-size: 20px;
+  color: #fff;
+}
+.bodyDraw .drawDescription .local .city .listAddCity .cityItem .info .name {
+  font-size: 30px;
+}
+.bodyDraw .drawDescription .local .city {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+}
+.bodyDraw .drawDescription .local .city .citySearch {
+  width: 100%;
+  font-size: 25px;
+  padding: 5px 10px;
+  text-align: center;
+}
+.bodyDraw .drawDescription #shortDescription {
+  position: relative;
+}
+.bodyDraw .drawDescription #shortDescription .maxChar {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  font-size: 30px;
+  color: #1adce4;
+}
+.bodyDraw .drawDescription .limitGender {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+.bodyDraw .drawDescription .limitGender .itemLimit {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 10px 20px;
+  font-size: 20px;
+}
+.bodyDraw .drawDescription .limitGender .itemLimit input {
+  margin-bottom: 10px;
+}
+.bodyDraw .drawDescription .addParticipant {
+  display: none;
+  -webkit-box-shadow: #000 0px 0px 40px 0px inset;
+          box-shadow: #000 0px 0px 40px 0px inset;
+  padding: 40px 10px 1px 10px;
+  margin: 40px 0 0 0;
+  text-align: center;
+}
+.bodyDraw .drawDescription .addParticipant p {
+  font-size: 20px;
+  padding: 0 0 10px 0;
+}
+.bodyDraw .drawDescription .addParticipant .iconInfoLottery {
+  font-size: 40px;
+}
+.bodyDraw .drawDescription .addParticipant .iconInfoLottery a.error {
+  color: #CC0000;
+}
+.bodyDraw .drawDescription .addParticipant .errorTextGJ, .bodyDraw .drawDescription .addParticipant .errorTextCustom {
+  font-size: 20px;
+  color: #CC0000;
+  padding: 0 0 20px 0;
+}
+.bodyDraw .drawDescription .addParticipant form {
+  width: 90%;
+  text-align: left;
+  margin: 0 auto;
+}
+.bodyDraw .drawDescription .addParticipant form .inputLable {
+  white-space: nowrap;
+  overflow: hidden;
+  width: 95%;
+}
+.bodyDraw .drawDescription .addParticipant .cancel, .bodyDraw .drawDescription .addParticipant .participate {
+  display: inline-block;
+  padding: 10px 50px 0px 50px;
+  font-size: 30px;
+  margin: 0 10px 30px 10px;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyDraw .drawDescription .addParticipant .cancel {
+  background: #CC0000;
+}
+.bodyDraw .drawDescription .addParticipant .cancel:hover {
+  cursor: pointer;
+  -webkit-box-shadow: #CC0000 0 0 20px 1px;
+          box-shadow: #CC0000 0 0 20px 1px;
+}
+.bodyDraw .drawDescription .addParticipant .participate {
+  background: #009900;
+}
+.bodyDraw .drawDescription .addParticipant .participate:hover {
+  cursor: pointer;
+  -webkit-box-shadow: #009900 0 0 20px 1px;
+          box-shadow: #009900 0 0 20px 1px;
+}
+.bodyDraw .drawDescription .comments {
+  padding: 20px;
+}
+.bodyDraw .drawDescription .createLottery {
+  display: block;
+  width: 70%;
+  font-size: 30px;
+  text-align: center;
+  margin: 50px auto;
+  padding: 15px 0 10px 0;
+  border-radius: 10px;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawDescription .createLottery:hover {
+  cursor: pointer;
+  -webkit-box-shadow: #119298 0 0 20px 1px;
+          box-shadow: #119298 0 0 20px 1px;
+}
+.bodyDraw .drawDescription .createLottery.disable {
+  opacity: 0.2;
+}
+.bodyDraw .drawDescription .createLottery.disable:hover {
+  cursor: default;
+  -webkit-box-shadow: #000 0 0 20px 1px;
+          box-shadow: #000 0 0 20px 1px;
+}
+.bodyDraw .drawDescription .loading {
+  padding: 50px 0;
+}
+.bodyDraw .drawText, .bodyDraw .drawConditions {
+  padding: 10px;
+  font-size: 17px;
+}
+.bodyDraw .drawConditions ol li, .bodyDraw .drawPrizes ol li {
+  position: relative;
+  list-style: none;
+}
+.bodyDraw .drawConditions ol li:before, .bodyDraw .drawPrizes ol li:before {
+  counter-increment: myCounter;
+  content: counter(myCounter);
+  color: #1adce4;
+  display: inline-block;
+  font-size: 25px;
+  padding: 5px 15px 0 0;
+  line-height: 1.5em;
+}
+.bodyDraw .drawText {
+  white-space: pre-line;
+}
+.bodyDraw .drawConditions ol {
+  counter-reset: myCounter;
+  padding: 10px 0 0 0;
+}
+.bodyDraw .drawConditions ol li:before {
+  text-align: right;
+  width: 50px;
+}
+.bodyDraw .drawConditions ol li i {
+  position: absolute;
+  top: 0px;
+  left: 30px;
+  color: #CC0000;
+  font-size: 20px;
+}
+.bodyDraw .drawConditions ol li i:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.bodyDraw .drawPrizes ol {
+  counter-reset: myCounter;
+  padding: 10px 0 0 25px;
+}
+.bodyDraw .drawPrizes ol li {
+  font-size: 30px;
+}
+.bodyDraw .drawPrizes ol li:before {
+  font-size: 40px;
+}
+.bodyDraw .drawPrizes ol li .head {
+  position: relative;
+  display: inline-block;
+  color: #1adce4;
+}
+.bodyDraw .drawPrizes ol li .head .range {
+  position: absolute;
+  top: -17px;
+  left: -13px;
+  color: #fff;
+  font-size: 13px;
+  padding: 5px 5px 3px 5px;
+  border-radius: 5px;
+  opacity: 0.5;
+  background: #CC0000;
+  -webkit-transform: rotate(-10deg);
+          transform: rotate(-10deg);
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyDraw .drawPrizes ol li .head .range:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+.bodyDraw .drawPrizes ol li .head .rangeCount {
+  color: #1adce4;
+  width: 60px;
+}
+.bodyDraw .drawPrizes ol li i {
+  position: absolute;
+  top: 26px;
+  left: -25px;
+  color: #CC0000;
+  font-size: 20px;
+}
+.bodyDraw .drawPrizes ol li i:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.bodyDraw .drawPrizes ol .rangeList {
+  height: 0;
+  overflow: hidden;
+}
+.bodyDraw .drawContent .addBtn {
+  display: inline-block;
+  width: 300px;
+  margin: 0 0 0 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: #1adce4;
+  border-radius: 5px;
+  border: 1px solid #1adce4;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawContent .addBtn:hover {
+  cursor: pointer;
+  color: #fff;
+  border-color: #119298;
+  background: #119298;
+}
+.bodyDraw .drawLinks, .bodyDraw .drawInfo {
+  padding: 10px 10px;
+  font-size: 25px;
+}
+.bodyDraw .drawLinks .addLink, .bodyDraw .drawInfo .addInfo {
+  margin: 0 0 10px 0;
+}
+.bodyDraw .drawLinks .addLink div, .bodyDraw .drawInfo .addInfo div {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 50px;
+  height: 50px;
+  margin: 10px 10px 0 0;
+  padding: 10px 0 0 0;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawLinks .addLink div:hover, .bodyDraw .drawInfo .addInfo div:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 1px #119298;
+          box-shadow: 0 0 20px 1px #119298;
+}
+.bodyDraw .drawInfo .itemInfo, .bodyDraw .drawLinks .itemLink {
+  position: relative;
+  padding: 10px 20px 0 20px;
+  line-height: 1;
+}
+.bodyDraw .drawInfo .itemInfo .delInfo, .bodyDraw .drawLinks .itemLink .delLink {
+  position: absolute;
+  top: 12px;
+  left: -10px;
+  color: #CC0000;
+}
+.bodyDraw .drawInfo .itemInfo .delInfo:hover, .bodyDraw .drawLinks .itemLink .delLink:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+.bodyDraw .drawInfo .itemInfo .customInfo {
+  width: 90%;
+  margin: 0 0 0 10px;
+}
+.bodyDraw .drawInfo .itemInfo .nameLink {
+  width: 70%;
+}
+.bodyDraw .drawInfo .itemInfo .addressLink {
+  width: 90%;
+  font-size: 20px;
+}
+.bodyDraw .drawLinks .editLinks {
+  position: relative;
+  display: none;
+}
+.bodyDraw .drawLinks .editLinks .confirmEditLinks {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  font-size: 50px;
+  line-height: 0;
+  color: #1adce4;
+  z-index: 50;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawLinks .editLinks .confirmEditLinks:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.bodyDraw .drawRepost {
+  padding: 20px 60px 0 60px;
+  font-size: 35px;
+}
+.bodyDraw .drawNeedUser {
+  font-size: 80px;
+  margin: 10px 0 0 10px;
+  text-shadow: 0 0 5px #00c6ff;
+}
+.bodyDraw .drawNeedUser#oddsCountUser {
+  text-align: center;
+  margin: 50px 0;
+}
+.bodyDraw .drawNeedUser i {
+  font-size: 50px;
+}
+.bodyDraw .editOption {
+  display: none;
+  margin-top: 30px;
+  padding: 0px 50px;
+}
+.bodyDraw .editOption .item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 0;
+}
+.bodyDraw .editOption .item input {
+  margin-right: 25px;
+}
+.bodyDraw .drawDefaultHolding {
+  display: none;
+  font-size: 20px;
+  text-align: center;
+}
+.bodyDraw .drawHoldingLink {
+  display: none;
+  font-size: 30px;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0 auto 40px auto;
+  padding: 20px 0;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyDraw .drawHoldingLink:hover {
+  color: #fff;
+  -webkit-box-shadow: 0 0 20px 1px #1adce4;
+          box-shadow: 0 0 20px 1px #1adce4;
+}
+.bodyDraw .drawListWinner {
+  text-align: center;
+  font-size: 25px;
+  line-height: 1;
+  color: #1adce4;
+}
+.bodyDraw .drawListWinner .firstPlace {
+  font-size: 55px;
+  margin: 50px 0 30px 0;
+}
+.bodyDraw .drawListWinner .secondPlace {
+  opacity: 0.8;
+  font-size: 40px;
+  margin: 30px 0 20px 0;
+}
+.bodyDraw .drawListWinner .firstPlace i, .bodyDraw .drawListWinner .secondPlace i {
+  font-size: 30px;
+}
+.bodyDraw .drawListWinner .thirdPlace {
+  opacity: 0.7;
+  font-size: 30px;
+  margin: 20px 0 10px 0;
+}
+.bodyDraw .drawListWinner .otherPlace {
+  opacity: 0.5;
+  margin: 10px 0;
+}
+.bodyDraw .drawListWinner .thirdPlace i, .bodyDraw .drawListWinner .otherPlace i {
+  font-size: 20px;
+}
+
+.clock {
+  color: #fff;
+}
+.clock ul {
+  margin: 0 auto;
+  padding: 40px 0;
+  list-style: none;
+  text-align: center;
+}
+.clock ul li {
+  display: inline;
+  font-size: 100px;
+  text-align: center;
+  font-family: 'Text';
+  text-shadow: 0 0 5px #00c6ff;
+}
+
+#Date {
+  font-family: 'Text';
+  font-size: 50px;
+  text-align: center;
+  text-shadow: 0 0 5px #00c6ff;
+  padding: 20px 0;
+}
+#Date .timeEdit {
+  width: 114px;
+  border-bottom: 1px solid #fff;
+}
+
+.point {
+  position: relative;
+  -moz-animation: blink 1s ease infinite;
+  -webkit-animation: blink 1s ease infinite;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+  }
+  50% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+  }
+  50% {
+    opacity: 0;
+    text-shadow: none;
+  }
+  100% {
+    opacity: 1.0;
+    text-shadow: 0 0 20px #00c6ff;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .bodyDraw .drawPreview {
+    height: 450px;
+  }
+  .bodyDraw .drawPreview .drawTitle {
+    font-size: 60px;
+  }
+  .bodyDraw .siteFriend {
+    height: 300px;
+  }
+  .bodyDraw .clock #Date {
+    font-size: 30px;
+  }
+  .bodyDraw .drawListWinner .firstPlace {
+    font-size: 40px;
+    margin: 30px 0 10px 0;
+  }
+  .bodyDraw .drawListWinner .secondPlace {
+    font-size: 35px;
+    margin: 10px 0 10px 0;
+  }
+  .bodyDraw .drawListWinner .thirdPlace {
+    font-size: 30px;
+    margin: 10px 0 10px 0;
+  }
+  .bodyDraw .drawListWinner .otherPlace {
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .studioName {
+    font-size: 60px;
+  }
+  .bodyDraw .drawDescription .limitGender {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .bodyDraw .drawDescription .limitGender .itemLimit {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    margin: 10px 0 0 10px;
+  }
+  .bodyDraw .drawDescription .limitGender .itemLimit input {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 767px) {
+  .youtubeVideo iframe, .youtubeVideo .editYoutube {
+    width: 100%;
+    height: auto;
+  }
+
+  .youtubeVideo .editYoutube h1 {
+    margin-top: 20px;
+    font-size: 20px;
+  }
+  .youtubeVideo .editYoutube .info {
+    width: 95%;
+    margin: 10px auto;
+    font-size: 13px;
+  }
+  .youtubeVideo .editYoutube .inputAddMember {
+    width: 90%;
+  }
+  .youtubeVideo .editYoutube iframe, .youtubeVideo .editYoutube .default, .youtubeVideo .editYoutube .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .youtubeVideo .editYoutube .ban {
+    max-width: 250px;
+    min-width: 250px;
+    height: 30vh;
+    margin: 25px 0;
+  }
+  .youtubeVideo .editYoutube .default, .youtubeVideo .editYoutube .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban, .bodyHoldingLottery .holdingLottery .listComment .writeComment .youtubeVideo .editYoutube .ban {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    font-size: 30px;
+    color: #fff;
+    margin: 25px auto 0 auto;
+    background: #119298;
+  }
+
+  .bodyDraw .drawContent .title.create {
+    margin: 25px 0 10px 0;
+  }
+  .bodyDraw .drawContent .inputAddLottery {
+    width: 100%;
+  }
+  .bodyDraw .drawControlLine .moveLine {
+    font-size: 40px;
+  }
+  .bodyDraw .itemLine {
+    margin: 20px auto;
+    font-size: 15px;
+  }
+  .bodyDraw .itemLine i, .bodyDraw .itemLine .finger {
+    font-size: 25px;
+  }
+  .bodyDraw .drawDescription {
+    padding: 0 10px;
+  }
+  .bodyDraw .drawDescription .addParticipant {
+    padding: 20px 10px 1px 10px;
+    margin: 10px 0 0 0;
+  }
+  .bodyDraw .drawDescription .addParticipant .errorTextGJ, .bodyDraw .drawDescription .addParticipant .errorTextCustom {
+    font-size: 15px;
+    padding-bottom: 10px;
+  }
+  .bodyDraw .drawDescription .addParticipant .iconInfoLottery {
+    font-size: 25px;
+  }
+  .bodyDraw .drawDescription .addParticipant form {
+    width: 100%;
+  }
+  .bodyDraw .drawDescription .addParticipant .cancel, .bodyDraw .drawDescription .addParticipant .participate {
+    width: 50px;
+    height: 50px;
+    padding: 12px 0 0 0;
+    font-size: 25px;
+    border-radius: 30px;
+  }
+  .bodyDraw .drawDescription .addParticipant p {
+    font-size: 13px;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 10px;
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker .day {
+    width: 20px;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth {
+    position: relative;
+    margin: 0 10px;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .name {
+    font-size: 20px;
+    opacity: 0.4;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker .pickerMonth .selectMonth {
+    width: 150px;
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .dateLottery .datePicker .time {
+    width: 50px;
+    margin-left: 20px;
+  }
+  .bodyDraw .drawDescription #shortDescription .drawText,
+  .bodyDraw .drawDescription #description .drawText {
+    width: calc(100% - 20px);
+  }
+  .bodyDraw .drawDescription .countUser,
+  .bodyDraw .drawDescription .ageRange {
+    font-size: 30px;
+  }
+  .bodyDraw .drawDescription .local .city {
+    width: 100%;
+  }
+  .bodyDraw .drawDescription .local .city .citySearch {
+    font-size: 12px;
+    text-align: left;
+  }
+  .bodyDraw .drawDescription .local .city .listCity .cityItem {
+    font-size: 12px;
+    padding: 10px;
+  }
+  .bodyDraw .drawDescription .local .city .listCity .cityItem .info {
+    font-size: 12px;
+  }
+  .bodyDraw .drawDescription .local .city .listCity .cityItem .info .name {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .local .city .listCity .cityItem.addCity {
+    font-size: 15px;
+    padding: 10px;
+  }
+  .bodyDraw .drawDescription .local .listAddCity .cityItem {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  .bodyDraw .drawDescription .local .listAddCity .cityItem .info {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .local .listAddCity .cityItem .info .name {
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .ageRange input {
+    width: 46px;
+  }
+  .bodyDraw .drawDescription .studioInfo {
+    font-size: 10px;
+  }
+  .bodyDraw .drawDescription .studioInfo i {
+    font-size: 10px;
+  }
+  .bodyDraw .drawDescription .studioName {
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .title h1 {
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .clock #Date {
+    font-size: 13px;
+  }
+  .bodyDraw .drawDescription .clock .clock ul li {
+    font-size: 35px;
+  }
+  .bodyDraw .drawDescription #shortDescription .maxChar {
+    position: absolute;
+    top: 4px;
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .drawText {
+    padding: 10px;
+    font-size: 13px;
+  }
+  .bodyDraw .drawDescription .drawConditions {
+    padding: 0px;
+    font-size: 13px;
+  }
+  .bodyDraw .drawDescription .drawConditions ol li {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .drawConditions ol li i {
+    left: 7px;
+  }
+  .bodyDraw .drawDescription .drawConditions ol li:before {
+    font-size: 20px;
+    padding: 0px 15px 0 0;
+    width: 15px;
+  }
+  .bodyDraw .drawDescription .drawLinks, .bodyDraw .drawDescription .drawInfo {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .drawLinks .addLink div, .bodyDraw .drawDescription .drawInfo .addInfo div {
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    margin: 5px 3px 0 0;
+  }
+  .bodyDraw .drawDescription .drawInfo .itemInfo .delInfo {
+    top: 10px;
+    left: 0px;
+  }
+  .bodyDraw .drawDescription .drawLinks .itemLink {
+    padding: 5px 0 0 0;
+  }
+  .bodyDraw .drawDescription .drawLinks .itemLink .nameLink {
+    width: 70%;
+  }
+  .bodyDraw .drawDescription .drawLinks .itemLink .addressLink {
+    width: 70%;
+    font-size: 13px;
+  }
+  .bodyDraw .drawDescription .drawLinks .itemLink .delLink {
+    top: 5px;
+    left: -18px;
+  }
+  .bodyDraw .drawDescription .drawLinks .editLinks .confirmEditLinks {
+    position: absolute;
+    right: 0px;
+    font-size: 30px;
+  }
+  .bodyDraw .drawDescription .drawRepost {
+    padding: 10px;
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .drawNeedUser {
+    font-size: 30px;
+  }
+  .bodyDraw .drawDescription .drawNeedUser i {
+    font-size: 20px;
+  }
+  .bodyDraw .drawDescription .point {
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+  .bodyDraw .drawDescription .drawHoldingLink {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .drawListWinner {
+    font-size: 15px;
+  }
+  .bodyDraw .drawDescription .drawListWinner .firstPlace {
+    font-size: 15px;
+    margin: 20px 0 0 0;
+  }
+  .bodyDraw .drawDescription .drawListWinner .secondPlace {
+    font-size: 15px;
+    margin: 10px 0 0 0;
+  }
+  .bodyDraw .drawDescription .drawListWinner .thirdPlace {
+    font-size: 15px;
+    margin: 10px 0 0 0;
+  }
+  .bodyDraw .drawDescription .drawListWinner .otherPlace {
+    margin: 10px 0 0 0;
+  }
+  .bodyDraw .drawDescription .limitGender {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .bodyDraw .drawDescription .limitGender .itemLimit {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+    font-size: 15px;
+    margin: 10px 0 0 10px;
+  }
+  .bodyDraw .drawDescription .limitGender .itemLimit input {
+    margin-right: 10px;
+  }
+  .bodyDraw .drawDescription .createLottery {
+    font-size: 20px;
+    width: 90%;
+    margin: 30px auto;
+  }
+  .bodyDraw .drawContent .addBtn {
+    font-size: 13px;
+    width: calc(100% - 10px);
+  }
+  .bodyDraw .drawPreview {
+    height: 200px;
+  }
+  .bodyDraw .drawPreview .drawTitle {
+    font-size: 30px;
+  }
+  .bodyDraw .drawPreview .drawTitle .youtubeId {
+    right: 35px;
+    bottom: 15px;
+    font-size: 15px;
+  }
+  .bodyDraw .drawPreview .drawTitle .youtubeId .youtubeId.active {
+    width: 80%;
+    padding: 2px 5px;
+  }
+  .bodyDraw .drawPreview .drawTitle .addBG {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+  .bodyDraw .drawPreview .drawTitle .play {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+  .bodyDraw .siteFriend {
+    height: 150px;
+  }
+  .bodyDraw .drawPrizes ol {
+    padding: 10px;
+  }
+  .bodyDraw .drawPrizes ol li {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+  .bodyDraw .drawPrizes ol li:before {
+    font-size: 20px;
+    padding: 0 5px 0 0;
+  }
+  .bodyDraw .drawPrizes ol li i {
+    top: 5px;
+    left: -20px;
+  }
+  .bodyDraw .drawPrizes ol li .head .range {
+    top: -13px;
+    left: -6px;
+    font-size: 8px;
+    padding: 4px 4px 2px 4px;
+    opacity: 0.7;
+  }
+}
+@media (max-width: 500px) {
+  .bodyDraw .itemLine {
+    margin: 20px auto;
+    font-size: 10px;
+  }
+  .bodyDraw .itemLine i, .bodyDraw .itemLine .finger {
+    font-size: 15px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Розыгрыш
+ */
+/*
+ * Проведение розыгрыша
+ * --------------------------------------------------
+ */
+.bodyHoldingLottery {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #1adce4;
+  z-index: 3;
+}
+.bodyHoldingLottery .youtube {
+  position: fixed;
+  top: 20%;
+  left: -60px;
+  -webkit-transition: left 0.3s ease;
+  transition: left 0.3s ease;
+  z-index: 5;
+}
+.bodyHoldingLottery .youtube:hover {
+  cursor: pointer;
+  left: 0px;
+}
+.bodyHoldingLottery .youtube .editYoutubeBtn {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  color: #fff;
+  z-index: 7;
+}
+.bodyHoldingLottery .youtube .editYoutubeId {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 30px 0 40px;
+  border-radius: 0 20px 20px 0;
+  -webkit-box-shadow: 0 0 10px 1px #000;
+          box-shadow: 0 0 10px 1px #000;
+  background: #980a0a;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyHoldingLottery .youtube .editYoutubeId.active {
+  right: -200px;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input {
+  color: #fff;
+  padding: 5px 5px 3px 5px;
+  -webkit-box-shadow: 0 0 0 0 transparent;
+          box-shadow: 0 0 0 0 transparent;
+  border: 0;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input:focus, .bodyHoldingLottery .youtube .editYoutubeId .slideBlock input.navSlider:hover, .slideBlock .bodyHoldingLottery .youtube .editYoutubeId input.navSlider:hover {
+  outline: -webkit-focus-ring-color auto 0px;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input::-webkit-input-placeholder {
+  color: #fff;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input::-moz-placeholder {
+  color: #fff;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input:-moz-placeholder {
+  color: #fff;
+}
+.bodyHoldingLottery .youtube .editYoutubeId input:-ms-input-placeholder {
+  color: #fff;
+}
+.bodyHoldingLottery .youtube .lifeYoutube {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 120px;
+  font-size: 30px;
+  text-align: center;
+  color: #fff;
+  padding: 10px 20px 7px 10px;
+  border-radius: 0 20px 20px 0;
+  -webkit-box-shadow: 0 0 10px 1px #000;
+          box-shadow: 0 0 10px 1px #000;
+  background: #CC0000;
+  z-index: 6;
+}
+.bodyHoldingLottery .youtube .lifeYoutube .icon {
+  line-height: 1;
+}
+.bodyHoldingLottery a {
+  color: #1adce4;
+}
+.bodyHoldingLottery a a:hover {
+  color: #119298;
+}
+.bodyHoldingLottery .previewHolding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 80vh;
+}
+.bodyHoldingLottery .previewHolding i {
+  font: normal 12vw / 100px 'Lobster', 'Text';
+  color: #1adce4;
+  text-shadow: 0 0 30px #1adce4, 0 0 10px rgba(230, 161, 173, 0.41), 0 0 100px #1adce4, 0 0 500px #1adce4, 5px 9px 5px rgba(19, 19, 21, 0.5);
+}
+.bodyHoldingLottery .previewHolding i.off {
+  color: rgba(46, 46, 46, 0.61);
+  text-shadow: 7px 7px 5px rgba(0, 0, 0, 0.5);
+}
+.bodyHoldingLottery .bgHoldingLottery {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.1;
+  background: #131315 center center / cover no-repeat;
+  z-index: 1;
+}
+.bodyHoldingLottery .holdingBack {
+  display: block;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 20px;
+}
+.bodyHoldingLottery .holdingLottery {
+  padding: 50px;
+}
+.bodyHoldingLottery .holdingLottery .siteFriend {
+  height: 70vh;
+  margin: 30px 0 80px 0;
+  color: #fff;
+}
+.bodyHoldingLottery .holdingLottery .siteFriend .name {
+  font-size: 4vw;
+}
+.bodyHoldingLottery .holdingLottery .siteFriend:hover, .bodyHoldingLottery .holdingLottery .siteFriend:focus, .bodyHoldingLottery .holdingLottery .slideBlock .siteFriend.navSlider:hover, .slideBlock .bodyHoldingLottery .holdingLottery .siteFriend.navSlider:hover {
+  color: #fff;
+}
+.bodyHoldingLottery .holdingLottery .bottomHolding {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.bodyHoldingLottery .holdingLottery .bottomHolding .contentHolding {
+  width: 60%;
+}
+.bodyHoldingLottery .holdingLottery .bottomHolding .siteFriend {
+  width: 35%;
+  height: 80vh;
+  margin: 0;
+}
+.bodyHoldingLottery .holdingLottery .holdingPlaces, .bodyHoldingLottery .holdingLottery .holdingChat {
+  padding: 0;
+}
+.bodyHoldingLottery .holdingLottery .holdingPlaces a {
+  color: #fff;
+}
+.bodyHoldingLottery .holdingLottery .holdingPlaces a:hover {
+  color: #119298;
+}
+.bodyHoldingLottery .holdingLottery .titleRandom {
+  position: relative;
+  font-size: 40px;
+  line-height: 1;
+  border-bottom: 1px solid #1adce4;
+}
+.bodyHoldingLottery .holdingLottery .winner {
+  font-size: 8.5vw;
+  padding-top: 10px;
+}
+.bodyHoldingLottery .holdingLottery .winner .choiceWinner {
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+.bodyHoldingLottery .holdingLottery .winner .choiceWinner:hover {
+  cursor: pointer;
+  color: #fff;
+}
+.bodyHoldingLottery .youtubeOnline {
+  display: none;
+  width: 100%;
+  height: 600px;
+  margin-bottom: 30px;
+  border: 1px solid;
+  background: #000;
+}
+.bodyHoldingLottery .listWinner {
+  padding: 10px;
+  font-size: 3vw;
+  min-height: 30vh;
+}
+.bodyHoldingLottery .listWinner div {
+  position: relative;
+}
+.bodyHoldingLottery .listWinner div i {
+  position: absolute;
+  top: 10px;
+  left: -30px;
+  font-size: 20px;
+}
+.bodyHoldingLottery .holdingLottery .listComment {
+  padding: 30px;
+  min-height: 30vh;
+}
+.bodyHoldingLottery .holdingLottery .listComment .userName {
+  color: #fff;
+  font-size: 20px;
+  padding: 5px 10px;
+}
+.bodyHoldingLottery .holdingLottery .listComment .writeComment {
+  position: relative;
+  margin: 0 0 80px 0;
+}
+.bodyHoldingLottery .holdingLottery .listComment .writeComment .default, .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban {
+  text-align: center;
+  font-size: 20px;
+  padding: 20px 0 0 0;
+}
+.bodyHoldingLottery .holdingLottery .listComment .writeComment .ban {
+  color: #CC0000;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment {
+  font-size: 15px;
+  border: 1px solid #1adce4;
+  padding: 10px 20px;
+  margin: 0 0 30px 0;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment a {
+  color: #fff;
+  font-size: 17px;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment a:hover {
+  color: #1adce4;
+  border-bottom: 1px dotted #1adce4;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment .name {
+  padding: 5px 0;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment .name i {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment .name i:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment .text {
+  padding: 5px 0;
+}
+.bodyHoldingLottery .holdingLottery .listComment .comment .date {
+  float: right;
+  padding: 8px 10px 5px 10px;
+  margin: -3px 0 0 0;
+  color: #fff;
+  background: #119298;
+}
+.bodyHoldingLottery .holdingLottery .listComment .defaultCommentLottery {
+  text-align: center;
+}
+.bodyHoldingLottery .textareaHolding, .bodyHoldingLottery .blockComments textarea {
+  color: #1adce4;
+  font-family: "Text", Arial, sans-serif;
+  font-size: 18px;
+  width: 90%;
+  padding: 13px;
+  background-color: transparent;
+  border: 1px solid #119298;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  resize: vertical;
+  overflow: hidden;
+}
+.bodyHoldingLottery .textareaHolding::-webkit-input-placeholder, .bodyHoldingLottery .blockComments textarea::-webkit-input-placeholder {
+  color: #1adce4;
+}
+.bodyHoldingLottery .textareaHolding::-moz-placeholder, .bodyHoldingLottery .blockComments textarea::-moz-placeholder {
+  color: #1adce4;
+}
+.bodyHoldingLottery .textareaHolding:-moz-placeholder, .bodyHoldingLottery .blockComments textarea:-moz-placeholder {
+  color: #1adce4;
+}
+.bodyHoldingLottery .textareaHolding:-ms-input-placeholder, .bodyHoldingLottery .blockComments textarea:-ms-input-placeholder {
+  color: #1adce4;
+}
+
+@media (max-width: 991px) {
+  .holdingLottery .listWinner div i {
+    top: 5px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .youtubeOnline {
+    height: 250px;
+  }
+
+  .holdingBack {
+    font-size: 13px;
+  }
+
+  .bodyHoldingLottery .youtube {
+    left: -40px;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeBtn {
+    top: -5px;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId {
+    padding: 0 30px 0 20px;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId.active {
+    right: -195px;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input {
+    color: #fff;
+    padding: 5px 5px 3px 5px;
+    -webkit-box-shadow: 0 0 0 0 transparent;
+            box-shadow: 0 0 0 0 transparent;
+    border: 0;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input:focus, .bodyHoldingLottery .youtube .editYoutubeId .slideBlock input.navSlider:hover, .slideBlock .bodyHoldingLottery .youtube .editYoutubeId input.navSlider:hover {
+    outline: -webkit-focus-ring-color auto 0px;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input:-webkit-input-placeholder {
+    color: #fff;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input::-moz-placeholder {
+    color: #fff;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input:-moz-placeholder {
+    color: #fff;
+  }
+  .bodyHoldingLottery .youtube .editYoutubeId input:-ms-input-placeholder {
+    color: #fff;
+  }
+  .bodyHoldingLottery .youtube .lifeYoutube {
+    width: 90px;
+    font-size: 20px;
+  }
+
+  .holdingLottery {
+    padding: 15px;
+  }
+  .holdingLottery .siteFriend {
+    height: 200px;
+    margin: 20px 0;
+  }
+  .holdingLottery .siteFriend .name {
+    font-size: 25px;
+  }
+  .holdingLottery .titleRandom {
+    font-size: 15px;
+  }
+  .holdingLottery .bottomHolding {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .holdingLottery .bottomHolding .contentHolding {
+    width: 100%;
+  }
+  .holdingLottery .bottomHolding .siteFriend {
+    width: 100%;
+    -webkit-box-ordinal-group: 0;
+        -ms-flex-order: -1;
+            order: -1;
+    height: 200px;
+  }
+  .holdingLottery .holdingPlaces {
+    padding: 0;
+    margin: 10px 0 0 0;
+  }
+  .holdingLottery .listWinner {
+    font-size: 20px;
+  }
+  .holdingLottery .listWinner div i {
+    left: -15px;
+    font-size: 10px;
+  }
+  .holdingLottery .listComment {
+    padding: 10px 0;
+  }
+  .holdingLottery .listComment .writeComment .default, .bodyHoldingLottery .holdingLottery .listComment .writeComment .ban,
+  .holdingLottery .listComment .writeComment .ban {
+    font-size: 15px;
+    padding: 10px 0 0 0;
+  }
+  .holdingLottery .listComment .comment a {
+    font-size: 15px;
+  }
+  .holdingLottery .listComment .userName {
+    font-size: 15px;
+    padding: 5px 5px;
+  }
+  .holdingLottery .listComment .comment {
+    font-size: 13px;
+  }
+  .holdingLottery .textareaHolding, .holdingLottery .blockComments textarea {
+    font-size: 13px;
+    width: 100%;
+    padding: 8px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Проведение розыгрыша
+ */
+/*
+ * Ежедневные розыгрыши
+ * --------------------------------------------------
+ */
+.everyDay .header {
+  width: 100%;
+  height: 100vh;
+  background: #119298 center center / cover fixed;
+}
+.everyDay .header .content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  background: rgba(0, 0, 0, 0.8);
+}
+.everyDay .header .content .name {
+  font-size: 100px;
+  line-height: 1;
+  padding: 0 50px 30px 50px;
+}
+.everyDay .header .content .company {
+  font-size: 50px;
+  line-height: 1;
+  padding: 0 50px 100px 50px;
+}
+
+.everyDay main {
+  position: relative;
+  margin-top: -200px;
+  margin-bottom: 100px;
+  -webkit-box-shadow: #000 0 0 20px 5px;
+          box-shadow: #000 0 0 20px 5px;
+  border-radius: 20px;
+  background: rgba(0, 0, 0, 0.4);
+}
+.everyDay main .top {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  height: 200px;
+  margin: 0 auto;
+  border-bottom: 1px solid #1adce4;
+}
+.everyDay main .top .btnViewWinner {
+  display: none;
+  font-size: 40px;
+  text-align: center;
+  padding: 15px 150px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 0 20px 1px #000;
+          box-shadow: 0 0 20px 1px #000;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .top .btnViewWinner:hover {
+  cursor: pointer;
+  -webkit-box-shadow: 0 0 20px 0 #1adce4;
+          box-shadow: 0 0 20px 0 #1adce4;
+}
+.everyDay main .top .nowWinner {
+  display: none;
+  font-size: 50px;
+  text-align: center;
+}
+.everyDay main .top .nowWinner img {
+  width: 150px;
+  height: 150px;
+  border: 2px solid #fff;
+  border-radius: 200px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .top .nowWinner a:hover img {
+  border: 2px solid #119298;
+}
+.everyDay main .top .clock ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 100%;
+  height: 200px;
+  padding: 15px 0 0 0;
+}
+.everyDay main .top .clock ul li {
+  font-size: 180px;
+}
+.everyDay main .center {
+  padding: 50px;
+}
+.everyDay main .center .navbar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.everyDay main .center .navbar .likes {
+  font-size: 80px;
+}
+.everyDay main .center .navbar .likes .like {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .center .navbar .likes .like:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.everyDay main .center .navbar .addParticipant {
+  font-size: 40px;
+}
+.everyDay main .center .navbar .addParticipant .becomeMember {
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .center .navbar .addParticipant .becomeMember:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.everyDay main .center .description .content {
+  padding: 10px 20px 0 10px;
+  font-size: 18px;
+  white-space: pre-line;
+}
+.everyDay main .center .winner {
+  color: #1adce4;
+  margin: 70px 0 0 0;
+}
+.everyDay main .center .winner .title h1 {
+  font-size: 80px;
+  text-align: center;
+}
+.everyDay main .center .winner .title h1 span {
+  padding: 7px 15%;
+}
+.everyDay main .center .winner .year {
+  display: inline-block;
+  font-size: 50px;
+  margin: 50px 0 0 0;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .center .winner .year:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.everyDay main .center .winner .mounth {
+  display: inline-block;
+  font-size: 25px;
+  margin: 10px 0 0 20px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+.everyDay main .center .winner .mounth:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.everyDay main .center .winner .prize {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 15px 0 0 0;
+}
+.everyDay main .center .winner .prize .day {
+  font-size: 40px;
+  width: 40px;
+  margin: 0 0 0 50px;
+  text-align: center;
+}
+.everyDay main .center .winner .prize .name {
+  font-size: 30px;
+  margin: 0 0 0 20px;
+}
+.everyDay main .center .winner .prize .name img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50px;
+  border: 1px solid #fff;
+}
+.everyDay main .center .winner .prize .name a:hover img {
+  border: 1px solid #119298;
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .everyDay .header .content .name {
+    font-size: 70px;
+    line-height: 1;
+    padding: 0 50px 30px 50px;
+  }
+  .everyDay .header .content .company {
+    font-size: 40px;
+    line-height: 1;
+    padding: 0 50px 100px 50px;
+  }
+  .everyDay .everyDay main .top .btnViewWinner {
+    font-size: 30px;
+  }
+  .everyDay .everyDay main .top .clock ul {
+    padding: 30px 0 0 0;
+  }
+  .everyDay .everyDay main .top .clock ul li {
+    font-size: 150px;
+  }
+  .everyDay .everyDay main .center .winner .title h1 {
+    font-size: 50px;
+  }
+}
+@media (max-width: 767px) {
+  .everyDay .header .content .name {
+    font-size: 30px;
+    padding: 0 10px 10px 10px;
+  }
+  .everyDay .header .content .company {
+    font-size: 20px;
+    padding: 0 10px;
+  }
+  .everyDay main {
+    margin-top: -100px;
+    margin-bottom: 20px;
+  }
+  .everyDay main .top {
+    height: 100px;
+  }
+  .everyDay main .top .btnViewWinner {
+    font-size: 20px;
+    text-align: center;
+    padding: 15px 35px;
+    border-radius: 10px;
+    -webkit-box-shadow: 0 0 20px 1px #000;
+            box-shadow: 0 0 20px 1px #000;
+    background: #119298;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .everyDay main .top .btnViewWinner:hover {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 20px 0 #1adce4;
+            box-shadow: 0 0 20px 0 #1adce4;
+  }
+  .everyDay main .top .nowWinner {
+    font-size: 30px;
+  }
+  .everyDay main .top .nowWinner img {
+    display: block;
+    margin: -70px auto 10px auto;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #fff;
+    border-radius: 200px;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .everyDay main .top .nowWinner a:hover img {
+    border: 1px solid #119298;
+  }
+  .everyDay main .top .top .clock ul {
+    height: 100px;
+    padding: 35px 0 0 0;
+  }
+  .everyDay main .top .top .clock ul li {
+    font-size: 30px;
+  }
+  .everyDay main .center {
+    padding: 10px;
+  }
+  .everyDay main .center .navbar {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .everyDay main .center .navbar .likes {
+    font-size: 50px;
+    margin: 20px 0;
+  }
+  .everyDay main .center .navbar .addParticipant {
+    font-size: 30px;
+  }
+  .everyDay main .center .description .content {
+    font-size: 15px;
+  }
+  .everyDay main .center .winner {
+    margin: 20px 0 0 0;
+  }
+  .everyDay main .center .winner .title h1 {
+    font-size: 30px;
+  }
+  .everyDay main .center .winner .year {
+    font-size: 30px;
+    margin: 30px 0 0 0;
+  }
+  .everyDay main .center .winner .mounth {
+    font-size: 20px;
+    margin: 10px 0 0 10px;
+  }
+  .everyDay main .center .winner .prize {
+    padding: 10px 0;
+  }
+  .everyDay main .center .winner .prize .day {
+    font-size: 18px;
+    width: 10px;
+    margin: 0 0 0 30px;
+  }
+  .everyDay main .center .winner .prize .name {
+    font-size: 18px;
+    margin: 0 0 0 20px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Ежедневные розыгрыши
+ */
+/*
+ * Авторизация
+ * --------------------------------------------------
+ */
+#video-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: 0;
+  background: url(images/bgAuth.jpg) center center/cover no-repeat #119298;
+}
+
+#video-bg > video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@supports ((-o-object-fit: cover) or (object-fit: cover)) {
+  #video-bg > video {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+       object-fit: cover;
+  }
+}
+.authContent {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.authBlock {
+  position: relative;
+  width: 900px;
+  border-radius: 10px;
+  background: #131315;
+  opacity: 0.6;
+  padding: 50px 40px 30px 40px;
+}
+
+.authBackSite {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  padding: 10px;
+}
+.authBackSite:hover {
+  color: #1adce4;
+}
+
+.authTitle {
+  text-align: center;
+  height: 70px;
+}
+.authTitle span {
+  font-size: 30px;
+  padding: 10px;
+  cursor: pointer;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.authTitle .active {
+  font-size: 50px;
+  color: #1adce4;
+  cursor: auto;
+}
+
+.authLineTitle {
+  position: relative;
+}
+.authLineTitle hr {
+  margin: 2px;
+}
+.authLineTitle .active {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: 5px;
+  border-radius: 15px;
+  background: #1adce4;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+
+.authReg {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.authEntry {
+  width: 70%;
+  overflow: hidden;
+  padding: 0;
+  margin-left: 30px;
+}
+.authEntry .authSlideForm {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 200%;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease;
+}
+.authEntry .authSlideForm form {
+  float: left;
+  width: 45%;
+}
+
+.authFormEntry, .authFormReg {
+  text-align: center;
+}
+.authFormEntry .btn, .authFormReg .btn {
+  border-color: #fff;
+  color: #fff;
+}
+.authFormEntry .btn:hover, .authFormReg .btn:hover {
+  border-color: #119298;
+}
+
+.authFormEntry {
+  margin: 70px 60px 0 0;
+}
+
+.authFormReg {
+  margin: 30px 0 0 0;
+}
+
+.authLine {
+  position: relative;
+  margin: 0 auto 50px auto;
+  width: 100%;
+}
+.authLine .reestablishPass {
+  display: block;
+  position: absolute;
+  bottom: -25px;
+  left: 10px;
+}
+.authLine .reestablishPass:hover {
+  color: #1adce4;
+}
+
+.authSocial {
+  width: 10%;
+  font-size: 3em;
+  text-align: center;
+  padding: 55px 0;
+}
+.authSocial h1 {
+  color: #1adce4;
+  margin: 10px 0;
+  font-size: 40px;
+  text-align: center;
+  border-bottom: 2px solid #1adce4;
+}
+.authSocial a:hover {
+  color: #1adce4;
+}
+
+@media screen and (max-device-width: 800px) {
+  #video-bg > video {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  .authBackSite {
+    top: 0px;
+    left: 0px;
+    font-size: 12px;
+  }
+
+  .authBlock {
+    width: 100%;
+    padding: 30px 10px 20px 10px;
+  }
+
+  .authTitle {
+    margin: 10px 0 0 0;
+    height: 35px;
+  }
+  .authTitle span {
+    font-size: 20px;
+  }
+  .authTitle .active {
+    font-size: 25px;
+    color: #1adce4;
+    cursor: auto;
+  }
+
+  .authLineTitle {
+    width: 100%;
+    margin: 0 auto;
+  }
+  .authLineTitle .active {
+    height: 3px;
+  }
+
+  .authLine .reestablishPass {
+    font-size: 12px;
+    bottom: -20px;
+  }
+
+  .authReg {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+
+  .authEntry {
+    width: 100%;
+    margin-left: 0;
+  }
+  .authEntry .authSlideForm form {
+    padding: 0;
+    width: 50%;
+  }
+
+  .authFormEntry {
+    margin: 40px 0 0 0;
+  }
+
+  .authFormReg {
+    margin: 20px 0 0 0;
+  }
+
+  .authLine {
+    margin: 0 auto 30px auto;
+    width: 95%;
+  }
+
+  .authSocial {
+    font-size: 20px;
+    text-align: center;
+    width: 70%;
+    padding: 0;
+  }
+  .authSocial h1 {
+    margin: 10px 0;
+    font-size: 30px;
+    border-bottom: 1px solid #1adce4;
+  }
+  .authSocial a:hover {
+    color: #1adce4;
+  }
+
+  .btn {
+    font-size: 13px;
+    padding: 10px 60px;
+    margin: 20px 30px 20px 30px;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Авторизация
+ */
+/*
+ * Работа с почтой
+ * --------------------------------------------------
+ */
+.confirmEmail {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: #119298;
+  color: #fff;
+  padding: 10px;
+}
+.confirmEmail img {
+  width: 200px;
+  margin: 0 0 30px 0;
+}
+.confirmEmail h1 {
+  font-weight: 100;
+  font-size: 50px;
+  text-align: center;
+}
+.confirmEmail h1 a {
+  border-bottom: 1px dashed;
+}
+.confirmEmail h1 a:hover {
+  color: #131315;
+  border-color: #131315;
+}
+
+@media screen and (max-width: 767px) {
+  .confirmEmail img {
+    width: 120px;
+  }
+
+  .confirmEmail h1 {
+    font-size: 20px;
+  }
+}
+.forgotPass, .newPass {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100vh;
+  text-align: center;
+  background: #119298;
+}
+.forgotPass img, .newPass img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 10px;
+}
+.forgotPass input, .newPass input {
+  width: 100%;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+  margin: 20px 0;
+  background: #131315;
+  border: 0;
+  -webkit-box-shadow: 0 0 10px 1px #119298 inset;
+          box-shadow: 0 0 10px 1px #119298 inset;
+}
+.forgotPass input:focus, .forgotPass .slideBlock input.navSlider:hover, .slideBlock .forgotPass input.navSlider:hover, .newPass input:focus, .newPass .slideBlock input.navSlider:hover, .slideBlock .newPass input.navSlider:hover {
+  -webkit-box-shadow: 0 0 10px 1px #119298 inset;
+          box-shadow: 0 0 10px 1px #119298 inset;
+}
+.forgotPass .btn:hover, .newPass .btn:hover {
+  background: #fff;
+  color: #119298;
+}
+
+.newPass input {
+  margin: 0 0 10px 0;
+}
+
+.newPass .btn {
+  margin-top: 15px;
+}
+
+/*
+ * --------------------------------------------------
+ * Работа с почтой
+ */
+/*
+ * Футер
+ * --------------------------------------------------
+ */
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 100vh;
+  z-index: 1;
+}
+footer .content .desc {
+  position: relative;
+  color: #1adce4;
+  margin-bottom: 7px;
+}
+footer .left, footer .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 35%;
+}
+footer .left .row, footer .right .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+footer .left .row.links, footer .right .row.links {
+  display: none;
+}
+footer .left .name, footer .right .name {
+  font-size: 50px;
+  color: #1adce4;
+  padding: 15px 20px 5px 20px;
+  border-left: 1px solid #1adce4;
+}
+footer .left .content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
+  text-align: right;
+  width: 100%;
+  padding: 5px 20px 5px 0;
+}
+footer .left .value {
+  font-size: 35px;
+}
+footer .left .reviewRate {
+  height: 2px;
+  width: 100%;
+  margin: 0 -5px 8px 0;
+}
+footer .left .reviewRate .rate {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 2px;
+  width: 0%;
+  font-size: 40px;
+  overflow: hidden;
+  background: #119298;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  z-index: 500;
+}
+footer .left .reviewRate .rate .star {
+  margin: 10px 5px;
+}
+footer .left .reviewRate .rate:hover {
+  cursor: pointer;
+  height: 60px;
+}
+footer .left .stars {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 40px;
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+}
+footer .left .stars .star {
+  position: relative;
+  margin-left: 10px;
+}
+footer .left .stars .star .half, footer .left .stars .star .int {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+footer .left .stars .star .half {
+  left: 0;
+}
+footer .left .stars .star .int {
+  right: 0;
+}
+footer .left .rating {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+footer .left .rating .number {
+  font-size: 50px;
+  font-family: Lobster;
+}
+footer .left .rating .fraction {
+  width: 45px;
+  height: 1px;
+  margin: 20px -15px 0 -20px;
+  border-top: 1px solid #fff;
+  -webkit-transform: rotate(-60deg);
+          transform: rotate(-60deg);
+}
+footer .left .rating .count {
+  font-size: 20px;
+  margin-top: 30px;
+}
+footer .right .name {
+  border-left: 0;
+  border-right: 1px solid #1adce4;
+}
+footer .right .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding: 10px 0 10px 20px;
+}
+footer .right .content a {
+  font-size: 25px;
+  margin-top: 10px;
+}
+footer .right .content a:hover {
+  color: #1adce4;
+}
+footer .center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
+  width: 20%;
+}
+footer .center .arrowUp {
+  width: 60px;
+  height: 80px;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: -5px;
+  border: 2px solid #fff;
+  border-radius: 0 0 50px 50px;
+  background: #119298;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+footer .center .arrowUp:hover {
+  cursor: pointer;
+  padding-top: 20px;
+}
+footer .center .logo {
+  display: block;
+  width: 180px;
+  border-radius: 180px;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+footer .center .logo img {
+  width: 100%;
+}
+footer .center .logo:hover {
+  -webkit-box-shadow: 0 0 20px 1px #1adce4;
+          box-shadow: 0 0 20px 1px #1adce4;
+}
+footer .center .year {
+  color: #fff;
+  width: 230px;
+  font-size: 45px;
+  text-align: center;
+  opacity: 0.5;
+  padding-bottom: 10px;
+}
+
+@media screen and (max-width: 991px) {
+  footer .left, footer .right {
+    width: 50%;
+  }
+  footer .left .name, footer .right .name {
+    font-size: 30px;
+  }
+  footer .left .value {
+    font-size: 30px;
+  }
+  footer .left .reviewRate {
+    margin: 0 -5px 8px 0;
+    width: 200px;
+  }
+  footer .left .reviewRate .rate {
+    width: 0%;
+    font-size: 30px;
+  }
+  footer .left .reviewRate .rate:hover {
+    height: 45px;
+  }
+  footer .left .stars {
+    font-size: 30px;
+  }
+  footer .left .rating .number {
+    font-size: 40px;
+    font-family: Lobster;
+  }
+  footer .left .rating .fraction {
+    width: 35px;
+    margin: 20px -13px 0 -15px;
+  }
+  footer .left .rating .count {
+    font-size: 16px;
+  }
+  footer .right .content a {
+    font-size: 20px;
+  }
+  footer .center {
+    width: 0%;
+  }
+  footer .center .logo {
+    display: none;
+  }
+  footer .center .year {
+    display: none;
+    font-size: 35px;
+  }
+  footer .center .year span {
+    display: none;
+  }
+}
+@media screen and (max-width: 767px) {
+  footer .content .desc {
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+  footer .left, footer .right {
+    width: 50%;
+  }
+  footer .left .name, footer .right .name {
+    font-size: 25px;
+    padding: 10px 10px 0 10px;
+  }
+  footer .left .content {
+    padding-right: 15px;
+  }
+  footer .left .value {
+    font-size: 25px;
+  }
+  footer .left .reviewRate {
+    width: 175px;
+  }
+  footer .left .reviewRate .rate {
+    font-size: 25px;
+  }
+  footer .left .reviewRate .rate:hover {
+    height: 40px;
+  }
+  footer .left .stars {
+    font-size: 25px;
+  }
+  footer .left .rating {
+    margin-top: -5px;
+  }
+  footer .left .rating .number {
+    font-size: 30px;
+    font-family: Lobster;
+  }
+  footer .left .rating .fraction {
+    width: 30px;
+    margin: 15px -13px 0 -15px;
+    -webkit-transform: rotate(-55deg);
+            transform: rotate(-55deg);
+  }
+  footer .left .rating .count {
+    font-size: 13px;
+  }
+  footer .right .content {
+    padding-left: 15px;
+  }
+  footer .right .content a {
+    font-size: 15px;
+  }
+  footer .center {
+    width: 0%;
+  }
+  footer .center .arrowUp {
+    width: 35px;
+    height: 45px;
+    font-size: 20px;
+    padding-top: 10px;
+    border: 1px solid #fff;
+  }
+  footer .center .arrowUp:hover {
+    padding-top: 15px;
+  }
+}
+@media screen and (max-width: 540px) {
+  footer {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+  footer .left {
+    width: 100%;
+  }
+  footer .left .row.links {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  footer .left .content a {
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  footer .right {
+    display: none;
+  }
+  footer .left .name, footer .right .name {
+    padding-right: 0;
+  }
+  footer .center {
+    -webkit-box-align: start;
+        -ms-flex-align: start;
+            align-items: flex-start;
+    width: 15%;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Футер
+ */
+/*
+*   Errors
+* --------------------------------------------------
+*/
+.serverError {
+  height: 100vh;
+  background: #fff;
+}
+.serverError .back {
+  display: inline-block;
+  color: black;
+  padding: 10px;
+}
+.serverError .back:hover {
+  color: #119298;
+}
+.serverError .joker {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 85%;
+}
+.serverError .error {
+  position: absolute;
+  top: 26%;
+  left: 5%;
+}
+.serverError .error .dontWork {
+  font-size: 70px;
+  color: #119298;
+  font-family: Lobster;
+  text-shadow: 0px 0px 10px white;
+}
+.serverError .error .jokerAnswer {
+  font-size: 50px;
+  font-family: Lobster;
+  color: black;
+  margin: 50px 0 0 100px;
+  text-shadow: 0px 0px 1px white;
+}
+
+.notFound #scene .layer .img-responsive {
+  width: 100%;
+  height: 100vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.notFound #scene .layer .ad {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100vw;
+  height: 100vh;
+  text-align: center;
+  font-family: 'Exo 2', sans-serif;
+  font-size: 100%;
+  color: #1adce4;
+}
+.notFound #scene .layer .ad h1 {
+  font-size: 8em;
+  font-weight: 900;
+  padding-top: 0;
+  margin: 0;
+  text-shadow: 0px 0px 10px black;
+}
+.notFound #scene .layer .ad .textContainer {
+  font-size: 25px;
+  padding: 15px;
+  border-top: 3px solid #1adce4;
+  background: rgba(0, 0, 0, 0.7);
+}
+.notFound #scene .layer .ad .textContainer .back {
+  display: inline-block;
+  color: #1adce4;
+  font-size: 20px;
+  padding: 10px 40px;
+  margin: 20px 0 10px 0;
+  border: 1px solid #1adce4;
+}
+.notFound #scene .layer .ad .textContainer .back:hover {
+  color: #fff;
+  border: 1px solid #119298;
+  background: #119298;
+}
+
+@media (max-width: 1000px) {
+  .serverError .error {
+    top: 15%;
+    left: 3%;
+  }
+  .serverError .error .dontWork {
+    font-size: 50px;
+  }
+  .serverError .error .jokerAnswer {
+    font-size: 35px;
+  }
+}
+@media (max-width: 767px) {
+  .serverError .joker {
+    width: 100%;
+  }
+  .serverError .error {
+    top: 50px;
+    left: 20px;
+  }
+  .serverError .error .dontWork {
+    font-size: 40px;
+  }
+  .serverError .error .jokerAnswer {
+    font-size: 30px;
+    margin: 30px 0 0 50px;
+  }
+}
+@media (max-width: 450px) {
+  .serverError .joker {
+    width: 150%;
+  }
+  .serverError .error {
+    top: 50px;
+    left: 0px;
+    text-align: center;
+    width: 100%;
+  }
+  .serverError .error .dontWork {
+    font-size: 30px;
+  }
+  .serverError .error .jokerAnswer {
+    font-size: 25px;
+    margin: 10px 0 0 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ *  Errors
+ */
+/*
+ * Модалка
+ * --------------------------------------------------
+ */
+/* Общие настройки модального окна */
+.modalBody {
+  position: fixed;
+  display: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 997;
+}
+.modalBody .modalWindow {
+  position: fixed;
+  display: none;
+  width: 50%;
+  text-align: center;
+  padding: 20px;
+  background: #131315;
+  opacity: 0;
+  color: #1adce4;
+  border: 1px solid #1adce4;
+  -webkit-box-shadow: #1adce4 0px 0px 20px 0px;
+          box-shadow: #1adce4 0px 0px 20px 0px;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+          animation-fill-mode: both;
+}
+.modalBody .modalWindow .modalClose {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 25px;
+}
+.modalBody .modalWindow .modalClose:hover {
+  cursor: pointer;
+  color: #119298;
+}
+.modalBody .modalWindow .inputBlock {
+  position: relative;
+  margin: 30px 0;
+  width: 100%;
+}
+.modalBody .modalWindow .inputBlock .inputLable {
+  color: #1adce4;
+  font-size: 20px;
+}
+.modalBody .modalWindow .inputBlock .input {
+  font-size: 20px;
+  color: #1adce4;
+  border-color: #1adce4;
+}
+.modalBody .modalWindow .inputBlock .lineInput {
+  border-color: #1adce4;
+}
+.modalBody .modalWindow textarea {
+  display: block;
+  color: #1adce4;
+  font-family: "Text", Arial, sans-serif;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  margin: 0 auto;
+  background-color: transparent;
+  border: 1px solid #119298;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  outline: 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  resize: vertical;
+}
+.modalBody .modalWindow .icon {
+  font-size: 100px;
+}
+.modalBody .modalWindow .complitAction ul {
+  width: 100%;
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  font-size: 18px;
+}
+.modalBody .modalWindow .btn {
+  margin: 30px auto 10px auto;
+}
+.modalBody .modalWindow .btn.disable {
+  opacity: 0.2;
+}
+.modalBody .modalWindow .btn.disable:hover {
+  color: #1adce4;
+  background: none;
+}
+.modalBody .modalWindow h2 {
+  text-align: center;
+  margin: 0 0 10px 0;
+  padding: 0;
+}
+.modalBody .modalWindow.error {
+  color: #CC0000;
+  border: 1px solid #CC0000;
+  -webkit-box-shadow: #CC0000 0px 0px 20px 0px;
+          box-shadow: #CC0000 0px 0px 20px 0px;
+}
+.modalBody .modalWindow.error .modalClose:hover {
+  color: #CC0000;
+  opacity: 0.8;
+}
+.modalBody .modalWindow.error .closeModalBtn {
+  color: #CC0000;
+  border: 1px solid #CC0000;
+}
+.modalBody .modalWindow.error .closeModalBtn:hover {
+  color: #fff;
+  background: #CC0000;
+}
+.modalBody .modalComplaint {
+  display: none;
+}
+.modalBody .modalComplaint textarea {
+  margin: 30px auto 10px auto;
+}
+.modalBody .modalComplaint .inputBlock {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: left;
+  margin: 0;
+  padding-left: 50px;
+}
+.modalBody .modalComplaint .inputBlock label {
+  cursor: pointer;
+  margin-left: 25px;
+}
+.modalBody .modalComplaint .btn {
+  margin-top: 20px;
+}
+
+/* Custom complit */
+.modalBody .modalQuestion h1 {
+  font-size: 28px;
+}
+.modalBody .modalQuestion .noBtn {
+  background: #119298;
+  border-color: #119298;
+  color: #fff;
+}
+.modalBody .modalQuestion .noBtn:hover {
+  background: #CC0000;
+  border-color: #CC0000;
+}
+.modalBody .modalQuestion .yesBtn:hover {
+  background: #009900;
+  border-color: #009900;
+}
+
+/* Оценка сайта */
+.modalBody .assessModal h1 {
+  font-size: 40px;
+  padding: 10px 0 5px 0;
+  text-transform: uppercase;
+}
+.modalBody .assessModal .stars {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  width: 350px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  font-size: 35px;
+}
+.modalBody .assessModal textarea {
+  margin: 30px 0;
+}
+
+/* Появление */
+.fadeInDown {
+  -webkit-animation-name: fadeInDown;
+          animation-name: fadeInDown;
+}
+
+@-webkit-keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+/*-----------------------*/
+/* Исчезновение */
+.fadeOutUp {
+  -webkit-animation-name: fadeOutUp;
+          animation-name: fadeOutUp;
+}
+
+@-webkit-keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+
+@keyframes fadeOutUp {
+  0% {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+  100% {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -100%, 0);
+    transform: translate3d(0, -100%, 0);
+  }
+}
+/*-----------------------*/
+/* Планшет */
+@media (max-width: 991px) {
+  .modalBody .modalWindow {
+    width: 70%;
+  }
+
+  .modalBody .modalAddCity {
+    font-size: 15px;
+  }
+}
+/* Мобилка */
+@media (max-width: 767px) {
+  /* Общие стили модальных окон */
+  .modalBody .modalWindow {
+    width: 98%;
+  }
+  .modalBody .modalWindow .modalClose {
+    font-size: 20px;
+  }
+  .modalBody .modalWindow textarea {
+    font-size: 13px;
+    height: 70px;
+  }
+  .modalBody .modalWindow .btn {
+    font-size: 15px;
+  }
+  .modalBody .modalWindow h2 {
+    font-size: 20px;
+  }
+
+  /* Жалоба */
+  .modalBody .modalComplaint textarea {
+    margin: 10px auto;
+  }
+  .modalBody .modalComplaint span {
+    font-size: 14px;
+  }
+  .modalBody .modalComplaint .inputBlock {
+    padding-left: 10px;
+  }
+  .modalBody .modalComplaint .inputBlock label {
+    font-size: 14px;
+  }
+  .modalBody .modalComplaint .btn {
+    margin-top: 20px;
+  }
+
+  /* Оценка сайта */
+  .modalBody .assessModal h1 {
+    font-size: 35px;
+    padding: 10px 0 3px 0;
+  }
+  .modalBody .assessModal .stars {
+    width: 250px;
+    font-size: 30px;
+  }
+  .modalBody .assessModal textarea {
+    margin: 20px 0 10px 0;
+  }
+  .modalBody .assessModal .btn {
+    color: #1adce4;
+    border: 1px solid #1adce4;
+  }
+
+    /*.modalBody .modalWindow .inputBlock {
+            position: relative;
+            margin: 30px 0;
+            width: 100%;
+        }
+
+            .modalBody .modalWindow .inputBlock .inputLable {
+                color: #1adce4;
+                font-size: 20px;
+            }
+
+            .modalBody .modalWindow .inputBlock .input {
+                font-size: 20px;
+                color: #1adce4;
+                border-color: #1adce4;
+            }
+
+            .modalBody .modalWindow .inputBlock .lineInput {
+                border-color: #1adce4;
+            }*/
+}
+/*
+ * --------------------------------------------------
+ * Модалки
+ */
+/*
+ * Preloader
+ * --------------------------------------------------
+ */
+#bgPreloader {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #131315 url("images/bg.jpg") repeat;
+  background-size: 300px;
+}
+
+.logoPreloader {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  background: #119298 url("images/logoLetters.png") no-repeat;
+  background-size: 180px 180px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 3;
+  -webkit-box-shadow: 0 0 0 10px rgba(13, 228, 228, 0.2), 0 0 25px 2px rgba(0, 0, 0, 0.4), inset 0 0 0 15px rgba(13, 228, 228, 0.4);
+  box-shadow: 0 0 0 10px rgba(13, 228, 228, 0.2), 0 0 25px 2px rgba(0, 0, 0, 0.4), inset 0 0 0 15px rgba(13, 228, 228, 0.4);
+  border-radius: 999px;
+  /* border-radius: 50% has issues on some mobile browsers */
+}
+
+.pulse1 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 1;
+  opacity: 0;
+  border: 3px solid rgba(13, 228, 228, 0.2);
+  -webkit-animation: pulsejg1 4s linear infinite;
+  animation: pulsejg1 4s linear infinite;
+  border-radius: 999px;
+  -webkit-box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.6);
+  box-shadow: inset 0px 0px 15px 10px rgba(0, 0, 0, 0.6);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.pulse2 {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  opacity: 0;
+  border: 1px solid rgba(13, 228, 228, 0);
+  -webkit-animation: pulsejg2 4s linear infinite;
+  animation: pulsejg2 4s linear infinite;
+  border-radius: 9999px;
+  -webkit-box-shadow: inset 0px 0px 12px 5px rgba(13, 228, 228, 0.8);
+  box-shadow: inset 0px 0px 12px 5px rgba(13, 228, 228, 0.8);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+@-webkit-keyframes pulsejg1 {
+  0% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+    opacity: .2;
+  }
+  70% {
+    -webkit-transform: scale(1.1);
+    opacity: .35;
+  }
+  80% {
+    -webkit-transform: scale(1.25);
+    opacity: .2;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+    opacity: 0;
+  }
+}
+@keyframes pulsejg1 {
+  0% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  50% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  60% {
+    -webkit-transform: scale(0.9);
+            transform: scale(0.9);
+    opacity: .1;
+  }
+  70% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: .25;
+  }
+  80% {
+    -webkit-transform: scale(1.25);
+            transform: scale(1.25);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.4);
+            transform: scale(1.4);
+    opacity: 0;
+  }
+}
+@-webkit-keyframes pulsejg2 {
+  0% {
+    -webkit-transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: scale(0.8);
+    opacity: .05;
+  }
+  50% {
+    -webkit-transform: scale(1);
+    opacity: .1;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+    opacity: .3;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.3);
+    opacity: 0;
+  }
+}
+@keyframes pulsejg2 {
+  0% {
+    -webkit-transform: scale(0.6);
+            transform: scale(0.6);
+    opacity: 0;
+  }
+  40% {
+    -webkit-transform: scale(0.8);
+            transform: scale(0.8);
+    opacity: .05;
+  }
+  50% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: .1;
+  }
+  60% {
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+    opacity: .3;
+  }
+  80% {
+    -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+    opacity: .1;
+  }
+  100% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+    opacity: 0;
+  }
+}
+/*
+ * --------------------------------------------------
+ *  Preloader
+ */
+/*
+*   Loader
+* --------------------------------------------------
+*/
+.loading {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#loading {
+  width: 70px;
+  height: 70px;
+  -webkit-animation: moveLoader 1s infinite linear;
+  animation: moveLoader 1s infinite linear;
+}
+
+@-webkit-keyframes moveLoader {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes moveLoader {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+/*
+ * --------------------------------------------------
+ *  Loader
+ */
+/*
+* Bootstrap style
+* --------------------------------------------------
+*/
+.hidden {
+  display: none !important;
+}
+
+.container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.nav {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nav li {
+  float: left;
+  padding-top: 17px;
+}
+
+.navRight {
+  float: right;
+  padding-right: 30px;
+}
+.navRight li {
+  padding-left: 10px;
+}
+.navRight a {
+  color: #119298;
+}
+.navRight a:hover {
+  color: #1adce4;
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+
+  .visible-lg {
+    display: block !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-lg {
+    display: none !important;
+  }
+}
+@media (max-width: 1199px) and (min-width: 992px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: block !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-md {
+    display: none !important;
+  }
+}
+@media (max-width: 991px) and (min-width: 768px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: block !important;
+  }
+
+  .visible-xs {
+    display: none !important;
+  }
+
+  .hidden-sm {
+    display: none !important;
+  }
+}
+@media (max-width: 768px) {
+  .visible-lg {
+    display: none !important;
+  }
+
+  .visible-md {
+    display: none !important;
+  }
+
+  .visible-sm {
+    display: none !important;
+  }
+
+  .visible-xs {
+    display: block !important;
+  }
+
+  .hidden-xs {
+    display: none !important;
+  }
+}
+/*
+ * --------------------------------------------------
+ * Bootstrap style
+ */

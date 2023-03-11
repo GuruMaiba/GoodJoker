@@ -1,0 +1,478 @@
+/*
+ * Новости
+ * --------------------------------------------------
+ */
+
+/* Основной блок содержащий всю страницу новостей*/
+.bodyNews {
+    position: relative;
+
+    /* Полоса социальных сетей */
+    .bandSocialNetwork {
+        position: absolute;
+        right: 0px;
+        top: 0;
+        width: 60px;
+        height: 100%;
+        background: #131315;
+        box-shadow: 0 0 10px 3px #000;
+    }
+
+    .newsContent {
+        position: relative;
+        margin: 0 0 50px 0;
+
+        /* Навигация по новостям */
+        .navNews {
+            position: relative;
+            display: flex;
+            background: #131315;
+            height: 400px;
+            box-shadow: 0 0 10px 3px #000;
+
+            .new {
+                width: 30%;
+                height: 100%;
+                margin: 0 0 0 15px;
+
+                .title {
+                    h1 { padding: 0 0 1px 0; }
+                    span { font-size: 20px; }
+                }
+
+                .lotteriesNav,
+                .winnerNav,
+                .tagsNav {
+                    overflow: hidden;
+                    height: 79%;
+                }
+
+                .winnerNav .item {
+                    display: flex;
+                    margin: 15px 0 0 0;
+                    padding: 0 10px;
+
+                    img {
+                        width: 50px;
+                        height: 50px;
+                        margin-right: 10px;
+                        border-radius: 50px;
+                    }
+
+                    .context {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .name {
+                            font-size: 20px;
+                        }
+
+                        .prize {
+                            font-size: 15px;
+                            margin-top: 3px;
+                        }
+                    }
+
+                    &:hover .context {
+                        color: #1adce4;
+                    }
+                } // end winnerNav item
+
+                .lotteriesNav .item {
+                    position: relative;
+                    text-align: center;
+                    margin: 10px 0 0 0;
+
+                    .bg {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        background: rgba(13, 150, 158, 0.2) center center / cover no-repeat;
+                        z-index: 1;
+                    }
+
+                    .lottery {
+                        position: relative;
+                        display: block;
+                        padding: 10px;
+                        background: rgba(0, 0, 0, 0.7);
+                        z-index: 2;
+
+                        .date { font-size: 13px; margin-top: 5px; }
+                        .name { font-size: 18px; }
+                        &:hover { color: #1adce4; }
+                    }
+                }
+
+                .lotteriesNav .default, .winnerNav .default {
+                    text-align: center;
+                    padding: 30px 0;
+                }
+
+                .tagsNav a {
+                    display: inline-block;
+                    font-size: 13px;
+                    padding: 5px 10px;
+                    margin: 10px 0 0 5px;
+                    border: 1px solid #1adce4;
+                    color: #1adce4;
+                    border-radius: 5px;
+                    transition: all .3s ease;
+
+                    &:hover {
+                        color: #fff;
+                        background: #119298;
+                        border-color: #119298;
+                    }
+                }
+            } // end new
+        } // end navNews
+
+        /* Все социальные сети сайта */
+        .navSocial {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 104%;
+            padding: 15px 0;
+            background: #131315;
+
+            i {
+                line-height: 1.5;
+                font-size: 31px;
+
+                &:hover {
+                    cursor: pointer;
+                    color: #119298;
+                }
+            }
+        }
+
+        %social {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 60px;
+            height: 108%;
+            background: #131315;
+            margin: -13px 0 0 0;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        .siteFriend {
+            height: 400px;
+            margin: 100px 0 0 0;
+            padding: 0 60px 0 0;
+            box-shadow: -3px 0 10px 3px #000;
+
+            .advertSocial {
+                @extend %social;
+                font-size: 45px;
+                line-height: 1;
+                padding: 50px 0;
+            }
+
+            &:hover .bg {
+                background: rgba(0, 0, 0, 0.6);
+            }
+        }
+
+        /* Блок со статьёй */
+        .blockArticle {
+            position: relative;
+            height: 500px;
+            margin: 100px 0 0 0;
+            padding: 0 60px 0 0;
+            background: #119298;
+            box-shadow: -3px 0 10px 3px #000;
+
+            .bg {
+                position: relative;
+                height: 100%;
+                background: #119298 center center / cover no-repeat;
+            }
+
+            .content {
+                position: relative;
+                display: block;
+                height: 100%;
+                background: rgba(13, 150, 158, 0.7);
+
+                &:hover,
+                &:active,
+                &:focus {
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.8);
+                }
+            }
+
+            .popularity {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                font-size: 17px;
+                text-align: right;
+                line-height: 1.2;
+
+                i {
+                    font-size: 15px;
+                }
+            }
+
+            .text {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                height: 100%;
+            }
+
+            .titleArt {
+                width: 100%;
+                font-size: 50px;
+                text-align: center;
+                padding: 0 0 20px 0;
+            }
+
+            .desc {
+                width: 100%;
+                font-size: 30px;
+                line-height: 1;
+                text-align: center;
+            }
+
+            .autor {
+                position: absolute;
+                font-size: 17px;
+                top: 20px;
+                left: 20px;
+            }
+
+            .tags {
+                position: absolute;
+                font-size: 17px;
+                bottom: 20px;
+                left: 20px;
+
+                a:hover,
+                a:active,
+                a:focus {
+                    color: #fff;
+                    text-decoration: underline;
+                }
+            }
+
+            .more {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                text-align: center;
+                color: #fff;
+                font-size: 30px;
+                border: 1px solid #fff;
+                padding: 5px 80px;
+                -moz-transition: all 0.5s ease;
+                -o-transition: all 0.5s ease;
+                -webkit-transition: all 0.5s ease;
+
+                &:hover {
+                    color: #119298;
+                    text-decoration: none;
+                    background-color: #fff;
+                }
+            }
+
+            /* Блок репоста статьи */
+            .social {
+                @extend %social;
+
+                .date, .actions,
+                .actions .newsRepost {
+                    margin: 10px 0;
+                }
+
+                .date {
+                    .day {
+                        font-family: Number;
+                        letter-spacing: 0px;
+                        font-size: 40px;
+                        line-height: 1;
+                    }
+
+                    .month {
+                        font-family: 'Times New Roman';
+                        font-size: 25px;
+                        line-height: 1;
+                    }
+                }
+
+                .actions {
+                    i {
+                        line-height: 1.5;
+                        font-size: 35px;
+
+                        &:hover {
+                            cursor: pointer;
+                            color: #119298;
+                        }
+                    }
+
+                    .repost {
+                        i { font-size: 30px; }
+                        .shareBtn { display: none; }
+                    }
+                }
+            } // end social
+        } // end blockArticle
+
+        .loading {
+            position: relative;
+            font-family: Lobster;
+            font-size: 50px;
+            margin: 100px 0 50px 0;
+            padding: 70px 0;
+            box-shadow: -3px 0 10px 3px #000;
+            background: #119298;
+
+            #loading {
+                width: 100px;
+                height: 100px;
+                margin-right: 30px;
+            }
+
+            .line {
+                position: absolute;
+                top: -20px;
+                right: 0;
+                width: 60px;
+                height: 110%;
+                background: #131315;
+            }
+        } // end loading
+    } // end newsContent
+} // end bodyNews
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .bodyNews .newsContent {
+        .navNews .new {
+            width: 45%;
+            .tagsNav a { font-size: 10px; }
+        }
+
+        .blockArticle {
+            .desc { font-size: 20px; }
+            .blockArticle .titleArt { font-size: 35px; }
+        }
+    } // end newsContent
+} // end media 991
+
+@media (max-width: 767px) {
+
+    .bodyNews {
+        .bandSocialNetwork {
+            width: 40px;
+        }
+
+        .newsContent {
+            .navNews {
+                height: 250px;
+
+                .new {
+                    width: 80%;
+                    .title h1 span { padding: 4px 10px; }
+                }
+            }
+
+            .navSocial {
+                width: 40px;
+                i { font-size: 20px; }
+            }
+
+            .blockArticle {
+                height: 250px;
+                padding: 0 40px 0 0;
+                margin: 50px 0 0 0;
+
+                .desc { font-size: 15px; }
+                .titleArt { font-size: 20px; }
+
+                .social {
+                    width: 40px;
+
+                    .date .day {
+                        font-size: 30px;
+                    }
+
+                    .date .month {
+                        font-size: 15px;
+                    }
+
+                    .actions {
+                        i { font-size: 20px; }
+
+                        .repost {
+                            i { font-size: 20px; }
+
+                            .repost .share {
+                                display: none;
+                                position: absolute;
+                                top: 30px;
+                                right: 50px;
+                                padding: 10px 10px 0px 10px;
+                                background: #119298;
+
+                                i:hover { color: #131315; }
+                            }
+                        } // end repost
+                    } // end actions
+                } // end social
+            } // end blockArticle
+
+            .siteFriend {
+                height: 250px;
+                margin: 50px 0 0 0;
+                padding: 0 40px 0 0;
+
+                .advertSocial {
+                    width: 40px;
+                    padding: 20px 0 0 0;
+                    font-size: 35px;
+                }
+            }
+
+            .loading {
+                font-size: 20px;
+                margin: 50px 0 20px 0;
+                padding: 30px 0;
+                box-shadow: -3px 0 10px 3px #000;
+
+                #loading {
+                    width: 50px;
+                    height: 50px;
+                    margin-right: 15px;
+                }
+
+                .line {
+                    top: -10px;
+                    width: 40px;
+                }
+            }
+        } // end newsContent
+    } // end bodyNews
+} // end media 767
+
+/*
+ * --------------------------------------------------
+ * Новости
+ */

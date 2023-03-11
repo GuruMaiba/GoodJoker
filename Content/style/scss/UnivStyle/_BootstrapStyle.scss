@@ -1,0 +1,144 @@
+/*
+* Bootstrap style
+* --------------------------------------------------
+*/
+
+    .hidden {
+        display: none !important;
+    }
+
+    .container {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .nav {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            float: left;
+            padding-top: 17px;
+        }
+    }
+
+    .navRight {
+        float: right;
+        padding-right: 30px;
+
+        li { padding-left: 10px; }
+        a {
+            color: #119298;
+            &:hover { color: #1adce4; }
+        }
+    }
+
+    @media (min-width: 992px) {
+        .container {
+            width: 970px;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            width: 750px;
+        }
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            width: 1170px;
+        }
+
+        .visible-lg {
+            display: block !important;
+        }
+
+        .visible-md {
+            display: none !important;
+        }
+
+        .visible-sm {
+            display: none !important;
+        }
+
+        .visible-xs {
+            display: none !important;
+        }
+
+        .hidden-lg {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 1199px) and (min-width: 992px) {
+        .visible-lg {
+            display: none !important;
+        }
+
+        .visible-md {
+            display: block !important;
+        }
+
+        .visible-sm {
+            display: none !important;
+        }
+
+        .visible-xs {
+            display: none !important;
+        }
+
+        .hidden-md {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 991px) and (min-width: 768px) {
+        .visible-lg {
+            display: none !important;
+        }
+
+        .visible-md {
+            display: none !important;
+        }
+
+        .visible-sm {
+            display: block !important;
+        }
+
+        .visible-xs {
+            display: none !important;
+        }
+
+        .hidden-sm {
+            display: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .visible-lg {
+            display: none !important;
+        }
+
+        .visible-md {
+            display: none !important;
+        }
+
+        .visible-sm {
+            display: none !important;
+        }
+
+        .visible-xs {
+            display: block !important;
+        }
+
+        .hidden-xs {
+            display: none !important;
+        }
+    }
+
+/*
+ * --------------------------------------------------
+ * Bootstrap style
+ */

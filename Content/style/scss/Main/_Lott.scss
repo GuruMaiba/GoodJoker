@@ -1,0 +1,515 @@
+/*
+ * Розыгрыши
+ * --------------------------------------------------
+ */
+
+.bodyLottery {
+    background: #131315;
+    box-shadow: 0 0 10px 3px #119298;
+    padding: 10px 70px 100px 70px;
+    min-height: 400px;
+
+    .default {
+        padding: 50px 0 0 0;
+        font-size: 20px;
+        text-align: center;
+
+        a {
+            display: block;
+            margin-top: 10px;
+            font-size: 35px;
+            color: #1adce4;
+
+            &:hover { color: #119298; }
+        }
+    }
+
+    .viewAllEnd {
+        cursor: pointer;
+        font-size: 20px;
+        color: #1adce4;
+        padding: 10px 0 0 0;
+    }
+
+    .allEndLott {
+        display: none;
+    }
+
+    // смежный класс
+    %lottStyle {
+        margin-top: 30px;
+        border-radius: 10px;
+    }
+
+    .siteFriend {
+        @extend %lottStyle;
+        height: 300px;
+        overflow: hidden;
+        box-shadow: 0 0 20px 1px #000;
+    }
+
+    .gjLott, .endLott,
+    .everyDayLott {
+        @extend %lottStyle;
+        .bg {
+            position: relative;
+            height: 300px;
+            box-shadow: 0 0 20px 1px #000;
+            border-radius: 10px;
+            transition: background, box-shadow .3s ease;
+            background: #119298 center center / cover no-repeat;
+
+            .blackout {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                background: rgba(13, 150, 158, 0.7);
+            }
+        }
+    }
+
+    %titleBlackout {
+        font-size: 70px;
+        line-height: 1;
+        padding: 0 20px;
+    }
+
+    %delLott {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 30px;
+        color: #CC0000;
+        z-index: 5;
+    }
+
+    .gjLott {
+        .bg .blackout {
+            h1 {
+                @extend %titleBlackout;
+                margin-top: 50px;
+            }
+
+            .more {
+                display: block;
+                border: 2px solid #fff;
+                font-size: 30px;
+                color: #fff;
+                margin-top: 10px;
+                padding: 5px 90px;
+
+                &:hover {
+                    color: #119298;
+                    background: #fff;
+                }
+            }
+
+            .delLott {
+                @extend %delLott;
+            }
+        }
+
+        .content {
+            display: none;
+            width: 97%;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 0 0 10px 10px;
+            background: #119298;
+
+            .info {
+                display: flex;
+                justify-content: space-between;
+                min-height: 100px;
+
+                %h3 {
+                    margin-bottom: 5px;
+                }
+
+                .desc {
+                    width: 70%;
+                    padding: 20px 10px;
+
+                    h3 {@extend %h3;}
+                }
+
+                .conditions {
+                    width: 30%;
+                    padding: 20px 10px;
+
+                    h3 {@extend %h3;}
+                    ol { margin-left: 15px; }
+                }
+            }
+
+            .social {
+                padding: 0 10px;
+                font-size: 20px;
+
+                .links {
+                    padding-right: 30px;
+                }
+
+                .item {
+                    padding-right: 15px;
+                    i { font-size: 15px; }
+                }
+
+                a:hover {
+                    color: #131315;
+                }
+
+                .statistics {
+                    float: right;
+                }
+            }
+        } // end content
+    } // end gjLott
+
+    %EveryEndLott {
+        display: block;
+
+        &:hover {
+            color: #fff;
+
+            .bg {
+                box-shadow: #119298 0 0 20px 1px;
+
+                .blackout {
+                    background: rgba(0, 0, 0, 0.7);
+                }
+            }
+        }
+    }
+
+    .endLott {
+        @extend %EveryEndLott;
+        .bg .blackout {
+            .nameEndLott {
+                position: absolute;
+                top: 15px;
+                left: 20px;
+                font-size: 25px;
+            }
+
+            .winner {
+                font-size: 50px;
+            }
+        }
+    }
+
+    .everyDayLott {
+        @extend %EveryEndLott;
+        .bg .blackout h1 {
+            @extend %titleBlackout;
+        }
+
+        .fromWhom {
+            position: absolute;
+            top: 20px;
+            left: -40px;
+            font-size: 20px;
+            padding: 10px 15px;
+            border-radius: 50px;
+            border: 1px solid #fff;
+            background: #119298;
+        }
+    }
+
+    .userLott {
+        position: relative;
+        height: 300px;
+        margin-top: 30px;
+
+        .studioName {
+            position: absolute;
+            top: 20px;
+            left: -40px;
+            display: block;
+            font-size: 20px;
+            max-width: 400px;
+            padding: 10px 20px;
+            border: 1px solid #fff;
+            border-radius: 30px;
+            background: #119298;
+            z-index: 5;
+
+            &:hover {
+                cursor: pointer;
+                color: #fff;
+                box-shadow: #fff 0 0 20px 1px;
+            }
+        }
+
+        .link {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            height: 100%;
+            border-radius: 10px;
+            box-shadow: #000 0 0 20px 1px;
+            transition: all 0.3s ease;
+
+            .background {
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                border-radius: 10px 0 0 10px;
+                background: #119298 center center / cover no-repeat;
+            }
+
+            .left {
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 30px;
+                width: 50%;
+                border-radius: 10px 0 0 10px;
+                background: rgba(13, 150, 158, 0.5);
+            }
+
+            .right {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 50%;
+                padding: 20px;
+                border-radius: 0 10px 10px 0;
+                transition: all 0.3s ease;
+
+                .caption {
+                    font-size: 25px;
+                }
+
+                .text {
+                    font-size: 18px;
+                    margin-top: 10px;
+                }
+            }
+
+            &:hover {
+                cursor: pointer;
+                color: #fff;
+                box-shadow: #119298 0 0 20px 1px;
+
+                .right {
+                    background: rgba(13, 150, 158, 0.7);
+                }
+            }
+        } // end link
+
+        .delLott {
+            @extend %delLott;
+        }
+    } // end userLott
+
+    .loading {
+        padding: 30px 0;
+        margin-top: 30px;
+        border-radius: 10px;
+        box-shadow: #000 0 0 20px 1px;
+        background: rgba(13,150,158,0.4);
+    }
+} // end bodyLottery
+
+@media (max-width: 1199px) {
+    .bodyLottery {
+        .gjLott .bg .blackout h1, .everyDayLott .bg .blackout h1 {
+            font-size: 50px;
+        }
+
+        // .gjLott .bg .blackout h1 {
+        //     margin-top: 30px;
+        // }
+
+        .endLott .bg .blackout .winner {
+            font-size: 40px;
+        }
+    } // end bodyLottery
+}
+
+@media (max-width: 991px) {
+    .bodyLottery {
+        padding: 1px 50px 50px 50px;
+        min-height: 500px;
+
+        .gjLott .bg, .everyDayLott .bg,
+        .endLott .bg, .siteFriend {
+            height: 250px;
+        }
+
+        .gjLott .bg .blackout h1, .everyDayLott .bg .blackout h1 {
+            font-size: 40px;
+        }
+
+        .gjLott {
+            .bg .blackout {
+                h1 {
+                    margin-top: 10px;
+                }
+
+                .winner {
+                    font-size: 30px;
+                }
+
+                .more {
+                    border: 1px solid #fff;
+                    font-size: 20px;
+                    margin-top: 10px;
+                    padding: 5px 50px;
+                }
+            }
+
+            .content {
+                .info {
+                    min-height: 60px;
+
+                    .desc {
+                        width: 100%;
+                        padding: 5px 0;
+                        font-size: 14px;
+                    }
+                }
+
+                .social {
+                    padding: 0 10px;
+                    font-size: 15px;
+
+                    .links {
+                        padding-right: 30px;
+                    }
+
+                    .item {
+                        padding-right: 15px;
+                        i { font-size: 15px; }
+                    }
+                }
+
+            }
+        }
+
+        .userLott {
+            height: 220px;
+
+            .studioName {
+                position: absolute;
+                top: 10px;
+                font-size: 16px;
+            }
+
+            .link {
+                .left {
+                    font-size: 20px;
+                }
+
+                .right .caption {
+                    font-size: 20px;
+                }
+
+                .right .text {
+                    font-size: 13px;
+                    margin-top: 10px;
+                }
+            } // end link
+        } // end userLott
+    } // end bodyLottery
+} // end media
+
+@media (max-width: 767px) {
+    .bodyLottery {
+        padding: 10px;
+
+        .gjLott .bg, .everyDayLott .bg,
+        .endLott .bg, .siteFriend {
+            height: 180px;
+        }
+
+        .gjLott .bg .blackout h1, .everyDayLott .bg .blackout h1 {
+            font-size: 25px;
+        }
+
+        .gjLott .bg .blackout h1 {
+            margin-top: 10px;
+        }
+
+        .gjLott .bg .blackout .more {
+            border: 1px solid #fff;
+            font-size: 15px;
+            margin-top: 5px;
+            padding: 5px 20px;
+        }
+
+        .endLott .bg .blackout {
+            .winner {
+                font-size: 20px;
+            }
+
+            .nameEndLott {
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                font-size: 15px;
+            }
+        }
+
+        .everyDayLott .fromWhom {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            font-size: 15px;
+            padding: 10px 15px;
+            border: 0;
+            background: transparent;
+        }
+
+        .userLott {
+            height: 180px;
+
+            .link {
+                flex-direction: column;
+            }
+
+            .link .background {
+                width: 100%;
+                border-radius: 10px;
+            }
+
+            .link .left {
+                position: absolute;
+                justify-content: flex-start;
+                width: 100%;
+                font-size: 15px;
+                padding: 10px 15px;
+                background: transparent;
+                z-index: 5;
+            }
+
+            .link .right {
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                background: rgba(13, 150, 158, 0.5);
+            }
+
+            .link .right .caption {
+                font-size: 20px;
+            }
+        }
+    }
+}
+
+/*
+ * --------------------------------------------------
+ * Розыгрыши
+ */

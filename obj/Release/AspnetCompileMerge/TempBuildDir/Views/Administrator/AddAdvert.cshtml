@@ -1,0 +1,211 @@
+﻿@using GoodJoker.Models
+@model Advert
+@{
+    ViewBag.Title = "Добавление и редактирование рекламы";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ICollection<PlaceAdvert> Places = ViewBag.Places;
+    var citiesId = "";
+    var regionsId = "";
+}
+
+@Html.ActionLink("Вернуться к списку", "Adverts", "Administrator")
+<div class="title"><h1><span>Добавление и редактирование рекламы</span></h1></div>
+
+    <div class="mainWorkZone">
+
+        @*<div class="row">
+            <div class="create_viewInfo">Показать подсказку</div>
+            <div class="create_info">
+                <ul>
+                    <li><span>Короткое описание</span> - Отображается в ленте розыгрышей, максимум 150 символов</li>
+                    <li><span>youtube id</span> - uelHwf8o7_U (https://www.youtube.com/watch?v=uelHwf8o7_U)</li>
+                    <li><span>Дата проведения</span> - Указывается если не указывалось количество людей нужное для розыгрыша</li>
+                    <li><span>Количество пользователей</span> - Указывается если не указывалась Дата проведения</li>
+                    <li><span>Условия</span> - Условия для участия в розыгрыше</li>
+                    <li><span>Призы</span> - Призы указанные в последовательности распределения мест</li>
+                    <li><span>Ссылки</span> - в полее ссылку и имя разделять <span>&linkName;</span>, ссылка слева, имя справа</li>
+                    <li><span>Дополнительная информация</span> - Информация которую может проверить только организатор розыгрыша сам</li>
+                </ul>
+            </div>
+        </div>*@
+
+        @using (Html.BeginForm("AddAdvert", "Administrator", FormMethod.Post, new { id = "create", enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="Id" value="@Model.Id" />
+
+            <div class="row inputBlock">
+                <h2 class="">Заказчик</h2>
+                <input type="hidden" name="AdvertiserId" value="@Model.AdvertiserId" />
+                <input type="text" name="Advertiser" class="inputCreate" placeholder="Введите название или индекс населённого пункта..." value="@Model.Advertiser" />
+                <div class="usersList"></div>
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Рекламное изображение</h2>
+                <div class="ava">
+                    <input type="file" name="Ava" id="ava" class="inputfile" accept="image/png,image/jpeg" />
+                    <label for="ava"><i class="icon-download"></i></label>
+                </div>
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Стоимость</h2>
+                <input type="text" name="Cost" class="inputCreate" value="@Model.Cost" />
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Заголовок</h2>
+                <input type="text" name="Title" class="inputCreate" value="@Model.Title" />
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Текст</h2>
+                <textarea type="text" name="Text" class="textareaCreate">@Model.Text</textarea>
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Видео</h2>
+                <input type="text" name="Video" class="inputCreate" placeholder="Идентификатор видео..." value="@Model.Video"/>
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Ссылка</h2>
+                <input type="text" name="Link" class="inputCreate" placeholder="Ссылка рекламодателя..." value="@Model.Link" />
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Период рекламы</h2>
+                <input type="text" name="DateBeginAdvert" class="rangeCount" placeholder="Начало" value="@Model.DateBeginAdvert.ToString("dd.MM.yyyy")" />
+                <input type="text" name="DateEndAdvert" class="rangeCount" placeholder="Конец" value="@Model.DateEndAdvert.ToString("dd.MM.yyyy")" />
+            </div>
+
+            <div class="row city inputBlock">
+                <h2 class="">Локализация</h2>
+                <input type="text" name="CitySearch" class="inputCreate" placeholder="Введите название или индекс населённого пункта..." />
+                <div class="listCity"></div>
+                <div class="listAddCity">
+                    @if (Model.Regions.Count > 0)
+                    {
+                        foreach (var reg in Model.Regions)
+                        {
+                            regionsId += (regionsId != "") ? ";" + reg.Id : "" + reg.Id;
+                            <div class="cityItem" cityid="0" regid="@reg.Id">
+                                <div class="reg">Регион<i class="icon-cancel delCity"></i></div>
+                                <div class="info"><span class="name">@reg.Name</span></div>
+                            </div>
+                        }
+                    }
+                    @if (Model.Cities.Count > 0)
+                    {
+                        foreach (var city in Model.Cities)
+                        {
+                            citiesId += (citiesId != "") ? ";" + city.Id : "" + city.Id;
+                            <div class="cityItem" cityid="@city.Id" regid="@city.Region.Id">
+                                <div class="reg">@city.Region.Name<i class="icon-cancel delCity"></i></div>
+                                <div class="info"><span class="name">@city.Name</span> - @city.Index</div>
+                            </div>
+                        }
+                    }
+                </div>
+                <input type="hidden" name="CitiesId" value="@citiesId" />
+                <input type="hidden" name="RegionsId" value="@regionsId" />
+            </div>
+
+            <div class="row inputBlock">
+                <h2 class="">Место размещения</h2>
+                <input type="hidden" name="TypeId" value="0" />
+                <input type="hidden" name="TypeName" value="" />
+                <input type="hidden" name="TypesId" value="" />
+                <input type="text" name="AddType" class="inputCreate" placeholder="Введите название..." />
+                <div class="list">
+                    <div id="0" class="item new hidden"><div class="name">+ Создать новый</div></div>
+                    @foreach (var place in Places)
+                    {
+                        bool active = (Model?.Place?.FirstOrDefault(p => p.Id == place.Id) != null) ? true : false;
+                        <div id="@place.Id" class="item @if (active) {<text>active</text>}"><div class="name">@place.Name</div> <div class="actions"><i class="icon-pencil-1 editItem"></i> <i class="icon-cancel delItem"></i></div></div>
+                    }
+                </div>
+            </div>
+
+            <button class="btn save">Сохранить</button>
+        }
+
+    </div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script>
+        var token = $("input[name='__RequestVerificationToken']").val();
+        var linkAjax = "/Administrator/PlaceAdvert";
+
+        $(document).ready(function () {
+            $('input[name=DateBeginAdvert]').mask('00.00.0000');
+            $('input[name=DateEndAdvert]').mask('00.00.0000');
+
+            // Отображение загруженной картинки
+            $('#ava').on('change', function () {
+                var file = $(this)[0].files[0];
+                var reader = new FileReader();
+                var format = $(this).val().split('.').pop().toLowerCase();
+                var checkformat = $.inArray(format, ['png', 'jpg', 'jpeg']);
+                var maxFileSize = 10 * 1024 * 1024; // (байт) Максимальный размер файла (10мб)
+
+                if (file.size > maxFileSize) {
+                    alert("Размер изображения превышает 10 Мбайт!");
+                } else if (checkformat == -1) {
+                    alert("Неверный формат изображения!");
+                } else {
+                    reader.addEventListener("load", function () {
+                        $(".ava").css('backgroundImage', 'url("' + reader.result + '")');
+                    }, false);
+
+                    if (file) {
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+
+            // Поиск среди пользователей
+            $("input[name='Advertiser']").keyup(function () {
+                if ($(this).val().length > 3) {
+                    $.ajax({
+                        url: '/Administrator/UserSearch',
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token,
+                            Search: $(this).val()
+                        },
+                        success: function (data) {
+                            if (data != "") {
+                                $(".usersList").html(data).slideDown();
+                            }
+                        }
+                    });
+                } else {
+                    $(".usersList").slideUp();
+                }
+            });
+
+            // Выбор пользователя
+            $("body").on("click", ".usersList .item", function () {
+                $("input[name='AdvertiserId']").val($(this).attr("id"));
+                $("input[name='Advertiser']").val($(this).text());
+                $(".usersList").slideUp();
+            });
+        });
+
+        function delConfirm(parent) {
+            $("input[name='PlaceId']").val(0);
+            $("input[name='PlaceName']").val("");
+            $("input[name='AddPlace']").val("");
+            parent.removeClass("confirm");
+            $(this).attr("class", "icon-pencil-1 editItem");
+            $(".list .item").removeClass("hidden");
+            $(".list .item.new").addClass("hidden");
+        }
+    </script>   
+    
+    <script src="~/Scripts/CitySearch.js"></script>         @* Обработчики для работы с блоком городов *@
+    <script src="~/Scripts/WorkTypeListAdmin.js"></script>  @* Функции работы с блоками типов *@
+}

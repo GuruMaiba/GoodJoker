@@ -1,0 +1,699 @@
+﻿@using GoodJoker.Models
+@model User
+@{
+    ViewBag.Title = "Настройки";
+    Layout = "~/Views/Shared/_PrivateOfficeLayout.cshtml";
+    bool vk = (Model.SocialNetworks?.FirstOrDefault(s => s.Name == "VK") != null) ? true : false,
+         fb = (Model.SocialNetworks?.FirstOrDefault(s => s.Name == "FB") != null) ? true : false,
+         ok = (Model.SocialNetworks?.FirstOrDefault(s => s.Name == "OK") != null) ? true : false,
+         gl = (Model.SocialNetworks?.FirstOrDefault(s => s.Name == "GL") != null) ? true : false;
+    var birthday = (Model.Option.Birthday.Hour == 14) ? Model.Option.Birthday.ToString("dd.MM.yyyy") : "";
+    var dog = "@";
+}
+
+@section Modal {
+    <div class="modalBody">
+        <div class="modalWindow modalAddCity">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <h2>Добавить населённый пункт</h2>
+            <span>
+                В обязательном порядке введите Индекс Вашего населённого пункта (во избежание путанницы).
+                Точный адресс можно ввести только до населённого пункта, если Вы не желаете давать эту информацию (Эта информация видна ТОЛЬКО администрации сайта и организатору розыгрыша в котором вы стали победителем!)<br /><br />
+
+                Введите точный адрес Вашего метоположения в Формате:<br />
+                Регион (Ханты-Мансийский автономный округ-Югра),
+                Ближайший к Вам город (г.Ханты-Мансийск),
+                Населённый пункт в котором Вы проживаете, если не в городе (п.г.т. Высокий),
+                Улица (ул. Маяковского),
+                Дом (д.21-а),
+                Квартира, если есть (кв. 13)<br /><br />
+
+                После отправки, администрацией сайта будет принят или отклонён Ваш запрос на добавление населённого пункта!
+                Если он будет принят, то автоматически этот населённый пункт будет привязан к Вашему аккаунту как основной населённый пункт или как расположенный неподалёку большой город.
+                В зависимости от того, к какому полю Вы его добавляете...
+            </span>
+            <div class="inputBlock">
+                <input class="input" name="Index" type="text" required /><span class="lineInput"></span>
+                <label class="inputLable">Индекс</label>
+            </div>
+            <div class="inputBlock">
+                <input name="SizeCity" type="hidden" />
+                <input class="input" name="AddCity" type="text" required /><span class="lineInput"></span>
+                <label class="inputLable">Точный адресс</label>
+            </div>
+            <div class="modalError"></div>
+            <button class="btn addCityBtn">Отправить</button>
+        </div>
+        <div class="modalWindow modalSuccess">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-check-circle"></i></div>
+            <h1>Изменения успешно сохранены!</h1>
+            <div class="complitAction"><ul></ul></div>
+            <button class="btn closeModalBtn">ОК</button>
+        </div>
+        <div class="modalWindow modalError">
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+            <div><i class="icon icon-cancel-circled"></i></div>
+            <h1>Что-то пошло не так!</h1>
+            <div class="complitAction"><ul></ul></div>
+            <button class="btn closeModalBtn">ОК</button>
+        </div>
+    </div>
+}
+
+<div class="settings">
+    
+    <div class="row">
+
+        <div class="infoOffice">
+            <div class="iconInfo"><i class="icon-info"></i></div>
+            <div class="textInfo">
+                Размер изображения под аватарку должен быть не менее 200х200.
+                Аватарка персоанализирует ваш аккаунт, делая его непохожим на другие.
+                Она отображается при взаимодействии с функционалом сайта.
+                Ник - псевдоним, используемый пользователем для взаимодействия в Интеренете (Все пользователи сайта будут видеть именно его).
+                Ф.И.О. требуется при заполнении данных в почтовом отделение, при отправке выйгранного Вами приза.
+            </div>
+        </div>
+
+        <div class="crossPhoto">
+            <div class="crossPhotoImg">
+                <img id="cropbox" src="" />
+            </div>
+            <div class="cancel">Отменить</div>
+            <div class="clip">Сохранить</div>
+        </div>
+
+        <div class="profileLK">
+
+            <div class="nickAva">
+                <form id="myform" enctype="multipart/form-data" @*action="/PrivateOffice/AvaEdit" method="post"*@>
+                    <div class="ava">
+                        <img src="~/Content/style/images/Users/Avatars/Normal/@Model.Option.Ava" />
+                        <input type="file" name="Ava" id="ava" class="inputfile" accept="image/png,image/jpeg" />
+                        <label for="ava"><i class="icon-download"></i></label>
+                        <input type="hidden" name="X" id="X" value="0" />
+                        <input type="hidden" name="Y" id="Y" value="0" />
+                        <input type="hidden" name="W" id="W" value="200" />
+                        <input type="hidden" name="H" id="H" value="200" />
+                    </div>
+                </form>
+                <div class="nick">
+                    <input class="input" name="Nick" type="text" value="@Model.Nick" required /><span class="lineInput"></span>
+                    <label class="inputLable">Ник</label>
+                </div>
+            </div>
+
+            <div class="name">
+                <div>
+                    <input class="input" name="FirstName" type="text" value="@Model.Option.FirstName" required /><span class="lineInput"></span>
+                    <label class="inputLable">Фаимилия</label>
+                </div>
+                <div>
+                    <input class="input" name="MiddleName" type="text" value="@Model.Option.MiddleName" required /><span class="lineInput"></span>
+                    <label class="inputLable">Имя</label>
+                </div>
+                <div>
+                    <input class="input" name="LastName" type="text" value="@Model.Option.LastName" required /><span class="lineInput"></span>
+                    <label class="inputLable">Отчество</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="infoOffice">
+            <div class="iconInfo"><i class="icon-info"></i></div>
+            <div class="textInfo">
+                Если вы вошли через социальную сеть, то можете привязать к своему аккаунту почту, пароль и производить авторизацию с их помощью!<br /><br />
+                Почтовый адрес служит подтверждением Вашей личности, он привязывается к аккаунту и с его помощью вы сможете производить вход в Личный кабинет GoodJoker'a!
+                Телефонный номер нужен только для связи с Вами организаторами розыгрышей, в крайнем случае для подтверждения Вашей личности (при взломе или утере всех данных текущего аккаунта)
+                Данную информацию могут видет только администрация сайта и в редких случаях организаторы розыгрышей (в случае Вашей победы в их розыгрыше).<br /><br />
+                Текущий пароль - это набор символов с помощью которого производится вход на сайт, если Ваш аккаунт создан через социальную сеть, то это поле можно оставить пустым.
+                Новый пароль, придумайте последовательность символов для защиты вашего аккаунта (Желательно использовать буквы разного регистра, цифры и набор спец. символов).
+                Повторный ввод пароля нужен для того, чтобы при вводе нового пароля Вы не допустили ошибку и при смене пароля имели доступ к аккаунту!
+            </div>
+        </div>
+
+        <div class="deffence">
+            <div class="unique">
+
+                <div>
+                    <input class="input" name="Email" type="text" value="@Model.Email" required /><span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-mail-1"></i> E-mail</label>
+                </div>
+
+                <div>
+                    <input class="input" name="Phone" type="text" value="@Model.Option.Phone" required /><span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-mobile"></i> Телефон</label>
+                </div>
+            </div>
+
+            <div class="pass">
+
+                <div>
+                    <input class="input" name="NowPass" type="password" required /><span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-unlocked"></i> Текущий пароль</label>
+                </div>
+
+                <div>
+                    <input class="input" name="NewPass" type="password" required /><span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-lock"></i> Новый пароль</label>
+                </div>
+
+                <div>
+                    <input class="input" name="ConfPass" type="password" required /><span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-lock"></i> Повтор пароля</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="infoOffice">
+            <div class="iconInfo"><i class="icon-info"></i></div>
+            <div class="textInfo">
+                Выбор населённого пункта позволяет Вам учавствовать в локальных розыгрышах этого места, а так же в розыгрышах ближнего крупного города (если Ваше место проживания населяет маленькое количество людей).<br />
+                Значение поля Город нужно для участя в розыграш ближайшего крупного города, до которого Вы в состоянии добраться.
+                Точный адресс нужен для отправки Вам призов, которые Вы выйграли! Эта информация видна организаторам розыгрышей, только в случае Вашего выйгрыша в их розыгрыше.<br />
+                Отметка на карте нужна только для команды GoodJoker, при Вашей победе в выездном розыгрыше (розыгрыш в котором команда GoodJoker сама доставляет Вам Ваш приз и лично поздравляет с победой).<br />
+                Это сильно облегчит нам этот процесс! Благодарим за понимание!
+            </div>
+        </div>
+
+        <div class="otherSettings">
+
+            <div class="searchCity">
+                <div class="city">
+                    <input name="City" type="hidden" value="@Model.Option.CityID" />
+                    <input class="input" name="CitySearch" type="text" value="@if (Model.Option.CityID > 1) {<text>@Model.Option.City.Name</text>}" required />
+                    <span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-home-1"></i> Населенный пункт</label>
+                    <div class="citiesList"></div>
+                </div>
+                <div class="bigCity">
+                    <input name="BigCity" type="hidden" value="@Model.Option.BigCityID" />
+                    <input class="input" name="BigCitySearch" type="text" value="@if (Model.Option.BigCityID > 1) {<text>@Model.Option.BigCity.Name</text>}" required />
+                    <span class="lineInput"></span>
+                    <label class="inputLable"><i class="icon-building-o"></i> Город</label>
+                    <div class="citiesList"></div>
+                </div>
+            </div>
+
+            <div class="address">
+                <input class="input" name="ExactAddress" type="text" value="@Model.Option.ExactAddress" required /><span class="lineInput"></span>
+                <label class="inputLable"><i class="icon-location"></i> Точный адресс</label>
+            </div>
+
+            <div class="titleMap">Укажите Ваше место жительства на карте</div>
+            <input name="GeoMap" type="hidden" value="@Model.Option.GeoMap" />
+            <div id="map" class="map"></div>
+        </div>
+
+        <div class="row">
+
+            <div class="infoOffice">
+                <div class="iconInfo"><i class="icon-info"></i></div>
+                <div class="textInfo">
+                    Информация о дате Вашего рождения и половой принадлежности нужна для специфичных розыгрышей (Например розыгрышей на 8 марта или с возростным ограничением 18+)<br />
+                    Переключатели социальных сетей позволяют Вам привязывать Ваши аккаунты из социальных сетей и осуществлять с их помощью авторизацию. Привязка требуется, если организатор розыгрыша в условиях указал репост в одной из данных социальных сетей.
+                </div>
+            </div>
+
+            <div class="born">
+                <div class="blockDate">
+                    <div class="bornDate">
+                        <div class="birthday">
+                            <input class="input" name="Birthday" type="text" value="@birthday" required /><span class="lineInput"></span>
+                            <label class="inputLable"><i class="icon-birthday-cake"></i> ДАТА РОЖДЕНИЯ</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="gender">
+                    <div class="select">
+                        <div class="man">Мужской<span><input type="radio" name="Gender" value="1" @if (Model.Option.Gender == 1) { <text> checked</text> }></span></div>
+                        <div class="woman">Женский<span><input type="radio" name="Gender" value="2" @if (Model.Option.Gender == 2) { <text> checked</text> }></span></div>
+                    </div>
+                    <span class="titleBorn"><i class="icon-venus-mars"></i> ВАШ ПОЛ</span>
+                </div>
+                <div class="social">
+                    <div class="bindSocial">
+                        <div><i class="icon-vk"></i><br /><span><input class="socialCheck @if (vk) {<text>active</text>}" type="checkbox" name="VK" @if (vk) { <text> checked</text>}></span></div>
+                        <div><i class="icon-odnoklassniki"></i><br /><span><input class="socialCheck @if (ok) {<text>active</text>}" type="checkbox" name="OK" @if (ok) { <text> checked</text>}></span></div>
+                        <div><i class="icon-facebook"></i><br /><span><input class="socialCheck @if (fb) {<text>active</text>}" type="checkbox" name="FB" @if (fb) { <text> checked</text>}></span></div>
+                        <div><i class="icon-google"></i><br /><span><input class="socialCheck @if (gl) {<text>active</text>}" type="checkbox" name="GL" @if (gl) { <text> checked</text>}></span></div>
+                    </div>
+                    <span class="titleBorn"><i class="icon-world"></i> СОЦИАЛЬНЫЕ СЕТИ</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="save">Сохранить</div>
+        <div class="delete hidden-xs"><a href="/Account/Delete">Удалить аккаунт</a></div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/jquery.mask.min.js"></script>
+    <script src="//api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
+    <script src="~/Scripts/jquery.Jcrop.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $('input[name=Birthday]').mask('00.00.0000');
+            $('input[name=Phone]').mask('0 (000) 000-00-00');
+            $('input[name=Index]').mask('000000');
+
+            var dog = "@dog";
+            var geoMap = "@Model.Option.GeoMap";
+            var myId = @(User.Identity.GetUserId<int>());
+
+            ymaps.ready(function () {
+                var myMap, myPlacemark;
+                ymaps.geolocation.get().then(function (res) {
+                    var mapContainer = $('#map'),
+                        bounds = res.geoObjects.get(0).properties.get('boundedBy'),
+                        // Рассчитываем видимую область для текущей положения пользователя.
+                        mapState = ymaps.util.bounds.getCenterAndZoom(
+                            bounds,
+                            [mapContainer.width(), mapContainer.height()]
+                        ),
+                        mySearchControl = new ymaps.control.SearchControl({
+                            options: {
+                                noPlacemark: true
+                            }
+                        });
+                    mapState.controls = ['zoomControl', 'fullscreenControl', 'geolocationControl'];
+                    createMap(mapState);
+
+                    if (geoMap != "") {
+                        myPlacemark = createPlacemark(geoMap.split(','));
+                        myMap.geoObjects.add(myPlacemark);
+                    } else {
+                        $("input[name=GeoMap]").val(bounds[0][0] + "," + bounds[0][1]);
+                    }
+                    myMap.controls.add(mySearchControl);
+                    myMap.events.add('click', function (e) {
+                        var coords = e.get('coords');
+
+                        // Если метка уже создана – просто передвигаем ее.
+                        if (myPlacemark) {
+                            myPlacemark.geometry.setCoordinates(coords);
+                        }
+                        // Если нет – создаем.
+                        else {
+                            myPlacemark = createPlacemark(coords);
+                            myMap.geoObjects.add(myPlacemark);
+                            // Слушаем событие окончания перетаскивания на метке.
+                            myPlacemark.events.add('dragend', function () {
+                                coords = myPlacemark.geometry.getCoordinates();
+                                myPlacemark.geometry.setCoordinates(coords);
+                                $("input[name=GeoMap]").val(coords[0] + "," + coords[1]);
+
+                            });
+                        }
+                        $("input[name=GeoMap]").val(coords[0] + "," + coords[1]);
+                    });
+
+                }, function (e) {
+                    // Если местоположение невозможно получить, то просто создаем карту.
+                    createMap({
+                        center: [55.751574, 37.573856],
+                        zoom: 15
+                    });
+                });
+
+                function createMap(state) {
+                    myMap = new ymaps.Map('map', state);
+                }
+                // Создание метки.
+                function createPlacemark(coords) {
+                    return new ymaps.Placemark(coords, null, {
+                        //// Опции.
+                        //// Необходимо указать данный тип макета.
+                        //iconLayout: 'default#image',
+                        //// Своё изображение иконки метки.
+                        //iconImageHref: '../../img/maps.png',
+                        //// Размеры метки.
+                        //iconImageSize: [40, 62],
+                        //// Смещение левого верхнего угла иконки относительно
+                        //// её "ножки" (точки привязки).
+                        //iconImageOffset: [-22, -70],
+                        //// возможность перетаскивания
+                        //draggable: true
+                    });
+
+                }
+            });
+
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+
+                var control = document.getElementById("ava");
+                var backup = $(".crossPhoto").html();
+
+                control.addEventListener('change', function () {
+                    var file = control.files[0];
+                    var reader = new FileReader();
+                    var exp = file.type.toString().toLowerCase();
+
+                    if (file != null) {
+
+                        reader.addEventListener("load", function () {
+                            var img = new Image;
+                            $(".crossPhoto").html(backup);
+                            img.onload = function () {
+                                if (file.size < 10000000 && (exp.indexOf("image") !== -1)) {
+                                    if (img.height < 200 || img.width < 200) {
+                                        alert("Ваше изображение должно быть больше 200px со всех сторон!");
+                                    } else if (img.height == img.width) {
+                                        $('#X').val(0);
+                                        $('#Y').val(0);
+                                        $('#W').val(img.width);
+                                        $('#H').val(img.height);
+                                        $(".clip").click();
+                                    } else {
+                                        if ((img.width < img.height) && (img.width > $(window).width()/2) && ($(window).width() > 767)) {
+                                            $(".crossPhotoImg").width("50%");
+                                        } else if (img.width < $(".crossPhoto").width()) {
+                                            $(".crossPhotoImg").width(img.width);
+                                        }
+                                        $("#cropbox").attr('src', reader.result);
+                                        $(".crossPhoto").slideDown();
+                                        $('#cropbox').Jcrop({
+                                            onSelect: updateCoords,
+                                            aspectRatio: 1 / 1,
+                                            setSelect: [0, 0, 200, 200],
+                                            boxHeight: $("#cropbox").height(),
+                                            boxWidth: $("#cropbox").width()
+                                        });
+
+                                        $('html, body').animate({
+                                            scrollTop: $(".crossPhoto").offset().top
+                                        }, 700);
+                                    }
+                                }
+                            };
+                            img.src = reader.result;
+                        }, false);
+
+                        if (file) {
+                            reader.readAsDataURL(file);
+                        }
+                    }
+
+                }, false);
+
+            } else {
+                alert('Извините, но Ваш браузер не поддерживает FileAPI. Зайдите с более новой версии браузера для изменения аватарки!');
+            }
+
+            $("body").on("click", ".cancel", function () {
+                $('.crossPhoto').slideUp(500);
+                $('#ava').val(null);
+                setTimeout(function () {
+                    $(".crossPhoto").html(backup);
+                }, 500);
+            });
+
+            $("body").on("click", ".clip", function () {
+                var control = document.getElementById("ava");
+                var form = document.forms.myform;
+                var formData = new FormData(form);
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "/PrivateOffice/AvaEdit");
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4) {
+                        if (xhr.status == 200) {
+                            var ava = xhr.responseText;
+
+                            if (ava != "0") {
+                                $('.ava img').attr('src', `../../Content/style/images/Users/Avatars/Normal/${ava}`);
+                                $('.menuLK .header .img').css('background-image', `url('../../Content/style/images/Users/Avatars/Normal/${ava}')`);
+                                $('.menuLK .header .user img').attr('src', `../../Content/style/images/Users/Avatars/Reduced/${ava}`);
+                                $('#ava').val(null);
+                                $('.crossPhoto').slideUp();
+                                $(".crossPhotoImg img").css("width", "100%");
+                            } else {
+                                globalError();
+                            }
+                        }
+                    }
+                };
+                xhr.send(formData);
+            });
+
+            $('input[name=Nick]').change(function () {
+                var val = $(this).val();
+                if (val.length > 20 && val.length < 5)
+                    $(this).siblings(".inputLable").html("Ник <span class='error'>Допустимо только 20 символов</span>");
+                else if (val.indexOf(" ") > 1)
+                    $(this).siblings(".inputLable").html("Ник <span class='error'>Удалите пробелы</span>");
+                else
+                    $(this).siblings(".inputLable").html("Ник");
+            });
+
+            $('input[name=Email]').change(function () {
+                var val = $(this).val(),
+                    lable = "<i class=\"icon-mail-1\"></i> E-mail";
+
+                if ( (val.indexOf(dog) > -1 && val.indexOf(".") > -1) || val == "" )
+                    $(this).siblings(".inputLable").html(lable);
+                else
+                    $(this).siblings(".inputLable").html(lable + " <span class='error'>Пример: gj@gmail.com</span>");
+            });
+
+            $('input[name=Phone]').change(function () {
+                var lable = "<i class=\"icon-mobile\"></i> Телефон";
+                if ($(this).val().length != 17)
+                    $(this).siblings(".inputLable").html(lable + " <span class='error'>Введите 11 цифр</span>");
+                else
+                    $(this).siblings(".inputLable").html(lable);
+            });
+
+            $('input[name=NewPass]').change(function () {
+                var lable = "<i class=\"icon-lock\"></i> Новый пароль";
+                if ($(this).val().length < 6)
+                    $(this).siblings(".inputLable").html(lable + " <span class='error'>Минимум 6 символов</span>");
+                else
+                    $(this).siblings(".inputLable").html(lable);
+            });
+
+            $('input[name=ConfPass]').change(function () {
+                var lable = "<i class=\"icon-lock\"></i> Повтор пароля";
+                if ($(this).val() != $('input[name=NewPass]').val())
+                    $(this).siblings(".inputLable").html(lable + " <span class='error'>Пароли не совпадают</span>");
+                else
+                    $(this).siblings(".inputLable").html(lable);
+            });
+
+            $('input[name=Birthday]').change(function () {
+                var val = $(this).val(),
+                    lable = "<i class=\"icon-birthday-cake\"></i> ДАТА РОЖДЕНИЯ";
+                if (val.length == 10) {
+                    var arr = val.split('.');
+                    if (parseInt(arr[0]) <= 31 && parseInt(arr[1]) <= 12 && parseInt(arr[2]) >= 1900)
+                        $(this).siblings(".inputLable").html(lable);
+                    else
+                        $(this).siblings(".inputLable").html(lable + " <span class='error'>Несуществующая дата</span>");
+                } else {
+                    $(this).siblings(".inputLable").html(lable + " <span class='error'>Некорректная дата</span>");
+                }
+            });
+
+            $("input[name=CitySearch]").keyup(function () {
+                if ($(this).val().length > 3) {
+                    $.ajax({
+                        url: '/PrivateOffice/_SettingSearchCity',
+                        type: 'POST',
+                        data: {
+                            search: $(this).val()
+                        },
+                        success: function (data) {
+                            $(".city .citiesList").html(data).slideDown();
+                        }
+                    });
+                } else {
+                    $(".city .citiesList").slideUp();
+                }
+            });
+
+            $("input[name=BigCitySearch]").keyup(function () {
+                if ($(this).val().length > 3) {
+                    $.ajax({
+                        url: '/PrivateOffice/_SettingSearchCity',
+                        type: 'POST',
+                        data: {
+                            search: $(this).val()
+                        },
+                        success: function (data) {
+                            $(".bigCity .citiesList").html(data).slideDown();
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                } else {
+                    $(".bigCity .citiesList").slideUp();
+                }
+            });
+
+            $("input[name=CitySearch]").focusout(function () {
+                setTimeout(function () {
+                    $(".city .citiesList").slideUp();
+                }, 200);
+            });
+
+            $("input[name=BigCitySearch]").focusout(function () {
+                setTimeout(function () {
+                    $(".bigCity .citiesList").slideUp();
+                }, 200);
+            });
+
+            $("body").on("click", ".addCity", function () {
+                if ($(this).parents(".city").length > 0) {
+                    $("input[name=SizeCity]").val("small");
+                    $("input[name=AddCity]").val($("input[name=CitySearch]").val());
+                } else {
+                    $("input[name=SizeCity]").val("big");
+                    $("input[name=AddCity]").val($("input[name=BigCitySearch]").val());
+                }
+
+                $(".modalBody").css("display", "flex");
+                $(".modalAddCity").css("display", "block").addClass("fadeInDown");
+            });
+
+            $("body").on("click", ".city .citiesList .cityItem", function () {
+                $("input[name=City]").val($(this).attr("cityId"));
+                $("input[name=CitySearch]").val($(this).children(".info").children(".name").text());
+                $(this).parent().slideUp();
+            })
+
+            $("body").on("click", ".bigCity .citiesList .cityItem", function () {
+                $("input[name=BigCity]").val($(this).attr("cityId"));
+                $("input[name=BigCitySearch]").val($(this).children(".info").children(".name").text());
+                $(this).parent().slideUp();
+            });
+
+            $(".addCityBtn").click(function () {
+                var inx = $('input[name=Index]').val();
+                var val = $('input[name=AddCity]').val();
+                var size = $('input[name=SizeCity]').val();
+
+                if (val != "" && inx != 0) {
+                    $.ajax({
+                        url: '/PrivateOffice/AddCity',
+                        type: 'POST',
+                        data: {
+                            AddCity: val,
+                            SizeCity: size,
+                            Index: inx
+                        },
+                        success: function (id) {
+                            if (id != "0") {
+                                $('input[name=ExactAddress]').val(val);
+                                closeModal();
+                            } else {
+                                $(".modalError").text("Проверьте правильность введённых данных! Индекс - должен состоять из 6 цифр. Точный адрес не должен быть пустым.");
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                } else {
+                    $(".modalError").text("Проверьте правильность введённых данных! Индекс - должен состоять из 6 цифр. Точный адрес не должен быть пустым.");
+                }
+            });
+
+            $(".titleMap").click(function () {
+                $("#map").slideToggle();
+            });
+
+            $('.save').click(function () {
+                var data = $('.settingsForm').serialize();
+                if ($('.inputLable span.error').length == 0) {
+                    $.ajax({
+                        url: '/PrivateOffice/ChangeOption',
+                        type: 'POST',
+                        data: {
+                            Nick: $('input[name=Nick]').val(),
+                            FirstName: $('input[name=FirstName]').val(),
+                            MiddleName: $('input[name=MiddleName]').val(),
+                            LastName: $('input[name=LastName]').val(),
+                            Email: $('input[name=Email]').val(),
+                            Phone: $('input[name=Phone]').val(),
+                            NowPass: $('input[name=NowPass]').val(),
+                            NewPass: $('input[name=NewPass]').val(),
+                            ConfPass: $('input[name=ConfPass]').val(),
+                            City: $('input[name=City]').val(),
+                            BigCity: $('input[name=BigCity]').val(),
+                            ExactAddress: $('input[name=ExactAddress]').val(),
+                            GeoMap: $('input[name=GeoMap]').val(),
+                            Birthday: $('input[name=Birthday]').val(),
+                            Gender: $('input[name=Gender]:checked').val()
+                        },
+                        success: function (request) {
+                            $(".modalBody").css("display", "flex");
+                            if (request == "1") {
+                                $(".modalSuccess .complitAction ul").html("");
+                                $(".modalSuccess").css("display", "block").addClass("fadeInDown");
+                            } else if (request == "email") {
+                                $(".modalSuccess .complitAction ul").html("На Ваш новый почтовый адресс выслано письмо, пожалуйста пройдите по ссылке находящейся в письме, для его подтверждения!");
+                                $(".modalSuccess").css("display", "block").addClass("fadeInDown");
+                            } else {
+                                $(".modalError .complitAction ul").html(request);
+                                $(".modalError").css("display", "block").addClass("fadeInDown");
+                            }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            $('.socialCheck').click(function () {
+                var name = $(this).attr("name");
+                if ($(this).hasClass("active")) {
+                    $(this).removeClass("active");
+                    $.ajax({
+                        url: "/PrivateOffice/DeleteSocial",
+                        type: "POST",
+                        data: {
+                            name: name
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                } else {
+                    switch (name) {
+                        case "VK":
+                            location.href = "https://oauth.vk.com/authorize?client_id=5869965&display=page&redirect_uri=https://goodjoker.ru/Account/AuthVK&scope=email&response_type=code&v=5.62";
+                            break;
+                        case "OK":
+                            location.href = "https://connect.ok.ru/oauth/authorize?client_id=1250916352&scope=GET_EMAIL&response_type=code&redirect_uri=https://goodjoker.ru/Account/AuthOK&layout=w";
+                            break;
+                        case "FB":
+                            location.href = "https://www.facebook.com/dialog/oauth?client_id=257488578009120&redirect_uri=https://goodjoker.ru/Account/AuthFB&scope=public_profile,email&response_type=code";
+                            break;
+                        case "GL":
+                            location.href = "https://accounts.google.com/o/oauth2/auth?redirect_uri=https://goodjoker.ru/Account/AuthGL&response_type=code&client_id=406011974796-g5qccf92uhm8lc4k3avvlgcatb8ptb79.apps.googleusercontent.com&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile";
+                            break;
+                    }
+
+                }
+            });
+        });
+
+        function updateCoords(c) {
+            $('#X').val(c.x);
+            $('#Y').val(c.y);
+            $('#W').val(c.w - 1);
+            $('#H').val(c.h - 1);
+        };
+
+    </script>
+}

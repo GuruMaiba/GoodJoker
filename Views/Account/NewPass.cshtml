@@ -1,0 +1,28 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Новый пароль</title>
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+    <div class="newPass">
+        <img src="~/Content/style/images/logo.png" />
+        <h1>Придумайте новый пароль</h1>
+        <form method="post">
+            <div>@ViewBag.Error</div>
+            <input name="Id" type="hidden" value="@ViewBag.Id" />
+            <input name="Token" type="hidden" value="@ViewBag.Token" />
+            <input name="Pass" type="password" placeholder="Введите пароль" /> <br /> 
+            <input name="PassConfirm" type="password" placeholder="Повторите пароль" /> <br />
+            <button type="submit" class="btn">Изменить</button>
+        </form>
+    </div>
+</body>
+</html>

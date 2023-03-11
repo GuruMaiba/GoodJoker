@@ -1,0 +1,273 @@
+@import "_Common.scss";
+
+a {
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+
+    &:focus, &:hover {
+        color: $mainColor2;
+        text-decoration: none;
+    }
+}
+
+.btn {
+    display: inline-block;
+    border: 1px solid #1adce4;
+    color: #1adce4;
+    padding: 15px 80px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #119298;
+        background: #119298;
+    }
+}
+
+/*
+ * Личный кабинет
+ * --------------------------------------------------
+ */
+
+.bodyPrivateOffice {
+    height: 100vh;
+}
+
+/* Информация для пользователей */
+.infoOffice {
+    position: relative;
+    margin: 20px auto 0 auto;
+    background: rgba(13, 150, 158, 0.8);
+    box-shadow: 0 0 15px 0px #119298;
+}
+
+    .infoOffice .iconInfo {
+        position: absolute;
+        top: -25px;
+        left: calc(50% - 25px);
+        width: 50px;
+        height: 50px;
+        padding: 12px 5px 2px 5px;
+        font-size: 25px;
+        text-align: center;
+        background: #119298;
+        -webkit-border-radius: 30px;
+        -moz-border-radius: 30px;
+        border-radius: 30px;
+        box-shadow: 0 0 15px 0px #131315;
+    }
+
+    .infoOffice .textInfo {
+        padding: 30px 10px 20px 10px;
+        font-size: 16px;
+        text-align: center;
+    }
+
+/*
+ * Меню
+ * -----------------------------
+ */
+
+.buttonMenu {
+    display: none;
+    position: fixed;
+    top: -8px;
+    left: -8px;
+    justify-content: center;
+    align-content: center;
+    font-size: 25px;
+    padding: 17px 15px 5px 15px;
+    background: #119298;
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    box-shadow: 0 0 50px 5px #000;
+    z-index: 997;
+    transition: all 0.3s ease;
+}
+
+    .buttonMenu:hover {
+        cursor: pointer;
+        opacity: 0.9;
+    }
+
+.menuLK {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100vh;
+    background: #131315;
+    box-shadow: 5px 0 40px 0px #000;
+    transition: all 0.6s ease;
+    z-index: 996;
+}
+
+    .menuLK.active {
+        left: 0;
+    }
+
+    .menuLK .header {
+        position: relative;
+        width: 100%;
+        height: 170px;
+        overflow: hidden;
+    }
+
+        .menuLK .header .img {
+            width: 100%;
+            height: 100%;
+            filter: blur(7px);
+            overflow: hidden;
+            background: #131315 center center / cover no-repeat;
+        }
+
+        .menuLK .header .user {
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 23px;
+            background: rgba(13, 150, 158, 0.7);
+        }
+
+            .menuLK .header .user img {
+                width: 90px;
+                -webkit-border-radius: 50px;
+                -moz-border-radius: 50px;
+                border-radius: 50px;
+                margin: 0 0 10px 0;
+                border: 2px solid #fff;
+            }
+
+    .menuLK .items {
+        margin: 20px 0 0 35px;
+    }
+
+        .menuLK .items ol li {
+            list-style: none;
+            padding: 10px 0 0 10px;
+            font-size: 20px;
+        }
+
+            .menuLK .items ol li a.active {
+                color: #1adce4;
+            }
+
+                .menuLK .items ol li a.active span {
+                    color: #fff;
+                    background: #119298;
+                }
+
+            .menuLK .items ol li span {
+                display: inline-block;
+                color: #a4a4a4;
+                padding: 6px 8px 2px 7px;
+                text-align: center;
+                font-size: 15px;
+                border-radius: 5px;
+                background: #0c4b4e;
+                transition: all 0.3s ease;
+            }
+
+        .menuLK .items .additional {
+            margin-top: 10px;
+        }
+
+            .menuLK .items .additional li {
+                font-size: 18px;
+            }
+
+@media (max-width: 767px) {
+    .menuLK {
+        left: -270px;
+        width: 200px;
+    }
+
+        .menuLK .header {
+            height: 130px;
+        }
+
+            .menuLK .header .user {
+                font-size: 18px;
+            }
+
+                .menuLK .header .user img {
+                    width: 70px;
+                }
+
+        .menuLK .items ol li {
+            font-size: 15px;
+        }
+
+            .menuLK .items ol li span {
+                display: inline-block;
+                color: #a4a4a4;
+                padding: 6px 6px 2px 5px;
+                text-align: center;
+                font-size: 13px;
+                border-radius: 5px;
+                background: #042a2c; /*2a2a2c*/
+            }
+
+        .menuLK .items .additional li {
+            font-size: 13px;
+        }
+}
+
+/*
+ * ------------------------------
+ * Меню
+ */
+
+/*
+ * Контент
+ * --------------------------------------
+ */
+
+.contentLK {
+    margin: 0 0 0 250px;
+    padding: 30px;
+}
+
+@media screen and (max-width: 767px) {
+    .contentLK {
+        margin: 0;
+        padding: 0;
+    }
+
+    .buttonMenu {
+        display: flex;
+    }
+
+    .infoOffice .textInfo {
+        padding: 25px 10px 10px 10px;
+        font-size: 13px;
+    }
+}
+
+@import "PrivateOffice/_Main.scss";
+@import "PrivateOffice/_Dialogs.scss";
+@import "PrivateOffice/_Studios.scss";
+@import "PrivateOffice/_Studio.scss";
+@import "PrivateOffice/_Settings.scss";
+@import "PrivateOffice/_Profile.scss";
+@import "_UnivStyle.scss";
+
+/*
+ * --------------------------------------
+ * Контент
+ */
+
+/*
+ * --------------------------------------------------
+ * Личный кабинет
+ */

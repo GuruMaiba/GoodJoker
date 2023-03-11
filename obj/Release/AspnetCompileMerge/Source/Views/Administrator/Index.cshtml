@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Администратор";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="mainAdmin">
+    <div class="archiveBtn">Архивировать</div>
+</div>
+
+@section Scripts {
+    <script>
+        $(".archiveBtn").click(function () {
+            var th = $(this);
+            if (!th.hasClass("disable")) {
+                th.addClass("disable");
+                $.ajax({
+                    url: "/Administrator/ArchiveLott",
+                    type: "POST",
+                    success: function () {
+                        th.html("<i class='icon-check-1'></i>");
+                    },
+                    error: function () {
+                        th.removeClass("disable");
+                    }
+                });
+            }
+        });
+    </script>    
+}

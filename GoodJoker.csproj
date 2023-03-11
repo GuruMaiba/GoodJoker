@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{971C0290-2421-40C0-B46C-99308B00EA9F}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GoodJoker</RootNamespace>
+    <AssemblyName>GoodJoker</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.4.0.5\lib\net45\ImageResizer.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.DiskCache, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.DiskCache.4.0.5\lib\net45\ImageResizer.Plugins.DiskCache.dll</HintPath>
+    </Reference>
+    <Reference Include="ImageResizer.Plugins.PrettyGifs, Version=4.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ImageResizer.Plugins.PrettyGifs.4.0.5\lib\net45\ImageResizer.Plugins.PrettyGifs.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.3.1.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.3.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.3.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Agent.Intercept">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdministratorController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\LotteryController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\PrivateOfficeController.cs" />
+    <Compile Include="Controllers\StudioController.cs" />
+    <Compile Include="DAL\DBInitializer.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Main\Assess.cs" />
+    <Compile Include="Models\Secondary\InfoSite.cs" />
+    <Compile Include="Models\Secondary\AdminAjaxList.cs" />
+    <Compile Include="Models\ViewModel\ViewJoker.cs" />
+    <Compile Include="Models\Main\Warning.cs" />
+    <Compile Include="Models\Main\EverydayLott.cs" />
+    <Compile Include="Models\Main\Notice.cs" />
+    <Compile Include="Models\ViewModel\LocalLimiter.cs" />
+    <Compile Include="Models\ViewModel\Main.cs" />
+    <Compile Include="Models\ViewModel\NewsMain.cs" />
+    <Compile Include="Models\Secondary\AddParticipate.cs" />
+    <Compile Include="Models\Main\Advert.cs" />
+    <Compile Include="Models\Main\ArchiveLottery.cs" />
+    <Compile Include="Models\Main\Auth.cs" />
+    <Compile Include="Models\Main\City.cs" />
+    <Compile Include="Models\Main\Comment.cs" />
+    <Compile Include="Models\Main\Dialog.cs" />
+    <Compile Include="Models\Main\Finger.cs" />
+    <Compile Include="Models\Startup\Function.cs" />
+    <Compile Include="Models\Startup\IdentityModels.cs" />
+    <Compile Include="Models\Main\Lottery.cs" />
+    <Compile Include="Models\Main\News.cs" />
+    <Compile Include="Models\ViewModel\AdminLottery.cs" />
+    <Compile Include="Models\ViewModel\AllLotteries.cs" />
+    <Compile Include="Models\ViewModel\ChangeOption.cs" />
+    <Compile Include="Models\ViewModel\EditContact.cs" />
+    <Compile Include="Models\ViewModel\LotteryCreate.cs" />
+    <Compile Include="Models\ViewModel\MainLK.cs" />
+    <Compile Include="Models\ViewModel\NewsEdit.cs" />
+    <Compile Include="Models\Main\Option.cs" />
+    <Compile Include="Models\Main\SocialNetwork.cs" />
+    <Compile Include="Models\Main\Studio.cs" />
+    <Compile Include="Models\Main\User.cs" />
+    <Compile Include="Models\Main\Video.cs" />
+    <Compile Include="Models\ViewModel\UserEditLottery.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\GoodJoker.mdf" />
+    <Content Include="App_Data\GoodJoker_log.ldf">
+      <DependentUpon>GoodJoker.mdf</DependentUpon>
+    </Content>
+    <Content Include="c7b8c542ea42.html" />
+    <Content Include="Content\icons.css" />
+    <Content Include="Content\Jcrop.gif" />
+    <Content Include="Content\jquery.Jcrop.css" />
+    <Content Include="Content\jquery.mCustomScrollbar.min.css" />
+    <Content Include="Content\select2.min.css" />
+    <Content Include="Content\style\Admin.css" />
+    <Content Include="Content\style\images\About\365.jpg" />
+    <Content Include="Content\style\images\About\advert.jpg" />
+    <Content Include="Content\style\images\About\complaint.jpg" />
+    <Content Include="Content\style\images\About\free.jpg" />
+    <Content Include="Content\style\images\About\gambling_roulette_wallpaper_full_hd.jpg" />
+    <Content Include="Content\style\images\About\myLott.JPG" />
+    <Content Include="Content\style\images\About\noRisk.jpg" />
+    <Content Include="Content\style\images\About\random.jpg" />
+    <Content Include="Content\style\images\About\review.jpg" />
+    <Content Include="Content\style\images\About\бесплатно.psd" />
+    <Content Include="Content\style\images\Advert\2card.jpg" />
+    <Content Include="Content\style\images\Advert\2queen.jpg" />
+    <Content Include="Content\style\images\Advert\ace.jpg" />
+    <Content Include="Content\style\images\Advert\aces.jpg" />
+    <Content Include="Content\style\images\Advert\acesAndChips.jpg" />
+    <Content Include="Content\style\images\Advert\acesFly.jpg" />
+    <Content Include="Content\style\images\Advert\alchemy.gif" />
+    <Content Include="Content\style\images\Advert\bg.jpg" />
+    <Content Include="Content\style\images\Advert\bones.jpg" />
+    <Content Include="Content\style\images\Advert\fairy.jpg" />
+    <Content Include="Content\style\images\Advert\flashRoyal.jpg" />
+    <Content Include="Content\style\images\Advert\flashRoyal2.jpg" />
+    <Content Include="Content\style\images\Advert\hatter.jpg" />
+    <Content Include="Content\style\images\Advert\hatter2.jpg" />
+    <Content Include="Content\style\images\Advert\here.jpg" />
+    <Content Include="Content\style\images\Advert\jokerArm.jpg" />
+    <Content Include="Content\style\images\Advert\jokerDecSkulls.jpg" />
+    <Content Include="Content\style\images\Advert\jokerDevil.jpg" />
+    <Content Include="Content\style\images\Advert\jokerSkull.jpg" />
+    <Content Include="Content\style\images\Advert\jokerTable.jpg" />
+    <Content Include="Content\style\images\Advert\jokerTableReverse.jpg" />
+    <Content Include="Content\style\images\Advert\Magician.jpg" />
+    <Content Include="Content\style\images\Advert\MagicianAce.jpg" />
+    <Content Include="Content\style\images\Advert\manCard.jpg" />
+    <Content Include="Content\style\images\Advert\maxresdefault.jpg" />
+    <Content Include="Content\style\images\Advert\MeganFox.jpg" />
+    <Content Include="Content\style\images\Advert\royal_flesh_dubl_kosti_kombinaciya_piki_poker_poker_karty_1920x1200.jpg" />
+    <Content Include="Content\style\images\Advert\untitled-4kbom9.png" />
+    <Content Include="Content\style\images\Advert\сardHolder.jpg" />
+    <Content Include="Content\style\images\Advert\сhips.jpg" />
+    <Content Include="Content\style\images\allLott.jpg" />
+    <Content Include="Content\style\images\bg.jpg" />
+    <Content Include="Content\style\images\bgAuth.jpg" />
+    <Content Include="Content\style\images\carBG.png" />
+    <Content Include="Content\style\images\carRed.png" />
+    <Content Include="Content\style\images\Clock.png" />
+    <Content Include="Content\style\images\Default\defaultAva.jpg" />
+    <Content Include="Content\style\images\Default\defaultCover.jpg" />
+    <Content Include="Content\style\images\Default\logoNav.png" />
+    <Content Include="Content\style\images\Everyday\Normal\avatar.jpg" />
+    <Content Include="Content\style\images\Everyday\Reduced\avatar.jpg" />
+    <Content Include="Content\style\images\jokerErr.jpg" />
+    <Content Include="Content\style\images\logo.png" />
+    <Content Include="Content\style\images\logo100.png" />
+    <Content Include="Content\style\images\logo200.png" />
+    <Content Include="Content\style\images\logo250.png" />
+    <Content Include="Content\style\images\logo500.png" />
+    <Content Include="Content\style\images\logoDown.gif" />
+    <Content Include="Content\style\images\logoLetters.png" />
+    <Content Include="Content\style\images\logoNav.png" />
+    <Content Include="Content\style\images\logoUp.gif" />
+    <Content Include="Content\style\images\Lotteries\Normal\2869_278138617.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\2card.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\2queen.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\ace.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\acesAndChips.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\acesFly.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\fairy.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\flashRoyal.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\here.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\Magician.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\royal_flesh_dubl_kosti_kombinaciya_piki_poker_poker_karty_1920x1200.jpg" />
+    <Content Include="Content\style\images\Lotteries\Normal\сhips.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\2869_278138617.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\2card.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\2queen.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\ace.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\acesAndChips.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\acesFly.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\fairy.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\flashRoyal.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\here.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\Magician.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\royal_flesh_dubl_kosti_kombinaciya_piki_poker_poker_karty_1920x1200.jpg" />
+    <Content Include="Content\style\images\Lotteries\Reduced\сhips.jpg" />
+    <Content Include="Content\style\images\man.jpg" />
+    <Content Include="Content\style\images\News\Cover\Normal\acesAndChips.jpg" />
+    <Content Include="Content\style\images\News\Cover\Normal\avatar.jpg" />
+    <Content Include="Content\style\images\News\Cover\Normal\flashRoyal.jpg" />
+    <Content Include="Content\style\images\News\Cover\Normal\jokerDecSkulls.jpg" />
+    <Content Include="Content\style\images\News\Cover\Reduced\acesAndChips.jpg" />
+    <Content Include="Content\style\images\News\Cover\Reduced\avatar.jpg" />
+    <Content Include="Content\style\images\News\Cover\Reduced\flashRoyal.jpg" />
+    <Content Include="Content\style\images\News\Cover\Reduced\jokerDecSkulls.jpg" />
+    <Content Include="Content\style\images\ok\128.jpg" />
+    <Content Include="Content\style\images\ok\1280.jpg" />
+    <Content Include="Content\style\images\ok\18.jpg" />
+    <Content Include="Content\style\images\ok\230.jpg" />
+    <Content Include="Content\style\images\ok\50.jpg" />
+    <Content Include="Content\style\images\Preview\MaskMobile.png" />
+    <Content Include="Content\style\images\Preview\PreviewMask.png" />
+    <Content Include="Content\style\images\Preview\PreviewText.png" />
+    <Content Include="Content\style\images\signInLogo.jpg" />
+    <Content Include="Content\style\images\signInLogoBg2.jpg" />
+    <Content Include="Content\style\images\slider\1.jpg" />
+    <Content Include="Content\style\images\slider\2.jpg" />
+    <Content Include="Content\style\images\slider\constructor.jpg" />
+    <Content Include="Content\style\images\slider\gj.jpg" />
+    <Content Include="Content\style\images\slider\lucky.jpg" />
+    <Content Include="Content\style\images\slider\poster.jpg" />
+    <Content Include="Content\style\images\slider\top.jpg" />
+    <Content Include="Content\style\images\Studios\Avatars\Normal\defaultAva.jpg" />
+    <Content Include="Content\style\images\Studios\Avatars\Reduced\defaultAva.jpg" />
+    <Content Include="Content\style\images\Studios\Covers\defaultCover.jpg" />
+    <Content Include="Content\style\images\Users\Avatars\Normal\defaultAva.jpg" />
+    <Content Include="Content\style\images\Users\Avatars\Normal\hatter2.jpg" />
+    <Content Include="Content\style\images\Users\Avatars\Reduced\defaultAva.jpg" />
+    <Content Include="Content\style\images\Users\Avatars\Reduced\hatter2.jpg" />
+    <Content Include="Content\style\images\WhatsNews.jpg" />
+    <Content Include="Content\style\images\woman.jpg" />
+    <Content Include="Content\style\Main.css" />
+    <Content Include="Content\style\PrivateOffice.css" />
+    <Content Include="Content\style\Site.css" />
+    <Content Include="Content\style\video\background.mp4" />
+    <Content Include="Content\style\video\background.webm" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\untitled-font-1.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\BloggerSans.ttf" />
+    <Content Include="fonts\Lighthaus.otf" />
+    <Content Include="fonts\untitled-font-1.eot" />
+    <Content Include="fonts\untitled-font-1.ttf" />
+    <Content Include="fonts\untitled-font-1.woff" />
+    <Content Include="fonts\Lobster.ttf" />
+    <Content Include="App_Code\HelperAdvert.cshtml" />
+    <Content Include="Content\style\scss\Admin.css.map" />
+    <Content Include="Content\style\scss\Admin.scss" />
+    <Content Include="Content\style\scss\Admin\_CreateNews.scss" />
+    <Content Include="Content\style\scss\Main.css.map" />
+    <Content Include="Content\style\scss\Main.scss" />
+    <Content Include="Content\style\scss\Main\_Auth.scss" />
+    <Content Include="Content\style\scss\Main\_Errors.scss" />
+    <Content Include="Content\style\scss\Main\_Footer.scss" />
+    <Content Include="Content\style\scss\Main\_HoldingLott.scss" />
+    <Content Include="Content\style\scss\Main\_Home.scss" />
+    <Content Include="Content\style\scss\Main\_Lott.scss" />
+    <Content Include="Content\style\scss\Main\_LottDet.scss" />
+    <Content Include="Content\style\scss\Main\_LottDetHint.scss" />
+    <Content Include="Content\style\scss\Main\_LottEver.scss" />
+    <Content Include="Content\style\scss\Main\_News.scss" />
+    <Content Include="Content\style\scss\Main\_NewsDet.scss" />
+    <Content Include="Content\style\scss\PrivateOffice.css.map" />
+    <Content Include="Content\style\scss\PrivateOffice.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Dialogs.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Main.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Profile.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Settings.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Studio.scss" />
+    <Content Include="Content\style\scss\PrivateOffice\_Studios.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_BlockComments.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_BootstrapStyle.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_ListCity.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_Loader.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_ModalBody.scss" />
+    <Content Include="Content\style\scss\UnivStyle\_Preloader.scss" />
+    <Content Include="Content\style\scss\_Common.scss" />
+    <Content Include="Content\style\scss\_Mixins.scss" />
+    <Content Include="Content\style\scss\_Reset.scss" />
+    <Content Include="Content\style\scss\_UnivStyle.scss" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Scripts\action.js" />
+    <Content Include="Scripts\CitySearch.js" />
+    <Content Include="Scripts\device.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery.cookie-1.4.1.min.js" />
+    <Content Include="Scripts\jquery.cookie.js" />
+    <Content Include="Scripts\jquery.Jcrop.js" />
+    <Content Include="Scripts\jquery.mask.min.js" />
+    <Content Include="Scripts\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Scripts\parallax.min.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\Share.js" />
+    <Content Include="Scripts\startup.js" />
+    <Content Include="Scripts\WorkTypeListAdmin.js" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Administrator\Adverts.cshtml" />
+    <Content Include="Views\Administrator\AddAdvert.cshtml" />
+    <Content Include="Views\Administrator\Index.cshtml" />
+    <Content Include="Views\Administrator\Lotteries.cshtml" />
+    <Content Include="Views\Administrator\News.cshtml" />
+    <Content Include="Views\Administrator\NewsCreate.cshtml" />
+    <Content Include="Views\Administrator\Users.cshtml" />
+    <Content Include="Views\Administrator\Videos.cshtml" />
+    <Content Include="Views\Main\Auth.cshtml" />
+    <Content Include="Views\Lottery\Details.cshtml" />
+    <Content Include="Views\Lottery\Holding.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Main\Joker.cshtml" />
+    <Content Include="Views\Lottery\Index.cshtml" />
+    <Content Include="Views\Main\Studio.cshtml" />
+    <Content Include="Views\News\Details.cshtml" />
+    <Content Include="Views\News\Index.cshtml" />
+    <Content Include="Views\PrivateOffice\Comments.cshtml" />
+    <Content Include="Views\PrivateOffice\Dialogs.cshtml" />
+    <Content Include="Views\PrivateOffice\Index.cshtml" />
+    <Content Include="Views\PrivateOffice\Settings.cshtml" />
+    <Content Include="Views\PrivateOffice\NewStudio.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Shared\_Preloader.cshtml" />
+    <Content Include="Views\Shared\_PrivateOfficeLayout.cshtml" />
+    <Content Include="Views\Main\Email.cshtml" />
+    <Content Include="Views\Account\RedirectEmail.cshtml" />
+    <Content Include="Views\PrivateOffice\_SettingSearchCity.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Lottery\_CommentLottery.cshtml" />
+    <Content Include="Views\News\_CommentNews.cshtml" />
+    <Content Include="Views\Lottery\Create.cshtml" />
+    <Content Include="Views\Lottery\Everyday.cshtml" />
+    <Content Include="Views\PrivateOffice\Studios.cshtml" />
+    <Content Include="Views\Administrator\EverydayCreate.cshtml" />
+    <Content Include="Views\News\_NewsItem.cshtml" />
+    <Content Include="Views\Lottery\_LottGJ.cshtml" />
+    <Content Include="Views\Lottery\_LottUser.cshtml" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Views\Account\ForgotPass.cshtml" />
+    <Content Include="Views\Account\NewPass.cshtml" />
+    <Content Include="Views\Error\ServerDontWork.cshtml" />
+    <Content Include="Views\Lottery\_ChatMessageLottery.cshtml" />
+    <Content Include="Views\PrivateOffice\_DialogMessage.cshtml" />
+    <Content Include="Views\Lottery\_LocalLimiter.cshtml" />
+    <Content Include="Views\Shared\_Loader.cshtml" />
+    <Content Include="Views\Administrator\AddVideo.cshtml" />
+    <Content Include="Views\Administrator\_UsersList.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Content\style\images\Advert\Normal\" />
+    <Folder Include="Content\style\images\Advert\Reduced\" />
+    <Folder Include="Content\style\images\teamp\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>60419</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:60419/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost:60419/</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.1.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

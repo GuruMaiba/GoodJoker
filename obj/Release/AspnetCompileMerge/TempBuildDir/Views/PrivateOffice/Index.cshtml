@@ -1,0 +1,286 @@
+﻿@using GoodJoker.Models
+@model MainLK
+@{
+    ViewBag.Title = "Личный кабинет";
+    Layout = "~/Views/Shared/_PrivateOfficeLayout.cshtml";
+    var url = "https://goodjoker.ru/Main/Joker/" + User.Identity.GetUserId<string>();
+}
+
+@section Modal {
+    <div class="modalBody">
+        <div class="modalWindow modalComplaint">
+            <h2>Жалоба</h2>
+            <span>
+                Благодарим Вас за желание помочь нам отслеживать нарушителей правил сайта.
+                Для заявки просим Вас описать нам, что именно Вас возмутило в том, на что Вы жалуетесь.
+                Если вы хотите быть в курсе нашей работы по вашей жалобе, тогда активируйте переключатель "Получить ответ".
+            </span>
+            <form class="formComplaint">
+                <input name="Id" type="hidden" value="0" />
+                <input name="Everyday" type="hidden" value="false" />
+                <textarea name="Text" placeholder="Опишите нарушение или ошибки, которые Вы заметили..."></textarea>
+                <div class="inputBlock">
+                    <input id="Reply" type="checkbox" name="Reply" value="true" /> <label for="Reply">Получить ответ</label>
+                </div>
+            </form>
+            <button class="btn sendComplaint">Отправить</button>
+            <div class="modalClose"><i class="icon-cancel"></i></div>
+        </div>
+    </div>
+}
+
+<div class="mainOffice">
+
+    @if (Model.EverydayPrize.Count > 0)
+    {
+        foreach (var prize in Model.EverydayPrize)
+        {
+            var title = $"Главный приз \"{prize.Prize}\" теперь мой";
+            var desc = $"{prize.Prize} в ежедневном розыгрыше от {prize.Lottery.FromWhom}, теперь мой! GoodJoker.ru благодарю!";
+            <div prizeId="@prize.Id" class="notice evr" style="background-image: url('../../Content/style/images/Everyday/Reduced/@prize.Lottery.Cover')">
+                <div class="blackout">
+                    <div class="text">
+                        <h1>ВЫ ВЫЙГРАЛИ!</h1>
+                        <div class="desc">
+                            В ежедневном розыгрыше "@prize.Prize", от @prize.Lottery.FromWhom. Вы стали победителем.<br />
+                            Рассказать друзьям: <br class="hidden-lg hidden-md hidden-sm" />
+                            <a href="https://vk.com/share.php?url=@url&title=@title&description=@desc&image=https://goodjoker.ru/Content/style/images/Users/Avatars/Normal/1" target="_blank"><i class="icon-vk"></i></a>
+                            <a href="http://www.facebook.com/sharer.php?u=@url&t=@title" target="_blank"><i class="icon-facebook"></i></a>
+                            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=@desc&st._surl=@url" target="_blank"><i class="icon-odnoklassniki"></i></a>
+                            <a href="https://plus.google.com/share?url=@url" target="_blank"><i class="icon-google-plus"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=@url&text=@title" target="_blank"><i class="icon-twitter"></i></a>
+                        </div>
+                        <div class="noPrize">Не получили приз? Организатор розыгрыша не связывается с Вами? <span class="complaint">Напишите Нам</span></div>
+                    </div>
+                    <div class="close"><i class="icon-cancel"></i></div>
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.LottPrize.Count > 0)
+    {
+        foreach (var prize in Model.LottPrize)
+        {
+            var title = $"Приз \"{prize.Name}\" теперь мой";
+            var desc = $"Приз {prize.Name}, в розыгрыше \"{prize.Lottery.Title}\", от студии {prize.Lottery.Studio.Name}, теперь мой! GoodJoker.ru благодарю!";
+            <div prizeId="@prize.Id" class="notice" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@prize.Lottery.Cover')">
+                <div class="blackout">
+                    <div class="text">
+                        <h1>ВЫ ВЫЙГРАЛИ!</h1>
+                        <div class="desc">
+                            В розыгрыше "@prize.Lottery.Title", от студии @prize.Lottery.Studio.Name. Вы заняли @prize.Place место и выйграли приз - @prize.Name.<br />
+                            Рассказать друзьям: <br class="hidden-lg hidden-md hidden-sm" />
+                            <a href="https://vk.com/share.php?url=@url&title=@title&description=@desc&image=https://goodjoker.ru/Content/style/images/Lotteries/@(prize.Lottery.Id).jpg" target="_blank"><i class="icon-vk"></i></a>
+                            <a href="http://www.facebook.com/sharer.php?u=@url&t=@title" target="_blank"><i class="icon-facebook"></i></a>
+                            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=@desc&st._surl=@url" target="_blank"><i class="icon-odnoklassniki"></i></a>
+                            <a href="https://plus.google.com/share?url=@url" target="_blank"><i class="icon-google-plus"></i></a>
+                            <a href="http://twitter.com/intent/tweet?url=@url&text=@title" target="_blank"><i class="icon-twitter"></i></a>
+                        </div>
+                        <div class="noPrize">Не получили приз? Организатор розыгрыша не связывается с Вами? <span class="complaint">Напишите Нам</span></div>
+                    </div>
+                    <div class="close"><i class="icon-cancel"></i></div>
+                </div>
+            </div>
+        }
+    }
+
+    @if (Model.LottRefresh.Count > 0)
+    {
+        foreach (var refresh in Model.LottRefresh)
+        {
+            <div prizeId="@refresh.Prize.Id" class="notice" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@refresh.Prize.Lottery.Cover')">
+                <div class="blackout">
+                    <div class="text">
+                        <h1>Вы стали победителем, но Вас перевыбрали!</h1>
+                        <div class="desc">
+                            В розыгрыше "@refresh.Prize.Lottery.Title", от студии @refresh.Prize.Lottery.Studio.Name. Вы заняли @refresh.Prize.Place место и претендовали на приз - @refresh.Prize.Name.<br />
+                            Но организатор розыгрыша решил, что вы не выполнили его условия. Объяснение организатора:<br />
+                            @refresh.Explanatory
+                        </div>
+                        <div class="noPrize">
+                            Считаете Вашу замену не справедливой? <span class="complaint">Напишите Нам</span>.
+                            Для скорейшего рассмотрения Вашей заявки, можете написать в службу поддержки или в нашы группы из соц.сетей (в специальных темах)!
+                        </div>
+                    </div>
+                    <div class="close"><i class="icon-cancel"></i></div>
+                </div>
+            </div>
+        }
+    }
+    
+    @*@if (Model.HaveReview)
+    {
+        <div class="reviewUser">
+            <div class="sendReview"><i class="icon-email-plane"></i></div>
+            <div class="title"><h1><span>Отзыв о проекте</span></h1></div>
+            <textarea class="textareaHolding" name="reviewText" placeholder="Вы выйграли в одном из розыгрышей, просим оставить Ваш отзыв о нашем проекте. Самые красочные и эмоциональные попадут в ленту на главной странице! С благодарностью GoodJoker."></textarea>
+        </div>
+    }*@
+
+    @HelperAdvert.ViewAdvert(null)
+
+    <div class="lotteriesUser">
+
+        <div class="title"><h1><span>Мои розыгрыши</span></h1></div>
+        @if (Model.Lott.Count > 0)
+        {
+            foreach (var lott in Model.Lott)
+            {
+                var id = User.Identity.GetUserId<int>();
+                var up = (lott.Fingers.FirstOrDefault(f => f.User.Id == id && f.UpOrDown) != null) ? "fingerLike" : "";
+                var down = (lott.Fingers.FirstOrDefault(f => f.User.Id == id && !f.UpOrDown) != null) ? "fingerDislike" : "";
+                up = (down == "fingerDislike") ? "fingerOff" : up;
+                down = (up == "fingerLike") ? "fingerOff" : down;
+                <div class="lottery" id="@lott.Id">
+                    <a href="/Lottery/Details/@lott.Id" class="header">
+                        <div class="name">
+                            @lott.Title &nbsp;
+                            @if (lott.CountUserForLottery > 0)
+                            {<i class="icon-user hidden-xs"> @lott.CountUserForLottery</i>}
+                            else
+                            {<i class="icon-calendar hidden-xs"> @lott.DateLottery.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</i>}
+                        </div>
+                    </a>
+                    <div class="status hidden-xs">@lott.OddsFingers</div>
+                    <div class="finger up @up"><i class="icon-thumbs-o-up"></i></div>
+                    <div class="finger down @down"><i class="icon-thumbs-o-down"></i></div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="default">Вы не принимаете участия ни в одном розыгрыше? <a href="/Lottery">Станьте участником прямо сейчас...</a></div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            // Модальное окно
+            // -------------------------------------------
+
+            // Закрытие
+            $(".modalClose").click(function () {
+                closeModal();
+            });
+
+            $(".modalBody").click(function (e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+
+            // Открытие
+            $(".complaint").click(function () {
+                var evr = ($(this).parents(".notice").hasClass("evr")) ? true : false;
+                $(".formComplaint input[name='Id']").val($(this).parents(".notice").attr("prizeId"));
+                $(".formComplaint input[name='Everyday']").val(evr);
+                $(".modalBody").css("display", "flex");
+                $(".modalComplaint").fadeIn(0).addClass("fadeInDown");
+            });
+
+            // отправка жалобы
+            $(".sendComplaint").click(function () {
+                if ($(".formComplaint textarea[name='Text']").val().length > 0) {
+                    var data = $(".formComplaint").serialize();
+                    closeModal();
+                    $(".formComplaint input[name='Id']").val(0);
+                    $(".formComplaint input[name='Everyday']").val("false");
+                    $(".formComplaint textarea[name='Text']").val("");
+                    $.ajax({
+                        url: "/PrivateOffice/Complaint",
+                        type: "POST",
+                        data: data,
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            $(".notice .close").click(function () {
+                var notice = $(this).parents(".notice");
+                notice.slideUp();
+                var id = notice.attr("prizeId");
+                var evr = (notice.hasClass("evr")) ? true : false;
+                $.ajax({
+                    url: "/PrivateOffice/CloseNotice",
+                    type: "POST",
+                    data: {
+                        PrizeId: id,
+                        Everyday: evr
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            $(".sendReview").click(function () {
+                var text = $("textarea[name='reviewText']").val();
+                $(".reviewUser").slideUp();
+                if (text != "") {
+                    $.ajax({
+                        url: "/Main/AddAssess",
+                        type: "POST",
+                        data: {
+                            Text: text
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            $(".finger").click(function () {
+                var th = $(this);
+                var lott = th.parent().attr("id");
+                var like = (th.hasClass("up")) ? true : false;
+                var status = parseInt(th.siblings(".status").text());
+
+                var fingerClass = (like) ? "fingerLike" : "fingerDislike";
+                var rName = (like) ? ".down" : ".up";
+                var rClass = (like) ? "fingerDislike" : "fingerLike";
+
+                if (!th.hasClass("disable")) {
+
+                    th.addClass("disable");
+
+                    if (th.hasClass(fingerClass)) {
+                        th.removeClass(fingerClass);
+                        th.siblings(rName).removeClass("fingerOff");
+                        status = (like) ? status - 1 : status + 1;
+                    } else if (th.hasClass("fingerOff")) {
+                        th.removeClass("fingerOff").addClass(fingerClass);
+                        th.siblings(rName).removeClass(rClass).addClass("fingerOff");
+                        status = (like) ? status + 2 : status - 2;
+                    } else {
+                        th.addClass(fingerClass);
+                        th.siblings(rName).addClass("fingerOff");
+                        status = (like) ? status + 1 : status - 1;
+                    }
+                    th.siblings(".status").text(status);
+
+                    $.ajax({
+                        url: "/Lottery/FingerLottery",
+                        type: "POST",
+                        data: {
+                            LotteryId: lott,
+                            UpOrDown: like
+                        },
+                        success: function () {
+                            th.removeClass("disable");
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+    }

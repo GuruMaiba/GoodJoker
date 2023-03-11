@@ -1,0 +1,289 @@
+﻿@using GoodJoker.Models
+@model EverydayLott
+@{
+    Layout = null;
+    var desc = (Model.Description != null && Model.Description != "") ? Model.Description :
+        $"Ежедневно проводится розыгрыш от {Model.FromWhom}, где у Вас есть возможность испытавать удачу в погоне за призом - {Model.Prize}.";
+    if (desc.Length > 140)
+    { desc = desc.Substring(0, 137) + "..."; }
+    var dateLott = Model.Holding;
+    var monthInc = 0;
+    ViewBag.MetaImg = $"";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@desc" />
+    <meta name="keywords" content="goodjoker, ежедневные розыгрыши, бесплатные розыгрыши, выйграть в лотерею, @Model.Prize" />
+
+    <title>Ежедневный розыгрыш @Model.Prize | GoodJoker</title>
+
+    <!-- Открытые данные графа -->
+    <meta property="og:title" content="Ежедневный розыгрыш @Model.Prize | GoodJoker" />
+    <meta property="og:url" content="https://goodjoker.ru/News/Details/@Model.Id" />
+    <meta property="og:image" content="https://goodjoker.ru/Content/style/images/Everyday/Normal/@Model.Cover" />
+    <meta property="og:description" content="@desc" />
+    <meta property="og:site_name" content="GoodJoker" />
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Site.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+</head>
+<body>
+    @Html.Partial("_Preloader")
+
+    <div class="everyDay">
+        <div class="header" style="background-image: url('../../Content/style/images/Everyday/Normal/@Model.Cover')">
+            <div class="content">
+                <div class="name">@Model.Prize</div>
+                <div class="company">от @Model.FromWhom</div>
+            </div>
+        </div>
+        <main class="container">
+            <div class="top">
+                <div class="btnViewWinner" dateWin="@Model.Holding.ToString("dd.MM.yyyy HH:mm")">Показать победителя</div>
+                <div class="nowWinner"><a href="/Main/Joker/1"><img src="../../Content/style/images/logo.jpg" /> GoodJoker</a></div>
+                <div class="clock">
+                    <ul>
+                        <li id="hours">00</li>
+                        <li class="point">:</li>
+                        <li id="min">00</li>
+                        <li class="point">:</li>
+                        <li id="sec">00</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="center">
+                <div class="navbar">
+                    <div class="likes"><i class="@if (Model.Likes.FirstOrDefault(l => l.Id == User.Identity.GetUserId<int>()) == null) {<text>icon-heart-o</text>} else {<text>icon-heart</text>} like"></i> <span class="countLike">@Model.Likes.Count</span></div>
+                    <div class="addParticipant">
+                        <i class="icon-user"></i> <span class="countUser">@Model.Participants.Count</span>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            var userId = User.Identity.GetUserId<int>();
+
+                            if (Model.Participants.FirstOrDefault(u => u.Id == userId) == null)
+                            {<div class="becomeMember add">Принять участие</div>}
+                            else
+                            {<div class="becomeMember del">Не учавствовать</div>}
+                        }
+                        else
+                        {
+                            <div class="becomeMember disable"><a href="/Main/Auth">Принять участие</a></div>
+                        }
+
+                    </div>
+                </div>
+                @if (Model.Description != null || Model.Description != "")
+                {
+                    <div class="description">
+                        <div class="title"><h1><span>Описание</span></h1></div>
+                        <div class="content">@Model.Description</div>
+                    </div>
+                }
+                @if (Model.Winners.FirstOrDefault(w => w.HoldingLott < DateTime.UtcNow) != null)
+                {
+                    <div class="winner">
+                        <div class="title"><h1><span>Победители</span></h1></div>
+                        <div class="prizes">
+                            @for (int i = DateTime.Now.Year; i >= 2017; i--)
+                            {
+                                <div class="year">@i</div>
+                                <div id="year-@i">
+                                    @for (int j = 12; j >= 1; j--)
+                                    {
+                                        var winners = Model.Winners.Where(w => w.HoldingLott.Year == i && w.HoldingLott.Month == j && w.Winner != null).OrderByDescending(w => w.HoldingLott);
+
+                                        if (winners.Count() > 0)
+                                        {
+                                            <div class="mounth" inc="@monthInc">@winners.First().HoldingLott.ToString("MMMM")</div>
+                                            <div id="mounth-@monthInc">
+                                                @foreach (var winner in winners)
+                                                {
+                                                    <div class="prize">
+                                                        <div class="day">@winner.HoldingLott.ToString("dd")</div>
+                                                        <div class="name">@winner.Prize - <a href="/Main/Joker/@winner.Winner.Id"><img src="~/Content/style/images/Users/Avatars/Reduced/@winner.Winner.Option.Ava" class="hidden-xs" /> @winner.Winner.Nick</a></div>
+                                                    </div>
+                                                }
+                                            </div>
+                                            ++monthInc;
+                                        }
+                                    }
+                                </div>
+                            }
+                        </div>@* end prizes *@
+                    </div>@* end winner *@
+                }
+            </div>
+        </main>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/startup")
+    <script type="text/javascript">
+        var lottId = @Model.Id;
+        $(window).on("load", function () {
+            $('#bgPreloader').fadeOut("slow");
+        });
+
+        $(document).ready(function () {
+            $(".becomeMember").click(function () {
+                var btn = $(this);
+                if (!btn.hasClass("disable")) {
+                    btn.addClass("disable");
+                    $.ajax({
+                        url: "/Lottery/ParticipateEveryday",
+                        type: "POST",
+                        data: {
+                            Id: lottId
+                        },
+                        success: function (data) {
+                            if (data == "1") {
+                                var countUser = $(".countUser").text();
+
+                                if (btn.hasClass("add")) {
+                                    btn.removeClass("add").addClass("del");
+                                    $(".becomeMember").text("Не учавствовать");
+                                    ++countUser;
+                                } else {
+                                    btn.removeClass("del").addClass("add");
+                                    $(".becomeMember").text("Принять участие");
+                                    --countUser;
+                                }
+
+                                $(".countUser").text(countUser);
+                            } else {
+                                console.log("Нет ID ск...");
+                            }
+                            btn.removeClass("disable");
+                        },
+                        error: function () {
+                            globalError();
+                            btn.removeClass("disable");
+                        }
+                    });
+                }
+            });
+
+            $(".like").click(function () {
+                var like = $(this);
+                if (!like.hasClass("disable")) {
+                    like.addClass("disable");
+                    if (like.hasClass("icon-heart")) {
+                        like.removeClass("icon-heart").addClass("icon-heart-o");
+                        $(".countLike").text(parseInt($(".countLike").text()) - 1);
+                    } else if (like.hasClass("icon-heart-o")) {
+                        like.removeClass("icon-heart-o").addClass("icon-heart");
+                        $(".countLike").text(parseInt($(".countLike").text()) + 1);
+                    }
+                    $.ajax({
+                        url: "/Lottery/EverydayLike",
+                        type: "POST",
+                        data: {
+                            LotteryId: lottId
+                        },
+                        success: function (data) {
+                            like.removeClass("disable");
+                            if (data == "0") { console.log("Нет ID ск..."); }
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+
+            $(".year").click(function () {
+                $("#year-" + $(this).text()).slideToggle();
+            });
+
+            $(".mounth").click(function () {
+                $("#mounth-" + $(this).attr("inc")).slideToggle();
+            });
+
+            $(".btnViewWinner").click(function () {
+                $(this).fadeOut(0);
+                var date = $(this).attr("dateWin");
+                $.ajax({
+                    url: "/Lottery/GetWinnerEveryday",
+                    type: "POST",
+                    data: {
+                        LottId: lottId,
+                        DateWin: date
+                    },
+                    success: function (data) {
+                        if (data != "0") {
+                            var split = data.split(';');
+                            $(".nowWinner").html(`<a href="/Main/Joker/${split[0]}"><img src="../../Content/style/images/Users/Avatars/Normal/${split[2]}" /> ${split[1]}</a>`);
+                            $(".nowWinner").fadeIn(0);
+                        } else {
+                            location.reload();
+                        }
+                    },
+                    error: function () {
+                        globalError();
+                    }
+                });
+            });
+
+            // Создаем объект newDate()
+            // new Date(year, month[, day[, hour[, minute[, second[, millisecond]]]]]);
+            var dateLottery = new Date(@dateLott.Year, @(dateLott.Month - 1), @dateLott.Day, @dateLott.Hour, @dateLott.Minute, 0);
+            // текущая дата по гринвичу
+            var nowUTC = new Date(@DateTime.UtcNow.Year, @(DateTime.UtcNow.Month - 1), @DateTime.UtcNow.Day, @DateTime.UtcNow.Hour, @DateTime.UtcNow.Minute, @DateTime.UtcNow.Second);
+            // локальная дата
+            var dateNow = new Date();
+            // разница дат в гринвиче
+            var dateOdds = dateLottery.getTime() - nowUTC.getTime();
+
+            // "Достаем" текущую дату из объекта Date
+            dateLottery.setDate(dateLottery.getDate());
+            // Получаем разницу часовых поясов
+            var GMT = dateNow.getHours() - dateNow.getUTCHours();
+            // прибавляем к часам разницу...
+            var hour = dateLottery.getHours() + GMT;
+            var min = dateLottery.getMinutes();
+
+            var dateLotteryInterval = setInterval(function () {
+
+                // Текущая дата
+                dateNow = new Date();
+                // Разница даты текущей и даты проведения
+                dateOdds = dateLottery.getTime() - dateNow.getTime();
+
+                if (dateOdds > 0) {
+                    // Вычисляем количество каждой еденицы
+                    var hours = dateOdds / (3600 * 1000) | 0;
+                    var minutes = ((dateOdds % (24 * 3600 * 1000)) % (3600 * 1000)) / (60 * 1000) | 0;
+                    var seconds = (((dateOdds % (24 * 3600 * 1000)) % (3600 * 1000)) % (60 * 1000)) / 1000 | 0;
+
+                    // Добавляем ноль в начало цифры, которые до 10
+                    $("#sec").html((seconds < 10 ? "0" : "") + seconds);
+                    $("#min").html((minutes < 10 ? "0" : "") + minutes);
+                    $("#hours").html((hours < 10 ? "0" : "") + hours);
+                } else {
+                    // Выставляем везде 00
+                    $("#sec").html("00");
+                    $("#min").html("00");
+                    $("#hours").html("00");
+                    // очищаем интервал
+                    clearInterval(dateLotteryInterval);
+                    // скрываем часы
+                    $(".clock").fadeOut(0);
+                    // Открываем кнопку показа победителя
+                    $(".btnViewWinner").fadeIn(0);
+                }
+
+            }, 1000);
+
+            window.onbeforeunload = function () { $('#bgPreloader').fadeIn("slow"); }
+        });
+    </script>
+
+</body>
+</html>

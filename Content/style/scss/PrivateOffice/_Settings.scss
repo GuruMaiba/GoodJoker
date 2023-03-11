@@ -1,0 +1,557 @@
+/*
+ * Настройки
+ * -----------------------------
+ */
+
+.settings {
+    position: relative;
+    padding: 20px 0;
+    box-shadow: 0 0 40px 5px #000;
+
+    .row {
+        margin: 0 0 60px 0;
+    }
+
+    .profileLK {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        height: auto;
+        margin: 50px 0;
+        padding: 0 10px;
+
+        .nickAva {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            text-align: center;
+            width: 40%;
+            height: auto;
+            margin: 0 100px 0 0;
+        }
+
+        .nick {
+            position: relative;
+            width: 100%;
+            margin: 20px 0 0 0;
+        }
+    }
+
+    .ava {
+        position: relative;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        -webkit-border-radius: 100px;
+        -moz-border-radius: 100px;
+        border-radius: 100px;
+        overflow: hidden;
+        box-shadow: 0 0 15px 0px #119298;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+
+        .inputfile {
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+
+            & + label {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                font-size: 70px;
+                cursor: pointer;
+                opacity: 0.4;
+                margin: 0;
+                -webkit-border-radius: 100px;
+                -moz-border-radius: 100px;
+                border-radius: 100px;
+                background: #119298;
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+        // end inputfile
+    }
+    // end ava
+    .crossPhoto {
+        display: none;
+        text-align: center;
+        width: 95%;
+        margin: 40px auto 0 auto;
+        padding: 30px;
+        box-shadow: #000 0px 0px 20px 5px inset;
+
+        .crossPhotoImg {
+            margin: 0 auto;
+            width: 100%;
+            box-shadow: #000 0px 0px 10px 0;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        %crossPhotoBtn {
+            cursor: pointer;
+            display: inline-block;
+            font-size: 25px;
+            padding: 10px 50px;
+            margin: 20px 20px 0 20px;
+            border-radius: 5px;
+            box-shadow: #000 0 0 20px 0;
+            transition: all .3s ease;
+        }
+
+        .cancel {
+            @extend %crossPhotoBtn;
+            background: #CC0000;
+
+            &:hover {
+                box-shadow: #CC0000 0 0 20px 0;
+            }
+        }
+
+        .clip {
+            @extend %crossPhotoBtn;
+            background: #009900;
+
+            &:hover {
+                box-shadow: #009900 0 0 20px 0;
+            }
+        }
+    }
+    // end crossPhoto
+    .name {
+        position: relative;
+        width: 50%;
+
+        div {
+            position: relative;
+            display: block;
+            width: 100%;
+            margin: 40px 0 0 0;
+        }
+    }
+
+    .name .input, .pass .input,
+    .bigCity .input, .birthday .input,
+    .birthmounth .input, .birthyear .input {
+        font-size: 25px;
+    }
+
+    .name .inputLable, .nick .inputLable,
+    .pass .inputLable, .bigCity .inputLable,
+    .birthday .inputLable, .birthmounth .inputLable,
+    .birthyear .inputLable {
+        font-size: 20px;
+        left: 10px;
+    }
+
+    .inputLable .error {
+        color: #CC0000;
+    }
+
+    .deffence {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        margin: 50px 0;
+        padding: 0 10px;
+    }
+
+    .unique {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        margin: 0 0px 0 0;
+    }
+
+    .unique div, .pass div {
+        position: relative;
+        width: 100%;
+        margin: 40px 0 0 0;
+    }
+
+    .pass {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        width: 40%;
+    }
+
+    .searchCity {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        margin: 70px 0;
+    }
+
+    .address {
+        position: relative;
+        margin: 30px auto;
+        width: 90%;
+    }
+
+    .searchCity {
+        .city {
+            position: relative;
+            width: 50%;
+        }
+
+        .citiesList {
+            display: none;
+            position: absolute;
+            width: 100%;
+            background: #131315;
+            z-index: 993;
+            border: 1px solid #1adce4;
+            border-top: 0;
+            color: #1adce4;
+
+            .cityItem {
+                font-size: 15px;
+                width: 100%;
+                padding: 10px 15px;
+                border-bottom: 1px solid #1adce4;
+                transition: all .3s ease;
+
+                .info {
+                    font-size: 20px;
+
+                    .name {
+                        font-size: 25px;
+                    }
+                }
+
+                &.addCity {
+                    border-bottom: 0;
+                    font-size: 18px;
+                    padding: 20px 15px;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                    color: #fff;
+                    background: #119298;
+                }
+            }
+        }
+
+        .bigCity {
+            position: relative;
+            width: 30%;
+        }
+    }
+
+    .titleMap {
+        cursor: pointer;
+        font-size: 20px;
+        padding: 5px 15px;
+    }
+
+    .map {
+        width: 100%;
+        height: 500px;
+        opacity: 0.6;
+        margin: 0 0 50px 0;
+        background: #119298;
+    }
+
+    .born {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        margin: 50px 0 0 0;
+    }
+
+    $activeCol: $mainColor2;
+
+    %dateGenSoc {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+        font-size: 17px;
+        margin: 0 50px 0 0;
+    }
+
+    .bornDate {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 10px 0 0 0;
+    }
+
+    .blockDate {
+        @extend %dateGenSoc;
+        width: 20%;
+        justify-content: flex-start;
+
+        div {
+            position: relative;
+            width: 100%;
+        }
+
+        span.active {
+            color: $activeCol;
+        }
+    }
+
+    .gender {
+        @extend %dateGenSoc;
+        width: 10%;
+
+        .select {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            text-align: center;
+
+            .man, .woman {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-content: center;
+                text-align: center;
+                font-size: 15px;
+
+                &.active {
+                    color: $activeCol;
+                }
+            }
+
+            .man {
+                margin: 0 20px 0 0;
+            }
+        } // end select
+    } // end gender
+
+    .social {
+        @extend %dateGenSoc;
+        width: 30%;
+        
+        .bindSocial {
+            display: flex;
+            justify-content: space-around;
+            align-content: center;
+            text-align: center;
+            font-size: 20px;
+            width: 100%;
+
+            &.active {
+                color: $activeCol;
+            }
+        }
+    }
+    
+    .titleBorn {
+        margin: 10px 0 0 0;
+
+        &.active {
+            color: $activeCol;
+        }
+    } // end titleBorn
+
+    .save {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        font-size: 20px;
+        padding: 15px 100px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        border-radius: 10px;
+        background: #119298;
+        transition: all 0.6s ease;
+
+        &:hover {
+            cursor: pointer;
+            opacity: 0.7;
+        }
+    }
+
+    // fixed: no function...
+    .delete {
+        display:none;
+        position: absolute;
+        bottom: 20px;
+        left: 20px;
+        font-size: 15px;
+    }
+} // end settings
+
+@media screen and (max-width: 1000px) {
+    .settings {
+        .profileLK {
+            flex-direction: column;
+
+            .nickAva {
+                width: 70%;
+                margin: 0;
+            }
+        }
+
+        .name {
+            width: 70%;
+        }
+
+        .deffence {
+            flex-direction: column;
+            margin: 0;
+        }
+
+        .unique {
+            width: 70%;
+        }
+
+        .pass {
+            width: 70%;
+        }
+
+        .searchCity {
+            flex-direction: column;
+            width: 70%;
+            margin: 30px auto;
+            padding: 0 10px;
+
+            .city {
+                width: 100%;
+            }
+
+            .bigCity {
+                width: 100%;
+                margin: 20px 0 0 0;
+            }
+        }
+
+        .born {
+            flex-direction: column;
+            align-items: center;
+            margin: 0px 0 0 0;
+        }
+
+        .blockDate, .gender, .social {
+            flex-direction: column;
+            justify-content: flex-end;
+            font-size: 17px;
+            width: 70%;
+            margin: 30px 0px 0 0;
+        }
+    } // end settings
+} // end media 1000
+
+@media screen and (max-width: 767px) {
+    .settings {
+
+        .name, .nick, .pass, .otherSettings, .unique,
+        .birthday, .birthmounth, .birthyear {
+            .input {
+                font-size: 20px;
+
+                &:focus ~ .inputLable, &:valid ~ .inputLable {
+                    font-size: 15px;
+                    top: -10px;
+                }
+            }
+
+            .inputLable {
+                font-size: 15px;
+                left: 10px;
+                top: 15px;
+            }
+        }
+
+        .ava {
+            width: 150px;
+            height: 150px;
+
+            .inputfile + label { font-size: 50px; }
+        }
+
+        .profileLK .nickAva, .name,
+        .unique, .pass,
+        .searchCity {
+            width: 100%;
+        }
+
+        .searchCity .city .citiesList .cityItem {
+            font-size: 13px;
+            .info { font-size: 15px; }
+            .name { font-size: 18px; }
+            &.addCity { font-size: 15px; }
+        }
+
+        .address {
+            padding: 0 10px;
+            width: 100%;
+        }
+
+        .titleMap {
+            font-size: 16px;
+            padding-bottom: 10px;
+        }
+
+        .map {
+            display: none;
+            height: 300px;
+        }
+
+        .blockDate, .gender, .social {
+            font-size: 15px;
+            width: 90%;
+            margin: 30px 0px 0 0;
+        }
+
+        .gender .man, .gender .woman {
+            font-size: 13px;
+        }
+
+        .bindSocial {
+            font-size: 15px;
+        }
+
+        .save {
+            position: absolute;
+            bottom: 0px;
+            right: 0px;
+            width: 100%;
+            padding: 20px 0;
+            -webkit-border-radius: 0px;
+            -moz-border-radius: 0px;
+            border-radius: 0px;
+            text-align: center;
+        }
+
+        .unique div, .pass div, .name div {
+            margin: 30px 0 0 0;
+        }
+    } // end settings
+} // end media 767
+
+/*
+ * ------------------------------
+ * Настройки
+ */

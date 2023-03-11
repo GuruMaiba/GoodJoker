@@ -1,0 +1,59 @@
+﻿@using GoodJoker.Models
+@model ICollection<CommentNews>
+
+@if (Model.Count > 0)
+{
+    var i = 1;
+    List<CommentNews> allComments = ViewBag.allComments;
+    foreach (var comment in Model)
+    {
+        CommentNews reply = null;
+        if (comment.ReplyId != 0)
+        {
+            reply = allComments.FirstOrDefault(c => c.Id == comment.ReplyId);
+        }
+        <div id="comment-@comment.Id" class="comment @if (Model.Count == i && ViewBag.last == '1') {<text>last</text>} ">
+
+            <img src="~/Content/style/images/Users/Avatars/Reduced/@comment.Author.Option.Ava" />
+
+            <div class="commentHeader">
+                <a href="/Main/Joker/@comment.Author.Id">@comment.Author.Nick</a>
+                @if (comment.Author.Role.Name == "Admin") {<i>- Администратор</i>}<br />
+                <i>@comment.DateCreate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</i>
+            </div>
+
+            @if (reply != null)
+            {
+                <div class="respondsTo">
+                    <div class="quote"><i class="icon-quote-right"></i></div>
+                    <img class="hidden-xs" src="~/Content/style/images/Users/Avatars/Reduced/@reply.Author.Option.Ava" />
+                    <div class="header">
+                        <a href="/Main/Joker/@reply.Author.Id">@reply.Author.Nick</a> @if (reply.Author.Role.Name == "Admin")
+                        {<i>- Администратор</i>}<br />
+                        <i>@reply.DateCreate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</i>
+                    </div>
+                    <div class="text">@reply.Text</div>
+                </div>
+            }
+
+            <div class="text"> @if (reply != null)
+            {<span>@reply.Author.Nick,</span><br />}@comment.Text</div>
+
+            <div class="reply" commentId="@comment.Id">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <i class="icon-reply addReply" title="Ответить" authorNick="@comment.Author.Nick"></i><text>&nbsp;</text>
+                    <i class="icon-bug complaintComment"></i>
+                }
+                @if (User.Identity.GetUserRole() == "Admin")
+                {
+                    <text>&nbsp;&nbsp;</text>
+                    <i class="icon-pencil-1 editComment" title="Редактировать"></i>
+                    <i style="color: #CC0000;" class="icon-cancel delComment" title="Удалить"></i>
+                }
+            </div>
+
+        </div>
+        ++i;
+    }
+}

@@ -1,0 +1,58 @@
+%listCity {
+    .listCity {
+        position: absolute;
+        display: none;
+        width: 100%;
+        color: #1adce4;
+        border-top: 1px solid #1adce4;
+        background: #131315;
+        z-index: 5;
+
+        .cityItem {
+            font-size: 15px;
+            padding: 10px 30px;
+            background: rgba(13, 150, 158, 0.1);
+
+            &.addCity {
+                font-size: 20px;
+                padding: 20px 30px;
+            }
+
+            &:hover {
+                cursor: pointer;
+                background: rgba(13, 150, 158, 0.4);
+            }
+
+            .info {
+                font-size: 20px;
+                .name { font-size: 25px; }
+            }
+        }
+    }
+
+    .listAddCity {
+        margin-top: 30px;
+
+        .cityItem {
+            font-size: 20px;
+            color: #1adce4;
+            margin-top: 15px;
+
+            .delCity {
+                color: #CC0000;
+
+                &:hover {
+                    cursor: pointer;
+                    opacity: 0.8;
+                }
+            }
+
+            .info {
+                font-size: 20px;
+                color: #fff;
+
+                .name { font-size: 30px; }
+            }
+        }
+    }
+}

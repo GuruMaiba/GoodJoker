@@ -1,0 +1,217 @@
+﻿@using GoodJoker.Models
+@model AllLotteries
+@{
+    ViewBag.Title = "Бесплатные розыгрыши | GoodJoker";
+    ViewBag.Description = $"Количество активных розыгрышей: {Model.AllCountGJ + Model.AllCountUser}. На этой странице у Вас есть возможность испытать свою удачу и получить предмет своей мечты...";
+    ViewBag.URL = "https://goodjoker.ru/Lottery/";
+    ViewBag.MetaImg = $"https://goodjoker.ru/Content/style/images/ok/1280.jpg";
+    ViewBag.KeyWords = "бесплатные розыгрыши, раздачи призов, создать розыгрыш, продвижение проекта, учавствовать в розыгрыше, получить приз, выйграть в лотерею";
+}
+
+<div class="container bodyLottery">
+
+    @if (Model.EndLott.Count > 0)
+    {
+        <div class="title"><h1><span>Завершённые</span></h1></div>
+        var remove = new List<Lottery>();
+        var i = 0;
+        foreach (var lott in Model.EndLott)
+        {
+            var firstPlace = lott.Prizes.FirstOrDefault(p => p.Place == 1);
+            var nick = (firstPlace.Winner != null && firstPlace.Confirm) ? firstPlace.Winner.Nick : "Не разыгран";
+            <a href="/Lottery/Details/@lott.Id" class="endLott">
+                <div class="bg" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@lott.Cover');">
+                    <div class="blackout">
+                        <div class="nameEndLott">@lott.Title</div>
+                        <div class="winner">@nick - @firstPlace.Name</div>
+                    </div>
+                </div>
+            </a>
+            ++i;
+            if (i == 3) { break; }
+        }
+        <div class="viewAllEnd">Показать все</div>
+        <div class="allEndLott">
+            @{ i = 0; }
+            @foreach (var lott in Model.EndLott)
+            {
+                if (i > 3)
+                {
+                    var firstPlace = lott.Prizes.FirstOrDefault(p => p.Place == 1);
+                    var nick = (firstPlace.Winner != null && firstPlace.Confirm) ? firstPlace.Winner.Nick : "Не разыгран";
+                    <a href="/Lottery/Details/@lott.Id" class="endLott">
+                        <div class="bg" style="background-image: url('../../Content/style/images/Lotteries/Reduced/@lott.Cover');">
+                            <div class="blackout">
+                                <div class="nameEndLott">@lott.Title</div>
+                                <div class="winner">@nick - @firstPlace.Name</div>
+                            </div>
+                        </div>
+                    </a>
+                }
+                ++i;
+            }
+        </div>
+    }
+
+    @if (Model.Everyday.Count > 0)
+    {
+        <div class="title"><h1><span>Ежедневные</span></h1></div>
+
+        foreach (var lott in Model.Everyday)
+        {
+            <a href="/Lottery/Everyday/@lott.Id" class="everyDayLott">
+                <div class="bg" style="background-image: url('../../Content/style/images/Everyday/Normal/@lott.Cover');">
+                    <div class="blackout">
+                        <h1>@lott.Prize</h1>
+                        <div class="fromWhom">от @lott.FromWhom</div>
+                    </div>
+                </div>
+            </a>
+        }
+    }
+
+    @if (Model.GJLott.Count > 0)
+    {
+        <div id="gjLotts">
+            <div class="title"><h1><span>GoodJoker</span></h1></div>
+
+            @Html.Partial("_LottGJ", Model.GJLott)
+
+            @if (Model.AllCountGJ > Model.GJLott.Count)
+            {<div class="loading">@Html.Partial("_Loader")</div>}
+        </div>
+    }
+
+    <div id="userLotts" @if (Model.AllCountGJ > Model.GJLott.Count) {<text>style="display:none;"</text>}>
+        <div class="title"><h1><span>Розыгрыши</span></h1></div>
+
+        @if (Model.OtherLott.Count > 0)
+        {
+            @Html.Partial("_LottUser", Model.OtherLott)
+
+            if (Model.AllCountUser > Model.OtherLott.Count)
+            {<div class="loading">@Html.Partial("_Loader")</div>}
+        }
+        else
+        {
+            <div class="default">Ни одна студия ещё не создала активного розыгрыша.<br /><a href="/PrivateOffice/Studios">Станьте первым!</a></div>
+        }
+    </div>
+
+</div>
+
+@section Scripts {
+    <script>
+        var allCountGJ = @Model.AllCountGJ,
+            allCountUser = @Model.AllCountUser,
+            viewCountGJ = @Model.GJLott.Count,
+            viewCountUser = @Model.OtherLott.Count,
+            // How Match to Show
+            HMS = @Model.HMS,
+            goAjax = false;
+        $(document).ready(function () {
+
+            $(".viewAllEnd").click(function () {
+                if ($(this).text().indexOf("Показать") > -1) {
+                    $(this).text("Скрыть");
+                } else {
+                    $(this).text("Показать все");
+                }
+                $(".allEndLott").slideToggle();
+            });
+
+            $('body').on('mouseover', '.gjLott .bg', function () {
+                var content = $(this).parent().children('.content');
+                if (content.css('display') != 'block') {
+                    $('.content').slideUp(500);
+                    content.slideDown(500);
+                }
+            });
+
+            @if  (User.Identity.GetUserRole() == "Admin")
+            {
+                <text>
+                    $('body').on('click', '.delLott', function () {
+                        if (confirm("Вы уверены, что хотите удалить эту лоттерею?")) {
+                            var th = $(this);
+                            var id = th.attr('lottId');
+                            var type = th.attr('typeLott');
+                            $.ajax({
+                                url: "/Administrator/DelLottery",
+                                type: "POST",
+                                data: {
+                                    Id: id
+                                },
+                                success: function (data) {
+                                    if (data == "1") {
+                                        if (type == "user") {
+                                            th.parents(".userLott").remove();
+                                        } else {
+                                            th.parents(".gjLott").remove();
+                                        }
+                                    } else {
+                                        alert("Неверный ID!");
+                                    }
+                                }
+                            });
+                        }
+                    });
+                </text>
+            }
+
+            $(window).scroll(function () {
+                if ($(window).scrollTop() >= ($(document).height() - ($(window).height() + $("footer").height())) && !goAjax) {
+                    if (allCountGJ > viewCountGJ || allCountUser > viewCountUser) {
+                        goAjax = true;
+                        var loader = `<div class="loading">@Html.Partial("_Loader")</div>`;
+                        if (allCountGJ > viewCountGJ) {
+                            var ajaxGJ = true;
+                            var viewCount = viewCountGJ;
+                        } else {
+                            $('#gjLotts .loading').remove();
+                            $("#userLotts").fadeIn(0);
+                            var ajaxGJ = false;
+                            var viewCount = viewCountUser;
+                        }
+
+                        $.ajax({
+                            url: '/Lottery/Lazyload',
+                            type: "POST",
+                            data: {
+                                ViewCount: viewCount,
+                                AjaxGJ: ajaxGJ
+                            },
+                            success: function (content) {
+                                if (content != "0") {
+                                    goAjax = false;
+                                    if (ajaxGJ) {
+                                        viewCountGJ += HMS;
+                                        $('#gjLotts .loading').remove();
+                                        $('#gjLotts').append(content + loader);
+                                    } else {
+                                        viewCountUser += (HMS * 2);
+                                        $('#userLotts .loading').remove();
+                                        $('#userLotts').append(content + loader);
+                                        if (allCountUser <= viewCountUser) {
+                                            $('#gjLotts .loading').remove();
+                                        }
+                                    }
+                                }
+                            },
+                            error: function () {
+                                console.log("Ошабочка, АТАС!!!");
+                            }
+                        });
+                    } else {
+                        $('#gjLotts .loading').remove();
+                        $('#userLotts .loading').remove();
+                        $("#userLotts").fadeIn(0);
+                        goAjax = true;
+                    }
+
+                }
+            });
+
+        });
+    </script>
+}

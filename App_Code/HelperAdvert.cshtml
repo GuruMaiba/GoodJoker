@@ -1,0 +1,36 @@
+﻿@using GoodJoker.Models
+
+@helper ViewAdvert(Advert Advert, string defImg = "MeganFox.jpg", bool news = false) {
+
+    if (Advert != null)
+    {
+        <a href="@Advert.Link" class="siteFriend hiddenText" style="background-image: url('../../Content/style/images/Advert/@Advert.Ava');">
+            <div class="bg"></div>
+            @if (Advert.Title != null || Advert.Text != null)
+            {
+                <div class="desc">
+                    @if (Advert.Title != null) {<div class="name">@Advert.Title</div>}
+                    @if (Advert.Title != null) {<div class="text">@Advert.Text</div>}
+                </div>
+            }
+            @if (news)
+            {
+                <div class="advertSocial">Р<br />Е<br />К<br />Л<br />А<br />М<br />А</div>
+            }
+        </a>
+    }
+    else
+    {
+        <a href="#" class="siteFriend" style="background-image: url('../../Content/style/images/Advert/@defImg');">
+            <div class="bg"></div>
+            <div class="desc">
+                <div class="name">Здесь может быть Ваша реклама!</div>
+            </div>
+            @if (news)
+            {
+                <div class="advertSocial">Р<br />Е<br />К<br />Л<br />А<br />М<br />А</div>
+            }
+        </a>
+    }
+
+}

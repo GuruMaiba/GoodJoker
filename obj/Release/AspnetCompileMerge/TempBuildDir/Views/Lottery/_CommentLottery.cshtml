@@ -1,0 +1,84 @@
+﻿@using GoodJoker.Models
+@model ICollection<CommentLottery>
+
+@if (Model.Count > 0)
+{
+    var i = 1;
+    List<CommentLottery> allComments = ViewBag.allComments;
+    foreach (var comment in Model)
+    {
+        CommentLottery reply = null;
+        var studioComment = false;
+
+        if (comment.Lottery.Studio.Team.FirstOrDefault(t => t.Member.Id == comment.Author.Id && t.Role.FirstOrDefault(r => r.Name == "Admin" || r.Name == "CommentStudio") != null) != null)
+        { studioComment = true; }
+
+        if (comment.ReplyId != 0)
+        { reply = allComments.FirstOrDefault(c => c.Id == comment.ReplyId); }
+
+        <div id="comment-@comment.Id" class="comment @if (Model.Count == i && ViewBag.last == '1') {<text>last</text>} ">
+
+            @if (studioComment)
+            {<img src="~/Content/style/images/Studios/Avatars/Reduced/@comment.Lottery.Studio.Option.Ava" />}
+            else
+            {<img src="~/Content/style/images/Users/Avatars/Reduced/@comment.Author.Option.Ava" />}
+
+            <div class="commentHeader">
+                @if (studioComment)
+                { <a href="/Main/Studio/@comment.Lottery.Studio.Id">@comment.Lottery.Studio.Name</a> }
+                else
+                {
+                    <a href="/Main/Joker/@comment.Author.Id">@comment.Author.Nick</a>
+                    if (comment.Author.Role.Name == "Admin") {<i>- Администратор</i>}
+                }
+                <br />
+                <i>@comment.DateCreate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</i>
+            </div>
+            
+            @if (reply != null)
+            {
+                var studComment = false;
+                if (reply.Lottery.Studio.Team.FirstOrDefault(t => t.Member.Id == reply.Author.Id && t.Role.FirstOrDefault(r => r.Name == "Admin" || r.Name == "CommentStudio") != null) != null)
+                { studComment = true; }
+
+                <div class="respondsTo">
+                    <div class="quote"><i class="icon-quote-right"></i></div>
+                    @if (studComment)
+                    {<img class="hidden-xs" src="~/Content/style/images/Studios/Avatars/Reduced/@reply.Lottery.Studio.Option.Ava" />}
+                    else
+                    {<img class="hidden-xs" src="~/Content/style/images/Users/Avatars/Reduced/@reply.Author.Option.Ava" />}
+                    <div class="header">
+                        @if (studComment)
+                        { <a href="/Main/Studio/@reply.Lottery.Studio.Id">@reply.Lottery.Studio.Name</a> }
+                        else
+                        {
+                            <a href="/Main/Joker/@reply.Author.Id">@reply.Author.Nick</a>
+                            if (reply.Author.Role.Name == "Admin") {<i>- Администратор</i>}
+                        }
+                        <br />
+                        <i>@reply.DateCreate.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</i>
+                    </div>
+                    <div class="text">@reply.Text</div>
+                </div>
+            }
+
+            <div class="text">@if (reply != null && studioComment) {<span>@reply.Lottery.Studio.Name,</span> <br />} else if (reply != null && !studioComment) {<span>@reply.Author.Nick,</span> <br />}@comment.Text</div>
+
+            <div class="reply" commentId="@comment.Id">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <i class="icon-reply addReply" title="Ответить" authorNick="@if (studioComment) {@comment.Lottery.Studio.Name} else {@comment.Author.Nick}"></i> <text>&nbsp;</text>
+                    <i class="icon-bug complaintComment"></i>
+                }
+                @if (User.Identity.GetUserRole() == "Admin")
+                {
+                    <text>&nbsp;</text>
+                    <i class="icon-pencil-1 editComment" title="Редактировать"></i>
+                    <i style="color: #CC0000;" class="icon-cancel delComment" title="Удалить"></i>
+                }
+            </div>
+
+        </div>
+        ++i;
+    }
+}

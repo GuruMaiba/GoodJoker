@@ -1,0 +1,248 @@
+﻿@using GoodJoker.Models
+@model ViewJoker
+@{
+    Layout = null;
+    var user = Model.User;
+    var title = $"Профиль {user.Nick} | GoodJoker";
+    var url = "https://goodjoker.ru/Main/Joker/" + user.Id;
+    var desc = $"Joker: {user.Nick}. Побед: {Model.Prizes.Count}. " +
+               $"Участие: {user.Option.CountShareLottery}. "; // Fixed: add new points
+    var metaImg = $"https://goodjoker.ru/Content/style/images/Users/Avatars/Normal/{user.Option.Ava}";
+}
+
+ <!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@desc" />
+    <meta name="keywords" content="профиль @user.Nick, пользователь goodjoker" />
+
+    <title>@title</title>
+
+    <!-- Открытые данные графа -->
+    <meta property="og:title" content="@title" />
+    <meta property="og:url" content="@url" />
+    <meta property="og:image" content="@metaImg" />
+    <meta property="og:description" content="@desc" />
+    <meta property="og:site_name" content="GoodJoker" />
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/PrivateOffice.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+</head>
+<body>
+
+    @Html.Partial("_Preloader")
+
+    <div class="profile">
+        <div class="profileBack">
+            <i class="icon-reply"></i> &nbsp;
+            <a href="/">Главная</a> &nbsp;
+            <a href="/News">Новости</a> &nbsp;
+            <a href="/Lottery">Розыгрыши</a> &nbsp;
+            @if (User.Identity.IsAuthenticated)
+            { <a href="/PrivateOffice">@User.Identity.Name</a> }
+        </div>
+        <div class="profileBG" style="background: #131315 url('../../Content/style/images/Users/Avatars/Normal/@user.Option.Ava') center center / cover no-repeat;"></div>
+        <div class="profileTitle">
+            <div class="content">
+                <div class="avaMessage">
+                    <img src="~/Content/style/images/Users/Avatars/Normal/@user.Option.Ava" />
+                    @if (User.Identity.GetUserId<int>() != user.Id)
+                    {<a href="/PrivateOffice/AddDialogLK/@user.Id" class="addDialog"><i class="icon-email-plane"></i></a>}
+                </div>
+                <div class="name">@user.Nick</div>
+                <div class="achievements">
+                    <div title="Победы"><i class="icon-trophy-1"></i><br />@Model.Prizes.Count</div>
+                    <div title="Участия"><i class="icon-empire"></i><br />@user.Option.CountShareLottery</div>
+                    <div title="Подписки"><i class="icon-news"></i><br />@user.Studios.Count</div>
+                    <div title="Комментарии"><i class="icon-comment-2"></i><br />@user.Option.CountComments</div>
+                </div>
+            </div>
+            @if (user.Id != 1)
+            {
+                <div class="content">
+                    <div class="social">
+                        @if (user.SocialNetworks.Count() > 0)
+                        {
+                            foreach (var s in user.SocialNetworks)
+                            {
+                                s.SocialId = s.SocialId.Substring(0, s.SocialId.Length - 2);
+                                switch (s.Name)
+                                {
+                                    case "VK":
+                                        <a href="https://vk.com/id@(s.SocialId)" target="_blank"><i class="icon-vk"></i></a>
+                                        break;
+                                    case "OK":
+                                        <a href="https://ok.ru/profile/@(s.SocialId)" target="_blank"><i class="icon-odnoklassniki"></i></a>
+                                        break;
+                                    case "FB":
+                                        <a href="https://www.facebook.com/app_scoped_user_id/@(s.SocialId)/" target="_blank"><i class="icon-facebook"></i></a>
+                                        break;
+                                    case "GL":
+                                        <a href="https://plus.google.com/u/0/@(s.SocialId)" target="_blank"><i class="icon-google-plus"></i></a>
+                                        break;
+                                }
+                            }
+                        }
+                    </div>
+                    <h1>Выйгранные призы</h1>
+                    <div class="lotteries">
+                        @if (Model.Prizes.Count > 0)
+                        {
+                            foreach (var prize in Model.Prizes)
+                            {
+                                var gender = (Model.User.Option.Gender == 2) ? "заняла" : "занял";
+                                title = $"Приз \"{prize.Prize}\" теперь мой!!!";
+                                desc = $"Я {gender} {prize.Place} место, приз {prize.Prize}, теперь мой! GoodJoker благодарю!";
+                                <div class="lottery">
+                                    @if (user.Id == User.Identity.GetUserId<int>())
+                                    {
+                                        <div class="share">
+                                            <a href="https://vk.com/share.php?url=@url&title=@title&description=@desc&image=https://goodjoker.ru/Content/style/images/Users/Avatars/Normal/@user.Id" target="_blank"><i class="icon-vk"></i></a>
+                                            <a href="http://www.facebook.com/sharer.php?u=@url&t=@title" target="_blank"><i class="icon-facebook"></i></a>
+                                            <a href="http://www.odnoklassniki.ru/dk?st.cmd=addShare&st.s=1&st.comments=@desc&st._surl=@url" target="_blank"><i class="icon-odnoklassniki"></i></a>
+                                            <a href="https://plus.google.com/share?url=@url" target="_blank"><i class="icon-google-plus"></i></a>
+                                            <a href="http://twitter.com/intent/tweet?url=@url&text=@title" target="_blank"><i class="icon-twitter"></i></a>
+                                        </div>
+                                    }
+                                    <div class="appellative">
+                                        @prize.Prize
+                                    </div>
+                                </div>
+                            }
+                        }
+                        else
+                        {
+                            <div class="lottery">
+                                <div class="appellative">
+                                    Призы отсутствуют...
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    @if (ViewBag.Info)
+    {
+        <div class="myMandatoryInfo">
+            <div class="btnDown">
+                Информация о пользователе
+                <div class="icon"><i class="icon-angle-double-up"></i></div>
+            </div>
+            <div class="info">
+                @if (ViewBag.Lott != 0)
+                {
+                    foreach (var returnInfo in user.ReturnMandatoryInfo.Where(r => r.Info.Lottery.Id == ViewBag.Lott))
+                    {
+                        var icon = "icon-";
+                        var name = "";
+                        switch (returnInfo.Info.Type)
+                        {
+                            case "vkontakte":
+                                icon += "vk";
+                                name = "ВКонтакте";
+                                break;
+                            case "facebook":
+                                icon += "facebook";
+                                name = "Facebook";
+                                break;
+                            case "odnoklassniki":
+                                icon += "odnoklassniki";
+                                name = "Одноклассники";
+                                break;
+                            case "google":
+                                icon += "google";
+                                name = "Google";
+                                break;
+                            case "email":
+                                icon += "mail-1";
+                                name = "Email";
+                                break;
+                            case "phone":
+                                icon += "mobile";
+                                name = "Телефон";
+                                break;
+                            case "name":
+                                icon += "user";
+                                name = "ФИО";
+                                break;
+                            case "address":
+                                icon += "pin";
+                                name = "Точный адресс";
+                                break;
+                            default:
+                                icon = "";
+                                name = returnInfo.Info.Name;
+                                break;
+                        }
+                        <div class="return">
+                            <div class="question">@if (icon != "") {<i class="@icon"></i>} @name</div>
+                            <div class="answer">@returnInfo.Text</div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="refreshWinner">
+                <textarea class="textareaHolding" placeholder="Опишите пользователю причину Вашего отказа. При нарушение правил перевыбора победителя, Ваша студия и Ваш аккаунт могут быть заблокированны! Помните о количестве участников в Вашем розыгрыше, при нехватке, призы не будут разыграны!"></textarea>
+                <i class="icon-refresh goRefresh"></i>
+            </div>
+            <div class="btnAddWinner">
+                <div class="refreshWinnerBtn"><span class="hidden-xs">ПЕРЕВЫБРАТЬ ПОБЕДИТЕЛЯ</span> <i class="icon-refresh"></i></div>
+                <div class="confirmWinnerBtn"><i class="icon-check-1"></i> <span class="hidden-xs">ПОДТВЕРДИТЬ ПОБЕДИТЕЛЯ</span></div>
+            </div>
+        </div>
+    }
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script>
+
+        $(window).on("load", function () {
+            $('#bgPreloader').fadeOut("slow");
+            $(".lotteries").mCustomScrollbar({
+                            theme: "minimal",
+                scrollbarPosition: "outside"
+            });
+        });
+
+        $(document).ready(function () {
+            $(".btnDown").click(function () {
+                $("html body").animate({
+                    scrollTop: $(window).height()
+                }, 1000);
+            });
+
+            $(".refreshWinnerBtn").click(function () {
+                $(".refreshWinner").slideToggle();
+            });
+
+            $(".textareaHolding").keyup(function () {
+                var val = $(this).val();
+                if (val.length > 0) {
+                    $(".goRefresh").addClass("active");
+                } else {
+                    $(".goRefresh").removeClass("active");
+                }
+            });
+
+            $(".goRefresh").click(function () {
+                if ($(this).hasClass("active")) {
+                    var text = $(".textareaHolding").val();
+                    location.href = "/Lottery/RefreshWinner?LotteryId=@ViewBag.Lott&WinnerId=@user.Id&Text=" + text;
+                }
+            });
+
+            $(".confirmWinnerBtn").click(function () {
+                location.href = "/Lottery/ConfirmWinner?LotteryId=@ViewBag.Lott&WinnerId=@user.Id ";
+            });
+        });
+
+    </script>
+</body>
+</html>

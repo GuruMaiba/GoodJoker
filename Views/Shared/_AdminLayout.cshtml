@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow" />
+
+    <title>@ViewBag.Title</title>
+
+    <link rel="stylesheet" href="~/Content/icons.css" />
+    <link rel="stylesheet" href="~/Content/style/Admin.css" />
+    <link rel="stylesheet" href="~/Content/jquery.mCustomScrollbar.min.css" />
+
+</head>
+<body>
+    <div class="bodyAdmin">
+
+        <!--Прелоадер-->
+        @Html.Partial("_Preloader")
+
+        <!--Меню-->
+        <div class="lcMenu">
+            <div class="logo"><a href="/">GJ</a></div>
+            <ul>
+                <a href="/Administrator"><li><i class="icon-home-1"></i> <span class="menuText">Главная</span></li></a>
+                <a href="/Administrator/Users"><li><i class="icon-users"></i> <span class="menuText">Пользователи</span></li></a>
+                <a href="/Administrator/News"><li><i class="icon-news"></i> <span class="menuText">Новости</span></li></a>
+                <a href="/Administrator/Lotteries"><li><i class="icon-empire"></i> <span class="menuText">Лоттереи</span></li></a>
+                <a href="/Administrator/Adverts"><li><i class="icon-megaphone"></i> <span class="menuText">Реклама</span></li></a>
+                <a href="/Administrator/Videos"><li><i class="icon-video"></i> <span class="menuText">Видео</span></li></a>
+            </ul>
+
+            <ul>
+                <a href="/PrivateOffice"><li><i class="icon-login"></i> <span class="menuText">Личный кабинет</span></li></a>
+            </ul>
+
+        </div>
+
+        <!--Тело-->
+        <div class="adminPageContent">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @RenderSection("Scripts", required: false)
+    <script>
+
+        $(window).on("load", function () {
+            $('#bgPreloader').fadeOut("slow");
+        });
+
+        $(document).ready(function () {
+
+            $(".lcMenu").mouseover(function () {
+                $(".menuText").css("display", "inline-block");
+                $(".lcMenu .name").css("display", "block");
+                $(".lcMenu .logo a").text("GoodJoker");
+            });
+
+            $(".lcMenu").mouseout(function () {
+                $(".menuText").css("display", "none");
+                $(".lcMenu .name").css("display", "none");
+                $(".lcMenu .logo a").text("GJ");
+            });
+
+            // Выделяем активный пункт меню
+            $('.lcMenu ul a').each(function () {
+                var link = document.location.href;
+
+                // Вытаскиваем адресную строку и проверяем её на наличие той страницы на которой мы находимся
+                if (link.indexOf($(this).attr('href')) > 0) {
+                    $('.lcMenu ul a').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>

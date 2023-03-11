@@ -1,0 +1,31 @@
+﻿@model GoodJoker.Models.LocalLimiter
+
+@if (Model.Regions.Count > 0)
+{
+    foreach (var reg in Model.Regions)
+    {
+        <div class="cityItem" cityId="0" regId="@reg.Id">
+            <div class="reg">Регион</div>
+            <div class="info"><span class="name">@reg.Name</span></div>
+        </div>
+    }
+}
+
+@if (Model.Cities.Count > 0)
+{
+    foreach (var city in Model.Cities)
+    {
+        <div class="cityItem" cityId="@city.Id" regId="@city.Region.Id">
+            <div class="reg">@city.Region.Name</div>
+            <div class="info"><span class="name">@city.Name</span> - @city.Index</div>
+        </div>
+    }
+}
+
+@if ((Model.Regions.Count + Model.Cities.Count) < 5)
+{
+    <div class="cityItem addCity" cityId="1">
+        Добавить населенный пункт
+    </div>
+}
+

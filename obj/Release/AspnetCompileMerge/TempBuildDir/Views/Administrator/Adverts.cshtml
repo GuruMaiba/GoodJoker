@@ -1,0 +1,152 @@
+﻿@model ICollection<GoodJoker.Models.Advert>
+@{
+    ViewBag.Title = "Реклама";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@Html.AntiForgeryToken()
+<div class="title"><h1><span>@ViewBag.Title</span></h1></div>
+<div class="adminNav">
+    Поиск по:
+    <input type="text" name="phone" placeholder="Рекламодатель" />
+    <select name="city">
+        <option selected value="1">Все города</option>
+        <option value="2">Сургут</option>
+    </select>
+    <select name="place">
+        <option selected value="1">Все места</option>
+        <option value="2">Слайдер</option>
+        <option value="3">Новости</option>
+        <option value="4">Статья</option>
+        <option value="5">Лоттерея</option>
+    </select>
+    Стоимость: <input type="number" name="numberBegin" placeholder="от" /> <input type="number" name="numberEnd" placeholder="до" />
+    <input type="date" name="dateBegin" placeholder="Дата от" />
+    <input type="date" name="dateEnd" placeholder="Дата до" />
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Стоимость</th>
+            <th>Место</th>
+            <th>ID РД</th>
+            <th>Рекламодатель</th>
+            <th>Локализация</th>
+            <th>Дата начала</th>
+            <th>Дата окончания</th>
+            <th><a href="/Administrator/AddAdvert"><i class="icon-plus-1" title="Добавить рекламу"></i></a></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var adv in Model)
+            {
+                string place = "",
+                       regs = "";
+
+                if (adv.Place.Count > 0)
+                {
+                    if (adv.Place.Count > 1)
+                    {
+                        foreach (var plc in adv.Place)
+                        { place += (place != "") ? ", " + plc.Name : plc.Name; }
+                    }
+                    else { place = adv.Place.First().Name; }
+                }
+
+                if (adv.Cities.Count > 0)
+                {
+                    var oldRegion = 0;
+                    var firstCity = true;
+                    foreach (var city in adv.Cities.OrderBy(c => c.Region?.Id))
+                    {
+                        if (city.Region.Id != oldRegion)
+                        {
+                            if (oldRegion > 0) { regs += "), "; }
+                            regs += city.Region.Name + " (";
+                            oldRegion = city.Region.Id;
+                            firstCity = true;
+                        }
+
+                        regs += (firstCity) ? city.Name : ", " + city.Name;
+                        firstCity = false;
+                    }
+                    regs += ")";
+
+                }
+
+                if (adv.Regions.Count > 0)
+                {
+                    foreach (var region in adv.Regions)
+                    {
+                        if (regs != "") { regs += ", "; }
+                        regs += region.Name;
+                    }
+                }
+
+                <tr id="@adv.Id" title="@adv.Title">
+                    <td>@adv.Id</td>
+                    <td class="cost">@adv.Cost</td>
+                    <td>@place</td>
+                    <td>@adv.AdvertiserId</td>
+                    <td>@adv.Advertiser</td>
+                    <td>@regs</td>
+                    <td>@adv.DateBeginAdvert.ToString("dd.MM.yyyy")</td>
+                    <td>@adv.DateEndAdvert.ToString("dd.MM.yyyy")</td>
+                    <td>
+                        <a href="/Administrator/AddAdvert/@adv.Id"><i class="icon-pencil-1" title="Изменить"></i></a>
+                        <i class="icon-doc-text-inv" title="Перевести в черновики"></i>
+                        <i class="icon-cancel delAdvert" title="Удалить"></i>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td></td>
+                <td>Рекламы пока нет :(((</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        var token = $("input[name='__RequestVerificationToken']").val();
+
+        $(document).ready(function () {
+            $(".delAdvert").click(function () {
+                var parent = $(this).parents("tr");
+                var id = parent.attr('id');
+                var cost = parent.children(".cost").text();
+                if (confirm(`Вы уверенны, что хотите удалить рекламное объясвление c идентификатором ${id}, стоимостью ${cost}???`)) {
+                    $.ajax({
+                        url: "/Administrator/DelAdvert",
+                        type: "POST",
+                        data: {
+                            __RequestVerificationToken: token,
+                            Id: id
+                        },
+                        success: function () {
+                            parent.remove();
+                        },
+                        error: function () {
+                            globalError();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

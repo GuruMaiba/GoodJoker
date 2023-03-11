@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Забыли пароль?</title>
+    <link rel="stylesheet" href="~/Content/style/Main.css" />
+    <meta name="robots" content="noindex, nofollow" />
+</head>
+<body>
+    <div class="forgotPass">
+        <img src="~/Content/style/images/logo.png" />
+        <h1>Забыли пароль?</h1>
+        <form method="post">
+            Введите Ваш адресс электронной почты <br />
+            <input name="Email" type="email" placeholder="Введите Ваш Email" value="@if (ViewBag.Email != "") {<text>@ViewBag.Email</text>}" /> <br />
+            <button type="submit" class="btn">Отправить</button>
+        </form>
+    </div>
+</body>
+</html>

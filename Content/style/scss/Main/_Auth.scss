@@ -1,0 +1,386 @@
+/*
+ * Авторизация
+ * --------------------------------------------------
+ */
+
+#video-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 0;
+    background: url(images/bgAuth.jpg) center center / cover no-repeat #119298;
+}
+
+    #video-bg > video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+@supports (object-fit: cover) {
+    #video-bg > video {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.authContent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.authBlock {
+    position: relative;
+    width: 900px;
+    border-radius: 10px;
+    background: #131315;
+    opacity: 0.6;
+    padding: 50px 40px 30px 40px;
+}
+
+.authBackSite {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 15px;
+    padding: 10px;
+
+    &:hover {
+        color: #1adce4;
+    }
+}
+
+.authTitle {
+    text-align: center;
+    height: 70px;
+
+    span {
+        font-size: 30px;
+        padding: 10px;
+        cursor: pointer;
+        transition: all 1s ease;
+    }
+
+    .active {
+        font-size: 50px;
+        color: #1adce4;
+        cursor: auto;
+    }
+}
+
+.authLineTitle {
+    position: relative;
+
+    hr {
+        margin: 2px;
+    }
+
+    .active {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 5px;
+        border-radius: 15px;
+        background: #1adce4;
+        transition: all 1s ease;
+    }
+}
+
+.authReg {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.authEntry {
+    width: 70%;
+    overflow: hidden;
+    padding: 0;
+    margin-left: 30px;
+
+    .authSlideForm {
+        display: flex;
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 200%;
+        transition: all 1s ease;
+
+        form {
+            float: left;
+            width: 45%;
+        }
+    } // end authSlideForm
+} // end authForm
+
+.authFormEntry, .authFormReg {
+    text-align: center;
+
+    .btn {
+        border-color: #fff;
+        color: #fff;
+
+        &:hover {
+            border-color: $mainColor1;
+        }
+    }
+}
+
+.authFormEntry {
+    margin: 70px 60px 0 0;
+}
+
+.authFormReg {
+    margin: 30px 0 0 0;
+}
+
+.authLine {
+    position: relative;
+    margin: 0 auto 50px auto;
+    width: 100%;
+
+    .reestablishPass {
+        display: block;
+        position: absolute;
+        bottom: -25px;
+        left: 10px;
+
+        &:hover {
+            color: $mainColor2;
+        }
+    }
+}
+
+.authSocial {
+    width: 10%;
+    font-size: 3em;
+    text-align: center;
+    padding: 55px 0;
+
+    h1 {
+        color: #1adce4;
+        margin: 10px 0;
+        font-size: 40px;
+        text-align: center;
+        border-bottom: 2px solid #1adce4;
+    }
+
+    a:hover {
+        color: #1adce4;
+    }
+}
+
+@media screen and (max-device-width: 800px) {
+    #video-bg > video {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+
+    .authBackSite {
+        top: 0px;
+        left: 0px;
+        font-size: 12px;
+    }
+
+    .authBlock {
+        width: 100%;
+        padding: 30px 10px 20px 10px;
+    }
+
+    .authTitle {
+        margin: 10px 0 0 0;
+        height: 35px;
+
+        span {
+            font-size: 20px;
+        }
+
+        .active {
+            font-size: 25px;
+            color: #1adce4;
+            cursor: auto;
+        }
+    }
+
+    .authLineTitle {
+        width: 100%;
+        margin: 0 auto;
+
+        .active {
+            height: 3px;
+        }
+    }
+
+    .authLine .reestablishPass {
+        font-size: 12px;
+        bottom: -20px;
+    }
+
+    .authReg {
+        flex-direction: column;
+    }
+
+    .authEntry {
+        width: 100%;
+        margin-left: 0;
+
+        .authSlideForm form {
+            padding: 0;
+            width: 50%;
+        }
+    }
+
+    .authFormEntry {
+        margin: 40px 0 0 0;
+    }
+
+    .authFormReg {
+        margin: 20px 0 0 0;
+    }
+
+    .authLine {
+        margin: 0 auto 30px auto;
+        width: 95%;
+    }
+
+    .authSocial {
+        font-size: 20px;
+        text-align: center;
+        width: 70%;
+        padding: 0;
+
+        h1 {
+            margin: 10px 0;
+            font-size: 30px;
+            border-bottom: 1px solid #1adce4;
+        }
+
+        a:hover {
+            color: #1adce4;
+        }
+    }
+
+    .btn {
+        font-size: 13px;
+        padding: 10px 60px;
+        margin: 20px 30px 20px 30px;
+    }
+}
+
+/*
+ * --------------------------------------------------
+ * Авторизация
+ */
+
+ /*
+  * Работа с почтой
+  * --------------------------------------------------
+  */
+
+ // Подтверждение почты
+ .confirmEmail {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     width: 100%;
+     height: 100vh;
+     background: #119298;
+     color: #fff;
+     padding: 10px;
+
+     img {
+         width: 200px;
+         margin: 0 0 30px 0;
+     }
+
+     h1 {
+         font-weight: 100;
+         font-size: 50px;
+         text-align: center;
+
+         a {
+             border-bottom: 1px dashed;
+
+             &:hover {
+                 color: #131315;
+                 border-color: #131315;
+             }
+         }
+     } // end h1
+ } // end .confirmEmail
+
+ @media screen and (max-width: 767px) {
+     .confirmEmail img {
+         width: 120px;
+     }
+
+     .confirmEmail h1 {
+         font-size: 20px;
+     }
+ }
+
+ // Восстановление пароля
+ .forgotPass, .newPass {
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     height: 100vh;
+     text-align: center;
+     background: #119298;
+
+     img {
+         width: 120px;
+         height: 120px;
+         margin-bottom: 10px;
+     }
+
+     input {
+         width: 100%;
+         text-align: center;
+         color: #fff;
+         padding: 10px;
+         margin: 20px 0;
+         background: #131315;
+         border: 0;
+         box-shadow: 0 0 10px 1px #119298 inset;
+
+         &:focus {
+             box-shadow: 0 0 10px 1px #119298 inset;
+         }
+     }
+
+     .btn:hover {
+         background: #fff;
+         color: #119298;
+     }
+ } // end forgotPass
+
+ .newPass input {
+     margin: 0 0 10px 0;
+ }
+
+ .newPass .btn {
+     margin-top: 15px;
+ }
+
+ /*
+  * --------------------------------------------------
+  * Работа с почтой
+  */

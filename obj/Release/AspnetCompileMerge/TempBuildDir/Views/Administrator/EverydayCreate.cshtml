@@ -1,0 +1,50 @@
+﻿@model GoodJoker.Models.EverydayLott
+@{
+    ViewBag.Title = "Создание ежедневного розыгрыша";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="everyDayCreate">
+    @Html.ActionLink("Вернуться к списку", "Lotteries", "Administrator", new { Everyday = "true" })
+    <h2>Создание ежедневного розыгрыша</h2>
+    <hr />
+
+    @using (Html.BeginForm("EverydayCreate", "Administrator", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken() // ValidateAntiForgeryTokenAttribute
+
+        @Html.ValidationSummary(true, "", new { @class = "create_danger" })
+
+        <div class="row">
+            <h2 class="">Обложка</h2>
+            <input type="file" name="Cover" class="" />
+        </div>
+
+        <div class="row">
+            <h2 class="">@Html.DisplayNameFor(model => model.Prize)</h2>
+            <input type="text" name="Prize" class="" value="@Model.Prize" placeholder="Введите название приза..." />
+        </div>
+
+        <div class="row">
+            <h2 class="">@Html.DisplayNameFor(model => model.FromWhom)</h2>
+            <input type="text" name="FromWhom" class="" value="@Model.FromWhom" placeholder="От кого розыгрыш" />
+        </div>
+
+        <div class="row">
+            <h2 class="">@Html.DisplayNameFor(model => model.Holding)</h2>
+            <input type="text" name="Holding" class="" value="@Model.Holding.ToLocalTime().ToString("dd.MM.yyyy HH:mm")" placeholder="Дата первого розыгрыша" />
+        </div>
+
+        <div class="row">
+            <h2 class="">@Html.DisplayNameFor(model => model.Description)</h2>
+            <textarea class="" name="Description" placeholder="Описание...">@Model.Description</textarea>
+        </div>
+
+        <div class="row">
+            <h2 class="">Опубликовать</h2>
+            <input type="checkbox" name="Publish" value="true" @if (Model != null && Model.Publish) { <text>checked</text>} />
+        </div>
+
+        <button class="btn">Сохранить</button>
+    }
+</div>

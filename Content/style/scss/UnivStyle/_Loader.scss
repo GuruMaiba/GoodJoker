@@ -1,0 +1,27 @@
+/*
+*   Loader
+* --------------------------------------------------
+*/
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading {
+    width: 70px;
+    height: 70px;
+    -webkit-animation: moveLoader 1s infinite linear;
+    -moz-animation: moveLoader 1s infinite linear;
+    animation: moveLoader 1s infinite linear;
+}
+
+@-webkit-keyframes moveLoader { 100% { -webkit-transform: rotate(360deg); } }
+@-moz-keyframes moveLoader { 100% { -moz-transform: rotate(360deg); } }
+@keyframes moveLoader { 100% { transform: rotate(360deg); } }
+
+/*
+ * --------------------------------------------------
+ *  Loader
+ */

@@ -1,0 +1,35 @@
+﻿@mixin bg($color, $gradient) {
+    @if $gradient == 0 {$gradient: 45deg, $color, darken( $color, 10% ); }
+    background: $color;
+    background: linear-gradient($gradient);
+}
+
+// vert: true - top, false - bottom;
+// horn: true - left, false - right;
+@mixin hint($vert, $valVert, $horn, $valHorn, $w: 0, $h: 0, $transf: 0, $type: "none", $bRad: 0) {
+    position: absolute;
+    // Вертикальное выравнивание
+    @if $vert { top: $valVert; }
+    @else { bottom: $valVert; }
+    // Горизонтальное выравнивание
+    @if $horn { left: $valHorn; }
+    @else { right: $valHorn; }
+
+    @if $w > 0 { width: $w; }
+    @if $h > 0 { height: $h; }
+
+    @if $type == "outl" {
+        border-radius: 5px;
+        border: 2px solid #fff;
+    } @else if $type == "arw" {
+        @if $bRad == 0 { $bRad: 80px 50px; }
+        border-radius: 0 0 $bRad;
+        border-bottom: 2px solid #fff;
+    } @else if $type == "arwE" {
+        border-radius: 20px 10px 20px 0;
+        border-top: 3px solid #fff;
+        border-right: 3px solid #fff;
+    }
+
+    @if $transf != 0 { transform: rotate($transf); }
+}

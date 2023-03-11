@@ -1,0 +1,143 @@
+﻿@using GoodJoker.Models
+@model ICollection<Lottery>
+
+@HelperAdvert.ViewAdvert(null)
+
+@foreach (var lott in Model)
+{
+    <div class="gjLott">
+        <div class="bg" style="background-image: url('../../Content/style/images/Lotteries/Normal/@lott.Cover');">
+            <div class="blackout">
+                <h1>@lott.Title</h1>
+                <a href="/Lottery/Details/@lott.Id" class="more">Подробнее</a>
+                @if (User.Identity.GetUserRole() == "Admin")
+                {<div class="delLott" lottId="@lott.Id" typeLott="gj"><i class="icon-cancel"></i></div>}
+            </div>
+        </div>
+        <div class="content hidden-xs">
+            <div class="info">
+                <div class="desc">
+                    <h3>Описание</h3>
+                    <p>
+                        @lott.ShortDescription
+                    </p>
+                </div>
+                @if (lott.Conditions != null || lott.BeginAgeLimit > 0 || lott.EndAgeLimit > 0 || lott.GenderLimit > 0 || lott.Cities.Count > 0)
+                {
+                    var i = 0;
+                    string age = "",
+                        gender = "";
+
+                    if (lott.BeginAgeLimit > 0 && lott.EndAgeLimit > 0)
+                    { age = $"от {lott.BeginAgeLimit} до {lott.EndAgeLimit}"; }
+                    else if (lott.BeginAgeLimit > 0)
+                    { age = $"{lott.BeginAgeLimit}+"; }
+                    else if (lott.EndAgeLimit > 0)
+                    { age = $"до {lott.EndAgeLimit}"; }
+
+                    if (lott.GenderLimit == 1)
+                    { gender = "мужчины"; }
+                    else if (lott.GenderLimit == 2)
+                    { gender = "женщины"; }
+
+                    <div class="conditions hidden-sm hidden-xs">
+                        <h3>Условия участия</h3>
+                        <ol>
+                            @if (age != "")
+                            {
+                                ++i;
+                                    <li>Возраст @age</li> }
+                            @if (gender != "")
+                            {
+                                ++i;
+                                    <li>Только @gender</li> }
+                            @if (lott.Conditions != null)
+                            {
+                                foreach (var cond in lott.Conditions.Split(new string[] { "&Conditions;" }, StringSplitOptions.RemoveEmptyEntries))
+                                {
+                                    <li>@cond</li>
+                                    ++i;
+                                    if (i == 5)
+                                    {
+                                    <li>...</li> break;
+                                    }
+                                }
+                            }
+                            @if (lott.Cities.Count > 0)
+                            {
+                                    <li>В розыгрыше присутствуют локальные ограничения!</li> }
+                        </ol>
+                    </div>
+                }
+            </div>
+            <div class="social">
+                @if (lott.Link.Count > 0)
+                {
+                    <span class="links">
+                        @foreach (var link in lott.Link.Take(10))
+                        {
+                            var icon = "icon-";
+                            switch (link.Type)
+                            {
+                                case "vkontakte":
+                                    icon += "vk";
+                                    break;
+                                case "facebook":
+                                    icon += "facebook";
+                                    break;
+                                case "twitch":
+                                    icon += "twitch";
+                                    break;
+                                case "twitter":
+                                    icon += "twitter";
+                                    break;
+                                case "youtube":
+                                    icon += "youtube";
+                                    break;
+                                case "odnoklassniki":
+                                    icon += "odnoklassniki";
+                                    break;
+                                case "google":
+                                    icon += "google";
+                                    break;
+                                case "google+":
+                                    icon += "google-plus";
+                                    break;
+                                case "pinterest":
+                                    icon += "pinterest-p";
+                                    break;
+                                case "steam":
+                                    icon += "steam";
+                                    break;
+                                case "github":
+                                    icon += "github-alt";
+                                    break;
+                                default:
+                                    icon += "share-square-o";
+                                    break;
+                            }
+                            <a href="@link.Link"><i class="@icon"></i></a>
+                        }
+                    </span>
+                }
+                <span class="item">
+                    <i class="icon-eye"></i>
+                    @lott.View
+                </span>
+                <span class="item">
+                    <i class="icon-user"></i>
+                    @lott.Users.Count
+                </span>
+                <span class="item">
+                    <i class="icon-comment-2"></i>
+                    @lott.Comments.Count
+                </span>
+                <div class="statistics">
+                    <i class="icon-thumbs-o-up"></i>
+                    <span> @lott.OddsFingers </span>
+                    <i class="icon-thumbs-o-down"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+}

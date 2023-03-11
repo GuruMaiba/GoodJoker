@@ -1,0 +1,572 @@
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\WebGrease.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+c:\users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Owin.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\WebGrease.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\RestSharp.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\RestSharp.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\RestSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\RestSharp.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\WebGrease.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Owin.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\WebGrease.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Owin.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\WebGrease.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\RestSharp.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+D:\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.dll
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.xml
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ApplicationInsights.config
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\csc.exe
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\csc.exe.config
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\csc.rsp
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\csi.exe
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\csi.rsp
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.AppContext.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\vbc.exe
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\vbc.exe.config
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\vbc.rsp
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\roslyn\desktop.ini
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\GoodJoker.dll.config
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\GoodJoker.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\GoodJoker.pdb
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Antlr3.Runtime.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\EntityFramework.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Newtonsoft.Json.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Owin.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\RestSharp.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Helpers.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Mvc.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Optimization.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Razor.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\WebGrease.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\EntityFramework.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\EntityFramework.SqlServer.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.DiskCache.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ImageResizer.Plugins.PrettyGifs.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\RestSharp.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Helpers.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Mvc.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Optimization.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.Razor.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.Deployment.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\System.Web.WebPages.Razor.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Antlr3.Runtime.pdb
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Newtonsoft.Json.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.ApplicationInsights.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\Microsoft.AI.Web.xml
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.Helpers.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.Mvc.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.Optimization.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.Razor.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Deployment.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\obj\Debug\GoodJoker.dll
+C:\Users\admin\Google Диск\Сертификаты\GoodJoker\GoodJoker\obj\Debug\GoodJoker.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\GoodJoker\GoodJoker\bin\roslyn\desktop.ini
+C:\Users\admin\documents\visual studio 2017\Projects\GoodJoker\GoodJoker\obj\Debug\GoodJoker.csprojResolveAssemblyReference.cache
